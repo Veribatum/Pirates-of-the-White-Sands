@@ -1,575 +1,637 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Get Involved | Pirates of the White Sands</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get Involved | Pirates of the White Sands</title>
+<meta name="description" content="Join the Pirates of the White Sands krewe, volunteer, support the mission, or request a pirate appearance in the Panama City area.">
 
-  <style>
-    * {
-      box-sizing: border-box;
+<style>
+:root{
+    --red:#92251f;
+    --red-hover:#ad332c;
+    --cream:#fff1d0;
+    --ink:#2f1b12;
+    --gold:#c59a58;
+    --wood:#110b08;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+    margin:0;
+    overflow-x:hidden;
+    font-family:Georgia,"Times New Roman",serif;
+    color:var(--cream);
+    background:
+        #110b08
+        url("wood.png")
+        center top / 1500px auto
+        repeat;
+}
+img{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+
+.site-header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    min-height:92px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:28px;
+    padding:8px 34px;
+    background:
+        linear-gradient(rgba(8,5,3,.72),rgba(8,5,3,.86)),
+        url("wood.png") center / cover;
+    border-bottom:1px solid rgba(197,154,88,.45);
+    box-shadow:0 6px 22px rgba(0,0,0,.55);
+}
+.logo img{width:305px;max-width:42vw;}
+nav{
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap:22px;
+    flex-wrap:wrap;
+}
+nav a{
+    position:relative;
+    color:#fff;
+    font-size:.93rem;
+    text-shadow:0 2px 4px #000;
+}
+nav a:not(.support-link)::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    right:50%;
+    bottom:-7px;
+    height:2px;
+    background:var(--red);
+    transition:.22s ease;
+}
+nav a:not(.support-link):hover::after{left:0;right:0;}
+nav a.active::after{left:0;right:0;}
+.support-link{
+    padding:11px 18px;
+    background:var(--red);
+    border:1px solid #bb4c44;
+    box-shadow:0 4px 11px rgba(0,0,0,.35);
+    font-weight:bold;
+    white-space:nowrap;
+    transition:.2s ease;
+}
+.support-link:hover{background:var(--red-hover);transform:translateY(-2px);}
+
+.button{
+    display:inline-block;
+    padding:13px 24px;
+    font-weight:bold;
+    border:1px solid rgba(255,255,255,.34);
+    transition:transform .2s ease,background .2s ease,color .2s ease;
+}
+.button-red{background:var(--red);color:#fff;}
+.button-red:hover{background:var(--red-hover);transform:translateY(-2px);}
+.button-dark{color:#fff;background:rgba(0,0,0,.58);}
+.button-dark:hover{background:#fff;color:#21150d;transform:translateY(-2px);}
+.button-outline{
+    color:#3a2415;
+    border:1px solid rgba(69,41,21,.55);
+    background:rgba(255,244,215,.12);
+}
+.button-outline:hover{background:#2f1b12;color:#fff;transform:translateY(-2px);}
+
+.container{
+    position:relative;
+    z-index:5;
+    width:min(1180px,89vw);
+    margin:0 auto;
+}
+.eyebrow{
+    margin-bottom:9px;
+    font-size:.76rem;
+    font-weight:bold;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+}
+h1,h2,h3,p{margin-top:0;}
+p{font-size:1.05rem;line-height:1.65;}
+
+.gi-hero{
+    position:relative;
+    min-height:620px;
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+    background:
+        linear-gradient(90deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.48) 42%,rgba(0,0,0,.20) 70%,rgba(0,0,0,.38) 100%),
+        linear-gradient(to bottom,rgba(0,0,0,.05),rgba(0,0,0,.65)),
+        url("Join%20the%20Krew.jpg") center 36% / cover no-repeat;
+}
+.gi-hero::after{
+    content:"";
+    position:absolute;
+    inset:auto 0 0;
+    height:155px;
+    background:linear-gradient(to top,rgba(8,5,3,.85),transparent);
+}
+.gi-hero-content{
+    position:relative;
+    z-index:4;
+    width:min(1180px,89vw);
+    margin:0 auto;
+}
+.gi-hero-copy{max-width:760px;}
+.gi-hero .eyebrow{color:#d8ae68;}
+.gi-hero h1{
+    margin:0 0 16px;
+    font-size:clamp(4rem,7vw,7rem);
+    line-height:.92;
+    text-shadow:0 7px 22px rgba(0,0,0,.75);
+}
+.gi-hero p{
+    max-width:680px;
+    margin:0 0 24px;
+    font-size:1.24rem;
+    line-height:1.55;
+    color:#f3dfbc;
+    text-shadow:0 3px 8px rgba(0,0,0,.76);
+}
+
+.rope-divider{
+    position:relative;
+    z-index:60;
+    width:100%;
+    height:82px;
+    margin:-18px 0 -10px;
+    pointer-events:none;
+    overflow:visible;
+}
+.rope-divider img{
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:calc(100% + 46px);
+    max-width:none;
+    transform:translate(-50%,-50%);
+    filter:drop-shadow(0 6px 5px rgba(0,0,0,.62));
+}
+
+.choice-section{
+    position:relative;
+    padding:52px 0 60px;
+    color:var(--ink);
+    background:
+        linear-gradient(rgba(10,7,5,.08),rgba(10,7,5,.08)),
+        url("wood.png") center / cover;
+}
+.choice-panel{
+    position:relative;
+    width:min(1400px,96vw);
+    margin:0 auto;
+    padding:62px 70px 68px;
+    background:url("parchment.png") center / 100% 100% no-repeat;
+    filter:drop-shadow(0 17px 26px rgba(0,0,0,.45));
+}
+.choice-heading{
+    max-width:850px;
+    margin:0 auto 34px;
+    text-align:center;
+}
+.choice-heading .eyebrow{color:#6a4625;}
+.choice-heading h2{
+    margin:0 0 12px;
+    font-size:clamp(2.8rem,5vw,4.7rem);
+    line-height:.98;
+}
+.choice-heading p{color:#5a3a26;margin:0;}
+.choice-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:0;
+    border-top:1px solid rgba(92,57,31,.20);
+    border-bottom:1px solid rgba(92,57,31,.20);
+}
+.choice-item{
+    padding:30px 24px 26px;
+    text-align:center;
+    border-right:1px solid rgba(92,57,31,.20);
+}
+.choice-item:last-child{border-right:none;}
+.choice-icon{
+    font-size:2.2rem;
+    line-height:1;
+    margin-bottom:12px;
+}
+.choice-item h3{
+    margin:0 0 8px;
+    font-size:1.45rem;
+}
+.choice-item p{
+    min-height:82px;
+    margin:0 0 18px;
+    color:#543622;
+    font-size:.95rem;
+    line-height:1.5;
+}
+
+.story-section{
+    position:relative;
+    padding:72px 0;
+    overflow:hidden;
+    background:
+        linear-gradient(rgba(9,6,4,.58),rgba(9,6,4,.72)),
+        url("wood.png") center / cover;
+}
+.story-grid{
+    display:grid;
+    grid-template-columns:1.08fr .92fr;
+    gap:58px;
+    align-items:center;
+}
+.story-grid.reverse{
+    grid-template-columns:.92fr 1.08fr;
+}
+.story-grid.reverse .story-photo{order:2;}
+.story-grid.reverse .story-copy{order:1;}
+.story-photo{
+    position:relative;
+}
+.story-photo img{
+    width:100%;
+    height:460px;
+    object-fit:cover;
+    object-position:center 30%;
+    border:8px solid #2a190f;
+    box-shadow:
+        0 18px 34px rgba(0,0,0,.46),
+        inset 0 0 0 1px rgba(199,154,88,.25);
+}
+.story-photo::after{
+    content:"";
+    position:absolute;
+    inset:16px -16px -16px 16px;
+    z-index:-1;
+    border:1px solid rgba(196,154,88,.24);
+}
+.story-copy .eyebrow{color:#d8ae68;}
+.story-copy h2{
+    margin:0 0 18px;
+    font-size:clamp(2.8rem,4.6vw,4.5rem);
+    line-height:.98;
+}
+.story-copy p{color:#ead7b6;}
+.story-actions{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:22px;
+}
+
+.donate-strip{
+    position:relative;
+    padding:50px 0 56px;
+    color:var(--ink);
+    background:
+        linear-gradient(rgba(232,202,149,.08),rgba(90,50,22,.08)),
+        url("map.png") center / cover no-repeat;
+    box-shadow:
+        inset 0 14px 28px rgba(0,0,0,.15),
+        inset 0 -14px 28px rgba(0,0,0,.15);
+}
+.donate-grid{
+    display:grid;
+    grid-template-columns:.9fr 1.1fr;
+    gap:48px;
+    align-items:center;
+}
+.donate-photo{
+    padding:9px;
+    background:#f2e2c0;
+    box-shadow:0 12px 25px rgba(0,0,0,.30);
+    transform:rotate(-.6deg);
+}
+.donate-photo img{
+    width:100%;
+    aspect-ratio:4/3;
+    object-fit:cover;
+    object-position:center top;
+}
+.donate-copy .eyebrow{color:#6a4625;}
+.donate-copy h2{
+    margin:0 0 15px;
+    font-size:clamp(2.8rem,4.5vw,4.4rem);
+    line-height:.98;
+}
+.donate-copy p{color:#4e321f;}
+.donate-copy strong{color:#2d190f;}
+
+.contact-section{
+    position:relative;
+    padding:70px 0;
+    background:
+        linear-gradient(rgba(10,7,5,.56),rgba(10,7,5,.74)),
+        url("wood.png") center / cover;
+}
+.contact-panel{
+    position:relative;
+    width:min(1120px,91vw);
+    margin:0 auto;
+    padding:58px 64px;
+    text-align:center;
+    color:var(--ink);
+    background:url("parchment%202.png") center / 100% 100% no-repeat;
+    filter:drop-shadow(0 16px 24px rgba(0,0,0,.42));
+}
+.contact-panel .eyebrow{color:#6a4625;}
+.contact-panel h2{
+    margin:0 0 12px;
+    font-size:clamp(2.8rem,4.8vw,4.6rem);
+}
+.contact-panel p{
+    max-width:720px;
+    margin:0 auto 22px;
+    color:#543622;
+}
+
+.proverb{
+    position:relative;
+    min-height:180px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    overflow:hidden;
+    background:
+        linear-gradient(rgba(5,3,2,.42),rgba(5,3,2,.58)),
+        url("scean.png") center / cover no-repeat;
+    border-top:1px solid rgba(197,154,88,.40);
+    border-bottom:1px solid rgba(197,154,88,.40);
+}
+.proverb blockquote{
+    position:relative;
+    z-index:2;
+    margin:0;
+    padding:0 24px;
+    font-style:italic;
+    font-size:clamp(2rem,4vw,3.4rem);
+    color:#f7e4bd;
+    text-shadow:0 5px 13px rgba(0,0,0,.78);
+}
+.proverb span{
+    display:block;
+    margin-top:10px;
+    font-size:.78rem;
+    font-style:normal;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:#d7ad67;
+}
+
+footer{
+    padding:28px 20px;
+    text-align:center;
+    color:#aa9a88;
+    background:
+        linear-gradient(rgba(6,4,3,.83),rgba(6,4,3,.83)),
+        url("wood.png") center / cover;
+    border-top:1px solid #46311e;
+}
+
+.reveal{
+    opacity:0;
+    transform:translateY(24px);
+    transition:opacity .7s ease,transform .7s ease;
+}
+.reveal.visible{opacity:1;transform:none;}
+
+@media (max-width:980px){
+    .site-header{
+        position:relative;
+        justify-content:center;
+        text-align:center;
     }
+    .logo img{max-width:85vw;}
+    nav{width:100%;justify-content:center;}
+    .choice-grid{grid-template-columns:1fr 1fr;}
+    .choice-item:nth-child(2){border-right:none;}
+    .choice-item:nth-child(-n+2){border-bottom:1px solid rgba(92,57,31,.20);}
+    .story-grid,
+    .story-grid.reverse,
+    .donate-grid{grid-template-columns:1fr;}
+    .story-grid.reverse .story-photo,
+    .story-grid.reverse .story-copy{order:initial;}
+    .story-photo img{height:400px;}
+}
 
-    body {
-      margin: 0;
-      font-family: Georgia, "Times New Roman", serif;
-      background: #d7c4a0;
-      color: #2b211c;
+@media (max-width:650px){
+    .site-header{padding:10px 14px;}
+    nav{gap:9px 13px;}
+    nav a{font-size:.82rem;}
+    .support-link{padding:8px 11px;}
+    .gi-hero{min-height:520px;background-position:center 28%;}
+    .gi-hero h1{font-size:3.6rem;}
+    .choice-panel{width:98vw;padding:52px 28px 58px;}
+    .choice-grid{grid-template-columns:1fr;}
+    .choice-item{
+        border-right:none;
+        border-bottom:1px solid rgba(92,57,31,.20);
     }
+    .choice-item:last-child{border-bottom:none;}
+    .choice-item p{min-height:0;}
+    .story-section{padding:52px 0;}
+    .story-photo img{height:320px;}
+    .contact-panel{padding:48px 28px 54px;}
+    .rope-divider{height:58px;margin:-8px 0 -2px;}
+    .rope-divider img{width:calc(100% + 22px);}
+}
 
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    a {
-      color: inherit;
-    }
-
-    header {
-      background: #1f1f1f;
-      padding: 12px 34px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 28px;
-      flex-wrap: wrap;
-    }
-
-    .logo img {
-      width: 320px;
-      max-width: 45vw;
-      height: auto;
-    }
-
-    nav {
-      display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      align-items: center;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-size: 1rem;
-    }
-
-    nav a:hover {
-      color: #d8bc8d;
-    }
-
-    .container {
-      width: min(1200px, 90%);
-      margin: 0 auto;
-    }
-
-    .narrow {
-      max-width: 900px;
-    }
-
-    .btn {
-      display: inline-block;
-      text-decoration: none;
-      font-weight: 700;
-      padding: 14px 28px;
-      transition: 0.2s ease;
-      border-radius: 2px;
-    }
-
-    .btn-solid {
-      background: #8d221e;
-      color: #f8f0e0;
-    }
-
-    .btn-solid:hover {
-      background: #751b18;
-    }
-
-    .btn-outline-dark {
-      border: 2px solid #2b211c;
-      color: #2b211c;
-      background: transparent;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      font-size: .95rem;
-    }
-
-    .btn-outline-dark:hover {
-      background: #2b211c;
-      color: #f8f0e0;
-    }
-
-    .btn-light-outline {
-      border: 2px solid #f6eedf;
-      color: #f6eedf;
-      background: rgba(0,0,0,.18);
-      text-transform: uppercase;
-      letter-spacing: .08em;
-    }
-
-    .btn-light-outline:hover {
-      background: #f6eedf;
-      color: #2b211c;
-    }
-
-    /* HERO */
-    .gi-hero {
-      position: relative;
-      min-height: 520px;
-      background-image: url("Join%20the%20Krew.jpg");
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .gi-hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,.48);
-    }
-
-    .gi-hero-content {
-      position: relative;
-      z-index: 1;
-      color: #fff7eb;
-      width: min(900px, 90%);
-    }
-
-    .gi-hero-content h1 {
-      font-size: clamp(3rem, 7vw, 5.5rem);
-      line-height: 1;
-      margin: 0 0 1rem;
-    }
-
-    .gi-hero-content p {
-      font-size: 1.4rem;
-      line-height: 1.5;
-      margin: 0;
-    }
-
-    /* INTRO */
-    .gi-intro {
-      padding: 5rem 0 4rem;
-      text-align: center;
-    }
-
-    .gi-intro h2 {
-      font-size: clamp(2.4rem, 5vw, 4rem);
-      line-height: 1.05;
-      margin: 0 0 1.5rem;
-    }
-
-    .gi-intro p {
-      font-size: 1.3rem;
-      line-height: 1.7;
-      margin: 0 0 1.1rem;
-    }
-
-    /* SUPPORT BANNER */
-    .gi-support-banner {
-      position: relative;
-      min-height: 360px;
-      background-image: url("float.jpg");
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .gi-support-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,.38);
-    }
-
-    .gi-support-content {
-      position: relative;
-      z-index: 1;
-      color: #fff7eb;
-    }
-
-    .gi-support-content h2 {
-      font-size: clamp(2.5rem, 5vw, 4.5rem);
-      margin: 0 0 1.25rem;
-    }
-
-    /* WAYS */
-    .gi-ways {
-      padding: 5rem 0;
-      background: #d7c4a0;
-    }
-
-    .section-label {
-      text-align: center;
-      font-size: 1rem;
-      letter-spacing: .14em;
-      margin-bottom: 2.5rem;
-      color: #3a302a;
-    }
-
-    .circle-card-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 3rem;
-    }
-
-    .circle-card {
-      text-align: center;
-    }
-
-    .circle-card img {
-      width: 100%;
-      max-width: 320px;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      border-radius: 50%;
-      margin: 0 auto 1.5rem;
-    }
-
-    .circle-card h3 {
-      font-size: 2rem;
-      margin: 0 0 1rem;
-    }
-
-    .circle-card p {
-      font-size: 1.15rem;
-      line-height: 1.7;
-      margin: 0 0 1.8rem;
-    }
-
-    /* EVENT */
-    .gi-event {
-      padding: 5rem 0;
-      background: #efe0c4;
-    }
-
-    .gi-event-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
-    }
-
-    .gi-event-text h2 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      line-height: 1.05;
-      margin: 0 0 1.5rem;
-    }
-
-    .gi-event-text p {
-      font-size: 1.2rem;
-      line-height: 1.7;
-      margin: 0 0 1.3rem;
-    }
-
-    .gi-event-image img {
-      width: 100%;
-      border-radius: 4px;
-    }
-
-    /* DONATE */
-    .gi-donate-details {
-      padding: 5rem 0 6rem;
-      background: #8d221e;
-      color: #f8f0e0;
-    }
-
-    .gi-donate-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
-    }
-
-    .gi-donate-image img {
-      width: 100%;
-      border-radius: 4px;
-    }
-
-    .gi-donate-text h2 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      margin: 0 0 1.4rem;
-    }
-
-    .gi-donate-text p {
-      font-size: 1.2rem;
-      line-height: 1.7;
-      margin: 0 0 1.2rem;
-    }
-
-    .gi-donate-text .btn-solid {
-      background: #f4e8d4;
-      color: #8d221e;
-    }
-
-    footer {
-      background: #171717;
-      color: #ccc;
-      text-align: center;
-      padding: 30px 20px;
-      font-size: .9rem;
-    }
-
-    @media (max-width: 980px) {
-      header {
-        justify-content: center;
-        text-align: center;
-      }
-
-      .logo img {
-        width: min(420px, 90vw);
-        max-width: none;
-      }
-
-      nav {
-        width: 100%;
-        justify-content: center;
-      }
-
-      .circle-card-grid,
-      .gi-event-grid,
-      .gi-donate-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 700px) {
-      .gi-hero {
-        min-height: 420px;
-      }
-
-      .gi-support-banner {
-        min-height: 280px;
-      }
-
-      .gi-hero-content p,
-      .gi-intro p,
-      .circle-card p,
-      .gi-event-text p,
-      .gi-donate-text p {
-        font-size: 1.05rem;
-      }
-    }
-  </style>
+@media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto!important;}
+    .reveal{opacity:1;transform:none;}
+}
+</style>
 </head>
 
 <body>
 
-  <header>
+<header class="site-header">
     <a class="logo" href="index.html">
-      <img src="logo.png" alt="Pirates of the White Sands">
+        <img src="logo.png" alt="Pirates of the White Sands">
     </a>
 
     <nav>
-      <a href="index.html">Home</a>
-      <a href="get-involved.html">Get Involved</a>
-      <a href="meet-the-krewe.html">Meet the Krewe</a>
-      <a href="high-seas.html">Pirates of the High Seas</a>
+        <a href="index.html">Home</a>
+        <a class="active" href="get-involved.html">Get Involved</a>
+        <a href="meet-the-krewe.html">Meet the Krewe</a>
+        <a href="high-seas.html">Pirates of the High Seas</a>
+        <a class="support-link" href="https://account.venmo.com/pay?recipients=potws5972" target="_blank" rel="noopener">☠ Support the Mayhem</a>
     </nav>
-  </header>
+</header>
 
-  <main class="get-involved-page">
+<main>
 
-    <section class="gi-hero">
-      <div class="gi-hero-overlay"></div>
-
-      <div class="gi-hero-content">
-        <h1>Get Involved</h1>
-        <p>
-          Join the krewe, support a cause, request an appearance,
-          or help us keep the mayhem going.
-        </p>
-      </div>
-    </section>
-
-    <section class="gi-intro">
-      <div class="container narrow">
-        <h2>There’s More Than One Way to Join the Mayhem</h2>
-
-        <p>
-          Pirates of the White Sands is built around community,
-          charity, friendship, and a shared love of pirate culture.
-        </p>
-
-        <p>
-          Whether you want to volunteer beside the krewe,
-          tell us about a local cause that needs support,
-          or invite the pirates to your event,
-          there’s a place aboard.
-        </p>
-      </div>
-    </section>
-
-    <section class="gi-support-banner">
-      <div class="gi-support-overlay"></div>
-
-      <div class="gi-support-content">
-        <h2>Support the Krewe</h2>
-        <a class="btn btn-light-outline" href="#donate">Donate Now</a>
-      </div>
-    </section>
-
-    <section class="gi-ways">
-      <div class="container">
-
-        <p class="section-label">WAYS TO GET INVOLVED</p>
-
-        <div class="circle-card-grid">
-
-          <article class="circle-card">
-            <img src="krew2.jpg" alt="Suggest a Cause">
-
-            <h3>Suggest a Cause</h3>
-
+<section class="gi-hero">
+    <div class="gi-hero-content">
+        <div class="gi-hero-copy reveal">
+            <div class="eyebrow">People • Community • Mayhem for a Good Cause</div>
+            <h1>Get Involved</h1>
             <p>
-              Know a local nonprofit, family, or community program
-              that could use a little pirate support?
-              Tell us about them.
+                However you want to take part — lend a hand, support the mission, invite the pirates to your event, or just learn more — there’s a place for you in the Pirates of the White Sands.
             </p>
+            <a class="button button-red" href="#ways">Find Your Place in the Crew →</a>
+        </div>
+    </div>
+</section>
 
-            <a
-              class="btn btn-outline-dark"
-              href="mailto:?subject=Suggest%20a%20Cause"
-            >
-              Tell the Captain
-            </a>
-          </article>
+<div class="rope-divider">
+    <img src="long%20rope%20divider%20tied.png" alt="">
+</div>
 
-          <article class="circle-card">
-            <img src="Join%20the%20Krew.jpg" alt="Volunteer with the Krewe">
+<section class="choice-section" id="ways">
+    <div class="choice-panel">
+        <div class="choice-heading reveal">
+            <div class="eyebrow">Different Skills. Same Crew.</div>
+            <h2>Choose Your Adventure</h2>
+            <p>There’s more than one way to help the krewe do some good and have a little fun doing it.</p>
+        </div>
 
-            <h3>Volunteer with the Krewe</h3>
+        <div class="choice-grid">
+            <article class="choice-item reveal">
+                <div class="choice-icon">☸</div>
+                <h3>Join the Krewe</h3>
+                <p>Meet the crew, learn what we do, and find out what it takes to become part of the mayhem.</p>
+                <a class="button button-outline" href="#join">Learn More →</a>
+            </article>
 
+            <article class="choice-item reveal">
+                <div class="choice-icon">⚒</div>
+                <h3>Volunteer</h3>
+                <p>Help with community events, setup, teardown, appearances, and the work that keeps everything moving.</p>
+                <a class="button button-outline" href="#join">See Opportunities →</a>
+            </article>
+
+            <article class="choice-item reveal">
+                <div class="choice-icon">☠</div>
+                <h3>Support the Mayhem</h3>
+                <p>Can’t volunteer? Throw a little treasure in the chest and help fund community work and charitable activities.</p>
+                <a class="button button-red" href="https://account.venmo.com/pay?recipients=potws5972" target="_blank" rel="noopener">Donate via Venmo</a>
+            </article>
+
+            <article class="choice-item reveal">
+                <div class="choice-icon">⚑</div>
+                <h3>Request an Appearance</h3>
+                <p>Planning a school event, fundraiser, festival, nonprofit event, or special occasion? Bring in the pirates.</p>
+                <a class="button button-outline" href="#appearance">Request the Krewe →</a>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="story-section" id="join">
+    <div class="container story-grid">
+        <div class="story-photo reveal">
+            <img src="krew2.jpg" alt="Pirates of the White Sands krewe">
+        </div>
+
+        <div class="story-copy reveal">
+            <div class="eyebrow">Good People. Rowdy Times.</div>
+            <h2>Join the Krewe. Lend a Hand.</h2>
             <p>
-              Join us at community events, charity appearances,
-              festivals, and other adventures throughout the year.
+                Pirates of the White Sands is built around friendship, community, charity, and a shared love of pirate culture. You do not need a perfect costume, a pirate résumé, or years of reenactment experience to get involved.
             </p>
-
-            <a
-              class="btn btn-outline-dark"
-              href="mailto:?subject=Volunteer%20with%20the%20Krewe"
-            >
-              Volunteer
-            </a>
-          </article>
-
-          <article class="circle-card">
-            <img src="float.jpg" alt="Invite the Krewe">
-
-            <h3>Invite the Krewe</h3>
-
             <p>
-              Hosting a fundraiser, festival, community event,
-              or special occasion? Reach out and see if the
-              Pirates of the White Sands can make an appearance.
+                What matters is showing up, pitching in, learning from the crew, and being willing to help when there is work to do — whether that means supporting a charity event, helping with setup and teardown, greeting families, or carrying half the damn ship.
             </p>
-
-            <a
-              class="btn btn-outline-dark"
-              href="mailto:?subject=Request%20an%20Appearance"
-            >
-              Request an Appearance
-            </a>
-          </article>
-
+            <div class="story-actions">
+                <a class="button button-red" href="mailto:?subject=Joining%20Pirates%20of%20the%20White%20Sands">Ask About Joining</a>
+                <a class="button button-dark" href="mailto:?subject=Volunteering%20with%20Pirates%20of%20the%20White%20Sands">Volunteer With Us</a>
+            </div>
         </div>
-      </div>
-    </section>
+    </div>
+</section>
 
-    <section class="gi-event">
-      <div class="container gi-event-grid">
-
-        <div class="gi-event-text">
-          <h2>Bring the Pirates to Your Event</h2>
-
-          <p>
-            Pirates of the White Sands makes appearances throughout
-            the community for festivals, nonprofit events,
-            fundraisers, educational activities, and other
-            special occasions.
-          </p>
-
-          <p>
-            Depending on the event, members of the krewe may appear
-            in full pirate attire, interact with guests,
-            participate in demonstrations, or simply bring
-            a little pirate personality to the occasion.
-          </p>
-
-          <a
-            class="btn btn-solid"
-            href="mailto:?subject=Request%20the%20Krewe"
-          >
-            Request the Krewe
-          </a>
+<section class="story-section" id="appearance">
+    <div class="container story-grid reverse">
+        <div class="story-photo reveal">
+            <img src="float.jpg" alt="Pirates of the White Sands at a community event">
         </div>
 
-        <div class="gi-event-image">
-          <img
-            src="float.jpg"
-            alt="Pirates of the White Sands at Pier Park"
-          >
+        <div class="story-copy reveal">
+            <div class="eyebrow">Bring the Pirates to You</div>
+            <h2>Request an Appearance</h2>
+            <p>
+                We love bringing the pirates to schools, charities, festivals, fundraisers, educational programs, and community events throughout the area.
+            </p>
+            <p>
+                Depending on the event, members of the krewe may appear in full pirate attire, interact with guests, take part in demonstrations, support fundraising activities, or simply bring a little pirate personality to the occasion.
+            </p>
+            <div class="story-actions">
+                <a class="button button-red" href="mailto:?subject=Request%20a%20Pirates%20of%20the%20White%20Sands%20Appearance">Request the Krewe →</a>
+                <a class="button button-dark" href="mailto:?subject=Question%20for%20Pirates%20of%20the%20White%20Sands">Ask a Question</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="donate-strip" id="donate">
+    <div class="container donate-grid">
+        <div class="donate-photo reveal">
+            <img src="giving-back.jpg" alt="Pirates of the White Sands supporting the community">
         </div>
 
-      </div>
-    </section>
-
-    <section class="gi-donate-details" id="donate">
-      <div class="container gi-donate-grid">
-
-        <div class="gi-donate-image">
-          <img
-            src="giving-back.jpg"
-            alt="Pirates of the White Sands giving back"
-          >
+        <div class="donate-copy reveal">
+            <div class="eyebrow">Can’t Volunteer? Send Treasure.</div>
+            <h2>Support the Mayhem</h2>
+            <p>
+                Pirates of the White Sands is a <strong>501(c)(3) nonprofit organization</strong>. Donations help support our community work, charitable activities, appearances, equipment, and events.
+            </p>
+            <p>Every bit of treasure helps keep the krewe sailing.</p>
+            <a class="button button-red" href="https://account.venmo.com/pay?recipients=potws5972" target="_blank" rel="noopener">Donate via Venmo →</a>
         </div>
+    </div>
+</section>
 
-        <div class="gi-donate-text">
-          <h2>Support the Krewe</h2>
+<section class="contact-section">
+    <div class="contact-panel reveal">
+        <div class="eyebrow">Questions? Ideas? Something Weird?</div>
+        <h2>Let’s Talk.</h2>
+        <p>
+            Want to suggest a local cause, ask about volunteering, talk through an appearance, or just reach the krewe? Send us a message and we’ll point you toward the right pirate.
+        </p>
+        <a class="button button-red" href="mailto:?subject=Pirates%20of%20the%20White%20Sands%20Website%20Message">Send Us a Message →</a>
+    </div>
+</section>
 
-          <p>
-            <strong>
-              Pirates of the White Sands is a 501(c)(3)
-              nonprofit organization.
-            </strong>
-          </p>
+<section class="proverb">
+    <blockquote>
+        “Many hands make the crew.”
+        <span>— Pirate Proverb —</span>
+    </blockquote>
+</section>
 
-          <p>
-            Donations help support our community work,
-            charitable activities, appearances, events,
-            and the equipment that keeps the krewe sailing.
-          </p>
+</main>
 
-          <p>
-            Every bit of treasure helps.
-          </p>
+<footer>
+    Copyright © 2026 Pirates of the White Sands — All Rights Reserved.
+</footer>
 
-          <a
-            class="btn btn-solid"
-            href="https://account.venmo.com/pay?recipients=potws5972"
-            target="_blank"
-            rel="noopener"
-          >
-            Donate with Venmo
-          </a>
-        </div>
+<script>
+const revealItems = document.querySelectorAll(".reveal");
 
-      </div>
-    </section>
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.14 });
 
-  </main>
-
-  <footer>
-    Copyright © 2026 Pirates of the White Sands —
-    All Rights Reserved.
-  </footer>
+revealItems.forEach((item) => revealObserver.observe(item));
+</script>
 
 </body>
 </html>
