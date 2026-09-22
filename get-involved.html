@@ -1,115 +1,575 @@
-<main class="get-involved-page">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Involved | Pirates of the White Sands</title>
 
-  <!-- HERO -->
-  <section class="gi-hero" style="background-image: url('Join the Krew.jpg');">
-    <div class="gi-hero-overlay"></div>
-    <div class="gi-hero-content">
-      <h1>Get Involved</h1>
-      <p>Join the krewe, support a cause, request an appearance, or help us keep the mayhem going.</p>
-    </div>
-  </section>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-  <!-- INTRO -->
-  <section class="gi-intro">
-    <div class="container narrow">
-      <h2>There’s More Than One Way to Join the Mayhem</h2>
-      <p>
-        Pirates of the White Sands is built around community, charity, friendship, and a shared love of pirate culture.
-      </p>
-      <p>
-        Whether you want to volunteer beside the krewe, tell us about a local cause that needs support, or invite the
-        pirates to your event, there’s a place aboard.
-      </p>
-    </div>
-  </section>
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background: #d7c4a0;
+      color: #2b211c;
+    }
 
-  <!-- DONATE BANNER - GODADDY STYLE -->
-  <section class="gi-support-banner" style="background-image: url('float.jpg');">
-    <div class="gi-support-overlay"></div>
-    <div class="gi-support-content">
-      <h2>Support the Krewe</h2>
-      <a class="btn btn-light-outline" href="#donate">Donate Now</a>
-    </div>
-  </section>
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
-  <!-- WAYS TO GET INVOLVED -->
-  <section class="gi-ways">
-    <div class="container">
-      <p class="section-label">WAYS TO GET INVOLVED</p>
+    a {
+      color: inherit;
+    }
 
-      <div class="circle-card-grid">
-        <article class="circle-card">
-          <img src="krew2.jpg" alt="Suggest a Cause">
-          <h3>Suggest a Cause</h3>
-          <p>
-            Know a local nonprofit, charity, family, or community program that could use a little pirate support?
-            Tell us about them.
-          </p>
-          <a class="btn btn-outline-dark" href="mailto:REPLACE_WITH_EMAIL?subject=Suggest%20a%20Cause">Tell the Captain</a>
-        </article>
+    header {
+      background: #1f1f1f;
+      padding: 12px 34px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
 
-        <article class="circle-card">
-          <img src="Join the Krew.jpg" alt="Volunteer with the Krewe">
-          <h3>Volunteer with the Krewe</h3>
-          <p>
-            Join us at community events, charity appearances, festivals, and other adventures throughout the year.
-          </p>
-          <a class="btn btn-outline-dark" href="mailto:REPLACE_WITH_EMAIL?subject=Volunteer%20with%20the%20Krewe">Volunteer</a>
-        </article>
+    .logo img {
+      width: 320px;
+      max-width: 45vw;
+      height: auto;
+    }
 
-        <article class="circle-card">
-          <img src="float.jpg" alt="Invite the Krewe">
-          <h3>Invite the Krewe</h3>
-          <p>
-            Hosting a fundraiser, festival, community event, or special occasion? Reach out and see if the Pirates of
-            the White Sands can make an appearance.
-          </p>
-          <a class="btn btn-outline-dark" href="mailto:REPLACE_WITH_EMAIL?subject=Request%20an%20Appearance">Request an Appearance</a>
-        </article>
-      </div>
-    </div>
-  </section>
+    nav {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      align-items: center;
+    }
 
-  <!-- BRING THE PIRATES TO YOUR EVENT -->
-  <section class="gi-event">
-    <div class="container gi-event-grid">
-      <div class="gi-event-text">
-        <h2>Bring the Pirates to Your Event</h2>
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    nav a:hover {
+      color: #d8bc8d;
+    }
+
+    .container {
+      width: min(1200px, 90%);
+      margin: 0 auto;
+    }
+
+    .narrow {
+      max-width: 900px;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      font-weight: 700;
+      padding: 14px 28px;
+      transition: 0.2s ease;
+      border-radius: 2px;
+    }
+
+    .btn-solid {
+      background: #8d221e;
+      color: #f8f0e0;
+    }
+
+    .btn-solid:hover {
+      background: #751b18;
+    }
+
+    .btn-outline-dark {
+      border: 2px solid #2b211c;
+      color: #2b211c;
+      background: transparent;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: .95rem;
+    }
+
+    .btn-outline-dark:hover {
+      background: #2b211c;
+      color: #f8f0e0;
+    }
+
+    .btn-light-outline {
+      border: 2px solid #f6eedf;
+      color: #f6eedf;
+      background: rgba(0,0,0,.18);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .btn-light-outline:hover {
+      background: #f6eedf;
+      color: #2b211c;
+    }
+
+    /* HERO */
+    .gi-hero {
+      position: relative;
+      min-height: 520px;
+      background-image: url("Join%20the%20Krew.jpg");
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .gi-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,.48);
+    }
+
+    .gi-hero-content {
+      position: relative;
+      z-index: 1;
+      color: #fff7eb;
+      width: min(900px, 90%);
+    }
+
+    .gi-hero-content h1 {
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      line-height: 1;
+      margin: 0 0 1rem;
+    }
+
+    .gi-hero-content p {
+      font-size: 1.4rem;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* INTRO */
+    .gi-intro {
+      padding: 5rem 0 4rem;
+      text-align: center;
+    }
+
+    .gi-intro h2 {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      line-height: 1.05;
+      margin: 0 0 1.5rem;
+    }
+
+    .gi-intro p {
+      font-size: 1.3rem;
+      line-height: 1.7;
+      margin: 0 0 1.1rem;
+    }
+
+    /* SUPPORT BANNER */
+    .gi-support-banner {
+      position: relative;
+      min-height: 360px;
+      background-image: url("float.jpg");
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .gi-support-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,.38);
+    }
+
+    .gi-support-content {
+      position: relative;
+      z-index: 1;
+      color: #fff7eb;
+    }
+
+    .gi-support-content h2 {
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      margin: 0 0 1.25rem;
+    }
+
+    /* WAYS */
+    .gi-ways {
+      padding: 5rem 0;
+      background: #d7c4a0;
+    }
+
+    .section-label {
+      text-align: center;
+      font-size: 1rem;
+      letter-spacing: .14em;
+      margin-bottom: 2.5rem;
+      color: #3a302a;
+    }
+
+    .circle-card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+    }
+
+    .circle-card {
+      text-align: center;
+    }
+
+    .circle-card img {
+      width: 100%;
+      max-width: 320px;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 50%;
+      margin: 0 auto 1.5rem;
+    }
+
+    .circle-card h3 {
+      font-size: 2rem;
+      margin: 0 0 1rem;
+    }
+
+    .circle-card p {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      margin: 0 0 1.8rem;
+    }
+
+    /* EVENT */
+    .gi-event {
+      padding: 5rem 0;
+      background: #efe0c4;
+    }
+
+    .gi-event-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .gi-event-text h2 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 1.05;
+      margin: 0 0 1.5rem;
+    }
+
+    .gi-event-text p {
+      font-size: 1.2rem;
+      line-height: 1.7;
+      margin: 0 0 1.3rem;
+    }
+
+    .gi-event-image img {
+      width: 100%;
+      border-radius: 4px;
+    }
+
+    /* DONATE */
+    .gi-donate-details {
+      padding: 5rem 0 6rem;
+      background: #8d221e;
+      color: #f8f0e0;
+    }
+
+    .gi-donate-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .gi-donate-image img {
+      width: 100%;
+      border-radius: 4px;
+    }
+
+    .gi-donate-text h2 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      margin: 0 0 1.4rem;
+    }
+
+    .gi-donate-text p {
+      font-size: 1.2rem;
+      line-height: 1.7;
+      margin: 0 0 1.2rem;
+    }
+
+    .gi-donate-text .btn-solid {
+      background: #f4e8d4;
+      color: #8d221e;
+    }
+
+    footer {
+      background: #171717;
+      color: #ccc;
+      text-align: center;
+      padding: 30px 20px;
+      font-size: .9rem;
+    }
+
+    @media (max-width: 980px) {
+      header {
+        justify-content: center;
+        text-align: center;
+      }
+
+      .logo img {
+        width: min(420px, 90vw);
+        max-width: none;
+      }
+
+      nav {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .circle-card-grid,
+      .gi-event-grid,
+      .gi-donate-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .gi-hero {
+        min-height: 420px;
+      }
+
+      .gi-support-banner {
+        min-height: 280px;
+      }
+
+      .gi-hero-content p,
+      .gi-intro p,
+      .circle-card p,
+      .gi-event-text p,
+      .gi-donate-text p {
+        font-size: 1.05rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <a class="logo" href="index.html">
+      <img src="logo.png" alt="Pirates of the White Sands">
+    </a>
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="get-involved.html">Get Involved</a>
+      <a href="meet-the-krewe.html">Meet the Krewe</a>
+      <a href="high-seas.html">Pirates of the High Seas</a>
+    </nav>
+  </header>
+
+  <main class="get-involved-page">
+
+    <section class="gi-hero">
+      <div class="gi-hero-overlay"></div>
+
+      <div class="gi-hero-content">
+        <h1>Get Involved</h1>
         <p>
-          Pirates of the White Sands makes appearances throughout the community for festivals, nonprofit events,
-          fundraisers, educational activities, and other special occasions.
+          Join the krewe, support a cause, request an appearance,
+          or help us keep the mayhem going.
         </p>
+      </div>
+    </section>
+
+    <section class="gi-intro">
+      <div class="container narrow">
+        <h2>There’s More Than One Way to Join the Mayhem</h2>
+
         <p>
-          Depending on the event, members of the krewe may appear in full pirate attire, interact with guests,
-          participate in demonstrations, or simply bring a little pirate personality to the occasion.
+          Pirates of the White Sands is built around community,
+          charity, friendship, and a shared love of pirate culture.
         </p>
-        <a class="btn btn-solid" href="mailto:REPLACE_WITH_EMAIL?subject=Request%20the%20Krewe">Request the Krewe</a>
-      </div>
 
-      <div class="gi-event-image">
-        <img src="float.jpg" alt="Pirates of the White Sands at Pier Park">
+        <p>
+          Whether you want to volunteer beside the krewe,
+          tell us about a local cause that needs support,
+          or invite the pirates to your event,
+          there’s a place aboard.
+        </p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- DONATE DETAILS -->
-  <section class="gi-donate-details" id="donate">
-    <div class="container gi-donate-grid">
-      <div class="gi-donate-image">
-        <img src="Join the Krew.jpg" alt="Support the Krewe">
-      </div>
+    <section class="gi-support-banner">
+      <div class="gi-support-overlay"></div>
 
-      <div class="gi-donate-text">
+      <div class="gi-support-content">
         <h2>Support the Krewe</h2>
-        <p><strong>Pirates of the White Sands is a 501(c)(3) nonprofit organization.</strong></p>
-        <p>
-          Donations help support our community work, charitable activities, appearances, events, and the equipment
-          that keeps the krewe sailing.
-        </p>
-        <p>Every bit of treasure helps.</p>
-        <a class="btn btn-solid" href="donate.html">Donate with Venmo</a>
+        <a class="btn btn-light-outline" href="#donate">Donate Now</a>
       </div>
-    </div>
-  </section>
+    </section>
 
-</main>
+    <section class="gi-ways">
+      <div class="container">
+
+        <p class="section-label">WAYS TO GET INVOLVED</p>
+
+        <div class="circle-card-grid">
+
+          <article class="circle-card">
+            <img src="krew2.jpg" alt="Suggest a Cause">
+
+            <h3>Suggest a Cause</h3>
+
+            <p>
+              Know a local nonprofit, family, or community program
+              that could use a little pirate support?
+              Tell us about them.
+            </p>
+
+            <a
+              class="btn btn-outline-dark"
+              href="mailto:?subject=Suggest%20a%20Cause"
+            >
+              Tell the Captain
+            </a>
+          </article>
+
+          <article class="circle-card">
+            <img src="Join%20the%20Krew.jpg" alt="Volunteer with the Krewe">
+
+            <h3>Volunteer with the Krewe</h3>
+
+            <p>
+              Join us at community events, charity appearances,
+              festivals, and other adventures throughout the year.
+            </p>
+
+            <a
+              class="btn btn-outline-dark"
+              href="mailto:?subject=Volunteer%20with%20the%20Krewe"
+            >
+              Volunteer
+            </a>
+          </article>
+
+          <article class="circle-card">
+            <img src="float.jpg" alt="Invite the Krewe">
+
+            <h3>Invite the Krewe</h3>
+
+            <p>
+              Hosting a fundraiser, festival, community event,
+              or special occasion? Reach out and see if the
+              Pirates of the White Sands can make an appearance.
+            </p>
+
+            <a
+              class="btn btn-outline-dark"
+              href="mailto:?subject=Request%20an%20Appearance"
+            >
+              Request an Appearance
+            </a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="gi-event">
+      <div class="container gi-event-grid">
+
+        <div class="gi-event-text">
+          <h2>Bring the Pirates to Your Event</h2>
+
+          <p>
+            Pirates of the White Sands makes appearances throughout
+            the community for festivals, nonprofit events,
+            fundraisers, educational activities, and other
+            special occasions.
+          </p>
+
+          <p>
+            Depending on the event, members of the krewe may appear
+            in full pirate attire, interact with guests,
+            participate in demonstrations, or simply bring
+            a little pirate personality to the occasion.
+          </p>
+
+          <a
+            class="btn btn-solid"
+            href="mailto:?subject=Request%20the%20Krewe"
+          >
+            Request the Krewe
+          </a>
+        </div>
+
+        <div class="gi-event-image">
+          <img
+            src="float.jpg"
+            alt="Pirates of the White Sands at Pier Park"
+          >
+        </div>
+
+      </div>
+    </section>
+
+    <section class="gi-donate-details" id="donate">
+      <div class="container gi-donate-grid">
+
+        <div class="gi-donate-image">
+          <img
+            src="giving-back.jpg"
+            alt="Pirates of the White Sands giving back"
+          >
+        </div>
+
+        <div class="gi-donate-text">
+          <h2>Support the Krewe</h2>
+
+          <p>
+            <strong>
+              Pirates of the White Sands is a 501(c)(3)
+              nonprofit organization.
+            </strong>
+          </p>
+
+          <p>
+            Donations help support our community work,
+            charitable activities, appearances, events,
+            and the equipment that keeps the krewe sailing.
+          </p>
+
+          <p>
+            Every bit of treasure helps.
+          </p>
+
+          <a
+            class="btn btn-solid"
+            href="https://venmo.com/u/potws5972"
+            target="_blank"
+            rel="noopener"
+          >
+            Donate with Venmo
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    Copyright © 2026 Pirates of the White Sands —
+    All Rights Reserved.
+  </footer>
+
+</body>
+</html>
