@@ -1021,85 +1021,179 @@ p{
 
 
 /* =========================================================
-   GIVING BACK
+   GIVING BACK — CLEAN MOUNTED PHOTO
 ========================================================= */
 
 .giving-grid{
     display:grid;
 
     grid-template-columns:
-        1.05fr .95fr;
+        1.02fr .98fr;
 
-    gap:50px;
+    gap:58px;
 
     align-items:center;
 }
 
-.giving-frame{
+.giving-photo-mount{
     position:relative;
 
     width:100%;
 
-    aspect-ratio:4/3;
+    max-width:540px;
 
-    filter:
-        drop-shadow(
-            0 14px 20px rgba(0,0,0,.32)
-        );
+    justify-self:start;
+
+    padding:10px;
+
+    background:#f3e6c7;
+
+    border:
+        1px solid rgba(77,47,25,.24);
+
+    box-shadow:
+        0 12px 24px rgba(0,0,0,.30),
+        inset 0 0 0 1px rgba(255,255,255,.45);
+
+    transform:
+        rotate(-.7deg);
 }
 
-.giving-frame-overlay{
+.giving-photo-mount::before{
+    content:"";
+
     position:absolute;
 
-    z-index:1;
+    inset:-12px;
 
-    inset:0;
+    z-index:-1;
 
+    border:
+        1px solid rgba(105,67,36,.18);
+
+    box-shadow:
+        0 0 0 5px rgba(113,72,37,.06);
+}
+
+.giving-photo-mount img{
     width:100%;
-    height:100%;
 
-    object-fit:fill;
-}
-
-.giving-frame-photo{
-    position:absolute;
-
-    z-index:2;
-
-    left:14%;
-    top:15%;
-
-    width:72%;
-    height:68%;
+    aspect-ratio:
+        4 / 3;
 
     object-fit:cover;
 
-    object-position:center 36%;
+    object-position:
+        center top;
 
     border:
-        5px solid rgba(255,239,202,.92);
-
-    box-shadow:
-        0 5px 12px rgba(0,0,0,.28);
+        1px solid rgba(72,42,20,.18);
 }
 
 
 /* =========================================================
-   EVENT SECTION — DARK WOOD, NOT GIANT PARCHMENT
+   HISTORY STRIP
+========================================================= */
+
+.history-strip{
+    position:relative;
+
+    min-height:158px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    overflow:hidden;
+
+    text-align:center;
+
+    background:
+        linear-gradient(
+            rgba(8,5,3,.42),
+            rgba(8,5,3,.62)
+        ),
+        url("scean.png")
+        center / cover
+        no-repeat;
+
+    border-top:
+        1px solid rgba(197,154,88,.42);
+
+    border-bottom:
+        1px solid rgba(197,154,88,.42);
+
+    box-shadow:
+        inset 0 14px 28px rgba(0,0,0,.34),
+        inset 0 -14px 28px rgba(0,0,0,.34);
+}
+
+.history-strip::after{
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(0,0,0,.08),
+            rgba(0,0,0,.32)
+        );
+
+    pointer-events:none;
+}
+
+.history-strip-content{
+    position:relative;
+
+    z-index:3;
+
+    width:min(760px,86vw);
+}
+
+.history-strip h3{
+    margin:0 0 5px;
+
+    color:var(--cream);
+
+    font-size:
+        clamp(2rem,3.2vw,3rem);
+
+    text-shadow:
+        0 5px 12px rgba(0,0,0,.75);
+}
+
+.history-strip p{
+    margin:0;
+
+    color:#ead7b3;
+
+    font-size:1rem;
+
+    letter-spacing:.08em;
+}
+
+
+/* =========================================================
+   EVENT SECTION
 ========================================================= */
 
 .events-section{
     position:relative;
 
     padding:
-        72px 0 82px;
+        62px 0 74px;
 
     overflow:hidden;
 
     background:
         linear-gradient(
-            rgba(10,7,5,.57),
-            rgba(10,7,5,.72)
+            rgba(10,7,5,.48),
+            rgba(10,7,5,.67)
         ),
         url("wood.png")
         center / cover;
@@ -1114,9 +1208,9 @@ p{
 
     background:
         radial-gradient(
-            circle at 50% 20%,
-            rgba(184,128,71,.10),
-            transparent 55%
+            circle at 50% 16%,
+            rgba(193,138,75,.10),
+            transparent 56%
         );
 
     pointer-events:none;
@@ -1127,16 +1221,35 @@ p{
 
     z-index:4;
 
-    max-width:940px;
+    max-width:1000px;
 
     margin:
-        0 auto 44px;
+        0 auto 38px;
 
     text-align:center;
 }
 
+.events-heading::before,
+.events-heading::after{
+    content:"";
+
+    display:inline-block;
+
+    width:74px;
+
+    height:1px;
+
+    margin:
+        0 12px 4px;
+
+    background:
+        rgba(197,154,88,.66);
+}
+
 .events-heading .eyebrow{
     color:#d7ae69;
+
+    margin-bottom:10px;
 }
 
 .events-heading h2{
@@ -1144,15 +1257,19 @@ p{
 
     text-shadow:
         0 5px 12px rgba(0,0,0,.5);
+
+    margin-bottom:12px;
 }
 
 .events-heading p{
-    color:#e5cfaa;
+    color:#e6d1ac;
+
+    margin:0;
 }
 
 
 /* =========================================================
-   EVENT CARDS — PHOTO + PARCHMENT CAPTION
+   EVENT CARDS — MOCKUP STYLE
 ========================================================= */
 
 .event-grid{
@@ -1165,129 +1282,148 @@ p{
     grid-template-columns:
         repeat(3,1fr);
 
-    gap:34px;
+    gap:24px;
 }
 
 .event-card{
     position:relative;
 
-    color:var(--cream);
+    width:100%;
+
+    aspect-ratio:
+        4 / 5;
 
     transition:
         transform .25s ease,
         filter .25s ease;
+
+    filter:
+        drop-shadow(
+            0 17px 23px rgba(0,0,0,.43)
+        );
 }
 
 .event-card:nth-child(1){
-    transform:rotate(-.35deg);
+    transform:rotate(-.25deg);
 }
 
 .event-card:nth-child(2){
-    transform:rotate(.25deg);
+    transform:rotate(.2deg);
 }
 
 .event-card:nth-child(3){
-    transform:rotate(-.25deg);
+    transform:rotate(-.18deg);
 }
 
 .event-card:hover{
     transform:
         translateY(-7px)
         rotate(0deg);
-}
-
-.event-photo{
-    position:relative;
-
-    z-index:2;
-
-    height:260px;
-
-    overflow:hidden;
-
-    border:
-        7px solid #2b1a10;
-
-    box-shadow:
-        0 14px 28px rgba(0,0,0,.48);
-
-    background:#160f0a;
-}
-
-.event-photo::after{
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    pointer-events:none;
-
-    box-shadow:
-        inset 0 0 0 1px rgba(218,175,105,.28),
-        inset 0 -45px 60px rgba(0,0,0,.18);
-}
-
-.event-photo img{
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-}
-
-.event-photo img.focus-top{
-    object-position:center 20%;
-}
-
-.event-photo img.focus-top-strong{
-    object-position:center 8%;
-}
-
-.event-caption{
-    position:relative;
-
-    z-index:3;
-
-    width:92%;
-
-    min-height:170px;
-
-    margin:
-        -12px auto 0;
-
-    padding:
-        34px 30px 32px;
-
-    color:var(--ink);
-
-    background:
-        url("parchment%202.png")
-        center / 100% 100%
-        no-repeat;
 
     filter:
         drop-shadow(
-            0 11px 14px rgba(0,0,0,.30)
+            0 23px 30px rgba(0,0,0,.52)
         );
+}
+
+.event-card-photo{
+    position:absolute;
+
+    z-index:1;
+
+    left:8.5%;
+    top:7.5%;
+
+    width:83%;
+
+    height:47.5%;
+
+    object-fit:cover;
+
+    background:#140e0a;
+}
+
+.event-card-photo.encampment{
+    object-position:center 22%;
+}
+
+.event-card-photo.sword{
+    object-position:center 15%;
+}
+
+.event-card-photo.history{
+    object-position:center 18%;
+}
+
+.event-card-frame{
+    position:absolute;
+
+    z-index:2;
+
+    inset:0;
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:fill;
+
+    pointer-events:none;
+}
+
+.event-card-copy{
+    position:absolute;
+
+    z-index:3;
+
+    left:11.5%;
+
+    top:61.5%;
+
+    width:77%;
+
+    text-align:center;
+
+    color:var(--ink);
 }
 
 .event-card h3{
     margin:
-        0 0 8px;
+        0 0 9px;
 
     color:#2b170d;
 
-    font-size:1.58rem;
+    font-size:
+        clamp(1.25rem,1.8vw,1.65rem);
+
+    line-height:1.05;
+}
+
+.event-card h3::after{
+    content:"";
+
+    display:block;
+
+    width:46px;
+
+    height:1px;
+
+    margin:
+        8px auto 0;
+
+    background:
+        rgba(80,43,20,.55);
 }
 
 .event-card p{
     margin:0;
 
-    color:#493022;
+    color:#4a3022;
 
-    font-size:.96rem;
+    font-size:
+        clamp(.80rem,1vw,.96rem);
 
-    line-height:1.5;
+    line-height:1.42;
 }
 
 .events-compass{
@@ -1295,11 +1431,11 @@ p{
 
     z-index:1;
 
-    right:3%;
+    left:2%;
 
-    top:15%;
+    top:17%;
 
-    width:280px;
+    width:270px;
 
     opacity:.055;
 
@@ -1314,13 +1450,13 @@ p{
 
     z-index:1;
 
-    left:8%;
+    right:3%;
 
-    bottom:10%;
+    bottom:9%;
 
-    width:36%;
+    width:31%;
 
-    opacity:.07;
+    opacity:.055;
 
     transform:
         translateX(var(--trail-shift))
@@ -1331,28 +1467,92 @@ p{
 
 
 /* =========================================================
-   FINAL CTA
+   SKULL ROPE DIVIDER
+========================================================= */
+
+.skull-rope-divider{
+    position:relative;
+
+    z-index:30;
+
+    width:100%;
+
+    height:64px;
+
+    overflow:hidden;
+
+    pointer-events:none;
+
+    background:
+        rgba(16,10,6,.86);
+}
+
+.skull-rope-divider img{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:100%;
+
+    max-width:none;
+
+    height:auto;
+
+    transform:
+        translate(-50%,-50%);
+
+    filter:
+        drop-shadow(
+            0 5px 6px rgba(0,0,0,.58)
+        );
+}
+
+
+/* =========================================================
+   FINAL CTA — MAP / ADVENTURE
 ========================================================= */
 
 .final-cta{
     position:relative;
 
-    min-height:430px;
+    min-height:350px;
 
     overflow:hidden;
 
     display:flex;
+
     align-items:center;
 
     text-align:center;
 
+    color:var(--ink);
+
     background:
         linear-gradient(
-            rgba(7,5,4,.52),
-            rgba(7,5,4,.76)
+            rgba(243,213,157,.08),
+            rgba(96,57,28,.10)
         ),
-        url("Join%20the%20Krew.jpg")
-        center 10% / cover;
+        url("map.png")
+        center / cover
+        no-repeat;
+}
+
+.final-cta::after{
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,.04),
+            rgba(0,0,0,.12)
+        );
+
+    pointer-events:none;
 }
 
 .final-cta-content{
@@ -1363,13 +1563,26 @@ p{
     width:min(820px,88vw);
 
     margin:0 auto;
+
+    padding:
+        44px 30px;
+}
+
+.final-cta .eyebrow{
+    color:#704923;
 }
 
 .final-cta h2{
-    margin:0 0 14px;
+    margin:
+        0 0 12px;
+
+    color:#2a170d;
 
     font-size:
-        clamp(3rem,5.4vw,4.9rem);
+        clamp(3rem,5.4vw,4.8rem);
+
+    text-shadow:
+        0 2px 0 rgba(255,244,214,.34);
 }
 
 .final-cta p{
@@ -1378,7 +1591,11 @@ p{
     margin:
         0 auto 22px;
 
+    color:#4c3020;
+
     font-size:1.08rem;
+
+    font-weight:600;
 }
 
 
@@ -1580,19 +1797,19 @@ footer{
     }
 
     .event-card{
-        min-height:0;
-
-        padding:
-            42px 30px 48px;
+        max-width:430px;
     }
 
-    .event-photo{
-        height:205px;
+    .history-strip{
+        min-height:132px;
     }
 
-    .final-cta{
-        background-position:
-            center 5%;
+    .giving-photo-mount{
+        justify-self:center;
+    }
+
+    .skull-rope-divider{
+        height:48px;
     }
 
 }
@@ -2046,16 +2263,9 @@ footer{
 
         <div class="container giving-grid">
 
-            <div class="giving-frame reveal">
+            <div class="giving-photo-mount reveal">
 
                 <img
-                    class="giving-frame-overlay"
-                    src="frame.png"
-                    alt=""
-                >
-
-                <img
-                    class="giving-frame-photo"
                     src="giving-back.jpg"
                     alt="Pirates of the White Sands supporting Miracle League"
                 >
@@ -2118,8 +2328,6 @@ footer{
 </section>
 
 
-<!-- NEW SHIP TRANSITION -->
-
 <div class="bracket-transition">
 
     <img
@@ -2128,6 +2336,23 @@ footer{
     >
 
 </div>
+
+
+<section class="history-strip">
+
+    <div class="history-strip-content reveal">
+
+        <h3>
+            History Lives Here
+        </h3>
+
+        <p>
+            Pirates. People. Community.
+        </p>
+
+    </div>
+
+</section>
 
 
 <!-- WHAT WE BRING -->
@@ -2152,7 +2377,7 @@ footer{
         <div class="events-heading reveal">
 
             <div class="eyebrow">
-                History Lives When People Play
+                More Than a Display — A Living Experience
             </div>
 
             <h2>
@@ -2171,17 +2396,19 @@ footer{
 
             <article class="event-card reveal">
 
-                <div class="event-photo">
+                <img
+                    class="event-card-photo encampment"
+                    src="encampment.jpg"
+                    alt="Historical pirate encampment"
+                >
 
-                    <img
-                        class="focus-top"
-                        src="encampment.jpg"
-                        alt="Historical pirate encampment"
-                    >
+                <img
+                    class="event-card-frame"
+                    src="frame%20with%20tent.png"
+                    alt=""
+                >
 
-                </div>
-
-                <div class="event-caption">
+                <div class="event-card-copy">
 
                     <h3>
                         Historical Encampment
@@ -2198,17 +2425,19 @@ footer{
 
             <article class="event-card reveal">
 
-                <div class="event-photo">
+                <img
+                    class="event-card-photo sword"
+                    src="sword-fighting.jpg"
+                    alt="Sword fighting demonstration"
+                >
 
-                    <img
-                        class="focus-top-strong"
-                        src="sword-fighting.jpg"
-                        alt="Sword fighting demonstration"
-                    >
+                <img
+                    class="event-card-frame"
+                    src="frame%20with%20swords.png"
+                    alt=""
+                >
 
-                </div>
-
-                <div class="event-caption">
+                <div class="event-card-copy">
 
                     <h3>
                         Sword Fighting
@@ -2225,17 +2454,19 @@ footer{
 
             <article class="event-card reveal">
 
-                <div class="event-photo">
+                <img
+                    class="event-card-photo history"
+                    src="living-history.jpg"
+                    alt="Living history"
+                >
 
-                    <img
-                        class="focus-top"
-                        src="living-history.jpg"
-                        alt="Living history"
-                    >
+                <img
+                    class="event-card-frame"
+                    src="parchment%20frame%20w%20wheel.png"
+                    alt=""
+                >
 
-                </div>
-
-                <div class="event-caption">
+                <div class="event-card-copy">
 
                     <h3>
                         Living History
@@ -2257,31 +2488,30 @@ footer{
 </section>
 
 
-<!-- FINAL CTA -->
+<div class="skull-rope-divider">
+
+    <img
+        src="rope%20with%20skull.png"
+        alt=""
+    >
+
+</div>
+
 
 <section class="final-cta">
 
-    <img
-        class="lantern lantern-left"
-        src="lantern.png"
-        alt=""
-    >
-
-    <img
-        class="lantern lantern-right"
-        src="lantern.png"
-        alt=""
-    >
-
-
     <div class="final-cta-content reveal">
 
+        <div class="eyebrow">
+            People • History • Community
+        </div>
+
         <h2>
-            There’s a Place Aboard.
+            Join the Adventure
         </h2>
 
         <p>
-            Volunteer with the krewe, suggest a local cause, request an appearance, or help keep the mayhem going.
+            Volunteer with the krewe, suggest a local cause, request an appearance, or help us keep pirate history — and the mayhem — alive.
         </p>
 
         <a
