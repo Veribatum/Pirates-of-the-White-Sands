@@ -1,52 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-
-<title>
-    Pirates of the White Sands
-</title>
+<title>Pirates of the White Sands</title>
 
 <meta
     name="description"
     content="Pirates of the White Sands is a nonprofit pirate krewe based in Panama City, Florida."
 >
 
-
 <style>
 
+:root{
+    --red:#92251f;
+    --red-hover:#ad332c;
+    --cream:#fff1d0;
+    --ink:#2f1b12;
+    --gold:#c59a58;
 
-/* =========================================================
-   ROOT
-========================================================= */
-
-:root {
-
-    --red: #92251f;
-
-    --red-hover: #ad332c;
-
-    --cream: #fff1d0;
-
-    --ink: #2f1b12;
-
-    --gold: #c59a58;
-
-    --hero-shift: 0px;
-
-    --needle-angle: 0deg;
-
-    --rose-angle: 0deg;
-
-    --trail-shift: 0px;
-
+    --hero-shift:0px;
+    --needle-angle:0deg;
+    --rose-angle:0deg;
+    --trail-shift:0px;
 }
 
 
@@ -54,62 +31,40 @@
    RESET
 ========================================================= */
 
-* {
-
-    box-sizing: border-box;
-
+*{
+    box-sizing:border-box;
 }
 
-
-html {
-
-    scroll-behavior: smooth;
-
+html{
+    scroll-behavior:smooth;
 }
 
-
-body {
-
-    margin: 0;
-
-    overflow-x: hidden;
+body{
+    margin:0;
+    overflow-x:hidden;
 
     font-family:
         Georgia,
         "Times New Roman",
         serif;
 
-    color:
-        var(--cream);
+    color:var(--cream);
 
     background:
-
         #110b08
-
         url("wood.png")
-
         center top / 1500px auto
-
         repeat;
-
 }
 
-
-img {
-
-    display: block;
-
-    max-width: 100%;
-
+img{
+    display:block;
+    max-width:100%;
 }
 
-
-a {
-
-    color: inherit;
-
-    text-decoration: none;
-
+a{
+    color:inherit;
+    text-decoration:none;
 }
 
 
@@ -117,39 +72,27 @@ a {
    HEADER
 ========================================================= */
 
-.site-header {
+.site-header{
+    position:sticky;
+    top:0;
+    z-index:1000;
 
-    position: sticky;
+    min-height:92px;
 
-    top: 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 
-    z-index: 1000;
+    gap:28px;
 
-    min-height: 92px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 28px;
-
-    padding:
-        8px 34px;
+    padding:8px 34px;
 
     background:
-
         linear-gradient(
-
             rgba(8,5,3,.72),
-
             rgba(8,5,3,.86)
-
         ),
-
         url("wood.png")
-
         center / cover;
 
     border-bottom:
@@ -157,87 +100,59 @@ a {
 
     box-shadow:
         0 6px 22px rgba(0,0,0,.55);
-
 }
 
-
-.logo img {
-
-    width: 305px;
-
-    max-width: 42vw;
-
+.logo img{
+    width:305px;
+    max-width:42vw;
 }
 
+nav{
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
 
-nav {
+    gap:22px;
 
-    display: flex;
-
-    align-items: center;
-
-    justify-content: flex-end;
-
-    gap: 22px;
-
-    flex-wrap: wrap;
-
+    flex-wrap:wrap;
 }
 
+nav a{
+    position:relative;
 
-nav a {
+    color:white;
 
-    position: relative;
-
-    color: white;
-
-    font-size: .93rem;
+    font-size:.93rem;
 
     text-shadow:
         0 2px 4px #000;
-
 }
 
+nav a:not(.support-link)::after{
+    content:"";
 
-nav a:not(.support-link)::after {
+    position:absolute;
 
-    content: "";
+    left:50%;
+    right:50%;
+    bottom:-7px;
 
-    position: absolute;
+    height:2px;
 
-    left: 50%;
+    background:var(--red);
 
-    right: 50%;
-
-    bottom: -7px;
-
-    height: 2px;
-
-    background:
-        var(--red);
-
-    transition:
-        .22s ease;
-
+    transition:.22s ease;
 }
 
-
-nav a:not(.support-link):hover::after {
-
-    left: 0;
-
-    right: 0;
-
+nav a:not(.support-link):hover::after{
+    left:0;
+    right:0;
 }
 
+.support-link{
+    padding:11px 18px;
 
-.support-link {
-
-    padding:
-        11px 18px;
-
-    background:
-        var(--red);
+    background:var(--red);
 
     border:
         1px solid #bb4c44;
@@ -245,24 +160,15 @@ nav a:not(.support-link):hover::after {
     box-shadow:
         0 4px 11px rgba(0,0,0,.35);
 
-    font-weight: bold;
+    font-weight:bold;
+    white-space:nowrap;
 
-    white-space: nowrap;
-
-    transition:
-        .2s ease;
-
+    transition:.2s ease;
 }
 
-
-.support-link:hover {
-
-    background:
-        var(--red-hover);
-
-    transform:
-        translateY(-2px);
-
+.support-link:hover{
+    background:var(--red-hover);
+    transform:translateY(-2px);
 }
 
 
@@ -270,14 +176,12 @@ nav a:not(.support-link):hover::after {
    BUTTONS
 ========================================================= */
 
-.button {
+.button{
+    display:inline-block;
 
-    display: inline-block;
+    padding:13px 24px;
 
-    padding:
-        13px 24px;
-
-    font-weight: bold;
+    font-weight:bold;
 
     border:
         1px solid rgba(255,255,255,.34);
@@ -286,54 +190,27 @@ nav a:not(.support-link):hover::after {
         transform .2s ease,
         background .2s ease,
         color .2s ease;
-
 }
 
-
-.button-red {
-
-    background:
-        var(--red);
-
-    color:
-        white;
-
+.button-red{
+    background:var(--red);
+    color:white;
 }
 
-
-.button-red:hover {
-
-    background:
-        var(--red-hover);
-
-    transform:
-        translateY(-2px);
-
+.button-red:hover{
+    background:var(--red-hover);
+    transform:translateY(-2px);
 }
 
-
-.button-dark {
-
-    color:
-        white;
-
-    background:
-        rgba(0,0,0,.55);
-
+.button-dark{
+    color:white;
+    background:rgba(0,0,0,.55);
 }
 
-
-.button-dark:hover {
-
-    color:
-        #21150d;
-
-    background:
-        white;
-
-    transform:
-        translateY(-2px);
-
+.button-dark:hover{
+    color:#21150d;
+    background:white;
+    transform:translateY(-2px);
 }
 
 
@@ -341,199 +218,125 @@ nav a:not(.support-link):hover::after {
    HERO
 ========================================================= */
 
-.hero {
+.hero{
+    position:relative;
 
-    position: relative;
+    height:630px;
+    min-height:630px;
 
-    height: 630px;
+    overflow:hidden;
 
-    min-height: 630px;
-
-    overflow: hidden;
-
-    display: flex;
-
-    align-items: center;
-
+    display:flex;
+    align-items:center;
 }
 
+.hero video{
+    position:absolute;
 
-.hero video {
+    inset:-7% 0 0;
 
-    position: absolute;
+    width:100%;
+    height:114%;
 
-    inset:
-        -7% 0 0;
-
-    width: 100%;
-
-    height: 114%;
-
-    object-fit: cover;
+    object-fit:cover;
 
     transform:
-
-        translateY(
-            var(--hero-shift)
-        )
-
+        translateY(var(--hero-shift))
         scale(1.035);
 
-    will-change:
-        transform;
-
+    will-change:transform;
 }
 
+.hero-overlay{
+    position:absolute;
 
-.hero-overlay {
-
-    position: absolute;
-
-    inset: 0;
+    inset:0;
 
     background:
-
         linear-gradient(
-
             90deg,
-
-            rgba(0,0,0,.72)
-            0%,
-
-            rgba(0,0,0,.44)
-            42%,
-
-            rgba(0,0,0,.12)
-            72%,
-
-            rgba(0,0,0,.30)
-            100%
-
+            rgba(0,0,0,.72) 0%,
+            rgba(0,0,0,.44) 42%,
+            rgba(0,0,0,.12) 72%,
+            rgba(0,0,0,.30) 100%
         ),
-
         linear-gradient(
-
             to bottom,
-
             rgba(0,0,0,.03),
-
-            rgba(0,0,0,.14)
-            55%,
-
+            rgba(0,0,0,.14) 55%,
             rgba(0,0,0,.72)
-
         );
-
 }
 
+.hero-content{
+    position:relative;
+    z-index:10;
 
-.hero-content {
+    width:min(1240px,86vw);
 
-    position: relative;
+    margin:0 auto;
 
-    z-index: 10;
-
-    width:
-        min(1240px, 86vw);
-
-    margin:
-        0 auto;
-
-    padding-top:
-        16px;
-
+    padding-top:16px;
 }
 
+.hero h1{
+    margin:0;
 
-.hero h1 {
+    max-width:880px;
 
-    margin: 0;
-
-    max-width:
-        880px;
-
-    color:
-        var(--cream);
+    color:var(--cream);
 
     font-size:
-        clamp(
-            3.7rem,
-            6.5vw,
-            6.3rem
-        );
+        clamp(3.7rem,6.5vw,6.3rem);
 
-    line-height:
-        .94;
+    line-height:.94;
 
     text-shadow:
         0 6px 22px rgba(0,0,0,.82);
-
 }
 
+.hero-tagline{
+    margin-top:22px;
 
-.hero-tagline {
+    font-size:1.03rem;
 
-    margin-top:
-        22px;
-
-    font-size:
-        1.03rem;
-
-    letter-spacing:
-        .24em;
-
-    text-transform:
-        uppercase;
+    letter-spacing:.24em;
+    text-transform:uppercase;
 
     text-shadow:
         0 3px 8px #000;
-
 }
 
+.hero-buttons{
+    display:flex;
+    flex-wrap:wrap;
 
-.hero-buttons {
+    gap:14px;
 
-    display: flex;
-
-    flex-wrap: wrap;
-
-    gap: 14px;
-
-    margin-top:
-        23px;
-
+    margin-top:23px;
 }
 
+.hero-location{
+    position:absolute;
 
-.hero-location {
+    z-index:12;
 
-    position: absolute;
+    right:6vw;
+    bottom:38px;
 
-    z-index: 12;
-
-    right:
-        6vw;
-
-    bottom:
-        38px;
-
-    color:
-        #efd8a5;
+    color:#efd8a5;
 
     font-family:
         "Brush Script MT",
         "Segoe Script",
         cursive;
 
-    font-size:
-        1.45rem;
+    font-size:1.45rem;
 
-    transform:
-        rotate(-3deg);
+    transform:rotate(-3deg);
 
     text-shadow:
         0 3px 7px #000;
-
 }
 
 
@@ -541,36 +344,27 @@ nav a:not(.support-link):hover::after {
    LANTERNS
 ========================================================= */
 
-.lantern {
+.lantern{
+    position:absolute;
 
-    position: absolute;
+    z-index:14;
 
-    z-index: 14;
+    top:-16px;
 
-    top:
-        -16px;
+    width:108px;
 
-    width:
-        108px;
+    transform-origin:center top;
 
-    transform-origin:
-        center top;
-
-    pointer-events:
-        none;
+    pointer-events:none;
 
     filter:
         drop-shadow(
             0 13px 18px rgba(0,0,0,.68)
         );
-
 }
 
-
-.lantern-left {
-
-    left:
-        18px;
+.lantern-left{
+    left:18px;
 
     animation:
         lanternLeft
@@ -578,14 +372,10 @@ nav a:not(.support-link):hover::after {
         ease-in-out
         infinite
         alternate;
-
 }
 
-
-.lantern-right {
-
-    right:
-        18px;
+.lantern-right{
+    right:18px;
 
     animation:
         lanternRight
@@ -593,99 +383,100 @@ nav a:not(.support-link):hover::after {
         ease-in-out
         infinite
         alternate;
-
 }
 
-
-@keyframes lanternLeft {
-
-    from {
-
-        transform:
-            rotate(-2deg);
-
-    }
-
-    to {
-
-        transform:
-            rotate(2.4deg);
-
-    }
-
+@keyframes lanternLeft{
+    from{transform:rotate(-2deg);}
+    to{transform:rotate(2.4deg);}
 }
 
-
-@keyframes lanternRight {
-
-    from {
-
-        transform:
-            rotate(2deg);
-
-    }
-
-    to {
-
-        transform:
-            rotate(-2.5deg);
-
-    }
-
+@keyframes lanternRight{
+    from{transform:rotate(2deg);}
+    to{transform:rotate(-2.5deg);}
 }
 
 
 /* =========================================================
-   ROPE DIVIDER
+   ORIGINAL ROPE DIVIDERS
 ========================================================= */
 
-.rope-divider {
+.rope-divider{
+    position:relative;
 
-    position: relative;
+    z-index:70;
 
-    z-index: 70;
+    width:100%;
 
-    width: 100%;
+    height:76px;
 
-    height: 76px;
+    margin:-14px 0 -6px;
 
-    margin:
-        -14px 0 -6px;
+    overflow:visible;
 
-    overflow:
-        visible;
-
-    pointer-events:
-        none;
-
+    pointer-events:none;
 }
 
+.rope-divider img{
+    position:absolute;
 
-.rope-divider img {
+    top:50%;
+    left:50%;
 
-    position: absolute;
+    width:calc(100% + 54px);
 
-    top: 50%;
+    max-width:none;
 
-    left: 50%;
-
-    width:
-        calc(100% + 54px);
-
-    max-width:
-        none;
-
-    height:
-        auto;
+    height:auto;
 
     transform:
-        translate(-50%, -50%);
+        translate(-50%,-50%);
 
     filter:
         drop-shadow(
             0 6px 5px rgba(0,0,0,.62)
         );
+}
 
+
+/* =========================================================
+   NEW SHIP / ROPE TRANSITION
+========================================================= */
+
+.bracket-transition{
+    position:relative;
+
+    z-index:80;
+
+    width:100%;
+
+    height:112px;
+
+    margin:-28px 0 -22px;
+
+    overflow:hidden;
+
+    pointer-events:none;
+}
+
+.bracket-transition img{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:calc(100% + 10px);
+
+    max-width:none;
+
+    height:auto;
+
+    transform:
+        translate(-50%,-50%);
+
+    filter:
+        drop-shadow(
+            0 8px 10px rgba(0,0,0,.55)
+        );
 }
 
 
@@ -693,70 +484,43 @@ nav a:not(.support-link):hover::after {
    COMMON
 ========================================================= */
 
-.container {
+.container{
+    position:relative;
 
-    position: relative;
+    z-index:5;
 
-    z-index: 5;
+    width:min(1180px,89vw);
 
-    width:
-        min(1180px, 89vw);
-
-    margin:
-        0 auto;
-
+    margin:0 auto;
 }
 
+.eyebrow{
+    margin-bottom:8px;
 
-.eyebrow {
+    font-size:.76rem;
 
-    margin-bottom:
-        8px;
+    font-weight:bold;
 
-    font-size:
-        .76rem;
+    letter-spacing:.22em;
 
-    font-weight:
-        bold;
-
-    letter-spacing:
-        .22em;
-
-    text-transform:
-        uppercase;
-
+    text-transform:uppercase;
 }
 
-
-h2 {
-
-    margin:
-        0 0 17px;
+h2{
+    margin:0 0 17px;
 
     font-size:
-        clamp(
-            2.75rem,
-            4.8vw,
-            4.6rem
-        );
+        clamp(2.75rem,4.8vw,4.6rem);
 
-    line-height:
-        .96;
-
+    line-height:.96;
 }
 
+p{
+    margin:0 0 15px;
 
-p {
+    font-size:1.06rem;
 
-    margin:
-        0 0 15px;
-
-    font-size:
-        1.06rem;
-
-    line-height:
-        1.63;
-
+    line-height:1.63;
 }
 
 
@@ -764,59 +528,42 @@ p {
    PARCHMENT ZONE
 ========================================================= */
 
-.parchment-zone {
+.parchment-zone{
+    position:relative;
 
-    position: relative;
-
-    padding:
-        36px 0 40px;
+    padding:28px 0 28px;
 
     background:
-
         linear-gradient(
             rgba(9,6,4,.10),
             rgba(9,6,4,.10)
         ),
-
         url("wood.png")
-
         center / cover;
-
 }
 
+.parchment-panel{
+    position:relative;
 
-.parchment-panel {
+    width:min(1400px,96vw);
 
-    position: relative;
+    min-height:500px;
 
-    width:
-        min(1400px, 96vw);
+    margin:0 auto;
 
-    min-height:
-        500px;
+    padding:62px 82px 70px;
 
-    margin:
-        0 auto;
-
-    padding:
-        62px 82px 70px;
-
-    color:
-        var(--ink);
+    color:var(--ink);
 
     background:
-
         url("parchment.png")
-
         center / 100% 100%
-
         no-repeat;
 
     filter:
         drop-shadow(
             0 19px 27px rgba(0,0,0,.50)
         );
-
 }
 
 
@@ -824,38 +571,25 @@ p {
    TRAIL
 ========================================================= */
 
-.map-trail {
+.map-trail{
+    position:absolute;
 
-    position: absolute;
+    z-index:1;
 
-    z-index: 1;
+    width:44%;
 
-    width:
-        44%;
+    max-width:620px;
 
-    max-width:
-        620px;
+    left:28%;
+    bottom:32px;
 
-    left:
-        28%;
+    opacity:.10;
 
-    bottom:
-        32px;
-
-    opacity:
-        .10;
-
-    pointer-events:
-        none;
+    pointer-events:none;
 
     transform:
-
-        translateX(
-            var(--trail-shift)
-        )
-
+        translateX(var(--trail-shift))
         rotate(-2deg);
-
 }
 
 
@@ -863,54 +597,36 @@ p {
    WHO WE ARRR
 ========================================================= */
 
-.who-grid {
-
-    display: grid;
+.who-grid{
+    display:grid;
 
     grid-template-columns:
         .86fr 1.14fr;
 
-    gap:
-        52px;
+    gap:52px;
 
-    align-items:
-        center;
-
+    align-items:center;
 }
 
-
-.who-title span {
-
-    color:
-        var(--red);
-
+.who-title span{
+    color:var(--red);
 }
 
+.photo-collage{
+    position:relative;
 
-.photo-collage {
-
-    position: relative;
-
-    min-height:
-        400px;
-
+    min-height:400px;
 }
 
+.photo-collage-main{
+    width:100%;
+    height:400px;
 
-.photo-collage-main {
+    object-fit:cover;
 
-    width: 100%;
-
-    height: 400px;
-
-    object-fit:
-        cover;
-
-    object-position:
-        center 32%;
+    object-position:center 32%;
 
     -webkit-mask-image:
-
         linear-gradient(
             90deg,
             transparent 0%,
@@ -920,7 +636,6 @@ p {
         );
 
     mask-image:
-
         linear-gradient(
             90deg,
             transparent 0%,
@@ -928,261 +643,179 @@ p {
             #000 94%,
             transparent 100%
         );
-
 }
 
 
 /* =========================================================
-   SMALL SNAPSHOT FRAME
+   SNAPSHOT
 ========================================================= */
 
-.snapshot {
+.snapshot{
+    position:absolute;
 
-    position: absolute;
+    right:-8px;
+    bottom:-22px;
 
-    right:
-        -8px;
+    width:47%;
 
-    bottom:
-        -22px;
+    aspect-ratio:4/3;
 
-    width:
-        47%;
-
-    aspect-ratio:
-        4 / 3;
-
-    transform:
-        rotate(2deg);
+    transform:rotate(2deg);
 
     filter:
         drop-shadow(
             0 14px 18px rgba(0,0,0,.38)
         );
-
 }
 
+.snapshot-frame{
+    position:absolute;
 
-.snapshot-frame {
+    z-index:1;
 
-    position: absolute;
+    inset:0;
 
-    z-index: 1;
+    width:100%;
+    height:100%;
 
-    inset: 0;
-
-    width: 100%;
-
-    height: 100%;
-
-    object-fit:
-        fill;
-
+    object-fit:fill;
 }
 
+.snapshot-photo{
+    position:absolute;
 
-.snapshot-photo {
+    z-index:2;
 
-    position: absolute;
+    left:13%;
+    top:14%;
 
-    z-index: 2;
+    width:74%;
+    height:70%;
 
-    left:
-        13%;
+    object-fit:cover;
 
-    top:
-        14%;
-
-    width:
-        74%;
-
-    height:
-        70%;
-
-    object-fit:
-        cover;
-
-    object-position:
-        center 16%;
+    object-position:center 16%;
 
     border:
         4px solid rgba(255,238,199,.85);
 
     box-shadow:
         0 4px 10px rgba(0,0,0,.32);
-
 }
 
 
 /* =========================================================
-   MAP ROSE
+   COMPASS DECORATION
 ========================================================= */
 
-.map-rose {
+.map-rose{
+    position:absolute;
 
-    position: absolute;
+    left:35px;
+    bottom:31px;
 
-    left:
-        35px;
+    width:165px;
 
-    bottom:
-        31px;
+    opacity:.11;
 
-    width:
-        165px;
-
-    opacity:
-        .11;
-
-    pointer-events:
-        none;
+    pointer-events:none;
 
     transform:
-        rotate(
-            var(--rose-angle)
-        );
-
+        rotate(var(--rose-angle));
 }
 
+.compass-widget{
+    position:absolute;
 
-/* =========================================================
-   COMPASS
-========================================================= */
+    z-index:7;
 
-.compass-widget {
+    right:42px;
+    top:39px;
 
-    position: absolute;
+    width:155px;
+    height:155px;
 
-    z-index: 7;
-
-    right:
-        42px;
-
-    top:
-        39px;
-
-    width:
-        155px;
-
-    height:
-        155px;
-
-    pointer-events:
-        none;
+    pointer-events:none;
 
     filter:
         drop-shadow(
             0 7px 9px rgba(0,0,0,.28)
         );
-
 }
-
 
 .compass-body,
-.compass-moving-needle {
+.compass-moving-needle{
+    position:absolute;
 
-    position: absolute;
+    inset:0;
 
-    inset: 0;
+    width:100%;
+    height:100%;
 
-    width: 100%;
-
-    height: 100%;
-
-    object-fit:
-        contain;
-
+    object-fit:contain;
 }
 
+.compass-body{
+    z-index:1;
 
-.compass-body {
-
-    z-index: 1;
-
-    opacity:
-        .96;
-
+    opacity:.96;
 }
 
-
-.compass-moving-needle {
-
-    z-index: 2;
+.compass-moving-needle{
+    z-index:2;
 
     transform:
-        rotate(
-            var(--needle-angle)
-        );
+        rotate(var(--needle-angle));
 
     transform-origin:
         50% 50%;
-
 }
 
 
 /* =========================================================
-   WAX + NOTE
+   WAX / NOTE
 ========================================================= */
 
-.treasure-note {
+.treasure-note{
+    position:absolute;
 
-    position: absolute;
+    right:48px;
+    bottom:40px;
 
-    right:
-        48px;
+    width:175px;
 
-    bottom:
-        40px;
+    text-align:center;
 
-    width:
-        175px;
-
-    text-align:
-        center;
-
-    color:
-        #654424;
+    color:#654424;
 
     font-family:
         "Brush Script MT",
         "Segoe Script",
         cursive;
 
-    font-size:
-        1.14rem;
+    font-size:1.14rem;
 
-    transform:
-        rotate(-4deg);
-
+    transform:rotate(-4deg);
 }
 
+.wax-seal{
+    position:absolute;
 
-.wax-seal {
+    z-index:9;
 
-    position: absolute;
+    width:112px;
 
-    z-index: 9;
+    right:26px;
+    bottom:18px;
 
-    width:
-        112px;
+    transform:rotate(8deg);
 
-    right:
-        26px;
-
-    bottom:
-        18px;
-
-    transform:
-        rotate(8deg);
-
-    pointer-events:
-        none;
+    pointer-events:none;
 
     filter:
         drop-shadow(
             0 8px 10px rgba(0,0,0,.40)
         );
-
 }
 
 
@@ -1190,60 +823,42 @@ p {
    ROPE CORNER
 ========================================================= */
 
-.rope-corner-left {
+.rope-corner-left{
+    position:absolute;
 
-    position: absolute;
+    z-index:8;
 
-    z-index: 8;
+    width:180px;
 
-    width:
-        180px;
+    left:16px;
+    bottom:12px;
 
-    left:
-        16px;
-
-    bottom:
-        12px;
-
-    pointer-events:
-        none;
-
+    pointer-events:none;
 }
 
 
 /* =========================================================
-   DARK WOOD SECTION
+   DARK WOOD
 ========================================================= */
 
-.wood-section {
+.wood-section{
+    position:relative;
 
-    position: relative;
+    padding:52px 0 54px;
 
-    padding:
-        59px 0 64px;
-
-    overflow:
-        hidden;
+    overflow:hidden;
 
     background:
-
         linear-gradient(
             rgba(11,7,5,.61),
             rgba(11,7,5,.73)
         ),
-
         url("wood.png")
-
         center / cover;
-
 }
 
-
-.wood-section .eyebrow {
-
-    color:
-        #d7ae69;
-
+.wood-section .eyebrow{
+    color:#d7ae69;
 }
 
 
@@ -1251,47 +866,32 @@ p {
    HIGH SEAS
 ========================================================= */
 
-.high-seas-grid {
-
-    display: grid;
+.high-seas-grid{
+    display:grid;
 
     grid-template-columns:
         1.05fr .95fr;
 
-    gap:
-        50px;
+    gap:50px;
 
-    align-items:
-        center;
-
+    align-items:center;
 }
 
+.high-seas-visual{
+    position:relative;
 
-.high-seas-visual {
-
-    position: relative;
-
-    min-height:
-        445px;
-
+    min-height:445px;
 }
 
+.high-seas-main{
+    width:100%;
+    height:445px;
 
-.high-seas-main {
+    object-fit:cover;
 
-    width: 100%;
-
-    height:
-        445px;
-
-    object-fit:
-        cover;
-
-    object-position:
-        center 34%;
+    object-position:center 34%;
 
     -webkit-mask-image:
-
         linear-gradient(
             90deg,
             #000 0%,
@@ -1300,84 +900,58 @@ p {
         );
 
     mask-image:
-
         linear-gradient(
             90deg,
             #000 0%,
             #000 84%,
             transparent 100%
         );
-
 }
 
+.high-seas-frame{
+    position:absolute;
 
-.high-seas-frame {
+    right:-8px;
+    bottom:-25px;
 
-    position: absolute;
+    width:44%;
 
-    right:
-        -8px;
+    aspect-ratio:4/3;
 
-    bottom:
-        -25px;
-
-    width:
-        44%;
-
-    aspect-ratio:
-        4 / 3;
-
-    transform:
-        rotate(1.8deg);
-
+    transform:rotate(1.8deg);
 }
 
+.high-seas-frame-overlay{
+    position:absolute;
 
-.high-seas-frame-overlay {
+    z-index:1;
 
-    position: absolute;
+    inset:0;
 
-    z-index: 1;
-
-    inset: 0;
-
-    width: 100%;
-
-    height: 100%;
-
+    width:100%;
+    height:100%;
 }
 
+.high-seas-frame-photo{
+    position:absolute;
 
-.high-seas-frame-photo {
+    z-index:2;
 
-    position: absolute;
+    left:13%;
+    top:14%;
 
-    z-index: 2;
+    width:74%;
+    height:70%;
 
-    left:
-        13%;
+    object-fit:cover;
 
-    top:
-        14%;
-
-    width:
-        74%;
-
-    height:
-        70%;
-
-    object-fit:
-        cover;
-
-    object-position:
-        center 18%;
+    object-position:center 18%;
 
     border:
         4px solid rgba(255,238,199,.85);
 
     box-shadow:
         0 4px 10px rgba(0,0,0,.35);
-
 }
 
 
@@ -1385,53 +959,35 @@ p {
    HOME PORT
 ========================================================= */
 
-.home-port {
-
-    padding:
-        58px 0 62px;
+.home-port{
+    padding:50px 0 50px;
 
     background:
-
         linear-gradient(
             rgba(7,5,4,.56),
             rgba(7,5,4,.72)
         ),
-
         url("wood.png")
-
         center / cover;
-
 }
 
-
-.home-port .eyebrow {
-
-    color:
-        #d7ae69;
-
+.home-port .eyebrow{
+    color:#d7ae69;
 }
 
-
-.home-port-grid {
-
-    display: grid;
+.home-port-grid{
+    display:grid;
 
     grid-template-columns:
         .88fr 1.12fr;
 
-    gap:
-        47px;
+    gap:47px;
 
-    align-items:
-        center;
-
+    align-items:center;
 }
 
-
-.grace-sign {
-
-    padding:
-        12px;
+.grace-sign{
+    padding:12px;
 
     background:
         rgba(0,0,0,.78);
@@ -1441,516 +997,313 @@ p {
 
     box-shadow:
         0 15px 31px rgba(0,0,0,.5);
-
 }
 
+.grace-sign img{
+    width:100%;
+    height:290px;
 
-.grace-sign img {
-
-    width: 100%;
-
-    height:
-        290px;
-
-    object-fit:
-        contain;
-
+    object-fit:contain;
 }
 
-
-.grace-photo {
-
-    margin-top:
-        26px;
-
+.grace-photo{
+    margin-top:24px;
 }
 
+.grace-photo img{
+    width:100%;
+    height:310px;
 
-.grace-photo img {
+    object-fit:cover;
 
-    width: 100%;
-
-    height:
-        310px;
-
-    object-fit:
-        cover;
-
-    object-position:
-        center 38%;
-
+    object-position:center 38%;
 }
 
 
 /* =========================================================
-   GIVING BACK FRAME — PHOTO ABOVE FRAME
+   GIVING BACK
 ========================================================= */
 
-.giving-grid {
-
-    display: grid;
+.giving-grid{
+    display:grid;
 
     grid-template-columns:
         1.05fr .95fr;
 
-    gap:
-        50px;
+    gap:50px;
 
-    align-items:
-        center;
-
+    align-items:center;
 }
 
+.giving-frame{
+    position:relative;
 
-.giving-frame {
+    width:100%;
 
-    position: relative;
-
-    width: 100%;
-
-    aspect-ratio:
-        4 / 3;
+    aspect-ratio:4/3;
 
     filter:
         drop-shadow(
             0 14px 20px rgba(0,0,0,.32)
         );
-
 }
 
+.giving-frame-overlay{
+    position:absolute;
 
-.giving-frame-overlay {
+    z-index:1;
 
-    position: absolute;
+    inset:0;
 
-    z-index: 1;
+    width:100%;
+    height:100%;
 
-    inset: 0;
-
-    width: 100%;
-
-    height: 100%;
-
-    object-fit:
-        fill;
-
+    object-fit:fill;
 }
 
+.giving-frame-photo{
+    position:absolute;
 
-.giving-frame-photo {
+    z-index:2;
 
-    position: absolute;
+    left:14%;
+    top:15%;
 
-    z-index: 2;
+    width:72%;
+    height:68%;
 
-    left:
-        14%;
+    object-fit:cover;
 
-    top:
-        15%;
-
-    width:
-        72%;
-
-    height:
-        68%;
-
-    object-fit:
-        cover;
-
-    object-position:
-        center 36%;
+    object-position:center 36%;
 
     border:
         5px solid rgba(255,239,202,.92);
 
     box-shadow:
         0 5px 12px rgba(0,0,0,.28);
-
 }
 
 
 /* =========================================================
-   EVENT SECTION
+   EVENT SECTION — DARK WOOD, NOT GIANT PARCHMENT
 ========================================================= */
 
-.events-section {
-
-    position: relative;
+.events-section{
+    position:relative;
 
     padding:
-        48px 0 66px;
+        72px 0 82px;
+
+    overflow:hidden;
 
     background:
-
         linear-gradient(
-            rgba(10,7,5,.60),
+            rgba(10,7,5,.57),
             rgba(10,7,5,.72)
         ),
-
         url("wood.png")
-
         center / cover;
+}
 
+.events-section::before{
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(184,128,71,.10),
+            transparent 55%
+        );
+
+    pointer-events:none;
+}
+
+.events-heading{
+    position:relative;
+
+    z-index:4;
+
+    max-width:940px;
+
+    margin:
+        0 auto 44px;
+
+    text-align:center;
+}
+
+.events-heading .eyebrow{
+    color:#d7ae69;
+}
+
+.events-heading h2{
+    color:var(--cream);
+
+    text-shadow:
+        0 5px 12px rgba(0,0,0,.5);
+}
+
+.events-heading p{
+    color:#e5cfaa;
 }
 
 
-.events-shell {
+/* =========================================================
+   EVENT CARDS — INDIVIDUAL PARCHMENTS
+========================================================= */
 
-    position: relative;
+.event-grid{
+    position:relative;
 
-    width:
-        min(1400px, 96vw);
+    z-index:4;
 
-    margin:
-        0 auto;
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:30px;
+}
+
+.event-card{
+    position:relative;
+
+    min-height:470px;
 
     padding:
-        68px 74px 76px;
+        52px 36px 54px;
 
-    color:
-        var(--ink);
+    color:var(--ink);
 
     background:
-
-        url("parchment.png")
-
+        url("parchemnt%202.png")
         center / 100% 100%
-
         no-repeat;
 
     filter:
         drop-shadow(
-            0 18px 25px rgba(0,0,0,.42)
+            0 16px 21px rgba(0,0,0,.40)
         );
-
-}
-
-
-.events-heading {
-
-    position: relative;
-
-    z-index: 3;
-
-    max-width:
-        940px;
-
-    margin:
-        0 auto 38px;
-
-    text-align:
-        center;
-
-}
-
-
-.events-heading .eyebrow {
-
-    color:
-        #6d4a26;
-
-}
-
-
-.events-heading p {
-
-    color:
-        #553829;
-
-}
-
-
-/* =========================================================
-   TORN EVENT PLACARDS
-========================================================= */
-
-.event-grid {
-
-    position: relative;
-
-    z-index: 3;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap:
-        26px;
-
-}
-
-
-.event-card {
-
-    position: relative;
-
-    overflow:
-        hidden;
-
-    color:
-        var(--ink);
-
-    background:
-
-        linear-gradient(
-            rgba(250,235,198,.96),
-            rgba(232,204,151,.94)
-        );
-
-    box-shadow:
-        0 12px 25px rgba(63,37,17,.22);
 
     transition:
         transform .25s ease,
-        box-shadow .25s ease;
-
-    clip-path:
-
-        polygon(
-
-            2% 3%,
-
-            12% 1%,
-
-            23% 3%,
-
-            34% 1%,
-
-            47% 2%,
-
-            58% 1%,
-
-            72% 3%,
-
-            84% 1%,
-
-            98% 3%,
-
-            99% 15%,
-
-            98% 30%,
-
-            99% 46%,
-
-            98% 64%,
-
-            99% 80%,
-
-            97% 97%,
-
-            82% 98%,
-
-            69% 97%,
-
-            54% 99%,
-
-            39% 97%,
-
-            24% 99%,
-
-            8% 97%,
-
-            2% 98%,
-
-            1% 80%,
-
-            2% 63%,
-
-            1% 45%,
-
-            2% 27%
-
-        );
-
+        filter .25s ease;
 }
 
-
-.event-card:nth-child(1) {
-
-    transform:
-        rotate(-.5deg);
-
+.event-card:nth-child(1){
+    transform:rotate(-.6deg);
 }
 
-
-.event-card:nth-child(2) {
-
-    transform:
-        rotate(.45deg);
-
+.event-card:nth-child(2){
+    transform:rotate(.45deg);
 }
 
-
-.event-card:nth-child(3) {
-
-    transform:
-        rotate(-.35deg);
-
+.event-card:nth-child(3){
+    transform:rotate(-.4deg);
 }
 
-
-.event-card:hover {
-
+.event-card:hover{
     transform:
         translateY(-7px)
         rotate(0deg);
 
-    box-shadow:
-        0 19px 35px rgba(56,31,14,.31);
-
-}
-
-
-.event-photo-wrap {
-
-    position: relative;
-
-    overflow:
-        hidden;
-
-    height:
-        222px;
-
-}
-
-
-.event-photo-wrap::after {
-
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    pointer-events:
-        none;
-
-    background:
-
-        linear-gradient(
-            to bottom,
-            transparent 67%,
-            rgba(231,205,156,.28) 86%,
-            rgba(231,205,156,.92) 100%
+    filter:
+        drop-shadow(
+            0 22px 28px rgba(0,0,0,.48)
         );
-
 }
 
+.event-photo{
+    position:relative;
 
-.event-card img {
-
-    width: 100%;
-
-    height: 100%;
-
-    object-fit:
-        cover;
-
-}
-
-
-.event-card img.focus-top {
-
-    object-position:
-        center 20%;
-
-}
-
-
-.event-card img.focus-top-strong {
-
-    object-position:
-        center 8%;
-
-}
-
-
-.event-card-content {
-
-    min-height:
-        164px;
-
-    padding:
-        14px 22px 24px;
-
-}
-
-
-.event-card h3 {
+    height:220px;
 
     margin:
-        0 0 8px;
+        0 0 18px;
 
-    color:
-        #2d190f;
+    overflow:hidden;
 
-    font-size:
-        1.5rem;
-
-}
-
-
-.event-card p {
-
-    margin: 0;
-
-    color:
-        #4a3022;
-
-    font-size:
-        .96rem;
-
-    line-height:
-        1.53;
-
-}
-
-
-/* little wax-looking tack */
-
-.event-card::after {
-
-    content: "✦";
-
-    position: absolute;
-
-    top:
-        12px;
-
-    right:
-        14px;
-
-    z-index: 5;
-
-    width:
-        26px;
-
-    height:
-        26px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border-radius:
-        50%;
-
-    color:
-        #f4d6aa;
-
-    background:
-        rgba(123,31,26,.90);
+    border:
+        5px solid rgba(92,52,26,.28);
 
     box-shadow:
-        0 3px 6px rgba(0,0,0,.30);
+        0 6px 13px rgba(0,0,0,.24);
+}
 
-    font-size:
-        .7rem;
+.event-photo img{
+    width:100%;
+    height:100%;
 
+    object-fit:cover;
+}
+
+.event-photo img.focus-top{
+    object-position:center 20%;
+}
+
+.event-photo img.focus-top-strong{
+    object-position:center 8%;
+}
+
+.event-card h3{
+    margin:
+        0 0 9px;
+
+    color:#2d190f;
+
+    font-size:1.52rem;
+}
+
+.event-card p{
+    margin:0;
+
+    color:#4a3022;
+
+    font-size:.96rem;
+
+    line-height:1.53;
+}
+
+.events-compass{
+    position:absolute;
+
+    z-index:1;
+
+    right:3%;
+
+    top:15%;
+
+    width:280px;
+
+    opacity:.055;
+
+    transform:
+        rotate(var(--rose-angle));
+
+    pointer-events:none;
+}
+
+.events-trail{
+    position:absolute;
+
+    z-index:1;
+
+    left:8%;
+
+    bottom:10%;
+
+    width:36%;
+
+    opacity:.07;
+
+    transform:
+        translateX(var(--trail-shift))
+        rotate(-4deg);
+
+    pointer-events:none;
 }
 
 
@@ -1958,109 +1311,73 @@ p {
    FINAL CTA
 ========================================================= */
 
-.final-cta {
+.final-cta{
+    position:relative;
 
-    position: relative;
+    min-height:430px;
 
-    min-height:
-        430px;
+    overflow:hidden;
 
-    overflow:
-        hidden;
+    display:flex;
+    align-items:center;
 
-    display: flex;
-
-    align-items:
-        center;
-
-    text-align:
-        center;
+    text-align:center;
 
     background:
-
         linear-gradient(
             rgba(7,5,4,.52),
             rgba(7,5,4,.76)
         ),
-
         url("Join%20the%20Krew.jpg")
-
         center 10% / cover;
-
 }
 
+.final-cta-content{
+    position:relative;
 
-.final-cta-content {
+    z-index:10;
 
-    position: relative;
+    width:min(820px,88vw);
 
-    z-index: 10;
-
-    width:
-        min(820px, 88vw);
-
-    margin:
-        0 auto;
-
+    margin:0 auto;
 }
 
-
-.final-cta h2 {
-
-    margin:
-        0 0 14px;
+.final-cta h2{
+    margin:0 0 14px;
 
     font-size:
-        clamp(
-            3rem,
-            5.4vw,
-            4.9rem
-        );
-
+        clamp(3rem,5.4vw,4.9rem);
 }
 
-
-.final-cta p {
-
-    max-width:
-        700px;
+.final-cta p{
+    max-width:700px;
 
     margin:
         0 auto 22px;
 
-    font-size:
-        1.08rem;
-
+    font-size:1.08rem;
 }
 
 
 /* =========================================================
-   REVEALS
+   REVEAL
 ========================================================= */
 
-.reveal {
-
-    opacity: 0;
+.reveal{
+    opacity:0;
 
     transform:
         translateY(25px);
 
     transition:
-
         opacity .72s ease,
-
         transform .72s ease;
-
 }
 
+.reveal.visible{
+    opacity:1;
 
-.reveal.visible {
-
-    opacity: 1;
-
-    transform:
-        none;
-
+    transform:none;
 }
 
 
@@ -2068,31 +1385,23 @@ p {
    FOOTER
 ========================================================= */
 
-footer {
+footer{
+    padding:25px 20px;
 
-    padding:
-        25px 20px;
+    text-align:center;
 
-    text-align:
-        center;
-
-    color:
-        #aa9a88;
+    color:#aa9a88;
 
     background:
-
         linear-gradient(
             rgba(6,4,3,.83),
             rgba(6,4,3,.83)
         ),
-
         url("wood.png")
-
         center / cover;
 
     border-top:
         1px solid #46311e;
-
 }
 
 
@@ -2100,84 +1409,49 @@ footer {
    TABLET
 ========================================================= */
 
-@media (max-width: 980px) {
+@media (max-width:980px){
 
-    .site-header {
-
-        position: relative;
-
-        justify-content: center;
-
-        text-align: center;
-
+    .site-header{
+        position:relative;
+        justify-content:center;
+        text-align:center;
     }
 
-
-    .logo img {
-
-        max-width:
-            85vw;
-
+    .logo img{
+        max-width:85vw;
     }
 
-
-    nav {
-
-        width: 100%;
-
-        justify-content:
-            center;
-
+    nav{
+        width:100%;
+        justify-content:center;
     }
-
 
     .who-grid,
     .high-seas-grid,
     .home-port-grid,
-    .giving-grid {
-
-        grid-template-columns:
-            1fr;
-
+    .giving-grid{
+        grid-template-columns:1fr;
     }
 
-
-    .event-grid {
-
-        grid-template-columns:
-            1fr;
-
+    .event-grid{
+        grid-template-columns:1fr;
     }
 
+    .event-card{
+        max-width:680px;
 
-    .event-card {
+        margin:0 auto;
 
-        max-width:
-            680px;
-
-        margin:
-            0 auto;
-
-        width:
-            100%;
-
+        width:100%;
     }
 
-
-    .parchment-panel,
-    .events-shell {
-
+    .parchment-panel{
         padding:
             65px 58px 72px;
-
     }
 
-
-    .treasure-note {
-
-        display:
-            none;
-
+    .treasure-note{
+        display:none;
     }
 
 }
@@ -2187,170 +1461,115 @@ footer {
    MOBILE
 ========================================================= */
 
-@media (max-width: 650px) {
+@media (max-width:650px){
 
-    .site-header {
-
+    .site-header{
         padding:
             10px 14px;
-
     }
 
-
-    nav {
-
+    nav{
         gap:
             9px 13px;
-
     }
 
-
-    nav a {
-
-        font-size:
-            .82rem;
-
+    nav a{
+        font-size:.82rem;
     }
 
-
-    .support-link {
-
+    .support-link{
         padding:
             8px 11px;
-
     }
 
-
-    .hero {
-
-        height:
-            575px;
-
-        min-height:
-            575px;
-
+    .hero{
+        height:575px;
+        min-height:575px;
     }
 
-
-    .hero-content {
-
-        text-align:
-            center;
-
+    .hero-content{
+        text-align:center;
     }
 
-
-    .hero h1 {
-
-        font-size:
-            3.05rem;
-
+    .hero h1{
+        font-size:3.05rem;
     }
 
-
-    .hero-buttons {
-
-        justify-content:
-            center;
-
+    .hero-buttons{
+        justify-content:center;
     }
-
 
     .hero-location,
-    .lantern {
-
-        display:
-            none;
-
+    .lantern{
+        display:none;
     }
 
-
-    .rope-divider {
-
-        height:
-            58px;
+    .rope-divider{
+        height:58px;
 
         margin:
             -8px 0 -2px;
-
     }
 
-
-    .rope-divider img {
-
+    .rope-divider img{
         width:
             calc(100% + 22px);
-
     }
 
+    .bracket-transition{
+        height:76px;
 
-    .parchment-panel,
-    .events-shell {
+        margin:
+            -16px 0 -12px;
+    }
 
+    .bracket-transition img{
         width:
-            98vw;
+            calc(100% + 6px);
+    }
+
+    .parchment-panel{
+        width:98vw;
 
         padding:
             58px 34px 62px;
-
     }
 
-
     .snapshot,
-    .high-seas-frame {
+    .high-seas-frame{
+        position:relative;
 
-        position:
-            relative;
+        right:auto;
+        bottom:auto;
 
-        right:
-            auto;
-
-        bottom:
-            auto;
-
-        width:
-            78%;
+        width:78%;
 
         margin:
             -15px 0 0 auto;
-
     }
-
 
     .compass-widget,
     .map-rose,
-    .map-trail {
-
-        display:
-            none;
-
+    .map-trail,
+    .events-compass,
+    .events-trail{
+        display:none;
     }
 
+    .event-card{
+        min-height:0;
 
-    .giving-frame-photo {
-
-        left:
-            15%;
-
-        width:
-            70%;
-
+        padding:
+            42px 30px 48px;
     }
 
-
-    .event-photo-wrap {
-
-        height:
-            205px;
-
+    .event-photo{
+        height:205px;
     }
 
-
-    .final-cta {
-
+    .final-cta{
         background-position:
             center 5%;
-
     }
 
 }
@@ -2360,41 +1579,26 @@ footer {
    REDUCED MOTION
 ========================================================= */
 
-@media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion:reduce){
 
-    * {
-
-        animation:
-            none !important;
-
-        transition:
-            none !important;
-
+    *{
+        animation:none !important;
+        transition:none !important;
     }
 
-
-    .reveal {
-
-        opacity: 1;
-
-        transform:
-            none;
-
+    .reveal{
+        opacity:1;
+        transform:none;
     }
 
 }
 
 </style>
-
 </head>
 
 
 <body>
 
-
-<!-- =========================================================
-     HEADER
-========================================================= -->
 
 <header class="site-header">
 
@@ -2402,12 +1606,10 @@ footer {
         class="logo"
         href="index.html"
     >
-
         <img
             src="logo.png"
             alt="Pirates of the White Sands"
         >
-
     </a>
 
 
@@ -2435,9 +1637,7 @@ footer {
             target="_blank"
             rel="noopener"
         >
-
             ☠ Support the Mayhem
-
         </a>
 
     </nav>
@@ -2445,9 +1645,7 @@ footer {
 </header>
 
 
-<!-- =========================================================
-     HERO
-========================================================= -->
+<!-- HERO -->
 
 <section class="hero">
 
@@ -2458,17 +1656,13 @@ footer {
         playsinline
         preload="auto"
     >
-
         <source
             src="Banner.mp4"
             type="video/mp4"
         >
-
     </video>
 
-
     <div class="hero-overlay"></div>
-
 
     <img
         class="lantern lantern-left"
@@ -2476,33 +1670,23 @@ footer {
         alt=""
     >
 
-
     <img
         class="lantern lantern-right"
         src="lantern.png"
         alt=""
     >
 
-
     <div class="hero-content reveal">
 
         <h1>
-
             Good People.<br>
-
             Great Times.<br>
-
             A Brighter Tomorrow.
-
         </h1>
 
-
         <div class="hero-tagline">
-
             Community • Charity • Adventure
-
         </div>
-
 
         <div class="hero-buttons">
 
@@ -2510,57 +1694,40 @@ footer {
                 class="button button-red"
                 href="get-involved.html"
             >
-
                 ☠ Join the Mayhem
-
             </a>
-
 
             <a
                 class="button button-dark"
                 href="meet-the-krewe.html"
             >
-
                 Meet the Krewe
-
             </a>
 
         </div>
 
     </div>
 
-
     <div class="hero-location">
-
         Panama City Beach, FL
-
     </div>
 
 </section>
 
 
-<!-- =========================================================
-     ROPE
-========================================================= -->
-
 <div class="rope-divider">
-
     <img
         src="long%20rope%20divider%20tied.png"
         alt=""
     >
-
 </div>
 
 
-<!-- =========================================================
-     WHO WE ARRR
-========================================================= -->
+<!-- WHO WE ARRR -->
 
 <section class="parchment-zone">
 
     <div class="parchment-panel">
-
 
         <img
             class="map-trail"
@@ -2568,58 +1735,35 @@ footer {
             alt=""
         >
 
-
         <div class="container who-grid">
-
 
             <div class="reveal">
 
                 <div class="eyebrow">
-
                     More Than Pirates
-
                 </div>
 
-
                 <h2 class="who-title">
-
-                    Who We
-
-                    <span>
-                        ARRR!
-                    </span>
-
+                    Who We <span>ARRR!</span>
                 </h2>
 
-
                 <p>
-
                     Pirates of the White Sands is a nonprofit pirate krewe based in Panama City, Florida.
-
                 </p>
 
-
                 <p>
-
                     We bring together costuming, community events, charity work, living history, and a shared love of pirate culture.
-
                 </p>
-
 
                 <p>
-
                     You’ll find us supporting local causes, appearing at festivals and special events, and helping bring a little adventure to the Gulf Coast.
-
                 </p>
-
 
                 <a
                     class="button button-red"
                     href="meet-the-krewe.html"
                 >
-
                     Meet the Krewe →
-
                 </a>
 
             </div>
@@ -2627,16 +1771,13 @@ footer {
 
             <div class="photo-collage reveal">
 
-
                 <img
                     class="photo-collage-main parallax-image"
                     src="krew2.jpg"
                     alt="Pirates of the White Sands"
                 >
 
-
                 <div class="snapshot">
-
 
                     <img
                         class="snapshot-frame"
@@ -2644,19 +1785,15 @@ footer {
                         alt=""
                     >
 
-
                     <img
                         class="snapshot-photo"
                         src="Join%20the%20Krew.jpg"
                         alt="Pirates of the White Sands"
                     >
 
-
                 </div>
 
-
             </div>
-
 
         </div>
 
@@ -2670,13 +1807,11 @@ footer {
 
         <div class="compass-widget">
 
-
             <img
                 class="compass-body"
                 src="compass.png"
                 alt=""
             >
-
 
             <img
                 class="compass-moving-needle"
@@ -2684,15 +1819,12 @@ footer {
                 alt=""
             >
 
-
         </div>
 
 
         <div class="treasure-note">
-
             Not all treasure<br>
             is silver and gold.
-
         </div>
 
 
@@ -2709,23 +1841,18 @@ footer {
             alt=""
         >
 
-
     </div>
 
 </section>
 
 
-<!-- =========================================================
-     HIGH SEAS
-========================================================= -->
+<!-- HIGH SEAS -->
 
 <section class="wood-section">
 
     <div class="container high-seas-grid">
 
-
         <div class="high-seas-visual reveal">
-
 
             <img
                 class="high-seas-main parallax-image"
@@ -2733,9 +1860,7 @@ footer {
                 alt="Pirates of the High Seas"
             >
 
-
             <div class="high-seas-frame">
-
 
                 <img
                     class="high-seas-frame-overlay"
@@ -2743,103 +1868,70 @@ footer {
                     alt=""
                 >
 
-
                 <img
                     class="high-seas-frame-photo"
                     src="float.jpg"
                     alt="Pirates of the White Sands parade"
                 >
 
-
             </div>
-
 
         </div>
 
 
         <div class="reveal">
 
-
             <div class="eyebrow">
-
                 Our Biggest Adventure
-
             </div>
 
-
             <h2>
-
                 Pirates of the High Seas
-
             </h2>
 
-
             <p>
-
                 Each year, Pirates of the White Sands helps bring pirate history to life during Panama City Beach’s Pirates of the High Seas festival.
-
             </p>
 
-
             <p>
-
                 Our krewe creates a historical encampment and brings sword fighting, living history, educational demonstrations, pirate entertainment, and our ship float to the weekend.
-
             </p>
 
-
             <p>
-
                 <strong>
                     October 9–11, 2026
                 </strong>
-
             </p>
-
 
             <a
                 class="button button-red"
                 href="high-seas.html"
             >
-
                 Explore the Mayhem
-
             </a>
 
-
         </div>
-
 
     </div>
 
 </section>
 
 
-<!-- =========================================================
-     ROPE 2
-========================================================= -->
-
 <div class="rope-divider">
-
     <img
         src="long%20rope%20divider.png"
         alt=""
     >
-
 </div>
 
 
-<!-- =========================================================
-     HOME PORT
-========================================================= -->
+<!-- HOME PORT -->
 
 <section class="home-port">
 
     <div class="container">
 
-
         <div class="home-port-grid">
-
 
             <div class="grace-sign reveal">
 
@@ -2853,43 +1945,28 @@ footer {
 
             <div class="reveal">
 
-
                 <div class="eyebrow">
-
                     Our Home Port
-
                 </div>
 
-
                 <h2>
-
                     Grace O’Malley’s
-
                 </h2>
 
-
                 <p>
-
                     Every good krewe needs a home port. For Pirates of the White Sands, that place is Grace O’Malley’s in Panama City.
-
                 </p>
-
 
                 <p>
-
                     Through the friendship between Captain Ransom and owner Marco Sparrow, Grace O’Malley’s has become a gathering place for the crew — a place to meet, plan adventures, raise a glass, and keep the pirate spirit alive between events.
-
                 </p>
-
 
             </div>
-
 
         </div>
 
 
         <div class="grace-photo reveal">
-
 
             <img
                 class="parallax-image"
@@ -2897,23 +1974,18 @@ footer {
                 alt="Grace O'Malley's"
             >
 
-
         </div>
-
 
     </div>
 
 </section>
 
 
-<!-- =========================================================
-     GIVING BACK
-========================================================= -->
+<!-- GIVING BACK -->
 
 <section class="parchment-zone">
 
     <div class="parchment-panel">
-
 
         <img
             class="map-trail"
@@ -2921,12 +1993,9 @@ footer {
             alt=""
         >
 
-
         <div class="container giving-grid">
 
-
             <div class="giving-frame reveal">
-
 
                 <img
                     class="giving-frame-overlay"
@@ -2934,63 +2003,37 @@ footer {
                     alt=""
                 >
 
-
                 <img
                     class="giving-frame-photo"
                     src="giving-back.jpg"
                     alt="Pirates of the White Sands supporting Miracle League"
                 >
 
-
             </div>
 
 
             <div class="reveal">
 
-
                 <div class="eyebrow">
-
                     Community First
-
                 </div>
 
-
                 <h2>
-
                     Pirates Giving Back
-
                 </h2>
 
-
                 <p>
-
                     Pirates of the White Sands is a
-
-                    <strong>
-                        501(c)(3) nonprofit organization
-                    </strong>
-
+                    <strong>501(c)(3) nonprofit organization</strong>
                     dedicated to supporting local charities and community programs.
-
                 </p>
-
 
                 <p>
-
                     Throughout the year, our krewe volunteers, raises funds, makes appearances, and lends a hand to organizations doing good in our area, including
-
-                    <strong>
-                        Toys for Kids
-                    </strong>
-
+                    <strong>Toys for Kids</strong>
                     and the
-
-                    <strong>
-                        Miracle League.
-                    </strong>
-
+                    <strong>Miracle League.</strong>
                 </p>
-
 
                 <a
                     class="button button-red"
@@ -2998,14 +2041,10 @@ footer {
                     target="_blank"
                     rel="noopener"
                 >
-
                     Support the Mayhem →
-
                 </a>
 
-
             </div>
-
 
         </div>
 
@@ -3023,52 +2062,55 @@ footer {
             alt=""
         >
 
-
     </div>
 
 </section>
 
 
-<!-- =========================================================
-     WHAT WE BRING
-========================================================= -->
+<!-- NEW SHIP TRANSITION -->
+
+<div class="bracket-transition">
+
+    <img
+        src="rope%20bracket.png"
+        alt=""
+    >
+
+</div>
+
+
+<!-- WHAT WE BRING -->
 
 <section class="events-section">
 
+    <img
+        class="events-compass"
+        src="compass%20rose.png"
+        alt=""
+    >
 
-    <div class="events-shell">
+    <img
+        class="events-trail"
+        src="trail.png"
+        alt=""
+    >
 
 
-        <img
-            class="map-trail"
-            src="trail.png"
-            alt=""
-        >
-
+    <div class="container">
 
         <div class="events-heading reveal">
 
-
             <div class="eyebrow">
-
                 History Lives When People Play
-
             </div>
 
-
             <h2>
-
                 What We Bring to the Event
-
             </h2>
 
-
             <p>
-
                 Living history, steel, stories, displays, and plenty of pirate personality.
-
             </p>
-
 
         </div>
 
@@ -3078,8 +2120,7 @@ footer {
 
             <article class="event-card reveal">
 
-
-                <div class="event-photo-wrap">
+                <div class="event-photo">
 
                     <img
                         class="focus-top"
@@ -3089,34 +2130,20 @@ footer {
 
                 </div>
 
+                <h3>
+                    Historical Encampment
+                </h3>
 
-                <div class="event-card-content">
-
-
-                    <h3>
-
-                        Historical Encampment
-
-                    </h3>
-
-
-                    <p>
-
-                        Step into a living pirate camp filled with period-inspired equipment, displays, tools, weapons, and demonstrations.
-
-                    </p>
-
-
-                </div>
-
+                <p>
+                    Step into a living pirate camp filled with period-inspired equipment, displays, tools, weapons, and demonstrations.
+                </p>
 
             </article>
 
 
             <article class="event-card reveal">
 
-
-                <div class="event-photo-wrap">
+                <div class="event-photo">
 
                     <img
                         class="focus-top-strong"
@@ -3126,34 +2153,20 @@ footer {
 
                 </div>
 
+                <h3>
+                    Sword Fighting
+                </h3>
 
-                <div class="event-card-content">
-
-
-                    <h3>
-
-                        Sword Fighting
-
-                    </h3>
-
-
-                    <p>
-
-                        Entertainment meets historical interpretation with live steel and fighting demonstrations.
-
-                    </p>
-
-
-                </div>
-
+                <p>
+                    Entertainment meets historical interpretation with live steel and fighting demonstrations.
+                </p>
 
             </article>
 
 
             <article class="event-card reveal">
 
-
-                <div class="event-photo-wrap">
+                <div class="event-photo">
 
                     <img
                         class="focus-top"
@@ -3163,52 +2176,33 @@ footer {
 
                 </div>
 
+                <h3>
+                    Living History
+                </h3>
 
-                <div class="event-card-content">
-
-
-                    <h3>
-
-                        Living History
-
-                    </h3>
-
-
-                    <p>
-
-                        Krewe members stay in character while sharing stories and helping visitors discover the history behind the legends.
-
-                    </p>
-
-
-                </div>
-
+                <p>
+                    Krewe members stay in character while sharing stories and helping visitors discover the history behind the legends.
+                </p>
 
             </article>
 
 
         </div>
 
-
     </div>
-
 
 </section>
 
 
-<!-- =========================================================
-     FINAL CTA
-========================================================= -->
+<!-- FINAL CTA -->
 
 <section class="final-cta">
-
 
     <img
         class="lantern lantern-left"
         src="lantern.png"
         alt=""
     >
-
 
     <img
         class="lantern lantern-right"
@@ -3219,33 +2213,22 @@ footer {
 
     <div class="final-cta-content reveal">
 
-
         <h2>
-
             There’s a Place Aboard.
-
         </h2>
 
-
         <p>
-
             Volunteer with the krewe, suggest a local cause, request an appearance, or help keep the mayhem going.
-
         </p>
-
 
         <a
             class="button button-red"
             href="get-involved.html"
         >
-
             Join the Mayhem
-
         </a>
 
-
     </div>
-
 
 </section>
 
@@ -3259,11 +2242,8 @@ footer {
 
 <script>
 
-
 const revealItems =
-    document.querySelectorAll(
-        ".reveal"
-    );
+    document.querySelectorAll(".reveal");
 
 
 const revealObserver =
@@ -3275,16 +2255,11 @@ const revealObserver =
 
                 entry => {
 
-                    if (
-                        entry.isIntersecting
-                    ) {
+                    if(entry.isIntersecting){
 
-                        entry
-                            .target
+                        entry.target
                             .classList
-                            .add(
-                                "visible"
-                            );
+                            .add("visible");
 
                         revealObserver
                             .unobserve(
@@ -3300,7 +2275,7 @@ const revealObserver =
         },
 
         {
-            threshold: .14
+            threshold:.14
         }
 
     );
@@ -3310,39 +2285,28 @@ revealItems.forEach(
 
     item => {
 
-        revealObserver.observe(
-            item
-        );
+        revealObserver.observe(item);
 
     }
 
 );
 
 
-let ticking =
-    false;
+let ticking = false;
 
 
-function updateMotion() {
+function updateMotion(){
 
-
-    if (
-        ticking
-    ) {
-
+    if(ticking){
         return;
-
     }
 
-
-    ticking =
-        true;
+    ticking = true;
 
 
     requestAnimationFrame(
 
         () => {
-
 
             const scroll =
                 window.scrollY;
@@ -3438,10 +2402,9 @@ function updateMotion() {
 
                     image => {
 
-
                         const rect =
                             image
-                            .getBoundingClientRect();
+                                .getBoundingClientRect();
 
 
                         const middle =
@@ -3455,7 +2418,6 @@ function updateMotion() {
 
 
                         const shift =
-
                             Math.max(
 
                                 -12,
@@ -3485,15 +2447,12 @@ function updateMotion() {
                             +
                             "px) scale(1.018)";
 
-
                     }
 
                 );
 
 
-            ticking =
-                false;
-
+            ticking = false;
 
         }
 
@@ -3509,7 +2468,7 @@ window.addEventListener(
     updateMotion,
 
     {
-        passive: true
+        passive:true
     }
 
 );
@@ -3517,9 +2476,7 @@ window.addEventListener(
 
 updateMotion();
 
-
 </script>
-
 
 </body>
 </html>
