@@ -1,2364 +1,2277 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Pirates of the White Sands</title>
 
-<meta
-  name="description"
-  content="Pirates of the White Sands is a Panama City, Florida nonprofit pirate krewe supporting local charities, community events, and living history."
->
-
 <style>
 
 :root {
-  --ink: #120f0c;
-  --wood: #1d1610;
-  --wood2: #2b1e14;
+    --red: #8f231f;
+    --red-hover: #a9332c;
+    --cream: #fff4dc;
+    --parchment: #ead5aa;
+    --ink: #291b12;
+    --gold: #c29a58;
 
-  --parch: #ead8b5;
-  --parch2: #f2e4c9;
-
-  --red: #8b211e;
-  --red2: #a92f29;
-
-  --gold: #bf9b5b;
-  --cream: #fff7e8;
-
-  --heroShift: 0px;
-  --compassAngle: 0deg;
+    --hero-parallax: 0px;
+    --compass-angle: 0deg;
 }
 
+
+/* =====================================================
+   RESET
+===================================================== */
+
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 body {
-  margin: 0;
+    margin: 0;
+    overflow-x: hidden;
 
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
 
-  color: var(--cream);
+    color: var(--cream);
 
-  background:
-    radial-gradient(
-      circle at 20% 10%,
-      rgba(255,255,255,.03),
-      transparent 24%
-    ),
-
-    repeating-linear-gradient(
-      90deg,
-      #17110d 0 160px,
-      #21170f 160px 320px,
-      #18110c 320px 480px
-    );
-
-  overflow-x: hidden;
+    background:
+        #120d09
+        url("wood.png")
+        center top / 1500px auto
+        repeat;
 }
 
 img {
-  display: block;
-  max-width: 100%;
+    display: block;
+    max-width: 100%;
 }
 
 a {
-  color: inherit;
+    color: inherit;
 }
 
 
-/* =========================================================
+/* =====================================================
    HEADER
-   ========================================================= */
+===================================================== */
 
 .site-header {
 
-  position: sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 
-  top: 0;
+    min-height: 116px;
 
-  z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-  display: flex;
+    gap: 32px;
 
-  align-items: center;
+    padding: 12px 42px;
 
-  justify-content: space-between;
+    background:
+        linear-gradient(
+            rgba(8, 6, 5, .68),
+            rgba(8, 6, 5, .82)
+        ),
+        url("wood.png")
+        center / cover;
 
-  gap: 24px;
+    border-bottom:
+        1px solid rgba(194, 154, 88, .45);
 
-  padding: 10px 34px;
-
-  background:
-    rgba(16,13,11,.94);
-
-  border-bottom:
-    1px solid rgba(191,155,91,.35);
-
-  backdrop-filter:
-    blur(8px);
-
-  box-shadow:
-    0 5px 22px rgba(0,0,0,.35);
+    box-shadow:
+        0 7px 24px rgba(0, 0, 0, .5);
 }
 
 
-.brand img {
+.logo img {
 
-  width: 320px;
-
-  max-width: 42vw;
+    width: 340px;
+    max-width: 43vw;
 }
 
 
 nav {
 
-  display: flex;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 
-  gap: 22px;
+    gap: 26px;
 
-  align-items: center;
-
-  flex-wrap: wrap;
-
-  justify-content: flex-end;
+    flex-wrap: wrap;
 }
 
 
 nav a {
 
-  color: #fff;
+    position: relative;
 
-  text-decoration: none;
+    color: white;
 
-  font-size: .96rem;
+    text-decoration: none;
 
-  position: relative;
+    font-size: .98rem;
+
+    text-shadow:
+        0 2px 3px #000;
 }
 
 
 nav a::after {
 
-  content: "";
+    content: "";
 
-  position: absolute;
+    position: absolute;
 
-  left: 0;
+    left: 50%;
+    right: 50%;
 
-  right: 100%;
+    bottom: -8px;
 
-  bottom: -7px;
+    height: 2px;
 
-  height: 2px;
+    background: var(--red);
 
-  background:
-    var(--red2);
-
-  transition:
-    .25s;
+    transition: .25s ease;
 }
 
 
 nav a:hover::after {
 
-  right: 0;
+    left: 0;
+    right: 0;
 }
 
 
-/* =========================================================
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.button {
+
+    display: inline-block;
+
+    padding: 14px 25px;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    border:
+        1px solid rgba(255,255,255,.35);
+
+    transition:
+        transform .2s ease,
+        background .2s ease;
+}
+
+
+.button-red {
+
+    background: var(--red);
+
+    color: white;
+}
+
+
+.button-red:hover {
+
+    background: var(--red-hover);
+
+    transform: translateY(-2px);
+}
+
+
+.button-dark {
+
+    background: rgba(0,0,0,.55);
+
+    color: white;
+}
+
+
+.button-dark:hover {
+
+    background: white;
+
+    color: #1b120d;
+
+    transform: translateY(-2px);
+}
+
+
+/* =====================================================
    HERO
-   ========================================================= */
+===================================================== */
 
 .hero {
 
-  position: relative;
+    position: relative;
 
-  height:
-    calc(100vh - 86px);
+    min-height:
+        calc(100vh - 116px);
 
-  min-height: 700px;
+    height: 760px;
 
-  overflow: hidden;
+    overflow: hidden;
 
-  display: flex;
+    display: flex;
 
-  align-items: center;
-
-  justify-content: center;
+    align-items: center;
 }
 
 
 .hero video {
 
-  position: absolute;
+    position: absolute;
 
-  inset: -7% 0 0;
+    inset: -8% 0 0;
 
-  width: 100%;
+    width: 100%;
+    height: 116%;
 
-  height: 114%;
+    object-fit: cover;
 
-  object-fit: cover;
+    transform:
+        translateY(var(--hero-parallax))
+        scale(1.04);
 
-  transform:
-    translateY(var(--heroShift))
-    scale(1.03);
-
-  will-change: transform;
+    will-change: transform;
 }
 
 
-.hero::after {
+.hero-overlay {
 
-  content: "";
+    position: absolute;
 
-  position: absolute;
+    inset: 0;
 
-  inset: 0;
+    background:
 
-  background:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.67) 0%,
+            rgba(0,0,0,.39) 42%,
+            rgba(0,0,0,.12) 70%,
+            rgba(0,0,0,.38) 100%
+        ),
 
-    linear-gradient(
-      90deg,
-      rgba(0,0,0,.55),
-      rgba(0,0,0,.15) 48%,
-      rgba(0,0,0,.48)
-    ),
-
-    linear-gradient(
-      to bottom,
-      rgba(0,0,0,.15),
-      rgba(0,0,0,.18) 55%,
-      rgba(0,0,0,.7)
-    );
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,.06),
+            rgba(0,0,0,.2) 58%,
+            rgba(0,0,0,.72)
+        );
 }
 
 
-.hero-copy {
+.hero-content {
 
-  position: relative;
+    position: relative;
 
-  z-index: 5;
+    z-index: 10;
 
-  width:
-    min(1180px, 88vw);
+    width:
+        min(1240px, 87vw);
 
-  margin: auto;
+    margin: 0 auto;
 
-  text-align: left;
-
-  padding:
-    0 0 3vh;
+    padding-top: 8px;
 }
 
 
-.hero-copy h1 {
+.hero h1 {
 
-  margin: 0;
+    max-width: 850px;
 
-  max-width: 760px;
+    margin: 0;
 
-  font-size:
-    clamp(3.7rem, 7.8vw, 7.2rem);
+    color: var(--cream);
 
-  line-height:
-    .92;
+    font-size:
+        clamp(4rem, 7vw, 7rem);
 
-  text-shadow:
-    0 5px 24px #000;
+    line-height: .95;
+
+    text-shadow:
+        0 6px 20px rgba(0,0,0,.78);
 }
 
 
-.hero-copy p {
+.hero-tagline {
 
-  font-size:
-    1.25rem;
+    margin-top: 26px;
 
-  letter-spacing:
-    .17em;
+    font-size: 1.18rem;
 
-  text-transform:
-    uppercase;
+    letter-spacing: .24em;
 
-  margin:
-    22px 0 0;
+    text-transform: uppercase;
 
-  text-shadow:
-    0 3px 12px #000;
+    text-shadow:
+        0 3px 8px #000;
 }
 
 
-.hero-actions {
+.hero-buttons {
 
-  display: flex;
+    display: flex;
 
-  gap: 12px;
+    gap: 15px;
 
-  flex-wrap: wrap;
+    margin-top: 26px;
 
-  margin-top: 26px;
+    flex-wrap: wrap;
 }
 
 
-/* =========================================================
-   BUTTONS
-   ========================================================= */
-
-.btn {
-
-  display: inline-block;
-
-  padding:
-    13px 23px;
-
-  text-decoration:
-    none;
-
-  font-weight:
-    700;
-
-  border:
-    1px solid rgba(255,255,255,.28);
-
-  transition:
-    .25s;
-}
-
-
-.btn-primary {
-
-  background:
-    var(--red);
-
-  color:
-    white;
-}
-
-
-.btn-primary:hover {
-
-  background:
-    var(--red2);
-
-  transform:
-    translateY(-2px);
-}
-
-
-.btn-ghost {
-
-  background:
-    rgba(12,12,12,.52);
-
-  color:
-    white;
-}
-
-
-.btn-ghost:hover {
-
-  background:
-    #fff;
-
-  color:
-    #17120e;
-
-  transform:
-    translateY(-2px);
-}
-
-
-/* =========================================================
+/* =====================================================
    LANTERNS
-   ========================================================= */
+===================================================== */
 
 .lantern {
 
-  position:
-    absolute;
+    position: absolute;
 
-  z-index:
-    7;
+    z-index: 14;
 
-  top:
-    -20px;
+    top: -18px;
 
-  width:
-    140px;
+    width: 125px;
 
-  transform-origin:
-    50% 0;
+    transform-origin: top center;
 
-  filter:
-    drop-shadow(
-      0 16px 22px
-      rgba(0,0,0,.55)
-    );
+    filter:
+        drop-shadow(
+            0 14px 18px rgba(0,0,0,.62)
+        );
 
-  pointer-events:
-    none;
+    pointer-events: none;
 }
 
 
-.lantern.left {
+.lantern-left {
 
-  left:
-    18px;
+    left: 22px;
 
-  animation:
-    swayL
-    5.8s
-    ease-in-out
-    infinite
-    alternate;
+    animation:
+        lantern-left
+        5.7s
+        ease-in-out
+        infinite
+        alternate;
 }
 
 
-.lantern.right {
+.lantern-right {
 
-  right:
-    18px;
+    right: 22px;
 
-  transform:
-    scaleX(-1);
-
-  animation:
-    swayR
-    6.6s
-    ease-in-out
-    infinite
-    alternate;
+    animation:
+        lantern-right
+        6.4s
+        ease-in-out
+        infinite
+        alternate;
 }
 
 
-@keyframes swayL {
+@keyframes lantern-left {
 
-  from {
-    transform:
-      rotate(-2.2deg);
-  }
+    from {
+        transform: rotate(-2.2deg);
+    }
 
-  to {
-    transform:
-      rotate(2.7deg);
-  }
+    to {
+        transform: rotate(2.3deg);
+    }
 }
 
 
-@keyframes swayR {
+@keyframes lantern-right {
 
-  from {
-    transform:
-      scaleX(-1)
-      rotate(2deg);
-  }
+    from {
+        transform: rotate(2deg);
+    }
 
-  to {
-    transform:
-      scaleX(-1)
-      rotate(-2.4deg);
-  }
+    to {
+        transform: rotate(-2.5deg);
+    }
 }
 
 
-/* =========================================================
-   HERO ROPE
-   ========================================================= */
+/* =====================================================
+   REAL ROPE DIVIDERS
+===================================================== */
 
-.hero-rope {
+.rope-divider {
 
-  position:
-    absolute;
+    position: relative;
 
-  left:
-    -2%;
+    z-index: 30;
 
-  right:
-    -2%;
+    width: 100%;
 
-  bottom:
-    -4px;
+    margin:
+        -42px auto -20px;
 
-  z-index:
-    8;
+    pointer-events: none;
 
-  height:
-    66px;
-
-  background:
-    url("rope.png")
-    center bottom
-    / 110% 100%
-    no-repeat;
-
-  pointer-events:
-    none;
-
-  filter:
-    drop-shadow(
-      0 5px 4px
-      rgba(0,0,0,.5)
-    );
+    filter:
+        drop-shadow(
+            0 5px 5px rgba(0,0,0,.55)
+        );
 }
 
 
-/* =========================================================
-   GENERAL SECTIONS
-   ========================================================= */
+.rope-divider img {
+
+    width: 100%;
+
+    height: auto;
+
+    object-fit: contain;
+}
+
+
+/* =====================================================
+   COMMON SECTIONS
+===================================================== */
 
 .section {
 
-  position:
-    relative;
+    position: relative;
 
-  padding:
-    95px 24px;
+    padding:
+        95px 24px;
 
-  overflow:
-    hidden;
+    overflow: hidden;
 }
 
 
 .container {
 
-  width:
-    min(1180px, 90vw);
+    position: relative;
 
-  margin:
-    auto;
-}
+    z-index: 5;
 
+    width:
+        min(1180px, 90vw);
 
-/* =========================================================
-   PARCHMENT
-   ========================================================= */
-
-.parchment {
-
-  color:
-    #2c2118;
-
-  background:
-
-    radial-gradient(
-      circle at 15% 12%,
-      rgba(105,70,35,.08),
-      transparent 28%
-    ),
-
-    radial-gradient(
-      circle at 84% 67%,
-      rgba(105,70,35,.08),
-      transparent 30%
-    ),
-
-    linear-gradient(
-      rgba(255,255,255,.08),
-      rgba(255,255,255,.08)
-    ),
-
-    var(--parch);
-}
-
-
-.parchment::before {
-
-  content: "";
-
-  position:
-    absolute;
-
-  inset:
-    0;
-
-  pointer-events:
-    none;
-
-  opacity:
-    .17;
-
-  background-image:
-
-    linear-gradient(
-      25deg,
-      transparent 49%,
-      rgba(89,60,34,.16) 50%,
-      transparent 51%
-    ),
-
-    linear-gradient(
-      115deg,
-      transparent 49%,
-      rgba(89,60,34,.11) 50%,
-      transparent 51%
-    );
-
-  background-size:
-    190px 190px;
-}
-
-
-/* =========================================================
-   DARK WOOD
-   ========================================================= */
-
-.darkwood {
-
-  background:
-
-    radial-gradient(
-      circle at 30% 10%,
-      rgba(255,255,255,.035),
-      transparent 25%
-    ),
-
-    repeating-linear-gradient(
-      90deg,
-      #1b130e 0 170px,
-      #261a11 170px 340px,
-      #17100c 340px 510px
-    );
-}
-
-
-/* =========================================================
-   SPLIT LAYOUT
-   ========================================================= */
-
-.split {
-
-  position:
-    relative;
-
-  z-index:
-    2;
-
-  display:
-    grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
-  gap:
-    64px;
-
-  align-items:
-    center;
+    margin: auto;
 }
 
 
 .section h2 {
 
-  font-size:
-    clamp(2.7rem, 5vw, 4.8rem);
+    margin:
+        0 0 22px;
 
-  line-height:
-    .98;
+    font-size:
+        clamp(2.9rem, 5vw, 4.9rem);
 
-  margin:
-    0 0 20px;
-}
-
-
-.section h3 {
-
-  font-size:
-    1.7rem;
-
-  margin:
-    0 0 12px;
+    line-height: .96;
 }
 
 
 .section p {
 
-  font-size:
-    1.12rem;
+    font-size: 1.13rem;
 
-  line-height:
-    1.75;
+    line-height: 1.75;
 
-  margin:
-    0 0 17px;
+    margin:
+        0 0 18px;
 }
 
 
 .eyebrow {
 
-  font-size:
-    .8rem;
+    margin-bottom: 10px;
 
-  letter-spacing:
-    .2em;
+    font-size: .79rem;
 
-  text-transform:
-    uppercase;
+    font-weight: bold;
 
-  color:
-    #8a5e33;
+    letter-spacing: .22em;
 
-  margin-bottom:
-    10px;
+    text-transform: uppercase;
 }
 
 
-.darkwood .eyebrow {
+/* =====================================================
+   WOOD SECTION
+===================================================== */
 
-  color:
-    #d2b16e;
+.wood-section {
+
+    background:
+
+        linear-gradient(
+            rgba(14,9,6,.67),
+            rgba(14,9,6,.76)
+        ),
+
+        url("wood.png")
+        center / cover;
 }
 
 
-/* =========================================================
-   SCROLL REVEALS
-   ========================================================= */
+.wood-section .eyebrow {
 
-.reveal {
-
-  opacity:
-    0;
-
-  transform:
-    translateY(34px);
-
-  transition:
-    opacity .8s ease,
-    transform .8s ease;
+    color: #d6ae69;
 }
 
 
-.reveal.visible {
+/* =====================================================
+   PARCHMENT SECTION
+===================================================== */
 
-  opacity:
-    1;
+.parchment {
 
-  transform:
-    none;
+    color: var(--ink);
+
+    background:
+
+        radial-gradient(
+            circle at 18% 10%,
+            rgba(89,54,28,.10),
+            transparent 28%
+        ),
+
+        radial-gradient(
+            circle at 86% 76%,
+            rgba(89,54,28,.09),
+            transparent 31%
+        ),
+
+        #ead5aa;
 }
 
 
-/* =========================================================
-   BLENDED PHOTOS
-   ========================================================= */
+.parchment::before {
 
-.photo-blend {
+    content: "";
 
-  position:
-    relative;
+    position: absolute;
 
-  min-height:
-    500px;
+    inset: 16px;
 
-  overflow:
-    visible;
+    border:
+        1px solid rgba(87,53,25,.14);
+
+    pointer-events: none;
 }
 
 
-.photo-blend img.main {
+/* =====================================================
+   TWO COLUMN
+===================================================== */
 
-  width:
-    100%;
+.two-column {
 
-  height:
-    500px;
+    display: grid;
 
-  object-fit:
-    cover;
+    grid-template-columns:
+        .92fr 1.08fr;
 
-  -webkit-mask-image:
-    linear-gradient(
-      90deg,
-      transparent 0%,
-      #000 12%,
-      #000 88%,
-      transparent 100%
-    );
+    gap: 70px;
 
-  mask-image:
-    linear-gradient(
-      90deg,
-      transparent 0%,
-      #000 12%,
-      #000 88%,
-      transparent 100%
-    );
-
-  filter:
-    saturate(.96)
-    contrast(1.04);
+    align-items: center;
 }
 
 
-.photo-card {
+/* =====================================================
+   WHO WE ARRR
+===================================================== */
 
-  position:
-    absolute;
+.who-title span {
 
-  right:
-    -18px;
-
-  bottom:
-    -36px;
-
-  width:
-    48%;
-
-  padding:
-    8px;
-
-  background:
-    #efe0c4;
-
-  box-shadow:
-    0 18px 35px
-    rgba(0,0,0,.38);
-
-  transform:
-    rotate(2deg);
+    color: var(--red);
 }
 
 
-.photo-card img {
+.photo-collage {
 
-  width:
-    100%;
+    position: relative;
 
-  height:
-    190px;
-
-  object-fit:
-    cover;
+    min-height: 510px;
 }
 
 
-/* =========================================================
+.photo-collage-main {
+
+    width: 100%;
+
+    height: 500px;
+
+    object-fit: cover;
+
+    -webkit-mask-image:
+        linear-gradient(
+            90deg,
+            transparent 0%,
+            black 9%,
+            black 90%,
+            transparent 100%
+        );
+
+    mask-image:
+        linear-gradient(
+            90deg,
+            transparent 0%,
+            black 9%,
+            black 90%,
+            transparent 100%
+        );
+
+    filter:
+        contrast(1.03)
+        saturate(.96);
+}
+
+
+.photo-polaroid {
+
+    position: absolute;
+
+    right: -12px;
+
+    bottom: -34px;
+
+    width: 47%;
+
+    padding:
+        8px 8px 28px;
+
+    background:
+        #ead5aa;
+
+    box-shadow:
+        0 15px 34px
+        rgba(0,0,0,.42);
+
+    transform:
+        rotate(2.2deg);
+}
+
+
+.photo-polaroid img {
+
+    width: 100%;
+
+    height: 190px;
+
+    object-fit: cover;
+}
+
+
+/* =====================================================
    COMPASS
-   ========================================================= */
+===================================================== */
 
 .compass {
 
-  position:
-    absolute;
+    position: absolute;
 
-  left:
-    4vw;
+    right: 4vw;
 
-  bottom:
-    40px;
+    top: 70px;
 
-  width:
-    125px;
+    width: 140px;
+    height: 140px;
 
-  height:
-    125px;
+    opacity: .25;
 
-  border:
-    2px solid
-    rgba(110,74,38,.35);
+    border:
+        3px solid #775834;
 
-  border-radius:
-    50%;
-
-  display:
-    grid;
-
-  place-items:
-    center;
-
-  opacity:
-    .45;
-
-  pointer-events:
-    none;
+    border-radius: 50%;
 }
 
 
 .compass::before,
 .compass::after {
 
-  content:
-    "";
+    content: "";
 
-  position:
-    absolute;
+    position: absolute;
 
-  background:
-    rgba(110,74,38,.35);
+    left: 50%;
+    top: 50%;
+
+    background: #775834;
+
+    transform:
+        translate(-50%, -50%);
 }
 
 
 .compass::before {
 
-  width:
-    1px;
+    width: 2px;
 
-  height:
-    112px;
+    height: 118px;
 }
 
 
 .compass::after {
 
-  height:
-    1px;
+    width: 118px;
 
-  width:
-    112px;
+    height: 2px;
 }
 
 
-.needle {
+.compass-needle {
 
-  width:
-    4px;
+    position: absolute;
 
-  height:
-    92px;
+    left: calc(50% - 2px);
+    top: 18px;
 
-  background:
+    width: 4px;
+    height: 104px;
 
-    linear-gradient(
-      var(--red) 50%,
-      #382516 50%
-    );
+    background:
 
-  transform:
-    rotate(var(--compassAngle));
+        linear-gradient(
+            var(--red) 0 50%,
+            #4a301c 50%
+        );
 
-  border-radius:
-    3px;
+    transform:
+        rotate(var(--compass-angle));
+
+    transform-origin:
+        center;
 }
 
 
-/* =========================================================
-   ROPE CORNERS
-   ========================================================= */
+/* =====================================================
+   HIGH SEAS
+===================================================== */
 
-.rope-corner-left,
-.rope-corner-right {
+.high-seas-grid {
 
-  position:
-    absolute;
+    display: grid;
 
-  z-index:
-    3;
+    grid-template-columns:
+        1.1fr .9fr;
 
-  width:
-    330px;
+    gap: 62px;
 
-  pointer-events:
-    none;
-
-  filter:
-    drop-shadow(
-      0 5px 5px
-      rgba(0,0,0,.38)
-    );
+    align-items: center;
 }
 
 
-.rope-corner-left {
+.high-seas-image {
 
-  left:
-    -34px;
+    position: relative;
 
-  bottom:
-    -34px;
+    min-height: 530px;
 }
 
 
-.rope-corner-right {
+.high-seas-image > img:first-child {
 
-  right:
-    -34px;
+    width: 100%;
 
-  bottom:
-    -34px;
+    height: 535px;
+
+    object-fit: cover;
+
+    -webkit-mask-image:
+        linear-gradient(
+            90deg,
+            black 0%,
+            black 84%,
+            transparent 100%
+        );
+
+    mask-image:
+        linear-gradient(
+            90deg,
+            black 0%,
+            black 84%,
+            transparent 100%
+        );
 }
 
 
-/* =========================================================
-   ROPE STRIP
-   ========================================================= */
+.high-seas-secondary {
 
-.rope-strip {
+    position: absolute;
 
-  position:
-    absolute;
+    right: -20px;
 
-  left:
-    -2%;
+    bottom: -28px;
 
-  right:
-    -2%;
+    width: 45%;
 
-  bottom:
-    -26px;
+    border:
+        7px solid #ddc79e;
 
-  height:
-    80px;
+    transform:
+        rotate(1.5deg);
 
-  background:
-
-    url("rope straight tied.png")
-    center
-    / 100% 100%
-    no-repeat;
-
-  filter:
-    drop-shadow(
-      0 4px 4px
-      rgba(0,0,0,.45)
-    );
-
-  z-index:
-    6;
-
-  pointer-events:
-    none;
+    box-shadow:
+        0 15px 30px
+        rgba(0,0,0,.5);
 }
 
 
-/* =========================================================
+/* =====================================================
    HOME PORT
-   ========================================================= */
+===================================================== */
 
-.homeport-grid {
+.home-port-grid {
 
-  display:
-    grid;
+    display: grid;
 
-  grid-template-columns:
-    .85fr 1.15fr;
+    grid-template-columns:
+        .85fr 1.15fr;
 
-  gap:
-    34px;
+    gap: 52px;
 
-  align-items:
-    center;
+    align-items: center;
 }
 
 
-.neon-wrap {
+.grace-sign {
 
-  background:
-    #050505;
+    padding: 18px;
 
-  padding:
-    18px;
+    background:
+        rgba(0,0,0,.75);
 
-  border:
-    1px solid #4b3a29;
+    border:
+        1px solid rgba(194,154,88,.4);
 
-  box-shadow:
-    0 18px 40px
-    rgba(0,0,0,.55);
+    box-shadow:
+        0 18px 38px rgba(0,0,0,.5);
 }
 
 
-.neon-wrap img {
+.grace-sign img {
 
-  width:
-    100%;
+    width: 100%;
 
-  height:
-    330px;
+    height: 330px;
 
-  object-fit:
-    contain;
+    object-fit: contain;
 }
 
 
-.homeport-photo img {
+.grace-photo {
 
-  width:
-    100%;
-
-  height:
-    390px;
-
-  object-fit:
-    cover;
-
-  -webkit-mask-image:
-
-    linear-gradient(
-      90deg,
-      transparent,
-      #000 12%,
-      #000 100%
-    );
-
-  mask-image:
-
-    linear-gradient(
-      90deg,
-      transparent,
-      #000 12%,
-      #000 100%
-    );
+    margin-top: 38px;
 }
 
 
-/* =========================================================
+.grace-photo img {
+
+    width: 100%;
+
+    height: 410px;
+
+    object-fit: cover;
+
+    -webkit-mask-image:
+
+        linear-gradient(
+            90deg,
+            transparent,
+            black 10%,
+            black 90%,
+            transparent
+        );
+
+    mask-image:
+
+        linear-gradient(
+            90deg,
+            transparent,
+            black 10%,
+            black 90%,
+            transparent
+        );
+}
+
+
+/* =====================================================
    GIVING BACK
-   ========================================================= */
+===================================================== */
 
-.give-grid {
+.giving-grid {
 
-  display:
-    grid;
+    display: grid;
 
-  grid-template-columns:
-    1.1fr .9fr;
+    grid-template-columns:
+        1.08fr .92fr;
 
-  gap:
-    54px;
+    gap: 62px;
 
-  align-items:
-    center;
-
-  position:
-    relative;
-
-  z-index:
-    2;
+    align-items: center;
 }
 
 
-.give-photo img {
+.giving-photo img {
 
-  width:
-    100%;
+    width: 100%;
 
-  height:
-    470px;
+    height: 485px;
 
-  object-fit:
-    cover;
+    object-fit: cover;
 
-  -webkit-mask-image:
+    -webkit-mask-image:
 
-    linear-gradient(
-      90deg,
-      #000 0%,
-      #000 82%,
-      transparent 100%
-    );
+        linear-gradient(
+            90deg,
+            black 0%,
+            black 84%,
+            transparent 100%
+        );
 
-  mask-image:
+    mask-image:
 
-    linear-gradient(
-      90deg,
-      #000 0%,
-      #000 82%,
-      transparent 100%
-    );
+        linear-gradient(
+            90deg,
+            black 0%,
+            black 84%,
+            transparent 100%
+        );
 }
 
 
-/* =========================================================
-   EVENT CARDS
-   ========================================================= */
+/* =====================================================
+   WHAT WE BRING
+===================================================== */
 
-.event-cards {
+.section-intro {
 
-  display:
-    grid;
+    max-width: 850px;
 
-  grid-template-columns:
-    repeat(3, 1fr);
+    margin:
+        0 auto 44px;
 
-  gap:
-    24px;
+    text-align: center;
+}
 
-  margin-top:
-    42px;
+
+.event-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
 }
 
 
 .event-card {
 
-  background:
-    #ead7b3;
+    background:
+        #e9d4a9;
 
-  color:
-    #2d2118;
+    color:
+        var(--ink);
 
-  border:
-    1px solid #735432;
+    border:
+        1px solid #775432;
 
-  box-shadow:
-    0 16px 32px
-    rgba(0,0,0,.4);
+    box-shadow:
+        0 17px 34px
+        rgba(0,0,0,.42);
 
-  transform:
-    translateY(28px);
-
-  opacity:
-    0;
-
-  transition:
-    .7s;
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
 }
 
 
-.event-card.visible {
+.event-card:hover {
 
-  transform:
-    none;
+    transform:
+        translateY(-7px);
 
-  opacity:
-    1;
+    box-shadow:
+        0 24px 42px
+        rgba(0,0,0,.5);
 }
 
 
 .event-card img {
 
-  width:
-    100%;
+    width: 100%;
 
-  height:
-    245px;
+    height: 245px;
 
-  object-fit:
-    cover;
+    object-fit: cover;
 }
 
 
-.event-card div {
+.event-card-content {
 
-  padding:
-    22px;
+    padding: 22px;
+}
+
+
+.event-card h3 {
+
+    margin:
+        0 0 10px;
+
+    font-size:
+        1.55rem;
 }
 
 
 .event-card p {
 
-  font-size:
-    1rem;
+    font-size:
+        1rem;
 }
 
 
-/* =========================================================
+/* =====================================================
    FINAL CTA
-   ========================================================= */
+===================================================== */
 
 .final-cta {
 
-  text-align:
-    center;
+    position: relative;
 
-  padding:
-    105px 24px 115px;
+    min-height: 540px;
 
-  position:
-    relative;
+    overflow: hidden;
 
-  overflow:
-    hidden;
+    display: flex;
 
-  background:
+    align-items: center;
 
-    linear-gradient(
-      rgba(8,8,8,.5),
-      rgba(8,8,8,.72)
-    ),
+    text-align: center;
 
-    url("Join%20the%20Krew.jpg")
-    center
-    / cover
-    no-repeat;
+    background:
+
+        linear-gradient(
+            rgba(8,5,4,.47),
+            rgba(8,5,4,.72)
+        ),
+
+        url("Join%20the%20Krew.jpg")
+        center 35% / cover;
+}
+
+
+.final-cta-content {
+
+    position: relative;
+
+    z-index: 10;
+
+    width:
+        min(850px, 88vw);
+
+    margin: auto;
 }
 
 
 .final-cta h2 {
 
-  font-size:
-    clamp(3rem, 6vw, 5.4rem);
+    font-size:
+        clamp(3.2rem, 6vw, 5.4rem);
 
-  margin:
-    0 0 18px;
+    margin:
+        0 0 20px;
 }
 
 
 .final-cta p {
 
-  font-size:
-    1.2rem;
+    font-size:
+        1.2rem;
 
-  max-width:
-    760px;
+    line-height:
+        1.7;
 
-  margin:
-    0 auto 26px;
-
-  line-height:
-    1.7;
+    margin:
+        0 0 28px;
 }
 
 
-/* =========================================================
+/* =====================================================
+   SCROLL REVEAL
+===================================================== */
+
+.reveal {
+
+    opacity: 0;
+
+    transform:
+        translateY(34px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+
+.reveal.visible {
+
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+/* =====================================================
    FOOTER
-   ========================================================= */
+===================================================== */
 
 footer {
 
-  background:
-    #0b0908;
-
-  color:
-    #aaa;
-
-  text-align:
-    center;
-
-  padding:
-    28px 20px;
-
-  border-top:
-    1px solid #3c2d21;
-}
-
-
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
-
-@media (max-width: 980px) {
-
-  .site-header {
-
-    position:
-      relative;
-
-    justify-content:
-      center;
-
-    text-align:
-      center;
-  }
-
-
-  .brand img {
-
-    max-width:
-      85vw;
-  }
-
-
-  nav {
-
-    width:
-      100%;
-
-    justify-content:
-      center;
-  }
-
-
-  .hero {
-
-    height:
-      82vh;
-
-    min-height:
-      620px;
-  }
-
-
-  .lantern {
-
-    width:
-      95px;
-
-    opacity:
-      .8;
-  }
-
-
-  .split,
-  .give-grid,
-  .homeport-grid {
-
-    grid-template-columns:
-      1fr;
-  }
-
-
-  .photo-card {
-
-    right:
-      0;
-  }
-
-
-  .event-cards {
-
-    grid-template-columns:
-      1fr;
-  }
-
-
-  .homeport-photo img,
-  .give-photo img,
-  .photo-blend img.main {
-
-    height:
-      auto;
-  }
-}
-
-
-@media (max-width: 640px) {
-
-  .site-header {
-
     padding:
-      12px 16px;
-  }
+        30px 20px;
 
+    text-align: center;
 
-  nav {
+    color: #aa9b8c;
 
-    gap:
-      11px 15px;
-  }
+    background:
 
+        linear-gradient(
+            rgba(8,6,5,.8),
+            rgba(8,6,5,.8)
+        ),
 
-  nav a {
+        url("wood.png")
+        center / cover;
 
-    font-size:
-      .88rem;
-  }
-
-
-  .hero-copy {
-
-    text-align:
-      center;
-  }
-
-
-  .hero-copy h1 {
-
-    font-size:
-      3.3rem;
-  }
-
-
-  .hero-copy p {
-
-    font-size:
-      .9rem;
-
-    letter-spacing:
-      .1em;
-  }
-
-
-  .hero-actions {
-
-    justify-content:
-      center;
-  }
-
-
-  .lantern {
-
-    display:
-      none;
-  }
-
-
-  .section {
-
-    padding:
-      70px 18px;
-  }
-
-
-  .photo-blend {
-
-    min-height:
-      auto;
-  }
-
-
-  .photo-card {
-
-    position:
-      relative;
-
-    width:
-      75%;
-
-    margin:
-      -25px 0 0 auto;
-
-    bottom:
-      auto;
-  }
-
-
-  .compass {
-
-    display:
-      none;
-  }
-
-
-  .rope-corner-left,
-  .rope-corner-right {
-
-    width:
-      210px;
-  }
+    border-top:
+        1px solid #473522;
 }
 
 
-/* accessibility */
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 950px) {
+
+    .site-header {
+
+        position: relative;
+
+        justify-content: center;
+
+        text-align: center;
+    }
+
+
+    .logo img {
+
+        max-width: 85vw;
+    }
+
+
+    nav {
+
+        width: 100%;
+
+        justify-content: center;
+    }
+
+
+    .two-column,
+    .high-seas-grid,
+    .home-port-grid,
+    .giving-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .hero {
+
+        height: 720px;
+    }
+
+
+    .lantern {
+
+        width: 90px;
+    }
+
+
+    .event-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .high-seas-secondary {
+
+        right: 0;
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 620px) {
+
+    .site-header {
+
+        padding:
+            12px 16px;
+    }
+
+
+    nav {
+
+        gap:
+            11px 16px;
+    }
+
+
+    nav a {
+
+        font-size:
+            .88rem;
+    }
+
+
+    .hero {
+
+        min-height:
+            610px;
+
+        height:
+            72vh;
+    }
+
+
+    .hero-content {
+
+        text-align:
+            center;
+    }
+
+
+    .hero h1 {
+
+        font-size:
+            3.25rem;
+    }
+
+
+    .hero-tagline {
+
+        font-size:
+            .82rem;
+
+        letter-spacing:
+            .1em;
+    }
+
+
+    .hero-buttons {
+
+        justify-content:
+            center;
+    }
+
+
+    .lantern {
+
+        display:
+            none;
+    }
+
+
+    .section {
+
+        padding:
+            70px 18px;
+    }
+
+
+    .photo-collage,
+    .high-seas-image {
+
+        min-height:
+            auto;
+    }
+
+
+    .photo-collage-main,
+    .high-seas-image > img:first-child,
+    .giving-photo img,
+    .grace-photo img {
+
+        height:
+            auto;
+    }
+
+
+    .photo-polaroid,
+    .high-seas-secondary {
+
+        position:
+            relative;
+
+        width:
+            72%;
+
+        right:
+            auto;
+
+        bottom:
+            auto;
+
+        margin:
+            -28px 0 0 auto;
+    }
+
+
+    .compass {
+
+        display:
+            none;
+    }
+
+
+    .rope-divider {
+
+        width:
+            150%;
+
+        margin-left:
+            -25%;
+    }
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
 @media (prefers-reduced-motion: reduce) {
 
-  * {
+    * {
 
-    scroll-behavior:
-      auto !important;
+        animation:
+            none !important;
 
-    animation:
-      none !important;
+        transition:
+            none !important;
 
-    transition:
-      none !important;
-  }
-
-
-  .reveal,
-  .event-card {
-
-    opacity:
-      1 !important;
-
-    transform:
-      none !important;
-  }
+        scroll-behavior:
+            auto !important;
+    }
 
 
-  .hero video {
+    .reveal {
 
-    transform:
-      none !important;
-  }
+        opacity:
+            1;
+
+        transform:
+            none;
+    }
+
+
+    .hero video {
+
+        transform:
+            none;
+    }
 }
 
 </style>
 </head>
 
+
 <body>
 
 
-<!-- ======================================================
+<!-- ===================================================
      HEADER
-     ====================================================== -->
+=================================================== -->
 
 <header class="site-header">
 
-  <a
-    class="brand"
-    href="index.html"
-  >
-
-    <img
-      src="logo.png"
-      alt="Pirates of the White Sands"
+    <a
+        class="logo"
+        href="index.html"
     >
 
-  </a>
+        <img
+            src="logo.png"
+            alt="Pirates of the White Sands"
+        >
 
-
-  <nav>
-
-    <a href="index.html">
-      Home
     </a>
 
-    <a href="get-involved.html">
-      Get Involved
-    </a>
 
-    <a href="meet-the-krewe.html">
-      Meet the Krewe
-    </a>
+    <nav>
 
-    <a href="high-seas.html">
-      Pirates of the High Seas
-    </a>
+        <a href="index.html">
+            Home
+        </a>
 
-  </nav>
+        <a href="get-involved.html">
+            Get Involved
+        </a>
+
+        <a href="meet-the-krewe.html">
+            Meet the Krewe
+        </a>
+
+        <a href="high-seas.html">
+            Pirates of the High Seas
+        </a>
+
+    </nav>
 
 </header>
 
 
-<!-- ======================================================
+<!-- ===================================================
      HERO
-     ====================================================== -->
+=================================================== -->
 
 <section class="hero">
 
-  <video
-    autoplay
-    muted
-    loop
-    playsinline
-    preload="auto"
-  >
-
-    <source
-      src="Banner.mp4"
-      type="video/mp4"
+    <video
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
     >
 
-  </video>
+        <source
+            src="Banner.mp4"
+            type="video/mp4"
+        >
+
+    </video>
 
 
-  <img
-    class="lantern left"
-    src="lantern.png"
-    alt=""
-  >
+    <div class="hero-overlay"></div>
 
 
-  <img
-    class="lantern right"
-    src="lantern.png"
-    alt=""
-  >
+    <img
+        class="lantern lantern-left"
+        src="lantern.png"
+        alt=""
+    >
 
 
-  <div class="hero-copy reveal">
-
-    <h1>
-      Good People.<br>
-      Great Times.<br>
-      A Brighter Tomorrow.
-    </h1>
+    <img
+        class="lantern lantern-right"
+        src="lantern.png"
+        alt=""
+    >
 
 
-    <p>
-      Community • Charity • Adventure
-    </p>
+    <div class="hero-content reveal">
+
+        <h1>
+
+            Good People.<br>
+
+            Great Times.<br>
+
+            A Brighter Tomorrow.
+
+        </h1>
 
 
-    <div class="hero-actions">
+        <div class="hero-tagline">
 
-      <a
-        class="btn btn-primary"
-        href="get-involved.html"
-      >
-        Join the Krewe
-      </a>
+            Community • Charity • Adventure
+
+        </div>
 
 
-      <a
-        class="btn btn-ghost"
-        href="meet-the-krewe.html"
-      >
-        Meet the Krewe
-      </a>
+        <div class="hero-buttons">
+
+            <a
+                class="button button-red"
+                href="get-involved.html"
+            >
+                Join the Krewe
+            </a>
+
+
+            <a
+                class="button button-dark"
+                href="meet-the-krewe.html"
+            >
+                Meet the Krewe
+            </a>
+
+        </div>
 
     </div>
-
-  </div>
-
-
-  <div class="hero-rope"></div>
 
 </section>
 
 
-<!-- ======================================================
+<!-- REAL FULL WIDTH ROPE -->
+
+<div class="rope-divider">
+
+    <img
+        src="long%20rope%20divider%20tied.png"
+        alt=""
+    >
+
+</div>
+
+
+<!-- ===================================================
      WHO WE ARRR
-     ====================================================== -->
+=================================================== -->
 
 <section class="section parchment">
 
-  <div class="container split">
+    <div class="container two-column">
 
 
-    <div class="reveal">
+        <div class="reveal">
 
-      <div class="eyebrow">
-        More Than Pirates
-      </div>
+            <div class="eyebrow">
 
+                More Than Pirates
 
-      <h2>
-
-        Who We
-
-        <span style="color:#8b211e">
-          ARRR!
-        </span>
-
-      </h2>
+            </div>
 
 
-      <p>
-        Pirates of the White Sands is a nonprofit
-        pirate krewe based in Panama City, Florida.
-      </p>
+            <h2 class="who-title">
+
+                Who We
+
+                <span>
+                    ARRR!
+                </span>
+
+            </h2>
 
 
-      <p>
-        We bring together costuming, community
-        events, charity work, living history,
-        and a shared love of pirate culture.
-      </p>
+            <p>
+                Pirates of the White Sands is a nonprofit pirate
+                krewe based in Panama City, Florida.
+            </p>
 
 
-      <p>
-        You’ll find us supporting local causes,
-        appearing at festivals and special events,
-        and helping bring a little adventure
-        to the Gulf Coast.
-      </p>
+            <p>
+                We bring together costuming, community events,
+                charity work, living history, and a shared
+                love of pirate culture.
+            </p>
 
 
-      <a
-        class="btn btn-primary"
-        href="meet-the-krewe.html"
-      >
-        Meet the Krewe
-      </a>
+            <p>
+                You’ll find us supporting local causes,
+                appearing at festivals and special events,
+                and helping bring a little adventure
+                to the Gulf Coast.
+            </p>
+
+
+            <a
+                class="button button-red"
+                href="meet-the-krewe.html"
+            >
+                Meet the Krewe
+            </a>
+
+        </div>
+
+
+        <div class="photo-collage reveal">
+
+            <img
+                class="photo-collage-main parallax-image"
+                src="krew2.jpg"
+                alt="Pirates of the White Sands krewe"
+            >
+
+
+            <div class="photo-polaroid">
+
+                <img
+                    src="Join%20the%20Krew.jpg"
+                    alt="Pirates of the White Sands together"
+                >
+
+            </div>
+
+        </div>
 
     </div>
 
 
-    <div class="photo-blend reveal">
+    <div class="compass">
 
-      <img
-        class="main parallax-img"
-        src="krew2.jpg"
-        alt="Members of Pirates of the White Sands"
-      >
-
-
-      <div class="photo-card">
-
-        <img
-          src="Join%20the%20Krew.jpg"
-          alt="The krewe together"
-        >
-
-      </div>
+        <div class="compass-needle"></div>
 
     </div>
-
-  </div>
-
-
-  <div class="compass">
-
-    <div class="needle"></div>
-
-  </div>
-
-
-  <img
-    class="rope-corner-right"
-    src="rope%20bottom%20right%20corner.png"
-    alt=""
-  >
 
 </section>
 
 
-<!-- ======================================================
+<!-- ===================================================
      HIGH SEAS
-     ====================================================== -->
+=================================================== -->
 
-<section class="section darkwood">
+<section class="section wood-section">
 
-  <div class="container split">
-
-
-    <div class="photo-blend reveal">
-
-      <img
-        class="main parallax-img"
-        src="high-seas.jpg"
-        alt="Pirates of the High Seas festival"
-      >
+    <div class="container high-seas-grid">
 
 
-      <div class="photo-card">
+        <div class="high-seas-image reveal">
 
-        <img
-          src="float.jpg"
-          alt="Pirates aboard the parade float"
-        >
+            <img
+                class="parallax-image"
+                src="high-seas.jpg"
+                alt="Pirates of the High Seas festival"
+            >
 
-      </div>
+
+            <img
+                class="high-seas-secondary"
+                src="float.jpg"
+                alt="Pirates of the White Sands aboard their float"
+            >
+
+        </div>
+
+
+        <div class="reveal">
+
+            <div class="eyebrow">
+
+                Our Biggest Adventure
+
+            </div>
+
+
+            <h2>
+                Pirates of the High Seas
+            </h2>
+
+
+            <p>
+                Each year, Pirates of the White Sands helps
+                bring pirate history to life during Panama
+                City Beach’s Pirates of the High Seas festival.
+            </p>
+
+
+            <p>
+                Our krewe creates a historical encampment and
+                brings sword fighting, living history,
+                educational demonstrations, pirate entertainment,
+                and our ship float to the weekend.
+            </p>
+
+
+            <p>
+                <strong>
+                    October 9–11, 2026
+                </strong>
+            </p>
+
+
+            <a
+                class="button button-red"
+                href="high-seas.html"
+            >
+                Explore the Event
+            </a>
+
+        </div>
 
     </div>
-
-
-    <div class="reveal">
-
-      <div class="eyebrow">
-        Our Biggest Adventure
-      </div>
-
-
-      <h2>
-        Pirates of the High Seas
-      </h2>
-
-
-      <p>
-        Each year, Pirates of the White Sands
-        helps bring pirate history to life during
-        Panama City Beach’s Pirates of the High
-        Seas festival.
-      </p>
-
-
-      <p>
-        Our krewe creates a historical encampment
-        and brings sword fighting, living history,
-        educational demonstrations, pirate
-        entertainment, and our ship float
-        to the weekend.
-      </p>
-
-
-      <p>
-        <strong>
-          October 9–11, 2026
-        </strong>
-      </p>
-
-
-      <a
-        class="btn btn-primary"
-        href="high-seas.html"
-      >
-        Explore the Event
-      </a>
-
-    </div>
-
-  </div>
-
-
-  <img
-    class="rope-corner-left"
-    src="rope%20bottom%20left%20corner%20w%20curl.png"
-    alt=""
-  >
 
 </section>
 
 
-<!-- ======================================================
+<!-- SECOND ROPE -->
+
+<div class="rope-divider">
+
+    <img
+        src="long%20rope%20divider.png"
+        alt=""
+    >
+
+</div>
+
+
+<!-- ===================================================
      HOME PORT
-     ====================================================== -->
+=================================================== -->
 
 <section class="section parchment">
 
-  <div class="container">
+    <div class="container">
 
 
-    <div class="homeport-grid">
+        <div class="home-port-grid">
 
 
-      <div class="neon-wrap reveal">
+            <div class="grace-sign reveal">
 
-        <img
-          src="Grace.jpg"
-          alt="Grace O'Malley's Irish Tavern"
-        >
+                <img
+                    src="Grace.jpg"
+                    alt="Grace O'Malley's Irish Tavern"
+                >
 
-      </div>
+            </div>
 
 
-      <div class="reveal">
+            <div class="reveal">
 
-        <div class="eyebrow">
-          Our Home Port
+                <div class="eyebrow">
+
+                    Our Home Port
+
+                </div>
+
+
+                <h2>
+                    Grace O’Malley’s
+                </h2>
+
+
+                <p>
+                    Every good krewe needs a home port.
+                    For Pirates of the White Sands,
+                    that place is Grace O’Malley’s
+                    in Panama City.
+                </p>
+
+
+                <p>
+                    Through the friendship between
+                    Captain Ransom and owner Marco Sparrow,
+                    Grace O’Malley’s has become a gathering
+                    place for the crew — a place to meet,
+                    plan adventures, raise a glass,
+                    and keep the pirate spirit alive
+                    between events.
+                </p>
+
+            </div>
+
         </div>
 
 
-        <h2>
-          Grace O’Malley’s
-        </h2>
+        <div class="grace-photo reveal">
 
+            <img
+                class="parallax-image"
+                src="grace-omalleys.jpeg"
+                alt="Grace O'Malley's"
+            >
 
-        <p>
-          Every good krewe needs a home port.
-          For Pirates of the White Sands,
-          that place is Grace O’Malley’s
-          in Panama City.
-        </p>
-
-
-        <p>
-          Through the friendship between
-          Captain Ransom and owner Marco Sparrow,
-          Grace O’Malley’s has become a gathering
-          place for the crew — a place to meet,
-          plan adventures, raise a glass, and
-          keep the pirate spirit alive
-          between events.
-        </p>
-
-      </div>
+        </div>
 
     </div>
-
-
-    <div
-      class="homeport-photo reveal"
-      style="margin-top:34px"
-    >
-
-      <img
-        class="parallax-img"
-        src="grace-omalleys.jpeg"
-        alt="Grace O'Malley's in Panama City"
-      >
-
-    </div>
-
-  </div>
-
-
-  <div class="rope-strip"></div>
 
 </section>
 
 
-<!-- ======================================================
+<!-- ===================================================
      GIVING BACK
-     ====================================================== -->
+=================================================== -->
 
-<section class="section darkwood">
+<section class="section wood-section">
 
-  <div class="container give-grid">
+    <div class="container giving-grid">
 
 
-    <div class="give-photo reveal">
+        <div class="giving-photo reveal">
 
-      <img
-        class="parallax-img"
-        src="giving-back.jpg"
-        alt="Pirates of the White Sands supporting the Miracle League"
-      >
+            <img
+                class="parallax-image"
+                src="giving-back.jpg"
+                alt="Pirates of the White Sands supporting the community"
+            >
+
+        </div>
+
+
+        <div class="reveal">
+
+            <div class="eyebrow">
+
+                Community First
+
+            </div>
+
+
+            <h2>
+                Pirates Giving Back
+            </h2>
+
+
+            <p>
+
+                Pirates of the White Sands is a
+
+                <strong>
+                    501(c)(3) nonprofit organization
+                </strong>
+
+                dedicated to supporting local charities
+                and community programs.
+
+            </p>
+
+
+            <p>
+
+                Throughout the year, our krewe volunteers,
+                raises funds, makes appearances, and lends
+                a hand to organizations doing good in our
+                area, including
+
+                <strong>
+                    Toys for Kids
+                </strong>
+
+                and the
+
+                <strong>
+                    Miracle League
+                </strong>.
+
+            </p>
+
+
+            <a
+                class="button button-red"
+                href="https://venmo.com/u/potws5972"
+                target="_blank"
+                rel="noopener"
+            >
+                Support the Krewe
+            </a>
+
+        </div>
 
     </div>
-
-
-    <div class="reveal">
-
-      <div class="eyebrow">
-        Community First
-      </div>
-
-
-      <h2>
-        Pirates Giving Back
-      </h2>
-
-
-      <p>
-
-        Pirates of the White Sands is a
-
-        <strong>
-          501(c)(3) nonprofit organization
-        </strong>
-
-        dedicated to supporting local charities
-        and community programs.
-
-      </p>
-
-
-      <p>
-
-        Throughout the year, our krewe volunteers,
-        raises funds, makes appearances, and lends
-        a hand to organizations doing good in our
-        area, including
-
-        <strong>
-          Toys for Kids
-        </strong>
-
-        and the
-
-        <strong>
-          Miracle League
-        </strong>.
-
-      </p>
-
-
-      <a
-        class="btn btn-primary"
-        href="https://venmo.com/u/potws5972"
-        target="_blank"
-        rel="noopener"
-      >
-        Support the Krewe
-      </a>
-
-    </div>
-
-  </div>
 
 </section>
 
 
-<!-- ======================================================
-     WHAT WE BRING
-     ====================================================== -->
+<!-- ===================================================
+     EVENT FEATURES
+=================================================== -->
 
 <section class="section parchment">
 
-  <div class="container">
+    <div class="container">
 
 
-    <div
-      class="reveal"
-      style="
-        text-align:center;
-        max-width:850px;
-        margin:auto;
-      "
-    >
+        <div class="section-intro reveal">
 
-      <div class="eyebrow">
-        History Lives When People Play
-      </div>
+            <div class="eyebrow">
+
+                History Lives When People Play
+
+            </div>
 
 
-      <h2>
-        What We Bring to the Event
-      </h2>
+            <h2>
+                What We Bring to the Event
+            </h2>
 
 
-      <p>
-        Living history, steel, stories,
-        displays, and a whole lot
-        of pirate personality.
-      </p>
+            <p>
+                Living history, steel, stories,
+                displays, and plenty of pirate personality.
+            </p>
+
+        </div>
+
+
+        <div class="event-grid">
+
+
+            <article class="event-card reveal">
+
+                <img
+                    src="encampment.jpg"
+                    alt="Historical pirate encampment"
+                >
+
+
+                <div class="event-card-content">
+
+                    <h3>
+                        Historical Encampment
+                    </h3>
+
+
+                    <p>
+                        Step into a living pirate camp
+                        filled with period-inspired equipment,
+                        displays, tools, weapons,
+                        and demonstrations.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <article class="event-card reveal">
+
+                <img
+                    src="sword-fighting.jpg"
+                    alt="Pirate sword fighting"
+                >
+
+
+                <div class="event-card-content">
+
+                    <h3>
+                        Sword Fighting
+                    </h3>
+
+
+                    <p>
+                        Entertainment meets historical
+                        interpretation with live steel
+                        and fighting demonstrations.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <article class="event-card reveal">
+
+                <img
+                    src="living-history.jpg"
+                    alt="Pirate living history"
+                >
+
+
+                <div class="event-card-content">
+
+                    <h3>
+                        Living History
+                    </h3>
+
+
+                    <p>
+                        Krewe members stay in character
+                        while sharing stories and helping
+                        visitors discover the history
+                        behind the legends.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+        </div>
 
     </div>
-
-
-    <div class="event-cards">
-
-
-      <article class="event-card reveal-card">
-
-        <img
-          src="encampment.jpg"
-          alt="Historical pirate encampment"
-        >
-
-
-        <div>
-
-          <h3>
-            Historical Encampment
-          </h3>
-
-
-          <p>
-            Step into a living pirate camp
-            filled with period-inspired
-            equipment, displays, tools,
-            weapons, and demonstrations.
-          </p>
-
-        </div>
-
-      </article>
-
-
-      <article class="event-card reveal-card">
-
-        <img
-          src="sword-fighting.jpg"
-          alt="Sword fighting demonstration"
-        >
-
-
-        <div>
-
-          <h3>
-            Sword Fighting
-          </h3>
-
-
-          <p>
-            Entertainment meets historical
-            interpretation with live steel
-            and fighting demonstrations.
-          </p>
-
-        </div>
-
-      </article>
-
-
-      <article class="event-card reveal-card">
-
-        <img
-          src="living-history.jpg"
-          alt="Living history education"
-        >
-
-
-        <div>
-
-          <h3>
-            Living History
-          </h3>
-
-
-          <p>
-            Krewe members stay in character
-            while sharing stories and helping
-            visitors discover the history
-            behind the legends.
-          </p>
-
-        </div>
-
-      </article>
-
-
-    </div>
-
-  </div>
 
 </section>
 
 
-<!-- ======================================================
+<!-- ===================================================
      FINAL CTA
-     ====================================================== -->
+=================================================== -->
 
 <section class="final-cta">
 
 
-  <img
-    class="lantern left"
-    src="lantern.png"
-    alt=""
-  >
-
-
-  <img
-    class="lantern right"
-    src="lantern.png"
-    alt=""
-  >
-
-
-  <div class="container reveal">
-
-    <h2>
-      There’s a Place Aboard.
-    </h2>
-
-
-    <p>
-      Volunteer with the krewe,
-      suggest a local cause,
-      request an appearance,
-      or help keep the mayhem going.
-    </p>
-
-
-    <a
-      class="btn btn-primary"
-      href="get-involved.html"
+    <img
+        class="lantern lantern-left"
+        src="lantern.png"
+        alt=""
     >
-      Get Involved
-    </a>
 
-  </div>
+
+    <img
+        class="lantern lantern-right"
+        src="lantern.png"
+        alt=""
+    >
+
+
+    <div class="final-cta-content reveal">
+
+        <h2>
+            There’s a Place Aboard.
+        </h2>
+
+
+        <p>
+            Volunteer with the krewe,
+            suggest a local cause,
+            request an appearance,
+            or help keep the mayhem going.
+        </p>
+
+
+        <a
+            class="button button-red"
+            href="get-involved.html"
+        >
+            Get Involved
+        </a>
+
+    </div>
 
 </section>
 
 
-<!-- ======================================================
-     FOOTER
-     ====================================================== -->
-
 <footer>
 
-  Copyright © 2026
-  Pirates of the White Sands —
-  All Rights Reserved.
+    Copyright © 2026
+    Pirates of the White Sands —
+    All Rights Reserved.
 
 </footer>
 
 
-<!-- ======================================================
-     MOTION
-     ====================================================== -->
-
 <script>
 
-const reveals =
-  document.querySelectorAll(
-    ".reveal, .reveal-card"
-  );
+/* =====================================================
+   SCROLL REVEALS
+===================================================== */
+
+const revealItems =
+    document.querySelectorAll(
+        ".reveal"
+    );
 
 
-const observer =
-  new IntersectionObserver(
+const revealObserver =
+    new IntersectionObserver(
 
-    entries => {
+        entries => {
 
-      entries.forEach(entry => {
+            entries.forEach(
+                entry => {
 
-        if (entry.isIntersecting) {
+                    if (
+                        entry.isIntersecting
+                    ) {
 
-          entry.target
-            .classList
-            .add("visible");
+                        entry
+                            .target
+                            .classList
+                            .add(
+                                "visible"
+                            );
 
-          observer.unobserve(
-            entry.target
-          );
+                        revealObserver
+                            .unobserve(
+                                entry.target
+                            );
+                    }
+
+                }
+            );
+
+        },
+
+        {
+            threshold: .16
         }
 
-      });
+    );
 
-    },
 
-    {
-      threshold: .16
+revealItems.forEach(
+    item => {
+
+        revealObserver.observe(
+            item
+        );
+
     }
+);
 
-  );
 
 
-reveals.forEach(el => {
-
-  observer.observe(el);
-
-});
-
+/* =====================================================
+   PARALLAX
+===================================================== */
 
 let ticking = false;
 
 
-function onScroll() {
+function updateMotion() {
 
-  if (ticking) return;
-
-  ticking = true;
-
-
-  requestAnimationFrame(() => {
-
-    const y =
-      window.scrollY;
+    if (ticking) {
+        return;
+    }
 
 
-    document.documentElement
-      .style
-      .setProperty(
-        "--heroShift",
-        Math.min(
-          y * .14,
-          115
-        ) + "px"
-      );
+    ticking = true;
 
 
-    document.documentElement
-      .style
-      .setProperty(
-        "--compassAngle",
-        (y * .055) + "deg"
-      );
+    requestAnimationFrame(
+        () => {
+
+            const scroll =
+                window.scrollY;
 
 
-    document
-      .querySelectorAll(
-        ".parallax-img"
-      )
-      .forEach(img => {
+            document
+                .documentElement
+                .style
+                .setProperty(
 
-        const r =
-          img.getBoundingClientRect();
+                    "--hero-parallax",
+
+                    Math.min(
+                        scroll * .13,
+                        110
+                    )
+                    +
+                    "px"
+
+                );
 
 
-        const offset =
-          Math.max(
-            -18,
-            Math.min(
-              18,
-              (
-                window.innerHeight / 2
-                -
-                (
-                  r.top
-                  +
-                  r.height / 2
+            document
+                .documentElement
+                .style
+                .setProperty(
+
+                    "--compass-angle",
+
+                    (
+                        scroll
+                        *
+                        .055
+                    )
+                    +
+                    "deg"
+
+                );
+
+
+            document
+                .querySelectorAll(
+                    ".parallax-image"
                 )
-              )
-              *
-              .025
-            )
-          );
+                .forEach(
+
+                    image => {
+
+                        const rect =
+                            image
+                                .getBoundingClientRect();
 
 
-        img.style.transform =
-          "translateY("
-          +
-          offset
-          +
-          "px) scale(1.035)";
-
-      });
+                        const center =
+                            rect.top
+                            +
+                            rect.height / 2;
 
 
-    ticking = false;
+                        const screenCenter =
+                            window.innerHeight / 2;
 
-  });
+
+                        const offset =
+                            Math.max(
+
+                                -16,
+
+                                Math.min(
+
+                                    16,
+
+                                    (
+                                        screenCenter
+                                        -
+                                        center
+                                    )
+                                    *
+                                    .024
+
+                                )
+
+                            );
+
+
+                        image.style.transform =
+                            "translateY("
+                            +
+                            offset
+                            +
+                            "px) scale(1.025)";
+
+                    }
+
+                );
+
+
+            ticking = false;
+
+        }
+
+    );
 
 }
 
 
 window.addEventListener(
-  "scroll",
-  onScroll,
-  {
-    passive: true
-  }
+
+    "scroll",
+
+    updateMotion,
+
+    {
+        passive: true
+    }
+
 );
 
 
-onScroll();
+updateMotion();
 
 </script>
 
+
 </body>
+
 </html>
