@@ -45,30 +45,45 @@
       text-decoration: underline;
     }
 
-    .hero {
+    .hero-video {
+      position: relative;
       min-height: 68vh;
-      background:
-        linear-gradient(rgba(0,0,0,0.32), rgba(0,0,0,0.42)),
-        url('hero.jpg') center/cover no-repeat;
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       color: white;
-      padding: 40px 20px;
+    }
+
+    .hero-video video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
     }
 
     .hero-content {
+      position: relative;
+      z-index: 2;
       max-width: 900px;
+      padding: 40px 20px;
     }
 
-    .hero h1 {
+    .hero-content h1 {
       font-size: clamp(2.7rem, 7vw, 5.5rem);
       margin: 0 0 10px;
       text-shadow: 0 3px 12px rgba(0,0,0,0.65);
     }
 
-    .hero p {
+    .hero-content p {
       font-size: 1.35rem;
       margin-bottom: 28px;
       text-shadow: 0 2px 8px rgba(0,0,0,0.65);
@@ -167,7 +182,7 @@
         grid-template-columns: 1fr;
       }
 
-      .hero {
+      .hero-video {
         min-height: 60vh;
       }
     }
@@ -188,20 +203,20 @@
   </header>
 
   <section class="hero-video">
-  <video autoplay muted loop playsinline>
-    <source src="Banner.MOV" type="video/quicktime">
-  </video>
+    <video autoplay muted loop playsinline>
+      <source src="Banner.MOV" type="video/quicktime">
+    </video>
 
-  <div class="hero-overlay"></div>
+    <div class="hero-overlay"></div>
 
-  <div class="hero-content">
-    <h1>Pirates of the White Sands</h1>
-    <p>Community. Charity. Adventure.</p>
+    <div class="hero-content">
+      <h1>Pirates of the White Sands</h1>
+      <p>Community. Charity. Adventure.</p>
 
-    <a class="button" href="get-involved.html">Get Involved</a>
-    <a class="button secondary" href="meet-the-krewe.html">Meet the Krewe</a>
-  </div>
-</section>
+      <a class="button" href="get-involved.html">Get Involved</a>
+      <a class="button secondary" href="meet-the-krewe.html">Meet the Krewe</a>
+    </div>
+  </section>
 
   <section class="dark">
     <div class="container split">
@@ -275,7 +290,9 @@
         organizations doing good in our area, including Toys for Kids and the Miracle League.
       </p>
 
-      <a class="button" href="https://venmo.com/u/potws5972" target="_blank">Donate to the Krewe</a>
+      <a class="button" href="https://venmo.com/u/potws5972" target="_blank">
+        Donate to the Krewe
+      </a>
     </div>
   </section>
 
