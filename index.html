@@ -6,26 +6,170 @@
   <title>Pirates of the White Sands</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #111;
+      font-family: Georgia, "Times New Roman", serif;
+      background: #f2e3c6;
+      color: #2a211a;
+    }
+
+    header {
+      background: #1f1f1f;
+      color: white;
+      padding: 18px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .site-title {
+      font-size: 1.4rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .hero {
+      min-height: 68vh;
+      background:
+        linear-gradient(rgba(0,0,0,0.32), rgba(0,0,0,0.42)),
+        url('hero.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      padding: 40px 20px;
+    }
+
+    .hero-content {
+      max-width: 900px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.7rem, 7vw, 5.5rem);
+      margin: 0 0 10px;
+      text-shadow: 0 3px 12px rgba(0,0,0,0.65);
+    }
+
+    .hero p {
+      font-size: 1.35rem;
+      margin-bottom: 28px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.65);
+    }
+
+    .button {
+      display: inline-block;
+      padding: 13px 24px;
+      margin: 6px;
+      background: #7f1d1d;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+
+    .button:hover {
+      background: #a32929;
+    }
+
+    .button.secondary {
+      background: #2c2c2c;
+    }
+
+    section {
+      padding: 60px 20px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    .dark {
+      background: #2d2d2d;
+      color: #f5e8d2;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .split img {
+      width: 100%;
+      border-radius: 4px;
+      display: block;
+    }
+
+    h2 {
+      font-size: 2.3rem;
+      margin-top: 0;
+    }
+
+    p {
+      line-height: 1.7;
+      font-size: 1.05rem;
+    }
+
+    .cta {
+      background: #7f1d1d;
       color: white;
       text-align: center;
     }
 
-    header {
-      padding: 40px 20px;
-      background: #222;
+    footer {
+      background: #161616;
+      color: #cfcfcf;
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.9rem;
     }
 
-    h1 {
-      font-size: 3rem;
-      margin: 0;
-    }
+    @media (max-width: 800px) {
+      header {
+        justify-content: center;
+        text-align: center;
+      }
 
-    p {
-      font-size: 1.2rem;
+      nav {
+        width: 100%;
+      }
+
+      nav a {
+        margin: 0 8px;
+      }
+
+      .split {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: 60vh;
+      }
     }
   </style>
 </head>
@@ -33,9 +177,118 @@
 <body>
 
   <header>
-    <h1>Pirates of the White Sands</h1>
-    <p>Community. Charity. Adventure.</p>
+    <div class="site-title">Pirates of the White Sands</div>
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="get-involved.html">Get Involved</a>
+      <a href="meet-the-krewe.html">Meet the Krewe</a>
+      <a href="high-seas.html">Pirates of the High Seas</a>
+    </nav>
   </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Pirates of the White Sands</h1>
+      <p>Community. Charity. Adventure.</p>
+
+      <a class="button" href="get-involved.html">Get Involved</a>
+      <a class="button secondary" href="meet-the-krewe.html">Meet the Krewe</a>
+    </div>
+  </section>
+
+  <section class="dark">
+    <div class="container split">
+      <div>
+        <h2>Who We ARRR!</h2>
+        <p>
+          Pirates of the White Sands is a nonprofit pirate krewe based in Panama City,
+          Florida. We bring history, character, entertainment, and community spirit
+          to local events while supporting charitable causes throughout the area.
+        </p>
+      </div>
+
+      <div>
+        <img src="crew.jpg" alt="Pirates of the White Sands krewe">
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container split">
+      <div>
+        <img src="high-seas.jpg" alt="Pirates of the High Seas event">
+      </div>
+
+      <div>
+        <h2>Pirates of the High Seas</h2>
+        <p>
+          Each year, Pirates of the White Sands helps bring pirate history to life
+          during Panama City Beach's Pirates of the High Seas festival.
+        </p>
+
+        <p>
+          Our krewe presents a historical encampment, sword-fighting demonstrations,
+          living history, educational displays, and joins the parade aboard our pirate ship float.
+        </p>
+
+        <a class="button" href="high-seas.html">Explore the Event</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="dark">
+    <div class="container split">
+      <div>
+        <h2>Our Home Port</h2>
+        <p>
+          Every good krewe needs a home port. For Pirates of the White Sands,
+          that place is Grace O'Malley's in Panama City.
+        </p>
+
+        <p>
+          It's where the crew gathers, plans adventures, raises a glass,
+          and keeps the pirate spirit alive between events.
+        </p>
+      </div>
+
+      <div>
+        <img src="grace-omalleys.jpg" alt="Grace O'Malley's">
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container center">
+      <h2>Pirates Giving Back</h2>
+
+      <p>
+        Pirates of the White Sands is a 501(c)(3) nonprofit organization dedicated
+        to supporting local charities and community programs. Throughout the year,
+        our krewe volunteers, raises funds, makes appearances, and lends a hand to
+        organizations doing good in our area, including Toys for Kids and the Miracle League.
+      </p>
+
+      <a class="button" href="https://venmo.com/u/potws5972" target="_blank">Donate to the Krewe</a>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <h2>Join the Krewe</h2>
+
+      <p>
+        Love pirates, community events, costuming, or just causing a little
+        good-natured mayhem? There's a place aboard.
+      </p>
+
+      <a class="button secondary" href="get-involved.html">Get Involved</a>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Pirates of the White Sands
+  </footer>
 
 </body>
 </html>
