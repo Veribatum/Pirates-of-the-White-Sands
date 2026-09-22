@@ -1152,7 +1152,7 @@ p{
 
 
 /* =========================================================
-   EVENT CARDS — INDIVIDUAL PARCHMENTS
+   EVENT CARDS — PHOTO + PARCHMENT CAPTION
 ========================================================= */
 
 .event-grid{
@@ -1165,28 +1165,13 @@ p{
     grid-template-columns:
         repeat(3,1fr);
 
-    gap:30px;
+    gap:34px;
 }
 
 .event-card{
     position:relative;
 
-    min-height:470px;
-
-    padding:
-        52px 36px 54px;
-
-    color:var(--ink);
-
-    background:
-        url("parchment%202.png")
-        center / 100% 100%
-        no-repeat;
-
-    filter:
-        drop-shadow(
-            0 16px 21px rgba(0,0,0,.40)
-        );
+    color:var(--cream);
 
     transition:
         transform .25s ease,
@@ -1194,43 +1179,53 @@ p{
 }
 
 .event-card:nth-child(1){
-    transform:rotate(-.6deg);
+    transform:rotate(-.35deg);
 }
 
 .event-card:nth-child(2){
-    transform:rotate(.45deg);
+    transform:rotate(.25deg);
 }
 
 .event-card:nth-child(3){
-    transform:rotate(-.4deg);
+    transform:rotate(-.25deg);
 }
 
 .event-card:hover{
     transform:
         translateY(-7px)
         rotate(0deg);
-
-    filter:
-        drop-shadow(
-            0 22px 28px rgba(0,0,0,.48)
-        );
 }
 
 .event-photo{
     position:relative;
 
-    height:220px;
+    z-index:2;
 
-    margin:
-        0 0 18px;
+    height:260px;
 
     overflow:hidden;
 
     border:
-        5px solid rgba(92,52,26,.28);
+        7px solid #2b1a10;
 
     box-shadow:
-        0 6px 13px rgba(0,0,0,.24);
+        0 14px 28px rgba(0,0,0,.48);
+
+    background:#160f0a;
+}
+
+.event-photo::after{
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+    box-shadow:
+        inset 0 0 0 1px rgba(218,175,105,.28),
+        inset 0 -45px 60px rgba(0,0,0,.18);
 }
 
 .event-photo img{
@@ -1248,23 +1243,51 @@ p{
     object-position:center 8%;
 }
 
+.event-caption{
+    position:relative;
+
+    z-index:3;
+
+    width:92%;
+
+    min-height:170px;
+
+    margin:
+        -12px auto 0;
+
+    padding:
+        34px 30px 32px;
+
+    color:var(--ink);
+
+    background:
+        url("parchment%202.png")
+        center / 100% 100%
+        no-repeat;
+
+    filter:
+        drop-shadow(
+            0 11px 14px rgba(0,0,0,.30)
+        );
+}
+
 .event-card h3{
     margin:
-        0 0 9px;
+        0 0 8px;
 
-    color:#2d190f;
+    color:#2b170d;
 
-    font-size:1.52rem;
+    font-size:1.58rem;
 }
 
 .event-card p{
     margin:0;
 
-    color:#4a3022;
+    color:#493022;
 
     font-size:.96rem;
 
-    line-height:1.53;
+    line-height:1.5;
 }
 
 .events-compass{
@@ -2158,13 +2181,17 @@ footer{
 
                 </div>
 
-                <h3>
-                    Historical Encampment
-                </h3>
+                <div class="event-caption">
 
-                <p>
-                    Step into a living pirate camp filled with period-inspired equipment, displays, tools, weapons, and demonstrations.
-                </p>
+                    <h3>
+                        Historical Encampment
+                    </h3>
+
+                    <p>
+                        Step into a living pirate camp filled with period-inspired equipment, displays, tools, weapons, and demonstrations.
+                    </p>
+
+                </div>
 
             </article>
 
@@ -2181,13 +2208,17 @@ footer{
 
                 </div>
 
-                <h3>
-                    Sword Fighting
-                </h3>
+                <div class="event-caption">
 
-                <p>
-                    Entertainment meets historical interpretation with live steel and fighting demonstrations.
-                </p>
+                    <h3>
+                        Sword Fighting
+                    </h3>
+
+                    <p>
+                        Entertainment meets historical interpretation with live steel and fighting demonstrations.
+                    </p>
+
+                </div>
 
             </article>
 
@@ -2204,13 +2235,17 @@ footer{
 
                 </div>
 
-                <h3>
-                    Living History
-                </h3>
+                <div class="event-caption">
 
-                <p>
-                    Krewe members stay in character while sharing stories and helping visitors discover the history behind the legends.
-                </p>
+                    <h3>
+                        Living History
+                    </h3>
+
+                    <p>
+                        Krewe members stay in character while sharing stories and helping visitors discover the history behind the legends.
+                    </p>
+
+                </div>
 
             </article>
 
