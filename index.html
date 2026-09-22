@@ -111,11 +111,11 @@
     }
 
     section {
-      padding: 60px 20px;
+      padding: 64px 20px;
     }
 
     .container {
-      max-width: 1100px;
+      max-width: 1120px;
       margin: 0 auto;
     }
 
@@ -131,24 +131,51 @@
     .split {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 40px;
+      gap: 42px;
       align-items: center;
     }
 
     .split img {
       width: 100%;
-      border-radius: 4px;
       display: block;
+      border-radius: 4px;
     }
 
     h2 {
-      font-size: 2.3rem;
+      font-size: 2.35rem;
       margin-top: 0;
     }
 
     p {
       line-height: 1.7;
-      font-size: 1.05rem;
+      font-size: 1.06rem;
+    }
+
+    .event-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 35px;
+    }
+
+    .event-card {
+      background: #fff7e8;
+      border: 1px solid #d5c2a2;
+      padding: 18px;
+      border-radius: 4px;
+    }
+
+    .event-card img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 4px;
+      margin-bottom: 15px;
+    }
+
+    .event-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.45rem;
     }
 
     .cta {
@@ -165,7 +192,7 @@
       font-size: 0.9rem;
     }
 
-    @media (max-width: 800px) {
+    @media (max-width: 850px) {
       header {
         justify-content: center;
         text-align: center;
@@ -180,6 +207,10 @@
       }
 
       .split {
+        grid-template-columns: 1fr;
+      }
+
+      .event-grid {
         grid-template-columns: 1fr;
       }
 
@@ -239,12 +270,11 @@
   <section>
     <div class="container split">
       <div>
-        <img src="high-seas.jpg" alt="Pirates of the High Seas event">
+        <img src="high-seas.jpg" alt="Pirates of the High Seas">
       </div>
 
       <div>
         <h2>Pirates of the High Seas</h2>
-
         <p>
           Each year, Pirates of the White Sands helps bring pirate history to life
           during Panama City Beach's Pirates of the High Seas festival.
@@ -293,9 +323,74 @@
         organizations doing good in our area, including Toys for Kids and the Miracle League.
       </p>
 
+      <img
+        src="giving-back.jpg"
+        alt="Pirates of the White Sands giving back"
+        style="width:100%; max-width:760px; border-radius:4px; margin:20px auto 10px; display:block;"
+      >
+
       <a class="button" href="https://venmo.com/u/potws5972" target="_blank">
         Donate to the Krewe
       </a>
+    </div>
+  </section>
+
+  <section class="dark">
+    <div class="container center">
+      <h2>What We Bring to the Event</h2>
+
+      <div class="event-grid">
+
+        <div class="event-card">
+          <img src="encampment.jpg" alt="Historical pirate encampment">
+          <h3>Historical Encampment</h3>
+          <p>
+            Step into a living pirate camp filled with period-inspired equipment,
+            displays, tools, weapons, and demonstrations.
+          </p>
+        </div>
+
+        <div class="event-card">
+          <img src="sword-fighting.jpg" alt="Sword fighting demonstration">
+          <h3>Sword Fighting</h3>
+          <p>
+            Our demonstrations combine entertainment with historical interpretation,
+            showing how pirate-era weapons and fighting techniques were actually used.
+          </p>
+        </div>
+
+        <div class="event-card">
+          <img src="living-history.jpg" alt="Living history education">
+          <h3>Living History</h3>
+          <p>
+            Krewe members stay in character while answering questions, sharing stories,
+            and helping visitors learn the history behind the legends.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container split">
+      <div>
+        <img src="ship.jpg" alt="Pirates of the White Sands ship float">
+      </div>
+
+      <div>
+        <h2>Take to the Streets</h2>
+
+        <p>
+          Pirates of the White Sands doesn't just set up camp — we roll into the action.
+        </p>
+
+        <p>
+          Our krewe participates in the Pirates of the High Seas parade aboard our
+          pirate ship float, bringing the crew, costumes, flags, and plenty of pirate
+          energy to the streets of Panama City Beach.
+        </p>
+      </div>
     </div>
   </section>
 
