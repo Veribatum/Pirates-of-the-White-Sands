@@ -245,31 +245,56 @@ p{font-size:1.05rem;line-height:1.65;}
 .choice-heading p{color:#5a3a26;margin:0;}
 .choice-grid{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:0;
-    border-top:1px solid rgba(92,57,31,.20);
-    border-bottom:1px solid rgba(92,57,31,.20);
+    grid-template-columns:repeat(6,1fr);
+    gap:18px;
 }
 .choice-item{
-    padding:30px 24px 26px;
+    position:relative;
+    grid-column:span 2;
+    padding:28px 22px 26px;
     text-align:center;
-    border-right:1px solid rgba(92,57,31,.20);
+    background:
+        linear-gradient(rgba(255,246,220,.22),rgba(112,67,32,.05));
+    border:1px solid rgba(92,57,31,.22);
+    box-shadow:
+        0 7px 15px rgba(79,45,20,.10),
+        inset 0 0 0 1px rgba(255,255,255,.16);
+    transition:transform .22s ease,box-shadow .22s ease;
 }
-.choice-item:last-child{border-right:none;}
+.choice-item:nth-child(4),
+.choice-item:nth-child(5){
+    grid-column:span 3;
+}
+.choice-item:hover{
+    transform:translateY(-4px);
+    box-shadow:
+        0 12px 22px rgba(79,45,20,.17),
+        inset 0 0 0 1px rgba(255,255,255,.18);
+}
 .choice-icon{
-    font-size:2.2rem;
+    width:56px;
+    height:56px;
+    margin:0 auto 13px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    color:#f1d9a9;
+    background:#452919;
+    border:2px solid rgba(197,154,88,.58);
+    box-shadow:0 5px 9px rgba(0,0,0,.16);
+    font-size:1.8rem;
     line-height:1;
-    margin-bottom:12px;
 }
 .choice-item h3{
     margin:0 0 8px;
-    font-size:1.45rem;
+    font-size:1.42rem;
 }
 .choice-item p{
-    min-height:82px;
+    min-height:78px;
     margin:0 0 18px;
     color:#543622;
-    font-size:.95rem;
+    font-size:.94rem;
     line-height:1.5;
 }
 
@@ -324,6 +349,27 @@ p{font-size:1.05rem;line-height:1.65;}
     gap:12px;
     flex-wrap:wrap;
     margin-top:22px;
+}
+
+.story-divider{
+    position:relative;
+    z-index:30;
+    height:82px;
+    overflow:visible;
+    pointer-events:none;
+    background:
+        linear-gradient(rgba(9,6,4,.68),rgba(9,6,4,.68)),
+        url("wood.png") center / cover;
+}
+.story-divider img{
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:100%;
+    max-width:none;
+    height:auto;
+    transform:translate(-50%,-50%);
+    filter:drop-shadow(0 5px 6px rgba(0,0,0,.55));
 }
 
 .donate-strip{
@@ -391,6 +437,18 @@ p{font-size:1.05rem;line-height:1.65;}
     margin:0 auto 22px;
     color:#543622;
 }
+.contact-actions{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+}
+.contact-note{
+    margin-top:14px!important;
+    margin-bottom:0!important;
+    font-size:.86rem!important;
+    opacity:.72;
+}
 
 .proverb{
     position:relative;
@@ -452,8 +510,14 @@ footer{
     .logo img{max-width:85vw;}
     nav{width:100%;justify-content:center;}
     .choice-grid{grid-template-columns:1fr 1fr;}
-    .choice-item:nth-child(2){border-right:none;}
-    .choice-item:nth-child(-n+2){border-bottom:1px solid rgba(92,57,31,.20);}
+    .choice-item,
+    .choice-item:nth-child(4),
+    .choice-item:nth-child(5){grid-column:auto;}
+    .choice-item:last-child{
+        grid-column:1 / -1;
+        width:min(520px,100%);
+        justify-self:center;
+    }
     .story-grid,
     .story-grid.reverse,
     .donate-grid{grid-template-columns:1fr;}
@@ -533,12 +597,15 @@ footer{
     .gi-hero h1{font-size:3.6rem;}
     .choice-panel{width:98vw;padding:52px 28px 58px;}
     .choice-grid{grid-template-columns:1fr;}
-    .choice-item{
-        border-right:none;
-        border-bottom:1px solid rgba(92,57,31,.20);
+    .choice-item,
+    .choice-item:nth-child(4),
+    .choice-item:nth-child(5),
+    .choice-item:last-child{
+        grid-column:auto;
+        width:100%;
     }
-    .choice-item:last-child{border-bottom:none;}
     .choice-item p{min-height:0;}
+    .story-divider{height:58px;}
     .story-section{padding:52px 0;}
     .story-photo img{height:320px;}
     .contact-panel{padding:48px 28px 54px;}
@@ -636,7 +703,14 @@ footer{
                 <p>Planning a school event, fundraiser, festival, nonprofit event, or special occasion? Bring in the pirates.</p>
                 <a class="button button-outline" href="#appearance">Request the Krewe →</a>
             </article>
-        </div>
+
+            <article class="choice-item reveal">
+                <div class="choice-icon">♥</div>
+                <h3>Suggest a Cause</h3>
+                <p>Know a local nonprofit, family program, or community effort that could use a few pirates in its corner?</p>
+                <a class="button button-outline" href="#contact">Tell Us About It →</a>
+            </article>
+        </div></div>
     </div>
 </section>
 
@@ -656,12 +730,16 @@ footer{
                 What matters is showing up, pitching in, learning from the crew, and being willing to help when there is work to do — whether that means supporting a charity event, helping with setup and teardown, greeting families, or carrying half the damn ship.
             </p>
             <div class="story-actions">
-                <a class="button button-red" href="mailto:?subject=Joining%20Pirates%20of%20the%20White%20Sands">Ask About Joining</a>
-                <a class="button button-dark" href="mailto:?subject=Volunteering%20with%20Pirates%20of%20the%20White%20Sands">Volunteer With Us</a>
+                <a class="button button-red" href="#contact">Ask About Joining</a>
+                <a class="button button-dark" href="#contact">Volunteer With Us</a>
             </div>
         </div>
     </div>
 </section>
+
+<div class="story-divider">
+    <img src="rope%20with%20skull.png" alt="">
+</div>
 
 <section class="story-section" id="appearance">
     <div class="container story-grid reverse">
@@ -679,8 +757,8 @@ footer{
                 Depending on the event, members of the krewe may appear in full pirate attire, interact with guests, take part in demonstrations, support fundraising activities, or simply bring a little pirate personality to the occasion.
             </p>
             <div class="story-actions">
-                <a class="button button-red" href="mailto:?subject=Request%20a%20Pirates%20of%20the%20White%20Sands%20Appearance">Request the Krewe →</a>
-                <a class="button button-dark" href="mailto:?subject=Question%20for%20Pirates%20of%20the%20White%20Sands">Ask a Question</a>
+                <a class="button button-red" href="#contact">Request the Krewe →</a>
+                <a class="button button-dark" href="#contact">Ask a Question</a>
             </div>
         </div>
     </div>
@@ -704,14 +782,20 @@ footer{
     </div>
 </section>
 
-<section class="contact-section">
+<section class="contact-section" id="contact">
     <div class="contact-panel reveal">
         <div class="eyebrow">Questions? Ideas? Something Weird?</div>
         <h2>Let’s Talk.</h2>
         <p>
-            Want to suggest a local cause, ask about volunteering, talk through an appearance, or just reach the krewe? Send us a message and we’ll point you toward the right pirate.
+            Want to suggest a local cause, ask about volunteering, talk through an appearance, or just reach the krewe? This is the place to start.
         </p>
-        <a class="button button-red" href="mailto:?subject=Pirates%20of%20the%20White%20Sands%20Website%20Message">Send Us a Message →</a>
+        <div class="contact-actions">
+            <a class="button button-red" href="#ways">Choose Your Adventure ↑</a>
+            <a class="button button-outline" href="https://www.eventeny.com/company/?c=51258" target="_blank" rel="noopener">Message the Krewe →</a>
+        </div>
+        <p class="contact-note">
+            We’ll replace the external message link with the krewe’s direct email as soon as that address is added to the site.
+        </p>
     </div>
 </section>
 
