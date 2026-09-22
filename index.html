@@ -15,15 +15,23 @@
 <style>
 
 :root {
+
     --red: #92251f;
     --red-hover: #aa312a;
+
     --cream: #fff0cf;
+
     --ink: #2b190f;
+
     --gold: #c59a58;
 
     --hero-shift: 0px;
+
     --needle-angle: 0deg;
+
     --rose-angle: 0deg;
+
+    --trail-shift: 0px;
 }
 
 
@@ -35,12 +43,16 @@
     box-sizing: border-box;
 }
 
+
 html {
     scroll-behavior: smooth;
 }
 
+
 body {
+
     margin: 0;
+
     overflow-x: hidden;
 
     font-family:
@@ -57,10 +69,12 @@ body {
         repeat;
 }
 
+
 img {
     display: block;
     max-width: 100%;
 }
+
 
 a {
     color: inherit;
@@ -72,25 +86,33 @@ a {
 ========================================================= */
 
 .site-header {
+
     position: sticky;
+
     top: 0;
+
     z-index: 1000;
 
     min-height: 92px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
     gap: 28px;
 
-    padding: 8px 35px;
+    padding:
+        8px 35px;
 
     background:
+
         linear-gradient(
             rgba(8,5,3,.70),
             rgba(8,5,3,.84)
         ),
+
         url("wood.png")
         center / cover;
 
@@ -101,14 +123,21 @@ a {
         0 6px 22px rgba(0,0,0,.55);
 }
 
+
 .logo img {
+
     width: 305px;
+
     max-width: 42vw;
 }
 
+
 nav {
+
     display: flex;
+
     align-items: center;
+
     justify-content: flex-end;
 
     gap: 23px;
@@ -116,7 +145,9 @@ nav {
     flex-wrap: wrap;
 }
 
+
 nav a {
+
     position: relative;
 
     color: white;
@@ -129,35 +160,47 @@ nav a {
         0 2px 4px #000;
 }
 
+
 nav a:not(.support-link)::after {
+
     content: "";
 
     position: absolute;
 
     left: 50%;
     right: 50%;
+
     bottom: -7px;
 
     height: 2px;
 
-    background: var(--red);
+    background:
+        var(--red);
 
-    transition: .22s ease;
+    transition:
+        .22s ease;
 }
 
+
 nav a:not(.support-link):hover::after {
+
     left: 0;
+
     right: 0;
 }
 
+
 .support-link {
-    padding: 11px 18px;
+
+    padding:
+        11px 18px;
 
     font-weight: bold;
 
     white-space: nowrap;
 
-    background: var(--red);
+    background:
+        var(--red);
 
     border:
         1px solid #bb4c44;
@@ -165,11 +208,15 @@ nav a:not(.support-link):hover::after {
     box-shadow:
         0 4px 11px rgba(0,0,0,.35);
 
-    transition: .2s ease;
+    transition:
+        .2s ease;
 }
 
+
 .support-link:hover {
-    background: var(--red-hover);
+
+    background:
+        var(--red-hover);
 
     transform:
         translateY(-2px);
@@ -181,9 +228,11 @@ nav a:not(.support-link):hover::after {
 ========================================================= */
 
 .button {
+
     display: inline-block;
 
-    padding: 13px 24px;
+    padding:
+        13px 24px;
 
     text-decoration: none;
 
@@ -197,28 +246,42 @@ nav a:not(.support-link):hover::after {
         background .2s ease;
 }
 
+
 .button-red {
+
     color: white;
-    background: var(--red);
+
+    background:
+        var(--red);
 }
 
+
 .button-red:hover {
-    background: var(--red-hover);
+
+    background:
+        var(--red-hover);
 
     transform:
         translateY(-2px);
 }
 
+
 .button-dark {
+
     color: white;
 
     background:
         rgba(0,0,0,.55);
 }
 
+
 .button-dark:hover {
-    color: #21150d;
-    background: white;
+
+    color:
+        #21150d;
+
+    background:
+        white;
 
     transform:
         translateY(-2px);
@@ -230,23 +293,30 @@ nav a:not(.support-link):hover::after {
 ========================================================= */
 
 .hero {
+
     position: relative;
 
     height: 630px;
+
     min-height: 630px;
 
     overflow: hidden;
 
     display: flex;
+
     align-items: center;
 }
 
+
 .hero video {
+
     position: absolute;
 
-    inset: -7% 0 0;
+    inset:
+        -7% 0 0;
 
     width: 100%;
+
     height: 114%;
 
     object-fit: cover;
@@ -255,52 +325,83 @@ nav a:not(.support-link):hover::after {
         translateY(var(--hero-shift))
         scale(1.035);
 
-    will-change: transform;
+    will-change:
+        transform;
 }
 
+
 .hero-overlay {
+
     position: absolute;
 
     inset: 0;
 
     background:
+
         linear-gradient(
+
             90deg,
-            rgba(0,0,0,.72) 0%,
-            rgba(0,0,0,.43) 42%,
-            rgba(0,0,0,.10) 72%,
-            rgba(0,0,0,.29) 100%
+
+            rgba(0,0,0,.72)
+            0%,
+
+            rgba(0,0,0,.43)
+            42%,
+
+            rgba(0,0,0,.10)
+            72%,
+
+            rgba(0,0,0,.29)
+            100%
+
         ),
 
         linear-gradient(
+
             to bottom,
+
             rgba(0,0,0,.02),
-            rgba(0,0,0,.14) 55%,
+
+            rgba(0,0,0,.14)
+            55%,
+
             rgba(0,0,0,.72)
+
         );
 }
 
+
 .hero-content {
+
     position: relative;
+
     z-index: 10;
 
     width:
         min(1240px, 86vw);
 
-    margin: 0 auto;
+    margin:
+        0 auto;
 
     padding-top: 16px;
 }
 
+
 .hero h1 {
+
     margin: 0;
 
     max-width: 880px;
 
-    color: var(--cream);
+    color:
+        var(--cream);
 
     font-size:
-        clamp(3.7rem, 6.5vw, 6.3rem);
+        clamp(
+            3.7rem,
+            6.5vw,
+            6.3rem
+        );
 
     line-height: .94;
 
@@ -308,7 +409,9 @@ nav a:not(.support-link):hover::after {
         0 6px 22px rgba(0,0,0,.82);
 }
 
+
 .hero-tagline {
+
     margin-top: 22px;
 
     font-size: 1.03rem;
@@ -321,8 +424,11 @@ nav a:not(.support-link):hover::after {
         0 3px 8px #000;
 }
 
+
 .hero-buttons {
+
     display: flex;
+
     flex-wrap: wrap;
 
     gap: 14px;
@@ -330,15 +436,19 @@ nav a:not(.support-link):hover::after {
     margin-top: 23px;
 }
 
+
 .hero-location {
+
     position: absolute;
 
     z-index: 12;
 
     right: 6vw;
+
     bottom: 38px;
 
-    color: #efd8a5;
+    color:
+        #efd8a5;
 
     font-family:
         "Brush Script MT",
@@ -360,6 +470,7 @@ nav a:not(.support-link):hover::after {
 ========================================================= */
 
 .lantern {
+
     position: absolute;
 
     z-index: 14;
@@ -379,7 +490,9 @@ nav a:not(.support-link):hover::after {
         );
 }
 
+
 .lantern-left {
+
     left: 18px;
 
     animation:
@@ -390,7 +503,9 @@ nav a:not(.support-link):hover::after {
         alternate;
 }
 
+
 .lantern-right {
+
     right: 18px;
 
     animation:
@@ -401,59 +516,75 @@ nav a:not(.support-link):hover::after {
         alternate;
 }
 
+
 @keyframes lanternLeft {
+
     from {
-        transform: rotate(-2deg);
+        transform:
+            rotate(-2deg);
     }
 
     to {
-        transform: rotate(2.4deg);
+        transform:
+            rotate(2.4deg);
     }
 }
 
+
 @keyframes lanternRight {
+
     from {
-        transform: rotate(2deg);
+        transform:
+            rotate(2deg);
     }
 
     to {
-        transform: rotate(-2.5deg);
+        transform:
+            rotate(-2.5deg);
     }
 }
 
 
 /* =========================================================
-   FULL WIDTH ROPE DIVIDERS
-
-   FULL IMAGE ALWAYS REMAINS INSIDE VIEWPORT.
-   NO LEFT/RIGHT CROPPING.
+   ROPE DIVIDERS
 ========================================================= */
 
 .rope-divider {
+
     position: relative;
 
     z-index: 70;
 
     width: 100%;
 
-    margin:
-        -34px 0 -26px;
+    height: 92px;
 
-    padding:
-        0 14px;
+    margin:
+        -38px 0 -28px;
+
+    overflow: hidden;
 
     pointer-events: none;
 }
 
+
 .rope-divider img {
-    width: 100%;
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 50%;
+
+    width:
+        calc(100% - 22px);
+
     height: auto;
 
-    max-width: 1540px;
+    max-width: none;
 
-    margin: 0 auto;
-
-    object-fit: contain;
+    transform:
+        translate(-50%, -50%);
 
     filter:
         drop-shadow(
@@ -467,6 +598,7 @@ nav a:not(.support-link):hover::after {
 ========================================================= */
 
 .container {
+
     position: relative;
 
     z-index: 5;
@@ -478,7 +610,9 @@ nav a:not(.support-link):hover::after {
         0 auto;
 }
 
+
 .eyebrow {
+
     margin-bottom: 8px;
 
     font-size: .76rem;
@@ -490,17 +624,25 @@ nav a:not(.support-link):hover::after {
     text-transform: uppercase;
 }
 
+
 h2 {
+
     margin:
         0 0 17px;
 
     font-size:
-        clamp(2.75rem, 4.8vw, 4.6rem);
+        clamp(
+            2.75rem,
+            4.8vw,
+            4.6rem
+        );
 
     line-height: .96;
 }
 
+
 p {
+
     margin:
         0 0 15px;
 
@@ -515,12 +657,14 @@ p {
 ========================================================= */
 
 .parchment-zone {
+
     position: relative;
 
     padding:
-        42px 0 48px;
+        40px 0 46px;
 
     background:
+
         linear-gradient(
             rgba(9,6,4,.12),
             rgba(9,6,4,.12)
@@ -530,7 +674,9 @@ p {
         center / cover;
 }
 
+
 .parchment-panel {
+
     position: relative;
 
     width:
@@ -544,9 +690,11 @@ p {
     padding:
         66px 84px 72px;
 
-    color: var(--ink);
+    color:
+        var(--ink);
 
     background:
+
         url("parchment.png")
         center / 100% 100%
         no-repeat;
@@ -559,10 +707,42 @@ p {
 
 
 /* =========================================================
+   TRAIL GRAPHIC
+========================================================= */
+
+.map-trail {
+
+    position: absolute;
+
+    z-index: 1;
+
+    width: 44%;
+
+    max-width: 620px;
+
+    left: 28%;
+
+    bottom: 35px;
+
+    opacity: .10;
+
+    pointer-events: none;
+
+    transform:
+        translateX(var(--trail-shift))
+        rotate(-2deg);
+
+    transition:
+        transform .1s linear;
+}
+
+
+/* =========================================================
    WHO WE ARRR
 ========================================================= */
 
 .who-grid {
+
     display: grid;
 
     grid-template-columns:
@@ -573,23 +753,32 @@ p {
     align-items: center;
 }
 
+
 .who-title span {
-    color: var(--red);
+
+    color:
+        var(--red);
 }
 
+
 .photo-collage {
+
     position: relative;
 
     min-height: 400px;
 }
 
+
 .photo-collage-main {
+
     width: 100%;
+
     height: 400px;
 
     object-fit: cover;
 
     -webkit-mask-image:
+
         linear-gradient(
             90deg,
             transparent 0%,
@@ -599,6 +788,7 @@ p {
         );
 
     mask-image:
+
         linear-gradient(
             90deg,
             transparent 0%,
@@ -612,46 +802,67 @@ p {
         saturate(.98);
 }
 
-.photo-polaroid {
+
+/* =========================================================
+   TORN PHOTO FRAME
+========================================================= */
+
+.torn-frame {
+
     position: absolute;
 
-    right: -4px;
-    bottom: -25px;
+    right: -10px;
 
-    width: 43%;
+    bottom: -27px;
 
-    padding:
-        7px 7px 24px;
+    width: 46%;
 
-    background: #ecd7ab;
-
-    box-shadow:
-        0 14px 29px rgba(0,0,0,.43);
+    aspect-ratio:
+        4 / 3;
 
     transform:
         rotate(2deg);
+
+    filter:
+        drop-shadow(
+            0 14px 18px rgba(0,0,0,.38)
+        );
 }
 
-.photo-polaroid img {
-    width: 100%;
-    height: 148px;
+
+.torn-frame-photo {
+
+    position: absolute;
+
+    z-index: 1;
+
+    left: 10%;
+
+    top: 11%;
+
+    width: 80%;
+
+    height: 77%;
 
     object-fit: cover;
 }
 
-.photo-caption {
-    margin-top: 6px;
 
-    text-align: center;
+.torn-frame-overlay {
 
-    color: #3b2618;
+    position: absolute;
 
-    font-family:
-        "Brush Script MT",
-        "Segoe Script",
-        cursive;
+    z-index: 2;
 
-    font-size: 1.08rem;
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: fill;
+
+    pointer-events: none;
 }
 
 
@@ -660,9 +871,11 @@ p {
 ========================================================= */
 
 .map-rose {
+
     position: absolute;
 
     left: 35px;
+
     bottom: 31px;
 
     width: 165px;
@@ -680,43 +893,62 @@ p {
 
 
 /* =========================================================
-   REAL COMPASS + SEPARATE MOVING NEEDLE
+   REAL COMPASS
 ========================================================= */
 
 .compass-widget {
+
     position: absolute;
 
     z-index: 7;
 
     right: 42px;
+
     top: 39px;
 
     width: 155px;
+
     height: 155px;
 
-    opacity: .29;
+    opacity: 1;
 
     pointer-events: none;
+
+    filter:
+        drop-shadow(
+            0 7px 9px rgba(0,0,0,.28)
+        );
 }
+
 
 .compass-body,
 .compass-moving-needle {
+
     position: absolute;
 
     inset: 0;
 
     width: 100%;
+
     height: 100%;
 
     object-fit: contain;
 }
 
+
 .compass-body {
+
     z-index: 1;
+
+    opacity: .95;
 }
 
+
 .compass-moving-needle {
+
     z-index: 2;
+
+    opacity: 1;
 
     transform:
         rotate(var(--needle-angle));
@@ -726,21 +958,29 @@ p {
 
     filter:
         drop-shadow(
-            0 3px 4px rgba(0,0,0,.35)
+            0 3px 4px rgba(0,0,0,.55)
         );
 }
 
+
+/* =========================================================
+   TREASURE NOTE
+========================================================= */
+
 .treasure-note {
+
     position: absolute;
 
     right: 48px;
+
     bottom: 45px;
 
     width: 175px;
 
     text-align: center;
 
-    color: #654424;
+    color:
+        #654424;
 
     font-family:
         "Brush Script MT",
@@ -759,10 +999,50 @@ p {
 
 
 /* =========================================================
+   WAX SEAL
+========================================================= */
+
+.wax-seal {
+
+    position: absolute;
+
+    z-index: 9;
+
+    width: 112px;
+
+    right: 28px;
+
+    bottom: 22px;
+
+    transform:
+        rotate(8deg);
+
+    pointer-events: none;
+
+    filter:
+        drop-shadow(
+            0 8px 10px rgba(0,0,0,.40)
+        );
+
+    transition:
+        transform .4s ease;
+}
+
+
+.parchment-panel:hover .wax-seal {
+
+    transform:
+        rotate(4deg)
+        scale(1.04);
+}
+
+
+/* =========================================================
    ROPE CORNERS
 ========================================================= */
 
 .rope-corner-left {
+
     position: absolute;
 
     z-index: 8;
@@ -770,24 +1050,7 @@ p {
     width: 185px;
 
     left: 22px;
-    bottom: 18px;
 
-    pointer-events: none;
-
-    filter:
-        drop-shadow(
-            0 5px 5px rgba(0,0,0,.42)
-        );
-}
-
-.rope-corner-right {
-    position: absolute;
-
-    z-index: 8;
-
-    width: 180px;
-
-    right: 22px;
     bottom: 18px;
 
     pointer-events: none;
@@ -800,10 +1063,11 @@ p {
 
 
 /* =========================================================
-   DARK SHIP-WOOD SECTIONS
+   DARK WOOD SECTIONS
 ========================================================= */
 
 .wood-section {
+
     position: relative;
 
     padding:
@@ -812,6 +1076,7 @@ p {
     overflow: hidden;
 
     background:
+
         linear-gradient(
             rgba(11,7,5,.61),
             rgba(11,7,5,.73)
@@ -821,8 +1086,11 @@ p {
         center / cover;
 }
 
+
 .wood-section .eyebrow {
-    color: #d7ae69;
+
+    color:
+        #d7ae69;
 }
 
 
@@ -831,6 +1099,7 @@ p {
 ========================================================= */
 
 .high-seas-grid {
+
     display: grid;
 
     grid-template-columns:
@@ -841,19 +1110,25 @@ p {
     align-items: center;
 }
 
+
 .high-seas-visual {
+
     position: relative;
 
     min-height: 445px;
 }
 
+
 .high-seas-main {
+
     width: 100%;
+
     height: 445px;
 
     object-fit: cover;
 
     -webkit-mask-image:
+
         linear-gradient(
             90deg,
             #000 0%,
@@ -862,6 +1137,7 @@ p {
         );
 
     mask-image:
+
         linear-gradient(
             90deg,
             #000 0%,
@@ -870,30 +1146,61 @@ p {
         );
 }
 
-.high-seas-polaroid {
+
+.high-seas-frame {
+
     position: absolute;
 
     right: -8px;
-    bottom: -22px;
 
-    width: 41%;
+    bottom: -25px;
 
-    padding: 6px;
+    width: 43%;
 
-    background: #dcc69e;
-
-    box-shadow:
-        0 14px 29px rgba(0,0,0,.53);
+    aspect-ratio:
+        4 / 3;
 
     transform:
-        rotate(1.7deg);
+        rotate(1.8deg);
+
+    filter:
+        drop-shadow(
+            0 14px 19px rgba(0,0,0,.52)
+        );
 }
 
-.high-seas-polaroid img {
-    width: 100%;
-    height: 172px;
+
+.high-seas-frame-photo {
+
+    position: absolute;
+
+    z-index: 1;
+
+    left: 10%;
+
+    top: 11%;
+
+    width: 80%;
+
+    height: 77%;
 
     object-fit: cover;
+}
+
+
+.high-seas-frame-overlay {
+
+    position: absolute;
+
+    z-index: 2;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: fill;
 }
 
 
@@ -902,6 +1209,7 @@ p {
 ========================================================= */
 
 .home-port {
+
     position: relative;
 
     padding:
@@ -910,6 +1218,7 @@ p {
     overflow: hidden;
 
     background:
+
         linear-gradient(
             rgba(7,5,4,.56),
             rgba(7,5,4,.72)
@@ -919,11 +1228,16 @@ p {
         center / cover;
 }
 
+
 .home-port .eyebrow {
-    color: #d7ae69;
+
+    color:
+        #d7ae69;
 }
 
+
 .home-port-grid {
+
     display: grid;
 
     grid-template-columns:
@@ -934,7 +1248,9 @@ p {
     align-items: center;
 }
 
+
 .grace-sign {
+
     padding: 12px;
 
     background:
@@ -947,24 +1263,33 @@ p {
         0 15px 31px rgba(0,0,0,.5);
 }
 
+
 .grace-sign img {
+
     width: 100%;
+
     height: 290px;
 
     object-fit: contain;
 }
 
+
 .grace-photo {
+
     margin-top: 26px;
 }
 
+
 .grace-photo img {
+
     width: 100%;
+
     height: 310px;
 
     object-fit: cover;
 
     -webkit-mask-image:
+
         linear-gradient(
             90deg,
             transparent 0%,
@@ -974,6 +1299,7 @@ p {
         );
 
     mask-image:
+
         linear-gradient(
             90deg,
             transparent 0%,
@@ -989,6 +1315,7 @@ p {
 ========================================================= */
 
 .giving-grid {
+
     display: grid;
 
     grid-template-columns:
@@ -999,27 +1326,54 @@ p {
     align-items: center;
 }
 
-.giving-photo img {
+
+.giving-frame {
+
+    position: relative;
+
     width: 100%;
-    height: 385px;
+
+    aspect-ratio:
+        4 / 3;
+
+    filter:
+        drop-shadow(
+            0 14px 20px rgba(0,0,0,.32)
+        );
+}
+
+
+.giving-frame-photo {
+
+    position: absolute;
+
+    z-index: 1;
+
+    left: 10%;
+
+    top: 11%;
+
+    width: 80%;
+
+    height: 77%;
 
     object-fit: cover;
+}
 
-    -webkit-mask-image:
-        linear-gradient(
-            90deg,
-            #000 0%,
-            #000 88%,
-            transparent 100%
-        );
 
-    mask-image:
-        linear-gradient(
-            90deg,
-            #000 0%,
-            #000 88%,
-            transparent 100%
-        );
+.giving-frame-overlay {
+
+    position: absolute;
+
+    z-index: 2;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: fill;
 }
 
 
@@ -1028,6 +1382,7 @@ p {
 ========================================================= */
 
 .events-section {
+
     position: relative;
 
     padding:
@@ -1036,6 +1391,7 @@ p {
     overflow: hidden;
 
     background:
+
         linear-gradient(
             rgba(10,7,5,.60),
             rgba(10,7,5,.72)
@@ -1045,7 +1401,9 @@ p {
         center / cover;
 }
 
+
 .events-heading {
+
     max-width: 820px;
 
     margin:
@@ -1054,11 +1412,16 @@ p {
     text-align: center;
 }
 
+
 .events-heading .eyebrow {
-    color: #d7ae69;
+
+    color:
+        #d7ae69;
 }
 
+
 .event-grid {
+
     display: grid;
 
     grid-template-columns:
@@ -1067,10 +1430,13 @@ p {
     gap: 21px;
 }
 
+
 .event-card {
+
     overflow: hidden;
 
-    color: var(--ink);
+    color:
+        var(--ink);
 
     background:
         #f0dcb5;
@@ -1086,7 +1452,9 @@ p {
         box-shadow .25s ease;
 }
 
+
 .event-card:hover {
+
     transform:
         translateY(-6px);
 
@@ -1094,26 +1462,35 @@ p {
         0 21px 37px rgba(0,0,0,.54);
 }
 
+
 .event-card img {
+
     width: 100%;
+
     height: 210px;
 
     object-fit: cover;
 }
 
+
 .event-card-content {
+
     padding:
         18px 20px 20px;
 }
 
+
 .event-card h3 {
+
     margin:
         0 0 8px;
 
     font-size: 1.46rem;
 }
 
+
 .event-card p {
+
     margin: 0;
 
     font-size: .96rem;
@@ -1127,6 +1504,7 @@ p {
 ========================================================= */
 
 .final-cta {
+
     position: relative;
 
     min-height: 410px;
@@ -1134,11 +1512,13 @@ p {
     overflow: hidden;
 
     display: flex;
+
     align-items: center;
 
     text-align: center;
 
     background:
+
         linear-gradient(
             rgba(7,5,4,.48),
             rgba(7,5,4,.74)
@@ -1148,7 +1528,9 @@ p {
         center 38% / cover;
 }
 
+
 .final-cta-content {
+
     position: relative;
 
     z-index: 10;
@@ -1160,15 +1542,23 @@ p {
         0 auto;
 }
 
+
 .final-cta h2 {
+
     margin:
         0 0 14px;
 
     font-size:
-        clamp(3rem, 5.4vw, 4.9rem);
+        clamp(
+            3rem,
+            5.4vw,
+            4.9rem
+        );
 }
 
+
 .final-cta p {
+
     max-width: 700px;
 
     margin:
@@ -1181,10 +1571,11 @@ p {
 
 
 /* =========================================================
-   SCROLL REVEAL
+   REVEALS
 ========================================================= */
 
 .reveal {
+
     opacity: 0;
 
     transform:
@@ -1195,7 +1586,9 @@ p {
         transform .72s ease;
 }
 
+
 .reveal.visible {
+
     opacity: 1;
 
     transform: none;
@@ -1207,14 +1600,17 @@ p {
 ========================================================= */
 
 footer {
+
     padding:
         25px 20px;
 
     text-align: center;
 
-    color: #aa9a88;
+    color:
+        #aa9a88;
 
     background:
+
         linear-gradient(
             rgba(6,4,3,.83),
             rgba(6,4,3,.83)
@@ -1235,6 +1631,7 @@ footer {
 @media (max-width: 980px) {
 
     .site-header {
+
         position: relative;
 
         justify-content: center;
@@ -1242,49 +1639,78 @@ footer {
         text-align: center;
     }
 
+
     .logo img {
+
         max-width: 85vw;
     }
 
+
     nav {
+
         width: 100%;
 
         justify-content: center;
     }
 
+
     .hero {
+
         height: 620px;
     }
+
 
     .who-grid,
     .high-seas-grid,
     .home-port-grid,
     .giving-grid {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+            1fr;
     }
+
 
     .event-grid {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+            1fr;
     }
 
+
     .parchment-panel {
+
         padding:
             65px 58px 72px;
     }
 
+
     .treasure-note {
+
         display: none;
     }
 
+
     .compass-widget {
+
         right: 30px;
 
         width: 135px;
+
         height: 135px;
     }
 
+
     .map-rose {
+
         width: 125px;
+    }
+
+
+    .map-trail {
+
+        width: 55%;
+
+        left: 22%;
     }
 }
 
@@ -1296,75 +1722,102 @@ footer {
 @media (max-width: 650px) {
 
     .site-header {
+
         padding:
             10px 14px;
     }
 
+
     nav {
+
         gap:
             9px 13px;
     }
 
+
     nav a {
-        font-size: .82rem;
+
+        font-size:
+            .82rem;
     }
 
+
     .support-link {
+
         padding:
             8px 11px;
     }
 
+
     .hero {
+
         height: 575px;
+
         min-height: 575px;
     }
 
+
     .hero-content {
+
         text-align: center;
     }
 
+
     .hero h1 {
-        font-size: 3.05rem;
+
+        font-size:
+            3.05rem;
     }
+
 
     .hero-tagline {
-        font-size: .76rem;
 
-        letter-spacing: .1em;
+        font-size:
+            .76rem;
+
+        letter-spacing:
+            .1em;
     }
 
+
     .hero-buttons {
+
         justify-content: center;
     }
 
+
     .hero-location,
     .lantern {
+
         display: none;
     }
 
 
-    /* Rope stays completely inside phone viewport */
-
     .rope-divider {
-        margin:
-            -22px 0 -15px;
 
-        padding:
-            0 5px;
+        height: 66px;
+
+        margin:
+            -27px 0 -19px;
     }
 
+
     .rope-divider img {
-        width: 100%;
-        max-width: none;
+
+        width:
+            calc(100% - 8px);
     }
 
 
     .parchment-zone {
+
         padding:
             28px 0 35px;
     }
 
+
     .parchment-panel {
+
         width: 98vw;
 
         padding:
@@ -1374,38 +1827,58 @@ footer {
             100% 100%;
     }
 
+
     .photo-collage,
     .high-seas-visual {
+
         min-height: auto;
     }
 
+
     .photo-collage-main,
     .high-seas-main,
-    .giving-photo img,
     .grace-photo img {
+
         height: auto;
     }
 
-    .photo-polaroid,
-    .high-seas-polaroid {
+
+    .torn-frame,
+    .high-seas-frame {
+
         position: relative;
 
         right: auto;
+
         bottom: auto;
 
-        width: 72%;
+        width: 75%;
 
         margin:
-            -20px 0 0 auto;
+            -18px 0 0 auto;
     }
 
+
     .compass-widget,
-    .map-rose {
+    .map-rose,
+    .map-trail {
+
         display: none;
     }
 
-    .rope-corner-left,
-    .rope-corner-right {
+
+    .wax-seal {
+
+        width: 82px;
+
+        right: 16px;
+
+        bottom: 16px;
+    }
+
+
+    .rope-corner-left {
+
         width: 125px;
     }
 }
@@ -1418,6 +1891,7 @@ footer {
 @media (prefers-reduced-motion: reduce) {
 
     * {
+
         animation:
             none !important;
 
@@ -1428,15 +1902,20 @@ footer {
             auto !important;
     }
 
+
     .reveal {
+
         opacity: 1;
 
         transform: none;
     }
 
+
     .hero video,
     .compass-moving-needle,
-    .map-rose {
+    .map-rose,
+    .map-trail {
+
         transform: none;
     }
 }
@@ -1448,10 +1927,6 @@ footer {
 
 <body>
 
-
-<!-- =========================================================
-     HEADER
-========================================================= -->
 
 <header class="site-header">
 
@@ -1499,10 +1974,6 @@ footer {
 
 </header>
 
-
-<!-- =========================================================
-     HERO
-========================================================= -->
 
 <section class="hero">
 
@@ -1590,10 +2061,6 @@ footer {
 </section>
 
 
-<!-- =========================================================
-     ROPE DIVIDER 1
-========================================================= -->
-
 <div class="rope-divider">
 
     <img
@@ -1604,13 +2071,17 @@ footer {
 </div>
 
 
-<!-- =========================================================
-     WHO WE ARRR
-========================================================= -->
-
 <section class="parchment-zone">
 
     <div class="parchment-panel">
+
+
+        <img
+            class="map-trail"
+            src="trail.png"
+            alt=""
+            aria-hidden="true"
+        >
 
 
         <div class="container who-grid">
@@ -1618,11 +2089,8 @@ footer {
 
             <div class="reveal">
 
-
                 <div class="eyebrow">
-
                     More Than Pirates
-
                 </div>
 
 
@@ -1638,29 +2106,23 @@ footer {
 
 
                 <p>
-
                     Pirates of the White Sands is a nonprofit
                     pirate krewe based in Panama City, Florida.
-
                 </p>
 
 
                 <p>
-
                     We bring together costuming, community events,
                     charity work, living history, and a shared
                     love of pirate culture.
-
                 </p>
 
 
                 <p>
-
                     You’ll find us supporting local causes,
                     appearing at festivals and special events,
                     and helping bring a little adventure
                     to the Gulf Coast.
-
                 </p>
 
 
@@ -1668,11 +2130,8 @@ footer {
                     class="button button-red"
                     href="meet-the-krewe.html"
                 >
-
                     Meet the Krewe →
-
                 </a>
-
 
             </div>
 
@@ -1687,21 +2146,21 @@ footer {
                 >
 
 
-                <div class="photo-polaroid">
-
+                <div class="torn-frame">
 
                     <img
+                        class="torn-frame-photo"
                         src="Join%20the%20Krew.jpg"
                         alt="Pirates of the White Sands"
                     >
 
 
-                    <div class="photo-caption">
-
-                        Good Friends. Greater Adventures.
-
-                    </div>
-
+                    <img
+                        class="torn-frame-overlay"
+                        src="frame.png"
+                        alt=""
+                        aria-hidden="true"
+                    >
 
                 </div>
 
@@ -1712,8 +2171,6 @@ footer {
         </div>
 
 
-        <!-- map-style decorative rose -->
-
         <img
             class="map-rose"
             src="compass%20rose.png"
@@ -1721,8 +2178,6 @@ footer {
             aria-hidden="true"
         >
 
-
-        <!-- actual compass -->
 
         <div
             class="compass-widget"
@@ -1754,15 +2209,16 @@ footer {
 
 
         <img
-            class="rope-corner-left"
-            src="rope%20bottom%20left%20corner%20w%20curl.png"
+            class="wax-seal"
+            src="wax%20seal.png"
             alt=""
+            aria-hidden="true"
         >
 
 
         <img
-            class="rope-corner-right"
-            src="rope%20bottom%20right%20corner.png"
+            class="rope-corner-left"
+            src="rope%20bottom%20left%20corner%20w%20curl.png"
             alt=""
         >
 
@@ -1771,10 +2227,6 @@ footer {
 
 </section>
 
-
-<!-- =========================================================
-     HIGH SEAS
-========================================================= -->
 
 <section class="wood-section">
 
@@ -1791,12 +2243,21 @@ footer {
             >
 
 
-            <div class="high-seas-polaroid">
+            <div class="high-seas-frame">
 
 
                 <img
+                    class="high-seas-frame-photo"
                     src="float.jpg"
                     alt="Pirates of the White Sands parade float"
+                >
+
+
+                <img
+                    class="high-seas-frame-overlay"
+                    src="frame.png"
+                    alt=""
+                    aria-hidden="true"
                 >
 
 
@@ -1810,44 +2271,34 @@ footer {
 
 
             <div class="eyebrow">
-
                 Our Biggest Adventure
-
             </div>
 
 
             <h2>
-
                 Pirates of the High Seas
-
             </h2>
 
 
             <p>
-
                 Each year, Pirates of the White Sands helps
                 bring pirate history to life during Panama
                 City Beach’s Pirates of the High Seas festival.
-
             </p>
 
 
             <p>
-
                 Our krewe creates a historical encampment
                 and brings sword fighting, living history,
                 educational demonstrations, pirate entertainment,
                 and our ship float to the weekend.
-
             </p>
 
 
             <p>
-
                 <strong>
                     October 9–11, 2026
                 </strong>
-
             </p>
 
 
@@ -1855,9 +2306,7 @@ footer {
                 class="button button-red"
                 href="high-seas.html"
             >
-
                 Explore the Event
-
             </a>
 
 
@@ -1869,10 +2318,6 @@ footer {
 </section>
 
 
-<!-- =========================================================
-     ROPE DIVIDER 2
-========================================================= -->
-
 <div class="rope-divider">
 
     <img
@@ -1882,10 +2327,6 @@ footer {
 
 </div>
 
-
-<!-- =========================================================
-     HOME PORT
-========================================================= -->
 
 <section class="home-port">
 
@@ -1897,53 +2338,41 @@ footer {
 
             <div class="grace-sign reveal">
 
-
                 <img
                     src="Grace.jpg"
                     alt="Grace O'Malley's Irish Tavern"
                 >
-
 
             </div>
 
 
             <div class="reveal">
 
-
                 <div class="eyebrow">
-
                     Our Home Port
-
                 </div>
 
 
                 <h2>
-
                     Grace O’Malley’s
-
                 </h2>
 
 
                 <p>
-
                     Every good krewe needs a home port.
                     For Pirates of the White Sands,
                     that place is Grace O’Malley’s
                     in Panama City.
-
                 </p>
 
 
                 <p>
-
                     Through the friendship between Captain Ransom
                     and owner Marco Sparrow, Grace O’Malley’s
                     has become a gathering place for the crew —
                     a place to meet, plan adventures, raise a glass,
                     and keep the pirate spirit alive between events.
-
                 </p>
-
 
             </div>
 
@@ -1953,13 +2382,11 @@ footer {
 
         <div class="grace-photo reveal">
 
-
             <img
                 class="parallax-image"
                 src="grace-omalleys.jpeg"
                 alt="Grace O'Malley's in Panama City"
             >
-
 
         </div>
 
@@ -1969,25 +2396,37 @@ footer {
 </section>
 
 
-<!-- =========================================================
-     GIVING BACK
-========================================================= -->
-
 <section class="parchment-zone">
 
     <div class="parchment-panel">
 
 
+        <img
+            class="map-trail"
+            src="trail.png"
+            alt=""
+            aria-hidden="true"
+        >
+
+
         <div class="container giving-grid">
 
 
-            <div class="giving-photo reveal">
+            <div class="giving-frame reveal">
 
 
                 <img
-                    class="parallax-image"
+                    class="giving-frame-photo parallax-image"
                     src="giving-back.jpg"
                     alt="Pirates of the White Sands supporting the community"
+                >
+
+
+                <img
+                    class="giving-frame-overlay"
+                    src="frame.png"
+                    alt=""
+                    aria-hidden="true"
                 >
 
 
@@ -1998,16 +2437,12 @@ footer {
 
 
                 <div class="eyebrow">
-
                     Community First
-
                 </div>
 
 
                 <h2>
-
                     Pirates Giving Back
-
                 </h2>
 
 
@@ -2051,9 +2486,7 @@ footer {
                     target="_blank"
                     rel="noopener"
                 >
-
                     Support the Krewe →
-
                 </a>
 
 
@@ -2072,9 +2505,10 @@ footer {
 
 
         <img
-            class="rope-corner-right"
-            src="rope%20bottom%20right%20corner.png"
+            class="wax-seal"
+            src="wax%20seal.png"
             alt=""
+            aria-hidden="true"
         >
 
 
@@ -2082,10 +2516,6 @@ footer {
 
 </section>
 
-
-<!-- =========================================================
-     WHAT WE BRING
-========================================================= -->
 
 <section class="events-section">
 
@@ -2096,24 +2526,18 @@ footer {
 
 
             <div class="eyebrow">
-
                 History Lives When People Play
-
             </div>
 
 
             <h2>
-
                 What We Bring to the Event
-
             </h2>
 
 
             <p>
-
                 Living history, steel, stories,
                 displays, and plenty of pirate personality.
-
             </p>
 
 
@@ -2125,104 +2549,74 @@ footer {
 
             <article class="event-card reveal">
 
-
                 <img
                     src="encampment.jpg"
                     alt="Historical pirate encampment"
                 >
 
-
                 <div class="event-card-content">
 
-
                     <h3>
-
                         Historical Encampment
-
                     </h3>
 
-
                     <p>
-
                         Step into a living pirate camp filled
                         with period-inspired equipment,
                         displays, tools, weapons,
                         and demonstrations.
-
                     </p>
 
-
                 </div>
-
 
             </article>
 
 
             <article class="event-card reveal">
-
 
                 <img
                     src="sword-fighting.jpg"
                     alt="Sword fighting demonstration"
                 >
 
-
                 <div class="event-card-content">
 
-
                     <h3>
-
                         Sword Fighting
-
                     </h3>
 
-
                     <p>
-
                         Entertainment meets historical
                         interpretation with live steel
                         and fighting demonstrations.
-
                     </p>
 
-
                 </div>
-
 
             </article>
 
 
             <article class="event-card reveal">
 
-
                 <img
                     src="living-history.jpg"
                     alt="Living history demonstration"
                 >
 
-
                 <div class="event-card-content">
 
-
                     <h3>
-
                         Living History
-
                     </h3>
 
-
                     <p>
-
                         Krewe members stay in character
                         while sharing stories and helping
                         visitors discover the history
                         behind the legends.
-
                     </p>
 
-
                 </div>
-
 
             </article>
 
@@ -2234,10 +2628,6 @@ footer {
 
 </section>
 
-
-<!-- =========================================================
-     FINAL CTA
-========================================================= -->
 
 <section class="final-cta">
 
@@ -2260,19 +2650,15 @@ footer {
 
 
         <h2>
-
             There’s a Place Aboard.
-
         </h2>
 
 
         <p>
-
             Volunteer with the krewe,
             suggest a local cause,
             request an appearance,
             or help keep the mayhem going.
-
         </p>
 
 
@@ -2280,9 +2666,7 @@ footer {
             class="button button-red"
             href="get-involved.html"
         >
-
             Get Involved
-
         </a>
 
 
@@ -2291,10 +2675,6 @@ footer {
 
 </section>
 
-
-<!-- =========================================================
-     FOOTER
-========================================================= -->
 
 <footer>
 
@@ -2305,16 +2685,8 @@ footer {
 </footer>
 
 
-<!-- =========================================================
-     MOTION
-========================================================= -->
-
 <script>
 
-
-/* =========================================================
-   REVEALS
-========================================================= */
 
 const revealItems =
     document.querySelectorAll(
@@ -2376,11 +2748,6 @@ revealItems.forEach(
 );
 
 
-
-/* =========================================================
-   PARALLAX + COMPASS MOVEMENT
-========================================================= */
-
 let ticking = false;
 
 
@@ -2388,7 +2755,9 @@ function updateMotion() {
 
 
     if (ticking) {
+
         return;
+
     }
 
 
@@ -2403,10 +2772,6 @@ function updateMotion() {
             const scroll =
                 window.scrollY;
 
-
-            /*
-               HERO VIDEO MOVEMENT
-            */
 
             document
                 .documentElement
@@ -2425,20 +2790,17 @@ function updateMotion() {
                 );
 
 
-            /*
-               REAL COMPASS NEEDLE
-
-               Moves much more than the decorative rose.
-            */
-
             const needleAngle =
+
                 Math.sin(
                     scroll * .009
                 )
                 *
-                34
+                32
+
                 +
-                scroll * .018;
+
+                scroll * .016;
 
 
             document
@@ -2455,12 +2817,6 @@ function updateMotion() {
                 );
 
 
-            /*
-               MAP COMPASS ROSE
-
-               Slow subtle rotation only.
-            */
-
             document
                 .documentElement
                 .style
@@ -2471,7 +2827,7 @@ function updateMotion() {
                     (
                         scroll
                         *
-                        .012
+                        .011
                     )
                     +
                     "deg"
@@ -2479,9 +2835,25 @@ function updateMotion() {
                 );
 
 
-            /*
-               IMAGE PARALLAX
-            */
+            document
+                .documentElement
+                .style
+                .setProperty(
+
+                    "--trail-shift",
+
+                    (
+                        Math.sin(
+                            scroll * .004
+                        )
+                        *
+                        8
+                    )
+                    +
+                    "px"
+
+                );
+
 
             document
                 .querySelectorAll(
