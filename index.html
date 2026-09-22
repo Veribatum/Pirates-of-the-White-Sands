@@ -14,25 +14,34 @@
     body {
       margin: 0;
       font-family: Georgia, "Times New Roman", serif;
-      background: #f2e3c6;
-      color: #2a211a;
+      background: #efe0c4;
+      color: #2b241e;
     }
+
+    a {
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ---------------- HEADER ---------------- */
 
     header {
       background: #1f1f1f;
-      color: white;
-      padding: 12px 34px;
+      padding: 12px 32px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: 28px;
       flex-wrap: wrap;
     }
 
-    .brand img {
-      display: block;
-      width: 320px;
-      max-width: 44vw;
+    .logo img {
+      width: 300px;
+      max-width: 45vw;
       height: auto;
     }
 
@@ -40,6 +49,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 22px;
+      align-items: center;
       justify-content: flex-end;
     }
 
@@ -50,16 +60,18 @@
     }
 
     nav a:hover {
-      color: #e1c79f;
+      color: #d8bc8d;
     }
+
+    /* ---------------- HERO ---------------- */
 
     .hero {
       position: relative;
       min-height: 68vh;
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
       text-align: center;
       color: white;
       background: #111;
@@ -73,126 +85,221 @@
       object-fit: cover;
     }
 
-    .hero-overlay {
+    .hero-shade {
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.38);
+      background: rgba(0,0,0,.38);
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
-      max-width: 900px;
       padding: 40px 20px;
     }
 
     .hero h1 {
-      margin: 0 0 14px;
-      font-size: clamp(3rem, 7vw, 5.5rem);
-      line-height: 1.02;
-      text-shadow: 0 3px 12px rgba(0,0,0,.7);
+      font-size: clamp(3rem, 7vw, 5.2rem);
+      margin: 0;
+      text-shadow: 0 3px 12px rgba(0,0,0,.75);
     }
 
-    .hero p {
-      font-size: 1.35rem;
-      margin: 0 0 28px;
-      text-shadow: 0 2px 8px rgba(0,0,0,.65);
-    }
-
-    .button {
-      display: inline-block;
-      padding: 13px 24px;
-      margin: 6px;
-      background: #8d211e;
-      color: white;
-      text-decoration: none;
-      border-radius: 3px;
-      font-weight: bold;
-    }
-
-    .button:hover {
-      background: #a52a25;
-    }
-
-    .button.secondary {
-      background: #292929;
-    }
+    /* ---------------- GLOBAL SECTIONS ---------------- */
 
     section {
-      padding: 68px 22px;
+      padding: 64px 22px;
     }
 
     .container {
-      max-width: 1140px;
-      margin: 0 auto;
+      max-width: 1120px;
+      margin: auto;
     }
 
     .dark {
       background: #2d2d2d;
-      color: #f5e8d2;
+      color: #f6ead5;
     }
 
-    .split {
+    .sand {
+      background: #efe0c4;
+    }
+
+    h2 {
+      margin: 0 0 22px;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      line-height: 1.1;
+    }
+
+    h3 {
+      margin: 0 0 14px;
+      font-size: 1.55rem;
+      line-height: 1.2;
+    }
+
+    p {
+      font-size: 1.06rem;
+      line-height: 1.7;
+      margin: 0 0 18px;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 13px 24px;
+      background: #81221f;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 3px;
+    }
+
+    .button:hover {
+      background: #a02a25;
+    }
+
+    /* ---------------- WHO WE ARRR ---------------- */
+
+    .two-column {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 46px;
       align-items: center;
     }
 
-    .split img {
+    .two-column img {
       width: 100%;
-      display: block;
+      max-height: 520px;
       object-fit: cover;
       border-radius: 4px;
-      max-height: 500px;
     }
 
-    h2 {
-      font-size: clamp(2rem, 4vw, 2.75rem);
-      line-height: 1.1;
-      margin: 0 0 22px;
+    /* ---------------- MAIN FEATURE SECTION ---------------- */
+
+    .feature-heading {
+      text-align: center;
+      margin-bottom: 44px;
     }
 
-    p {
-      font-size: 1.08rem;
-      line-height: 1.7;
-      margin: 0 0 18px;
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 56px;
     }
 
-    .eyebrow {
-      text-transform: uppercase;
-      letter-spacing: .15em;
-      font-size: .9rem;
-      opacity: .72;
-      margin-bottom: 10px;
+    .feature-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 42px;
+      align-items: center;
     }
+
+    .feature-row:nth-child(even) .feature-image {
+      order: 2;
+    }
+
+    .feature-row:nth-child(even) .feature-copy {
+      order: 1;
+    }
+
+    .feature-image img {
+      width: 100%;
+      height: 310px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    /* ---------------- GIVING BACK ---------------- */
 
     .giving-back {
-      background: #ead7b8;
+      background: #dfc79f;
     }
 
-    .cta {
-      background: #7f1d1d;
-      color: white;
-      text-align: center;
+    .giving-back img {
+      width: 100%;
+      max-height: 470px;
+      object-fit: cover;
     }
+
+    /* ---------------- HOME PORT ---------------- */
+
+    .home-port-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 30px;
+    }
+
+    .home-port-gallery img {
+      width: 100%;
+      height: 340px;
+      object-fit: cover;
+    }
+
+    .home-port-text {
+      text-align: center;
+      max-width: 860px;
+      margin: auto;
+    }
+
+    /* ---------------- CONTACT ---------------- */
+
+    .contact-section {
+      background: #f7efe1;
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 46px;
+      align-items: center;
+    }
+
+    .contact-layout img {
+      width: 100%;
+      max-height: 500px;
+      object-fit: cover;
+    }
+
+    .contact-card {
+      background: white;
+      padding: 36px;
+      box-shadow: 0 4px 18px rgba(0,0,0,.08);
+    }
+
+    .contact-card input,
+    .contact-card textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 12px;
+      border: 1px solid #bbb;
+      font: inherit;
+    }
+
+    .contact-card textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    /* ---------------- FOOTER ---------------- */
 
     footer {
-      background: #161616;
-      color: #cfcfcf;
+      background: #171717;
+      color: #ccc;
       text-align: center;
       padding: 28px 20px;
       font-size: .9rem;
     }
 
-    @media (max-width: 900px) {
+    /* ---------------- MOBILE ---------------- */
+
+    @media (max-width: 850px) {
+
       header {
         justify-content: center;
         text-align: center;
       }
 
-      .brand img {
-        width: min(420px, 88vw);
+      .logo img {
+        width: min(420px, 90vw);
         max-width: none;
       }
 
@@ -202,7 +309,18 @@
         gap: 12px 18px;
       }
 
-      .split {
+      .two-column,
+      .feature-row,
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-row:nth-child(even) .feature-image,
+      .feature-row:nth-child(even) .feature-copy {
+        order: initial;
+      }
+
+      .home-port-gallery {
         grid-template-columns: 1fr;
       }
 
@@ -211,17 +329,22 @@
       }
     }
 
-    @media (max-width: 560px) {
+    @media (max-width: 550px) {
+
       section {
         padding: 48px 18px;
       }
 
-      .hero h1 {
-        font-size: 3rem;
+      nav a {
+        font-size: .9rem;
       }
 
-      nav a {
-        font-size: .92rem;
+      .feature-image img {
+        height: 250px;
+      }
+
+      .home-port-gallery img {
+        height: 260px;
       }
     }
   </style>
@@ -229,8 +352,11 @@
 
 <body>
 
+  <!-- HEADER -->
+
   <header>
-    <a class="brand" href="index.html">
+
+    <a href="index.html" class="logo">
       <img src="logo.png" alt="Pirates of the White Sands">
     </a>
 
@@ -240,40 +366,51 @@
       <a href="meet-the-krewe.html">Meet the Krewe</a>
       <a href="high-seas.html">Pirates of the High Seas</a>
     </nav>
+
   </header>
 
+
+  <!-- HERO -->
+
   <section class="hero">
+
     <video autoplay muted loop playsinline preload="auto">
       <source src="Banner.mp4" type="video/mp4">
     </video>
 
-    <div class="hero-overlay"></div>
+    <div class="hero-shade"></div>
 
     <div class="hero-content">
-      <h1>Pirates of the White Sands</h1>
-      <p>Community. Charity. Adventure.</p>
-
-      <a class="button" href="get-involved.html">Get Involved</a>
-      <a class="button secondary" href="meet-the-krewe.html">Meet the Krewe</a>
+      <h1>Community, Charity, Adventure.</h1>
     </div>
+
   </section>
 
+
+  <!-- WHO WE ARRR -->
+
   <section class="dark">
-    <div class="container split">
+
+    <div class="container two-column">
 
       <div>
-        <div class="eyebrow">Meet the Krewe</div>
         <h2>Who We ARRR!</h2>
 
         <p>
-          Pirates of the White Sands is a nonprofit pirate krewe based in Panama City,
-          Florida. We bring together costuming, community events, charity work, and a
-          shared love of pirate culture.
+          Pirates of the White Sands is a nonprofit pirate crew based in Panama City,
+          Florida. We bring together costuming, community events, charity work, and
+          a shared love of pirate culture.
         </p>
 
         <p>
           You’ll find us supporting local causes, appearing at festivals and special
           events, and helping bring a little adventure to the Gulf Coast.
+        </p>
+
+        <p>
+          Whether we’re raising funds, entertaining families, or simply showing up
+          in full pirate regalia, the goal is the same: have fun, help the community,
+          and leave things better than we found them.
         </p>
       </div>
 
@@ -282,95 +419,188 @@
       </div>
 
     </div>
+
   </section>
 
-  <section>
-    <div class="container split">
 
-      <div>
-        <img src="high-seas.jpg" alt="Pirates of the High Seas festival">
+  <!-- BIG FEATURE SECTION -->
+
+  <section class="sand">
+
+    <div class="container">
+
+      <div class="feature-heading">
+        <h2>We are a krewe of Pirates that is run ashore to give back</h2>
       </div>
 
-      <div>
-        <div class="eyebrow">Our Biggest Adventure</div>
-        <h2>Pirates of the High Seas &amp; Renaissance Fest</h2>
+      <div class="feature-list">
 
-        <p>
-          From breakfast with pirates to parades in the streets, the weekend is packed
-          with adventure for the whole crew.
-        </p>
 
-        <p>
-          Pirates of the White Sands brings living history, sword fighting,
-          educational demonstrations, a historically inspired encampment, and our
-          ship float to the festivities in Panama City Beach.
-        </p>
+        <!-- HIGH SEAS -->
 
-        <p><strong>October 9–11, 2026</strong></p>
+        <div class="feature-row">
 
-        <a
-          class="button"
-          href="https://www.visitpanamacitybeach.com/pirates-of-the-high-seas-fest/"
-          target="_blank"
-          rel="noopener"
-        >
-          Explore the Event
-        </a>
+          <div class="feature-image">
+            <img src="high-seas.jpg" alt="Pirates of the High Seas festival">
+          </div>
+
+          <div class="feature-copy">
+
+            <h3>
+              Pirates of the High Seas &amp; Renaissance Fest
+              <br>
+              October 9-11, 2026
+            </h3>
+
+            <p>
+              Calling all ye mateys, fair maidens and swashbucklers of all ages
+              to Panama City Beach for the annual Pirates of the High Seas &
+              Renaissance Fest.
+            </p>
+
+            <p>
+              Enjoy an action-packed weekend of fireworks, live mermaid shows,
+              parades, pirate entertainment, historical demonstrations and more.
+            </p>
+
+            <a class="button" href="high-seas.html">
+              Enjoy the Mayhem
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- THREE DAYS -->
+
+        <div class="feature-row">
+
+          <div class="feature-image">
+            <img src="ship.jpg" alt="Pirates of the White Sands ship float">
+          </div>
+
+          <div class="feature-copy">
+
+            <h3>Three Days of Pirate Mayhem</h3>
+
+            <p>
+              From breakfast with pirates to parades in the streets,
+              the weekend is packed with adventure for the whole crew.
+            </p>
+
+            <p>
+              <strong>October 9–11, 2026</strong><br>
+              Come find the Pirates of the White Sands and join the mayhem!
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- JOIN -->
+
+        <div class="feature-row">
+
+          <div class="feature-image">
+            <img src="crew.jpg" alt="Pirates of the White Sands krewe">
+          </div>
+
+          <div class="feature-copy">
+
+            <h3>Join the Krewe</h3>
+
+            <p>
+              Love pirates, community events, costuming, or just causing
+              a little good-natured mayhem?
+            </p>
+
+            <p>
+              Pirates of the White Sands welcomes people who want to get involved,
+              volunteer, support local events, and help us give back to the community.
+            </p>
+
+            <a class="button" href="get-involved.html">
+              Join the Mayhem
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- SUPPORT -->
+
+        <div class="feature-row">
+
+          <div class="feature-image">
+            <img src="giving-back.jpg" alt="Pirates of the White Sands charity work">
+          </div>
+
+          <div class="feature-copy">
+
+            <h3>Support the Krewe</h3>
+
+            <p>
+              Pirates may hunt for treasure, but the real treasure is what
+              we can give back.
+            </p>
+
+            <p>
+              Your support helps Pirates of the White Sands participate in
+              community events, support charitable causes, and continue bringing
+              family-friendly pirate fun to Panama City and the surrounding area.
+            </p>
+
+            <a
+              class="button"
+              href="https://venmo.com/u/potws5972"
+              target="_blank"
+              rel="noopener"
+            >
+              Support the Mayhem
+            </a>
+
+          </div>
+
+        </div>
+
+
       </div>
 
     </div>
+
   </section>
 
-  <section class="dark">
-    <div class="container split">
 
-      <div>
-        <div class="eyebrow">Our Home Port</div>
-        <h2>Grace O'Malley's</h2>
-
-        <p>
-          Every good krewe needs a home port. For Pirates of the White Sands,
-          that place is Grace O'Malley's in Panama City.
-        </p>
-
-        <p>
-          It's where the krewe gathers, plans adventures, raises a glass, and keeps
-          the pirate spirit alive between events.
-        </p>
-      </div>
-
-      <div>
-        <img src="grace-omalleys.jpeg" alt="Grace O'Malley's">
-      </div>
-
-    </div>
-  </section>
+  <!-- GIVING BACK -->
 
   <section class="giving-back">
-    <div class="container split">
+
+    <div class="container two-column">
 
       <div>
         <img
           src="giving-back.jpg"
-          alt="Pirates of the White Sands supporting the Miracle League"
+          alt="Pirates of the White Sands giving back to the community"
         >
       </div>
 
       <div>
-        <div class="eyebrow">Community First</div>
+
         <h2>Pirates Giving Back</h2>
 
         <p>
           Pirates of the White Sands is a
           <strong>501(c)(3) nonprofit organization</strong>
-          dedicated to supporting local charities and our community.
+          dedicated to supporting local charities and community programs.
         </p>
 
         <p>
-          Throughout the year, our krewe volunteers, raises funds, makes appearances,
-          and lends a hand to organizations doing good in our area, including programs
-          such as <strong>Toys for Kids</strong> and the
-          <strong>Miracle League</strong>.
+          Throughout the year, our krewe volunteers, raises funds,
+          makes appearances, and lends a hand to organizations doing good
+          in our area, including Toys for Kids and the Miracle League.
         </p>
 
         <a
@@ -379,31 +609,149 @@
           target="_blank"
           rel="noopener"
         >
-          Donate to the Krewe
+          Help the Mayhem
         </a>
+
       </div>
 
     </div>
+
   </section>
 
-  <section class="cta">
+
+  <!-- GRACE O'MALLEY'S -->
+
+  <section class="dark">
+
     <div class="container">
 
-      <h2>Join the Mayhem</h2>
+      <h2>Our Home Port: Grace O’Malley’s</h2>
 
-      <p>
-        Want to volunteer, request an appearance, suggest a cause, or learn more
-        about Pirates of the White Sands? There’s a place aboard.
-      </p>
+      <div class="home-port-gallery">
 
-      <a class="button secondary" href="get-involved.html">Get Involved</a>
-      <a class="button secondary" href="meet-the-krewe.html">Meet the Krewe</a>
+        <img
+          src="grace-omalleys.jpeg"
+          alt="Grace O'Malley's"
+        >
+
+        <img
+          src="crew.jpg"
+          alt="Pirates of the White Sands"
+        >
+
+      </div>
 
     </div>
+
   </section>
 
+
+  <!-- HOME PORT TEXT -->
+
+  <section class="sand">
+
+    <div class="container home-port-text">
+
+      <h2>Every good krewe needs a home port.</h2>
+
+      <p>
+        For Pirates of the White Sands, that place is Grace O’Malley’s
+        in Panama City.
+      </p>
+
+      <p>
+        Thanks to the friendship between Captain Ransom and owner Marco Sparrow,
+        the pub has become a gathering place for the krewe — a place to meet,
+        plan adventures, raise a glass, and occasionally cause a little pirate mayhem.
+      </p>
+
+      <p>
+        If you’re looking to cross paths with the crew ashore,
+        Grace O’Malley’s is a good place to start.
+      </p>
+
+      <a
+        class="button"
+        href="https://www.facebook.com/profile.php?id=61592652567573"
+        target="_blank"
+        rel="noopener"
+      >
+        Visit Grace O’Malley’s
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTACT -->
+
+  <section class="contact-section">
+
+    <div class="container contact-layout">
+
+      <div>
+
+        <h2>Get Involved</h2>
+
+        <p>
+          Want to volunteer, join the krewe, request an appearance,
+          or learn more about Pirates of the White Sands?
+        </p>
+
+        <div class="contact-card">
+
+          <h3>Send a Message to the Krewe</h3>
+
+          <form
+            action="mailto:"
+            method="post"
+            enctype="text/plain"
+          >
+
+            <input
+              type="text"
+              name="name"
+              placeholder="Name"
+            >
+
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+            >
+
+            <textarea
+              name="message"
+              placeholder="Message"
+            ></textarea>
+
+            <button class="button" type="submit">
+              Contact the Krewe
+            </button>
+
+          </form>
+
+        </div>
+
+      </div>
+
+      <div>
+        <img
+          src="ship.jpg"
+          alt="Pirates of the White Sands ship float"
+        >
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
   <footer>
-    © 2026 Pirates of the White Sands
+    Copyright © 2026 Pirates of the White Sands - All Rights Reserved.
   </footer>
 
 </body>
