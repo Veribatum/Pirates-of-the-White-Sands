@@ -49,6 +49,42 @@ a{color:inherit;text-decoration:none;}
     box-shadow:0 6px 22px rgba(0,0,0,.55);
 }
 .logo img{width:305px;max-width:42vw;}
+.mobile-menu-toggle{
+    display:none;
+    width:48px;
+    height:48px;
+    padding:0;
+    border:1px solid rgba(197,154,88,.48);
+    background:rgba(18,11,7,.78);
+    color:#fff;
+    cursor:pointer;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap:5px;
+    box-shadow:0 4px 10px rgba(0,0,0,.30);
+}
+
+.mobile-menu-toggle span{
+    display:block;
+    width:24px;
+    height:2px;
+    background:#fff1d0;
+    transition:transform .22s ease,opacity .22s ease;
+}
+
+.mobile-menu-toggle[aria-expanded="true"] span:nth-child(1){
+    transform:translateY(7px) rotate(45deg);
+}
+
+.mobile-menu-toggle[aria-expanded="true"] span:nth-child(2){
+    opacity:0;
+}
+
+.mobile-menu-toggle[aria-expanded="true"] span:nth-child(3){
+    transform:translateY(-7px) rotate(-45deg);
+}
+
 nav{
     display:flex;
     align-items:center;
@@ -427,10 +463,72 @@ footer{
 }
 
 @media (max-width:650px){
-    .site-header{padding:10px 14px;}
-    nav{gap:9px 13px;}
-    nav a{font-size:.82rem;}
-    .support-link{padding:8px 11px;}
+    .site-header{
+        position:sticky;
+        top:0;
+        min-height:78px;
+        padding:8px 12px;
+        gap:12px;
+        flex-wrap:nowrap;
+    }
+    .logo{
+        display:flex;
+        align-items:center;
+        min-width:0;
+    }
+    .logo img{
+        width:250px;
+        max-width:72vw;
+        height:auto;
+        object-fit:contain;
+    }
+    .mobile-menu-toggle{
+        display:flex;
+        flex:0 0 48px;
+        margin-left:auto;
+    }
+    nav{
+        position:absolute;
+        top:100%;
+        left:0;
+        right:0;
+        z-index:999;
+        display:flex;
+        flex-direction:column;
+        align-items:stretch;
+        justify-content:flex-start;
+        gap:0;
+        padding:0 14px;
+        max-height:0;
+        overflow:hidden;
+        opacity:0;
+        pointer-events:none;
+        background:
+            linear-gradient(rgba(8,5,3,.97),rgba(8,5,3,.99)),
+            url("wood.png") center / cover;
+        border-bottom:1px solid rgba(197,154,88,.45);
+        box-shadow:0 12px 24px rgba(0,0,0,.55);
+        transition:max-height .28s ease,opacity .2s ease,padding .28s ease;
+    }
+    nav.mobile-open{
+        max-height:430px;
+        padding:10px 14px 16px;
+        opacity:1;
+        pointer-events:auto;
+    }
+    nav a{
+        width:100%;
+        padding:13px 10px;
+        font-size:1rem;
+        text-align:center;
+        border-bottom:1px solid rgba(255,255,255,.09);
+    }
+    nav a:not(.support-link)::after{display:none;}
+    nav a:last-child{border-bottom:none;}
+    .support-link{
+        margin-top:8px;
+        padding:13px 12px;
+    }
     .gi-hero{min-height:520px;background-position:center 28%;}
     .gi-hero h1{font-size:3.6rem;}
     .choice-panel{width:98vw;padding:52px 28px 58px;}
@@ -462,7 +560,19 @@ footer{
         <img src="logo.png" alt="Pirates of the White Sands">
     </a>
 
-    <nav>
+    <button
+        class="mobile-menu-toggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-controls="site-nav"
+        aria-expanded="false"
+    >
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <nav id="site-nav">
         <a href="index.html">Home</a>
         <a class="active" href="get-involved.html">Get Involved</a>
         <a href="meet-the-krewe.html">Meet the Krewe</a>
@@ -631,6 +741,44 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.14 });
 
 revealItems.forEach((item) => revealObserver.observe(item));
+
+const mobileMenuToggle = document.querySelector(".mobile-menu-toggle");
+const siteNav = document.getElementById("site-nav");
+
+if (mobileMenuToggle && siteNav) {
+    mobileMenuToggle.addEventListener("click", () => {
+        const isOpen = siteNav.classList.toggle("mobile-open");
+        mobileMenuToggle.setAttribute("aria-expanded", String(isOpen));
+        mobileMenuToggle.setAttribute(
+            "aria-label",
+            isOpen ? "Close navigation menu" : "Open navigation menu"
+        );
+    });
+
+    siteNav.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+            siteNav.classList.remove("mobile-open");
+            mobileMenuToggle.setAttribute("aria-expanded", "false");
+            mobileMenuToggle.setAttribute("aria-label", "Open navigation menu");
+        });
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            siteNav.classList.remove("mobile-open");
+            mobileMenuToggle.setAttribute("aria-expanded", "false");
+            mobileMenuToggle.setAttribute("aria-label", "Open navigation menu");
+        }
+    });
+
+    window.addEventListener("resize", () => {
+        if (window.innerWidth > 650) {
+            siteNav.classList.remove("mobile-open");
+            mobileMenuToggle.setAttribute("aria-expanded", "false");
+            mobileMenuToggle.setAttribute("aria-label", "Open navigation menu");
+        }
+    });
+}
 </script>
 
 </body>
