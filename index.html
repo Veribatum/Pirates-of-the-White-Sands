@@ -2255,9 +2255,8 @@ footer{
             </p>
 
             <p>
-                <strong>
-                    October 9–11, 2026
-                </strong>
+                <strong>Columbus Day Weekend</strong><br>
+                <span id="festival-dates">October 9–11, 2026</span>
             </p>
 
             <div class="hero-buttons">
@@ -2915,6 +2914,54 @@ if (mobileMenuToggle && siteNav) {
             mobileMenuToggle.setAttribute("aria-label", "Open navigation menu");
         }
     });
+}
+
+
+function getFestivalWeekend(year){
+    const octoberFirst = new Date(year, 9, 1);
+    const firstMondayOffset = (8 - octoberFirst.getDay()) % 7;
+    const columbusDay = new Date(year, 9, 1 + firstMondayOffset + 7);
+
+    const friday = new Date(columbusDay);
+    friday.setDate(columbusDay.getDate() - 3);
+
+    const saturday = new Date(columbusDay);
+    saturday.setDate(columbusDay.getDate() - 2);
+
+    const sunday = new Date(columbusDay);
+    sunday.setDate(columbusDay.getDate() - 1);
+
+    return { friday, saturday, sunday };
+}
+
+function getFestivalDisplayYear(now = new Date()){
+    const currentYear = now.getFullYear();
+    const currentFestival = getFestivalWeekend(currentYear);
+
+    const rollover = new Date(currentFestival.sunday);
+    rollover.setDate(rollover.getDate() + 30);
+    rollover.setHours(23, 59, 59, 999);
+
+    return now > rollover
+        ? currentYear + 1
+        : currentYear;
+}
+
+function formatFestivalDates(year){
+    const { friday, sunday } = getFestivalWeekend(year);
+
+    const monthName = friday.toLocaleString("en-US", {
+        month: "long"
+    });
+
+    return `${monthName} ${friday.getDate()}–${sunday.getDate()}, ${year}`;
+}
+
+const festivalDates = document.getElementById("festival-dates");
+
+if(festivalDates){
+    const festivalYear = getFestivalDisplayYear();
+    festivalDates.textContent = formatFestivalDates(festivalYear);
 }
 </script>
 
