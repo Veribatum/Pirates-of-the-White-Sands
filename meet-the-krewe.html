@@ -47,6 +47,10 @@
 
 <script src="crew-data.js"></script>
 <script>
+function crewCssSlug(value) {
+  return String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+}
+
 (async function(){
   const captainCard = document.getElementById('captain-card');
   const grid = document.getElementById('crew-grid');
@@ -70,10 +74,10 @@
 
     const others = crew.filter(p => !captain || p.id !== captain.id);
     grid.innerHTML = others.map(p => {
-      const role = p.role ? `<div class="role">${p.role}</div>` : '';
-      const slugClass = `pirate-${(p.slug || p.id || '').toLowerCase().replace(/[^a-z0-9]+/g,'-')}`;
+      const role = p.role ? `<div class="role">${p.role}</div>` : '<div class="role role-empty">&nbsp;</div>';
+      const slugClass = crewCssSlug(p.slug || p.name);
       return `
-        <article class="crew-card ${slugClass}">
+        <article class="crew-card pirate-${slugClass}">
           <a class="crew-card-link" href="${potwsProfileHref(p)}">
             ${potwsPhotoMarkup(p, p.name)}
             <div class="crew-card-copy">
