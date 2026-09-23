@@ -48,7 +48,7 @@
 
 <footer>Copyright © 2026 Pirates of the White Sands — All Rights Reserved.</footer>
 <script>
-const POTWS_CALENDAR_FEED_URL='';
+const POTWS_CALENDAR_FEED_URL='https://script.google.com/macros/s/AKfycbyXBM2O-gZm7DJ-m_na0BVx78Jkk2TYjeQNCr4p7azGxYWdvnD5tDbhsoAqXnJUYZBpkQ/exec';
 const mobileMenuToggle=document.querySelector('.mobile-menu-toggle');
 const siteNav=document.getElementById('site-nav');
 if(mobileMenuToggle&&siteNav){mobileMenuToggle.addEventListener('click',()=>{const open=mobileMenuToggle.getAttribute('aria-expanded')==='true';mobileMenuToggle.setAttribute('aria-expanded',String(!open));mobileMenuToggle.setAttribute('aria-label',open?'Open navigation':'Close navigation');siteNav.classList.toggle('open',!open)});siteNav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{mobileMenuToggle.setAttribute('aria-expanded','false');siteNav.classList.remove('open')}));}
