@@ -71,8 +71,9 @@
     const others = crew.filter(p => !captain || p.id !== captain.id);
     grid.innerHTML = others.map(p => {
       const role = p.role ? `<div class="role">${p.role}</div>` : '';
+      const slugClass = `pirate-${(p.slug || p.id || '').toLowerCase().replace(/[^a-z0-9]+/g,'-')}`;
       return `
-        <article class="crew-card">
+        <article class="crew-card ${slugClass}">
           <a class="crew-card-link" href="${potwsProfileHref(p)}">
             ${potwsPhotoMarkup(p, p.name)}
             <div class="crew-card-copy">
