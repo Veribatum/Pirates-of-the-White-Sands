@@ -10,7 +10,7 @@
  *   3) ensure a stable POTWS-### ID exists
  *   4) upload the submitted portrait to GitHub under crew-portraits/
  *   5) replace the roster Drive portrait link with the GitHub Pages path
- *   6) move the original Drive upload to Trash after GitHub succeeds
+ *   6) permanently delete the original Drive upload only after GitHub succeeds
  *
  * IMPORTANT: full and short bios are never edited by this script.
  */
@@ -139,12 +139,27 @@ function copyDrivePortraitToGithub_(driveUrl, pirateId, pirateName) {
   uploadBlobToGithub_(path, blob, `Add portrait for ${pirateName}`);
 
   if (POTWS_CONFIG.deleteDriveAfterUpload) {
-    // Moves the original Form upload to Drive Trash only after GitHub confirms success.
-    file.setTrashed(true);
+    permanentlyDeleteDriveFile_(fileId);
   }
 
   // Relative GitHub Pages path; crew-data.js can use this directly in <img src>.
   return path;
+}
+
+function permanentlyDeleteDriveFile_(fileId) {
+  const url = `https://www.googleapis.com/drive/v3/files/${encodeURIComponent(fileId)}`;
+  const response = UrlFetchApp.fetch(url, {
+    method: 'delete',
+    headers: {
+      Authorization: `Bearer ${ScriptApp.getOAuthToken()}`
+    },
+    muteHttpExceptions: true
+  });
+
+  // Google Drive returns HTTP 204 when deletion succeeds.
+  if (response.getResponseCode() !== 204) {
+    throw new Error(`Drive cleanup failed (${response.getResponseCode()}): ${response.getContentText()}`);
+  }
 }
 
 function uploadBlobToGithub_(path, blob, commitMessage) {
