@@ -39,9 +39,24 @@
       return;
     }
     document.title = `${pirate.name} | Pirates of the White Sands`;
-    const role = pirate.role ? `<div class="role">${pirate.role}</div>` : '';
-    const portrait = pirate.portrait ? `<img class="profile-portrait" src="${pirate.portrait}" alt="${pirate.name}" referrerpolicy="no-referrer">` : `<div class="photo-slot">${pirate.name}<br>Portrait Coming Soon</div>`;
-    wrap.innerHTML = `<div class="profile-grid"><div>${portrait}</div><div><div class="eyebrow">Pirates of the White Sands</div><h1>${pirate.name}</h1>${role}<div class="bio" style="white-space:pre-wrap">${pirate.fullBio || 'Full bio coming soon.'}</div><a class="back" href="meet-the-krewe.html">← Back to the Crew</a></div></div>`;
+    const role = pirate.role ? `<div class="role profile-role">${pirate.role}</div>` : '';
+    const portrait = pirate.portrait
+      ? `<img class="profile-portrait" src="${pirate.portrait}" alt="${pirate.name}" referrerpolicy="no-referrer">`
+      : `<div class="photo-slot profile-placeholder">${pirate.name}<br>Portrait Coming Soon</div>`;
+
+    wrap.innerHTML = `
+      <div class="profile-grid">
+        <div class="profile-photo-column">
+          ${portrait}
+          <a class="back profile-back" href="meet-the-krewe.html">← Back to the Crew</a>
+        </div>
+        <div class="profile-copy">
+          <div class="eyebrow profile-eyebrow">Pirates of the White Sands</div>
+          <h1>${pirate.name}</h1>
+          ${role}
+          <div class="bio" style="white-space:pre-wrap">${pirate.fullBio || 'Full bio coming soon.'}</div>
+        </div>
+      </div>`;
   } catch (error) {
     wrap.innerHTML = '<div class="eyebrow">Pirates of the White Sands</div><h1>Roster Temporarily Unavailable</h1><p>The live crew roster could not be loaded. Please try again shortly.</p><a class="back" href="meet-the-krewe.html">← Back to the Crew</a>';
     console.error(error);
