@@ -39,7 +39,7 @@
 <section class="crew-section">
 <div class="crew-title"><h2>The Crew</h2></div>
 <div class="crew-grid" id="crew-grid"></div>
-<div id="crew-status" style="width:min(1180px,90vw);margin:25px auto;text-align:center"></div>
+<div id="crew-status" class="crew-status"></div>
 </section>
 
 <section class="community"><div><h2>A Crew Built Around Community.</h2><p>We come from different backgrounds, professions, talents, and walks of life, but the idea tying it together is simple: have a damn good time, help the community, and leave things better than we found them.</p></div></section>
@@ -54,18 +54,39 @@
   try {
     const crew = await loadPotwsCrew();
     const captain = crew.find(p => p.role.toLowerCase() === 'captain' || p.order === 1) || crew[0];
+
     if (captain) {
       const captainRole = captain.role ? `<div class="role">${captain.role}</div>` : '';
-      captainCard.innerHTML = `<a href="${potwsProfileHref(captain)}">${potwsPhotoMarkup(captain, captain.name)}</a><div><div>Meet the Captain</div><h2>${captain.name}</h2>${captainRole}<p>${captain.shortBio || 'Captain of Pirates of the White Sands.'}</p><a class="profile-link" href="${potwsProfileHref(captain)}">Read Full Bio →</a></div>`;
+      captainCard.innerHTML = `
+        <a class="captain-photo-link" href="${potwsProfileHref(captain)}">${potwsPhotoMarkup(captain, captain.name)}</a>
+        <div class="captain-copy">
+          <div class="eyebrow">Meet the Captain</div>
+          <h2>${captain.name}</h2>
+          ${captainRole}
+          <p>Captain of Pirates of the White Sands.</p>
+          <a class="profile-link" href="${potwsProfileHref(captain)}">Read Full Bio →</a>
+        </div>`;
     }
+
     const others = crew.filter(p => !captain || p.id !== captain.id);
     grid.innerHTML = others.map(p => {
       const role = p.role ? `<div class="role">${p.role}</div>` : '';
-      return `<article class="crew-card"><a href="${potwsProfileHref(p)}">${potwsPhotoMarkup(p, p.name)}<h3>${p.name}</h3>${role}<p>${p.shortBio || 'Full crew story coming soon.'}</p></a></article>`;
+      return `
+        <article class="crew-card">
+          <a class="crew-card-link" href="${potwsProfileHref(p)}">
+            ${potwsPhotoMarkup(p, p.name)}
+            <div class="crew-card-copy">
+              <h3>${p.name}</h3>
+              ${role}
+              <span class="card-profile-link">Read Full Bio →</span>
+            </div>
+          </a>
+        </article>`;
     }).join('');
+
     status.textContent = others.length ? '' : 'Additional crew profiles are coming soon.';
   } catch (error) {
-    captainCard.innerHTML = '<div class="photo-slot">Captain Ransom</div><div><div>Meet the Captain</div><h2>Captain Ransom</h2><div class="role">Captain</div><p>The live roster could not be loaded.</p></div>';
+    captainCard.innerHTML = '<div class="photo-slot">Captain Ransom</div><div><div class="eyebrow">Meet the Captain</div><h2>Captain Ransom</h2><div class="role">Captain</div><p>The live roster could not be loaded.</p></div>';
     status.textContent = 'The live crew roster is temporarily unavailable.';
     console.error(error);
   }
