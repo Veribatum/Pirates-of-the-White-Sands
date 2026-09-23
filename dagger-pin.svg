@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 220" role="img" aria-label="Decorative dagger">
+  <defs>
+    <linearGradient id="blade" x1="0" x2="1">
+      <stop offset="0" stop-color="#727272"/>
+      <stop offset="0.23" stop-color="#d7d5cd"/>
+      <stop offset="0.5" stop-color="#fffdf4"/>
+      <stop offset="0.72" stop-color="#b6b3aa"/>
+      <stop offset="1" stop-color="#585858"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" x2="1">
+      <stop offset="0" stop-color="#5d3e17"/>
+      <stop offset="0.28" stop-color="#c49a51"/>
+      <stop offset="0.5" stop-color="#f0cf79"/>
+      <stop offset="0.76" stop-color="#9a6a2f"/>
+      <stop offset="1" stop-color="#4a3012"/>
+    </linearGradient>
+    <linearGradient id="grip" x1="0" x2="1">
+      <stop offset="0" stop-color="#1d120d"/>
+      <stop offset="0.5" stop-color="#5b3524"/>
+      <stop offset="1" stop-color="#21120d"/>
+    </linearGradient>
+    <filter id="shadow" x="-40%" y="-30%" width="180%" height="190%">
+      <feDropShadow dx="4" dy="7" stdDeviation="4" flood-color="#000" flood-opacity=".5"/>
+    </filter>
+  </defs>
+  <g filter="url(#shadow)">
+    <path d="M49 79 L71 79 L66 178 L60 210 L54 178 Z" fill="url(#blade)" stroke="#4a4a46" stroke-width="2"/>
+    <path d="M60 91 L60 188" stroke="#f8f5e9" stroke-opacity=".75" stroke-width="2"/>
+    <path d="M22 72 Q25 63 35 64 L85 64 Q95 63 98 72 Q93 79 84 78 L36 78 Q27 79 22 72Z" fill="url(#gold)" stroke="#3b260f" stroke-width="2"/>
+    <rect x="48" y="17" width="24" height="50" rx="8" fill="url(#grip)" stroke="#160d09" stroke-width="2"/>
+    <g stroke="#9c6841" stroke-width="3" opacity=".75">
+      <path d="M50 24 L70 34"/><path d="M50 34 L70 44"/><path d="M50 44 L70 54"/><path d="M50 54 L70 64"/>
+    </g>
+    <path d="M45 18 Q60 0 75 18 L70 26 L50 26Z" fill="url(#gold)" stroke="#3b260f" stroke-width="2"/>
+  </g>
+</svg>
