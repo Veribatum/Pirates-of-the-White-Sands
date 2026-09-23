@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Crew Profile | Pirates of the White Sands</title>
+<meta name="description" content="Pirates of the White Sands crew profile.">
+<link rel="stylesheet" href="crew.css">
+</head>
+<body>
+<header class="site-header">
+<a href="index.html"><img src="logo.png" alt="Pirates of the White Sands"></a>
+<nav>
+<a href="index.html">Home</a>
+<a href="get-involved.html">Get Involved</a>
+<a href="meet-the-krewe.html">Meet the Crew</a>
+<a href="high-seas.html">Pirates of the High Seas</a>
+<a class="support-link" href="https://account.venmo.com/pay?recipients=potws5972" target="_blank" rel="noopener">☠ Support the Mayhem</a>
+</nav>
+</header>
+
+<main class="profile-wrap" id="profile-wrap">
+<div class="eyebrow">Pirates of the White Sands</div>
+<h1>Loading crew profile…</h1>
+<p>Pulling the latest approved crew information from the roster.</p>
+</main>
+
+<footer>Copyright © 2026 Pirates of the White Sands — All Rights Reserved.</footer>
+<script src="crew-data.js"></script>
+<script>
+(async function(){
+  const wrap = document.getElementById('profile-wrap');
+  const key = new URLSearchParams(location.search).get('pirate');
+  try {
+    const crew = await loadPotwsCrew();
+    const pirate = crew.find(p => p.id === key || p.slug === key);
+    if (!pirate) {
+      wrap.innerHTML = '<div class="eyebrow">Pirates of the White Sands</div><h1>Profile Not Found</h1><p>This pirate is not currently listed as active on the crew roster.</p><a class="back" href="meet-the-krewe.html">← Back to the Crew</a>';
+      return;
+    }
+    document.title = `${pirate.name} | Pirates of the White Sands`;
+    const role = pirate.role ? `<div class="role">${pirate.role}</div>` : '';
+    const portrait = pirate.portrait ? `<img class="profile-portrait" src="${pirate.portrait}" alt="${pirate.name}" referrerpolicy="no-referrer">` : `<div class="photo-slot">${pirate.name}<br>Portrait Coming Soon</div>`;
+    wrap.innerHTML = `<div class="profile-grid"><div>${portrait}</div><div><div class="eyebrow">Pirates of the White Sands</div><h1>${pirate.name}</h1>${role}<div class="bio" style="white-space:pre-wrap">${pirate.fullBio || 'Full bio coming soon.'}</div><a class="back" href="meet-the-krewe.html">← Back to the Crew</a></div></div>`;
+  } catch (error) {
+    wrap.innerHTML = '<div class="eyebrow">Pirates of the White Sands</div><h1>Roster Temporarily Unavailable</h1><p>The live crew roster could not be loaded. Please try again shortly.</p><a class="back" href="meet-the-krewe.html">← Back to the Crew</a>';
+    console.error(error);
+  }
+})();
+</script>
+</body>
+</html>
