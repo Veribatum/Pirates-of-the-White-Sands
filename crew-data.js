@@ -2,6 +2,12 @@ const POTWS_SHEET_ID = '1GgBJOLEAeMQ9txZJXrDebAFC6TjXcqZPfJ1ylJ2cALA';
 const POTWS_SHEET_NAME = 'Crew Roster';
 const POTWS_GVIZ_URL = `https://docs.google.com/spreadsheets/d/${POTWS_SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(POTWS_SHEET_NAME)}`;
 
+const POTWS_PORTRAIT_B64 = {
+  'captain-ransom': 'crew-portraits/captain-ransom-mini.b64',
+  'maelstrom': 'crew-portraits/maelstrom-mayhem-mini.b64',
+  'sir-battle-griffin': 'crew-portraits/sir-battle-griffin-mini.b64'
+};
+
 function potwsCell(row, index) {
   const cell = row.c && row.c[index];
   if (!cell) return '';
@@ -15,6 +21,21 @@ function potwsPortraitUrl(value) {
   return value;
 }
 
+async function potwsLoadPortraitOverride(pirate) {
+  const key = pirate.slug || '';
+  const file = POTWS_PORTRAIT_B64[key];
+  if (!file) return pirate;
+  try {
+    const response = await fetch(`${file}?v=20260923d`, { cache: 'no-store' });
+    if (!response.ok) return pirate;
+    const b64 = (await response.text()).trim();
+    if (b64) pirate.portrait = `data:image/jpeg;base64,${b64}`;
+  } catch (e) {
+    console.warn('Portrait override failed for', pirate.name, e);
+  }
+  return pirate;
+}
+
 async function loadPotwsCrew() {
   const response = await fetch(POTWS_GVIZ_URL, { cache: 'no-store' });
   if (!response.ok) throw new Error(`Roster request failed (${response.status})`);
@@ -24,7 +45,7 @@ async function loadPotwsCrew() {
   if (start === -1 || end === -1) throw new Error('Roster data was not readable.');
   const data = JSON.parse(text.slice(start, end + 1));
   const rows = data.table && data.table.rows ? data.table.rows : [];
-  return rows.map(row => ({
+  const crew = rows.map(row => ({
     id: potwsCell(row, 0).trim(),
     name: potwsCell(row, 1).trim(),
     active: potwsCell(row, 2).trim().toUpperCase(),
@@ -36,6 +57,9 @@ async function loadPotwsCrew() {
     slug: potwsCell(row, 8).trim(),
     notes: potwsCell(row, 9)
   })).filter(p => p.name && p.active === 'Y').sort((a, b) => a.order - b.order || a.name.localeCompare(b.name));
+
+  await Promise.all(crew.map(potwsLoadPortraitOverride));
+  return crew;
 }
 
 function potwsProfileHref(pirate) {
