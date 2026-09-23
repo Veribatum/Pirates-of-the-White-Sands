@@ -3,12 +3,12 @@ const POTWS_SHEET_NAME = 'Crew Roster';
 const POTWS_GVIZ_URL = `https://docs.google.com/spreadsheets/d/${POTWS_SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(POTWS_SHEET_NAME)}`;
 
 const POTWS_PORTRAIT_B64 = {
-  'captain-ransom': 'crew-portraits/captain-ransom-mini.b64'
+  'maelstrom': 'crew-portraits/maelstrom-mayhem-mini.b64',
+  'sir-battle-griffin': 'crew-portraits/sir-battle-griffin-mini.b64'
 };
 
 const POTWS_PORTRAIT_DIRECT = {
-  'maelstrom': 'crew-portraits/maelstrom-mayhem.webp',
-  'sir-battle-griffin': 'sir-battle-griffin.jpg'
+  'captain-ransom': 'captain-ransom.jpg'
 };
 
 function potwsCell(row, index) {
@@ -28,7 +28,7 @@ async function potwsLoadPortraitOverride(pirate) {
   const key = pirate.slug || '';
 
   if (POTWS_PORTRAIT_DIRECT[key]) {
-    pirate.portrait = POTWS_PORTRAIT_DIRECT[key];
+    pirate.portrait = `${POTWS_PORTRAIT_DIRECT[key]}?v=20260923f`;
     return pirate;
   }
 
@@ -36,16 +36,13 @@ async function potwsLoadPortraitOverride(pirate) {
   if (!file) return pirate;
 
   try {
-    const response = await fetch(`${file}?v=20260923e`, { cache: 'no-store' });
+    const response = await fetch(`${file}?v=20260923f`, { cache: 'no-store' });
     if (!response.ok) return pirate;
-    const b64 = (await response.text()).trim();
-    if (b64 && b64 !== '__PLACEHOLDER__') {
+    const b64 = (await response.text()).replace(/\s+/g, '');
+    if (b64 && b64 !== '__PLACEHOLDER__' && b64.startsWith('/9j/')) {
       pirate.portrait = `data:image/jpeg;base64,${b64}`;
-    } else if (key === 'captain-ransom') {
-      pirate.portrait = 'captain-ransom.jpg';
     }
   } catch (e) {
-    if (key === 'captain-ransom') pirate.portrait = 'captain-ransom.jpg';
     console.warn('Portrait override failed for', pirate.name, e);
   }
   return pirate;
