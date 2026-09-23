@@ -6,14 +6,17 @@
 <title>Meet the Crew | Pirates of the White Sands</title>
 <meta name="description" content="Meet the Pirates of the White Sands crew.">
 <link rel="stylesheet" href="crew.css?v=20260923f">
+<link rel="stylesheet" href="crew-mobile.css?v=20260923a">
 </head>
 <body>
 <header class="site-header">
 <a href="index.html"><img src="logo.png" alt="Pirates of the White Sands"></a>
-<nav>
+<button class="mobile-menu-toggle" type="button" aria-label="Open navigation" aria-controls="site-nav" aria-expanded="false"><span></span><span></span><span></span></button>
+<nav id="site-nav">
 <a href="index.html">Home</a>
 <a href="get-involved.html">Get Involved</a>
 <a href="meet-the-krewe.html">Meet the Crew</a>
+<a href="calendar.html">Calendar</a>
 <a href="high-seas.html">Pirates of the High Seas</a>
 <a class="support-link" href="https://account.venmo.com/pay?recipients=potws5972" target="_blank" rel="noopener">☠ Support the Mayhem</a>
 </nav>
@@ -47,6 +50,10 @@
 
 <script src="crew-data.js?v=20260923g"></script>
 <script>
+const mobileMenuToggle=document.querySelector('.mobile-menu-toggle');
+const siteNav=document.getElementById('site-nav');
+if(mobileMenuToggle&&siteNav){mobileMenuToggle.addEventListener('click',()=>{const open=mobileMenuToggle.getAttribute('aria-expanded')==='true';mobileMenuToggle.setAttribute('aria-expanded',String(!open));mobileMenuToggle.setAttribute('aria-label',open?'Open navigation':'Close navigation');siteNav.classList.toggle('open',!open)});siteNav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{mobileMenuToggle.setAttribute('aria-expanded','false');mobileMenuToggle.setAttribute('aria-label','Open navigation');siteNav.classList.remove('open')}));}
+
 function crewCssSlug(value) {
   return String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 }
