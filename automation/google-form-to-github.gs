@@ -3,16 +3,18 @@
  * Google Form -> Crew Roster -> GitHub portrait automation
  *
  * Bind this script to the POTWS Crew Roster spreadsheet.
- * Run configureGithubToken() once, then run installFormSubmitTrigger() once.
+ * Store a fine-grained GitHub token in Script Properties as GITHUB_TOKEN,
+ * then install an On form submit trigger for onCrewFormSubmit.
+ *
  * After that every form submission will:
  *   1) find/create the pirate's Crew Roster row
  *   2) force Active = Y
  *   3) ensure a stable POTWS-### ID exists
  *   4) upload the submitted portrait to GitHub under crew-portraits/
  *   5) replace the roster Drive portrait link with the GitHub Pages path
- *   6) permanently delete the original Drive upload only after GitHub succeeds
+ *   6) permanently delete the original Drive upload after the roster is safely updated
  *
- * IMPORTANT: full and short bios are never edited by this script.
+ * IMPORTANT: full and short bios are preserved exactly as submitted.
  */
 
 const POTWS_CONFIG = {
@@ -54,6 +56,18 @@ function installFormSubmitTrigger() {
   SpreadsheetApp.getUi().alert('POTWS form-submit automation installed.');
 }
 
+/*
+ * Run this ONCE manually after pasting/updating the script.
+ * Its only purpose is to make Apps Script request the full Google Drive scope
+ * required for permanent file deletion. setTrashed(false) is a harmless no-op
+ * on the active spreadsheet file.
+ */
+function authorizeDriveCleanup() {
+  const ss = SpreadsheetApp.getActive();
+  DriveApp.getFileById(ss.getId()).setTrashed(false);
+  SpreadsheetApp.getUi().alert('Drive cleanup permission authorized.');
+}
+
 function onCrewFormSubmit(e) {
   if (!e || !e.range) throw new Error('This function must run from the spreadsheet form-submit trigger.');
   const responseSheet = e.range.getSheet();
@@ -87,12 +101,31 @@ function onCrewFormSubmit(e) {
     roster.getRange(rosterRow, 9).setValue(slugify_(pirateName));
   }
 
+  let cleanupFileId = '';
+  let adminNote = 'Auto-imported from Google Form. Active set to Y. Role remains Captain-assigned.';
+
   if (drivePortrait) {
-    const githubPath = copyDrivePortraitToGithub_(drivePortrait, pirateId, pirateName);
-    roster.getRange(rosterRow, 6).setValue(githubPath);
+    const uploaded = copyDrivePortraitToGithub_(drivePortrait, pirateId, pirateName);
+
+    // Write the GitHub path FIRST so a cleanup problem can never leave the site
+    // pointing at a Drive file that was already copied successfully.
+    roster.getRange(rosterRow, 6).setValue(uploaded.githubPath);
+    cleanupFileId = uploaded.driveFileId;
+    SpreadsheetApp.flush();
   }
 
-  roster.getRange(rosterRow, 10).setValue('Auto-imported from Google Form. Active set to Y. Role remains Captain-assigned.');
+  // Drive cleanup is intentionally non-fatal. If Google refuses deletion, the
+  // website still uses the successful GitHub copy and the roster records the issue.
+  if (cleanupFileId && POTWS_CONFIG.deleteDriveAfterUpload) {
+    try {
+      permanentlyDeleteDriveFile_(cleanupFileId);
+    } catch (err) {
+      adminNote += ` Portrait uploaded to GitHub, but Drive cleanup failed: ${err.message}`;
+      console.error(err);
+    }
+  }
+
+  roster.getRange(rosterRow, 10).setValue(adminNote);
   SpreadsheetApp.flush();
 }
 
@@ -138,12 +171,10 @@ function copyDrivePortraitToGithub_(driveUrl, pirateId, pirateName) {
 
   uploadBlobToGithub_(path, blob, `Add portrait for ${pirateName}`);
 
-  if (POTWS_CONFIG.deleteDriveAfterUpload) {
-    permanentlyDeleteDriveFile_(fileId);
-  }
-
-  // Relative GitHub Pages path; crew-data.js can use this directly in <img src>.
-  return path;
+  return {
+    githubPath: path,
+    driveFileId: fileId
+  };
 }
 
 function permanentlyDeleteDriveFile_(fileId) {
@@ -164,7 +195,7 @@ function permanentlyDeleteDriveFile_(fileId) {
 
 function uploadBlobToGithub_(path, blob, commitMessage) {
   const token = PropertiesService.getScriptProperties().getProperty(POTWS_CONFIG.tokenProperty);
-  if (!token) throw new Error('GitHub token is missing. Run configureGithubToken() first.');
+  if (!token) throw new Error('GitHub token is missing. Add GITHUB_TOKEN under Project Settings -> Script Properties.');
 
   const apiUrl = `https://api.github.com/repos/${POTWS_CONFIG.repoOwner}/${POTWS_CONFIG.repoName}/contents/${encodePath_(path)}`;
   const headers = {
