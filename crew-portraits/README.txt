@@ -1,0 +1,1 @@
+Crew portraits are stored in this folder. Automated Google Form uploads will also land here.
