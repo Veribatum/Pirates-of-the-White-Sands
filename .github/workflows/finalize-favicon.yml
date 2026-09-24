@@ -11,15 +11,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Point every HTML page to final favicon
+      - name: Point every HTML page to final favicon only
         run: |
           python - <<'PY'
           from pathlib import Path
           import re
-          tag='''<link rel="icon" type="image/png" sizes="32x32" href="/Pirates-of-the-White-Sands/potws-favicon-final.png?v=20260924final">\n<link rel="shortcut icon" type="image/png" href="/Pirates-of-the-White-Sands/potws-favicon-final.png?v=20260924final">\n<link rel="apple-touch-icon" href="/Pirates-of-the-White-Sands/potws-favicon-final.png?v=20260924final">'''
+          tag='''<link rel="icon" type="image/png" sizes="32x32" href="/Pirates-of-the-White-Sands/potws-favicon-final.png?v=20260924final2">\n<link rel="shortcut icon" type="image/png" href="/Pirates-of-the-White-Sands/potws-favicon-final.png?v=20260924final2">\n<link rel="apple-touch-icon" href="/Pirates-of-the-White-Sands/potws-favicon-final.png?v=20260924final2">'''
           for p in Path('.').glob('*.html'):
               s=p.read_text(encoding='utf-8')
-              s=re.sub(r'\s*<link\s+[^>]*rel=["\'](?:shortcut icon|icon|apple-touch-icon)["\'][^>]*>\s*','\n',s,flags=re.I)
+              s=re.sub(r'\s*<link\s+[^>]*rel=["\'](?:shortcut icon|icon|apple-touch-icon|alternate icon)["\'][^>]*>\s*','\n',s,flags=re.I)
               if '<head>' in s:
                   s=s.replace('<head>','<head>\n'+tag,1)
               elif '<HEAD>' in s:
@@ -32,6 +32,6 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add '*.html'
           if ! git diff --cached --quiet; then
-            git commit -m "Use final POTWS logo favicon sitewide"
+            git commit -m "Use final POTWS favicon only"
             git push
           fi
