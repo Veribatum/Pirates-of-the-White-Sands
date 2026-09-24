@@ -18,22 +18,22 @@ jobs:
         with:
           ref: main
 
-      - name: Download legacy portraits
+      - name: Download exported legacy portraits
         run: |
-          python -m pip install --quiet gdown pillow
+          python -m pip install --quiet pillow
           mkdir -p crew-portraits
-          gdown 'https://drive.google.com/uc?id=1UDBqK78_2Cw6ErQJkb_q-nd6S1qMUEbK' -O /tmp/killian.png
-          gdown 'https://drive.google.com/uc?id=1eRWq3QwHZsku7HPthvPxDxi9o18i0HND' -O /tmp/tal.jpg
+          curl -fL 'https://sdmntprnorthcentralus.oaiusercontent.com/files/00000000-aff0-822f-b658-31e6e8f28b63/raw?se=2026-09-24T11%3A34%3A59Z&sp=r&sv=2026-02-06&sr=b&scid=84dd7dc9-193c-59f7-ae86-f822958ca2cd&skoid=bbd22fc4-f881-4ea4-b2f3-c12033cf6a8b&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T03%3A17%3A43Z&ske=2026-09-25T03%3A17%3A43Z&sks=b&skv=2026-02-06&sig=UJuJviUcuz7gYJz%2BBOcG9q38u6pFDzJJQYYvSTPZF04%3D' -o /tmp/killian.png
+          curl -fL 'https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-dbd0-81f7-ba31-13973c31e711/raw?se=2026-09-24T11%3A35%3A05Z&sp=r&sv=2026-02-06&sr=b&scid=046a8fba-189c-561b-8aeb-1a59cb0e555f&skoid=bbd22fc4-f881-4ea4-b2f3-c12033cf6a8b&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T08%3A47%3A08Z&ske=2026-09-25T08%3A47%3A08Z&sks=b&skv=2026-02-06&sig=xYSOAq/9Jt0flggGbYPH2DyKcz5nkptUKFxoR3LQyb8%3D' -o /tmp/tal.jpg
           python - <<'PY'
           from PIL import Image
 
-          k = Image.open('/tmp/killian.png')
+          k = Image.open('/tmp/killian.png').convert('RGB')
           target_h = 1000
           target_w = round(k.width * target_h / k.height)
           k = k.resize((target_w, target_h), Image.Resampling.LANCZOS)
           k.save('crew-portraits/potws-007-kilian.webp', 'WEBP', quality=82, method=6)
 
-          t = Image.open('/tmp/tal.jpg')
+          t = Image.open('/tmp/tal.jpg').convert('RGB')
           target_h = min(900, t.height)
           target_w = round(t.width * target_h / t.height)
           t = t.resize((target_w, target_h), Image.Resampling.LANCZOS)
