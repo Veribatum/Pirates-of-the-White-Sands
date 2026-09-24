@@ -1,0 +1,46 @@
+name: Migrate current crew portraits
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/migrate-current-portraits.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rebuild portrait files and wire overrides
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p crew-portraits
+          cat .tmp/argussea.part1 .tmp/argussea.part2 | base64 -d > crew-portraits/potws-009-argussea.webp
+          cat .tmp/black.part1 .tmp/black.part2 .tmp/black.part3 .tmp/black.part4 | base64 -d > crew-portraits/black-janiels.webp
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('crew-data.js')
+          s = p.read_text(encoding='utf-8')
+          old = "  'tal': 'crew-portraits/potws-008-tal.webp'\n"
+          new = "  'tal': 'crew-portraits/potws-008-tal.webp',\n  'argussea': 'crew-portraits/potws-009-argussea.webp',\n  'black-janiels': 'crew-portraits/black-janiels.webp'\n"
+          if old not in s and "'argussea':" not in s:
+              raise SystemExit('Could not find portrait override insertion point')
+          if "'argussea':" not in s:
+              s = s.replace(old, new, 1)
+          s = s.replace('?v=20260924a', '?v=20260924e')
+          p.write_text(s, encoding='utf-8')
+          PY
+          rm -f .tmp/argussea.part1 .tmp/argussea.part2 .tmp/black.part1 .tmp/black.part2 .tmp/black.part3 .tmp/black.part4
+          rm -f .github/workflows/migrate-current-portraits.yml
+      - name: Commit migration
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Add Argussea and Black Janiels portraits" || exit 0
+          git push
