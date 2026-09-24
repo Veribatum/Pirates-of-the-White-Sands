@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pirates of the High Seas | Pirates of the White Sands</title>
-<meta name="description" content="Pirates of the High Seas & Renaissance Fest returns to Panama City Beach October 9-11, 2026. Find event highlights, weekend details, and the Pirates of the White Sands crew.">
+<meta name="description" content="Pirates of the High Seas & Renaissance Fest returns each fall to Panama City Beach. Find event highlights, weekend details, and the Pirates of the White Sands crew.">
 
 <style>
 :root{
@@ -197,7 +197,7 @@ footer{padding:28px 20px;text-align:center;color:#aa9a88;background:linear-gradi
         <div class="hero-copy reveal">
             <div class="eyebrow">Panama City Beach • Free Family Festival</div>
             <h1>Pirates of the High Seas <span>& Renaissance Fest</span></h1>
-            <div class="hero-date">October 9–11, 2026</div>
+            <div class="hero-date" id="festival-dates">October 9–11, 2026</div>
             <p>Calling all mateys, fair maidens, and swashbucklers of every age. Three days of pirate mayhem return to Panama City Beach with parades, fireworks, mermaids, fire performances, treasure, and Renaissance revelry.</p>
             <div class="hero-actions">
                 <a class="button button-red" href="https://www.visitpanamacitybeach.com/pirates-of-the-high-seas-fest/" target="_blank" rel="noopener">Official Festival Schedule →</a>
@@ -217,7 +217,7 @@ footer{padding:28px 20px;text-align:center;color:#aa9a88;background:linear-gradi
                 <h2>Where the Gulf Goes Pirate.</h2>
                 <p>Pirates of the High Seas & Renaissance Fest is one of Panama City Beach’s signature fall events, filling the Pier Park and Aaron Bessant Park area with live entertainment, pirate crews, family activities, demonstrations, and a full Renaissance marketplace.</p>
                 <p>This year’s free celebration includes fireworks, live mermaid shows, a fire circus, parades, a treasure drop, sword and whip demonstrations, a Pirates Pub, and plenty of chances to cross paths with the Pirates of the White Sands.</p>
-                <p><strong>Festival dates:</strong> October 9–11, 2026</p>
+                <p><strong>Festival dates:</strong> <span id="festival-dates-inline">October 9–11, 2026</span></p>
             </div>
             <div class="intro-photo reveal"><img src="high-seas.jpg" alt="Pirates of the High Seas festival"></div>
         </div>
@@ -233,19 +233,19 @@ footer{padding:28px 20px;text-align:center;color:#aa9a88;background:linear-gradi
         </div>
         <div class="schedule-grid">
             <article class="day-card reveal">
-                <div class="day">Friday • October 9</div>
+                <div class="day" id="festival-friday">Friday • October 9</div>
                 <h3>Raise the Colors</h3>
                 <p><strong>Breakfast with Pirates</strong> kicks off the day before the festival village opens for the evening.</p>
                 <p>Expect the Kid’s Parade, opening festivities, entertainment, and an evening Pirate Crawl.</p>
             </article>
             <article class="day-card reveal">
-                <div class="day">Saturday • October 10</div>
+                <div class="day" id="festival-saturday">Saturday • October 10</div>
                 <h3>Full Pirate Invasion</h3>
                 <p>Saturday brings a full day of performances, demonstrations, family activities, and pirate encounters.</p>
                 <p>The <strong>Krewe of Dominique Youx Main Parade</strong> rolls through before fireworks light up Panama City Beach.</p>
             </article>
             <article class="day-card reveal">
-                <div class="day">Sunday • October 11</div>
+                <div class="day" id="festival-sunday">Sunday • October 11</div>
                 <h3>One More Day of Mayhem</h3>
                 <p>Start with another <strong>Breakfast with Pirates</strong>, then head back into the festival for the final day.</p>
                 <p>It is the last chance to catch the crews, marketplace, entertainment, and Renaissance festivities before the fleet sails out.</p>
@@ -272,7 +272,7 @@ footer{padding:28px 20px;text-align:center;color:#aa9a88;background:linear-gradi
 </section>
 </main>
 
-<footer>Copyright © 2026 Pirates of the White Sands — All Rights Reserved.</footer>
+<footer>Copyright © <span id="copyright-year">2026</span> Pirates of the White Sands — All Rights Reserved.</footer>
 
 <script>
 const revealItems=document.querySelectorAll('.reveal');
@@ -300,6 +300,64 @@ if(mobileMenuToggle&&siteNav){
         }
     });
 }
+
+function getFestivalWeekend(year){
+    const octoberFirst = new Date(year, 9, 1);
+    const firstMondayOffset = (8 - octoberFirst.getDay()) % 7;
+    const columbusDay = new Date(year, 9, 1 + firstMondayOffset + 7);
+
+    const friday = new Date(columbusDay);
+    friday.setDate(columbusDay.getDate() - 3);
+
+    const saturday = new Date(columbusDay);
+    saturday.setDate(columbusDay.getDate() - 2);
+
+    const sunday = new Date(columbusDay);
+    sunday.setDate(columbusDay.getDate() - 1);
+
+    return { friday, saturday, sunday };
+}
+
+function getFestivalDisplayYear(now = new Date()){
+    const currentYear = now.getFullYear();
+    const currentFestival = getFestivalWeekend(currentYear);
+
+    const rollover = new Date(currentFestival.sunday);
+    rollover.setDate(rollover.getDate() + 30);
+    rollover.setHours(23, 59, 59, 999);
+
+    return now > rollover ? currentYear + 1 : currentYear;
+}
+
+function formatFestivalDates(year){
+    const { friday, sunday } = getFestivalWeekend(year);
+    const monthName = friday.toLocaleString('en-US', { month:'long' });
+    return `${monthName} ${friday.getDate()}–${sunday.getDate()}, ${year}`;
+}
+
+function formatFestivalDay(date){
+    const weekday = date.toLocaleString('en-US', { weekday:'long' });
+    const month = date.toLocaleString('en-US', { month:'long' });
+    return `${weekday} • ${month} ${date.getDate()}`;
+}
+
+const festivalYear = getFestivalDisplayYear();
+const festivalWeekend = getFestivalWeekend(festivalYear);
+const festivalDateText = formatFestivalDates(festivalYear);
+
+const festivalDates = document.getElementById('festival-dates');
+const festivalDatesInline = document.getElementById('festival-dates-inline');
+const festivalFriday = document.getElementById('festival-friday');
+const festivalSaturday = document.getElementById('festival-saturday');
+const festivalSunday = document.getElementById('festival-sunday');
+const copyrightYear = document.getElementById('copyright-year');
+
+if(festivalDates) festivalDates.textContent = festivalDateText;
+if(festivalDatesInline) festivalDatesInline.textContent = festivalDateText;
+if(festivalFriday) festivalFriday.textContent = formatFestivalDay(festivalWeekend.friday);
+if(festivalSaturday) festivalSaturday.textContent = formatFestivalDay(festivalWeekend.saturday);
+if(festivalSunday) festivalSunday.textContent = formatFestivalDay(festivalWeekend.sunday);
+if(copyrightYear) copyrightYear.textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
