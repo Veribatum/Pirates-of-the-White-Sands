@@ -2,6 +2,7 @@ name: Wire favicon into site pages
 
 on:
   push:
+    branches: [main]
     paths:
       - '.github/workflows/add-favicon.yml'
 
@@ -13,27 +14,32 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Add favicon links to HTML pages
+      - name: Force correct favicon links on every HTML page
         shell: bash
         run: |
           python - <<'PY'
           from pathlib import Path
+          import re
 
-          links = '<link rel="icon" type="image/png" href="favicon.png">\n<link rel="shortcut icon" href="favicon.ico">\n'
+          links = '''<link rel="icon" type="image/svg+xml" href="/Pirates-of-the-White-Sands/potws-tab-icon.svg?v=20260924fix3">
+<link rel="icon" type="image/png" sizes="64x64" href="/Pirates-of-the-White-Sands/potws-king-logo-favicon-64.png?v=20260924fix3">
+<link rel="apple-touch-icon" href="/Pirates-of-the-White-Sands/potws-king-logo-favicon-64.png?v=20260924fix3">
+'''
           changed = []
           for path in Path('.').glob('*.html'):
               text = path.read_text(encoding='utf-8')
-              if 'rel="icon"' in text or "rel='icon'" in text:
-                  continue
+              original = text
+              text = re.sub(r'\s*<link\s+[^>]*rel=["\'](?:shortcut icon|icon|apple-touch-icon)["\'][^>]*>\s*', '\n', text, flags=re.I)
               marker = '<head>'
               if marker not in text:
                   continue
               text = text.replace(marker, marker + '\n' + links, 1)
-              path.write_text(text, encoding='utf-8')
-              changed.append(path.name)
+              if text != original:
+                  path.write_text(text, encoding='utf-8')
+                  changed.append(path.name)
           print('Updated:', ', '.join(changed) if changed else 'none')
           PY
-      - name: Commit favicon links
+      - name: Commit favicon fix
         shell: bash
         run: |
           if git diff --quiet; then
@@ -43,5 +49,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add '*.html'
-          git commit -m "Wire favicon into site pages"
+          git commit -m "Force fresh POTWS favicon on all pages"
           git push
