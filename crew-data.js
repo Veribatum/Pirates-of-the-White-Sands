@@ -7,7 +7,9 @@ const POTWS_PORTRAIT_DIRECT = {
   'maelstrom': 'crew-portraits/maelstrom-mayhem-final.jpeg',
   'sir-battle-griffin': 'crew-portraits/sir-battle-griffin-final.jpeg',
   'northstar': 'crew-portraits/Northstar.jpg',
-  'osprey': 'crew-portraits/Osprey.jpg'
+  'osprey': 'crew-portraits/Osprey.jpg',
+  'killian': 'crew-portraits/potws-007-kilian.webp',
+  'tal': 'crew-portraits/potws-008-tal.webp'
 };
 
 function potwsCell(row, index) {
