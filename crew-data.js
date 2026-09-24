@@ -9,7 +9,9 @@ const POTWS_PORTRAIT_DIRECT = {
   'northstar': 'crew-portraits/Northstar.jpg',
   'osprey': 'crew-portraits/Osprey.jpg',
   'killian': 'crew-portraits/potws-007-kilian.webp',
-  'tal': 'crew-portraits/potws-008-tal.webp'
+  'tal': 'crew-portraits/potws-008-tal.webp',
+  'argussea': 'crew-portraits/potws-009-argussea.webp',
+  'black-janiels': 'crew-portraits/black-janiels.webp'
 };
 
 function potwsCell(row, index) {
@@ -50,7 +52,7 @@ function potwsPortraitFallback(img) {
 async function potwsLoadPortraitOverride(pirate) {
   const key = pirate.slug || '';
   if (POTWS_PORTRAIT_DIRECT[key]) {
-    pirate.portrait = `${POTWS_PORTRAIT_DIRECT[key]}?v=20260924a`;
+    pirate.portrait = `${POTWS_PORTRAIT_DIRECT[key]}?v=20260924e`;
   }
   return pirate;
 }
