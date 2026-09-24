@@ -1,4 +1,4 @@
-name: Apply final favicon
+name: Rebuild official POTWS favicon
 
 on:
   push:
@@ -19,18 +19,44 @@ jobs:
         with:
           ref: main
 
-      - name: Replace favicon links
+      - name: Build favicon from official logo artwork
+        run: |
+          python3 -m pip install --quiet pillow
+          python3 - <<'PY'
+          from PIL import Image
+
+          src = Image.open('logo.png').convert('RGBA')
+          # The official crowned pirate emblem occupies the left side of the banner.
+          emblem = src.crop((0, 0, int(src.width * 0.445), src.height))
+          alpha = emblem.getchannel('A')
+          bbox = alpha.getbbox()
+          if bbox:
+              emblem = emblem.crop(bbox)
+
+          # Preserve the complete crown, beard, sword and pistol with transparent padding.
+          side = max(emblem.size)
+          pad = max(24, int(side * 0.06))
+          canvas = Image.new('RGBA', (side + pad * 2, side + pad * 2), (0, 0, 0, 0))
+          x = (canvas.width - emblem.width) // 2
+          y = (canvas.height - emblem.height) // 2
+          canvas.alpha_composite(emblem, (x, y))
+          canvas = canvas.resize((512, 512), Image.Resampling.LANCZOS)
+          canvas.save('potws-favicon-official-512.png', optimize=True)
+          canvas.resize((180,180), Image.Resampling.LANCZOS).save('apple-touch-icon.png', optimize=True)
+          print('Built favicon directly from logo.png')
+          PY
+
+      - name: Point every page at the rebuilt favicon
         run: |
           python3 - <<'PY'
           from pathlib import Path
           import re
 
-          new_links = '''<link rel="icon" type="image/png" sizes="32x32" href="/Pirates-of-the-White-Sands/potws-favicon-king-2026.png?v=20260924king1">
-          <link rel="shortcut icon" type="image/png" href="/Pirates-of-the-White-Sands/potws-favicon-king-2026.png?v=20260924king1">
-          <link rel="apple-touch-icon" href="/Pirates-of-the-White-Sands/potws-favicon-king-2026.png?v=20260924king1">'''
+          new_links = '''<link rel="icon" type="image/png" href="/Pirates-of-the-White-Sands/potws-favicon-official-512.png?v=20260924official3">
+          <link rel="shortcut icon" type="image/png" href="/Pirates-of-the-White-Sands/potws-favicon-official-512.png?v=20260924official3">
+          <link rel="apple-touch-icon" sizes="180x180" href="/Pirates-of-the-White-Sands/apple-touch-icon.png?v=20260924official3">'''
 
           pattern = re.compile(r'<link[^>]+rel=["\'](?:icon|shortcut icon|apple-touch-icon)["\'][^>]*>\s*', re.I)
-
           for path in Path('.').glob('*.html'):
               text = path.read_text(encoding='utf-8')
               cleaned = pattern.sub('', text)
@@ -43,14 +69,14 @@ jobs:
                   print('updated', path)
           PY
 
-      - name: Commit directly to main
+      - name: Commit rebuilt favicon directly to main
         run: |
-          if git diff --quiet; then
-            echo "No HTML changes required"
-            exit 0
-          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- '*.html'
-          git commit -m "Point every page at POTWS king favicon"
+          git add potws-favicon-official-512.png apple-touch-icon.png -- '*.html'
+          if git diff --cached --quiet; then
+            echo "No changes required"
+            exit 0
+          fi
+          git commit -m "Use official POTWS logo artwork for favicon"
           git push origin HEAD:main
