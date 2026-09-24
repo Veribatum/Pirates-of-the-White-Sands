@@ -4,360 +4,51 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pirates of the High Seas | Pirates of the White Sands</title>
-<meta name="description" content="Pirates of the High Seas & Renaissance Fest returns each fall to Panama City Beach. Find event highlights, weekend details, and the Pirates of the White Sands crew.">
-
+<meta name="description" content="Pirates of the High Seas & Renaissance Fest returns each fall to Panama City Beach. Find event highlights, weekend details, and what the Pirates of the White Sands bring to the festival.">
 <style>
-:root{
-    --red:#92251f;
-    --red-hover:#ad332c;
-    --cream:#fff1d0;
-    --ink:#2f1b12;
-    --gold:#c59a58;
-    --wood:#110b08;
-}
-
-*{box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{
-    margin:0;
-    overflow-x:hidden;
-    font-family:Georgia,"Times New Roman",serif;
-    color:var(--cream);
-    background:#110b08 url("wood.png") center top / 1500px auto repeat;
-}
-img{display:block;max-width:100%;}
-a{color:inherit;text-decoration:none;}
-
-.site-header{
-    position:sticky;
-    top:0;
-    z-index:1000;
-    min-height:92px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:28px;
-    padding:8px 34px;
-    background:linear-gradient(rgba(8,5,3,.72),rgba(8,5,3,.86)),url("wood.png") center / cover;
-    border-bottom:1px solid rgba(197,154,88,.45);
-    box-shadow:0 6px 22px rgba(0,0,0,.55);
-}
-.logo img{width:305px;max-width:42vw;}
-.mobile-menu-toggle{
-    display:none;
-    width:48px;
-    height:48px;
-    padding:0;
-    border:1px solid rgba(197,154,88,.48);
-    background:rgba(18,11,7,.78);
-    color:#fff;
-    cursor:pointer;
-    align-items:center;
-    justify-content:center;
-    flex-direction:column;
-    gap:5px;
-}
-.mobile-menu-toggle span{display:block;width:24px;height:2px;background:#fff1d0;transition:.22s ease;}
-.mobile-menu-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg);}
-.mobile-menu-toggle[aria-expanded="true"] span:nth-child(2){opacity:0;}
-.mobile-menu-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-nav{display:flex;align-items:center;justify-content:flex-end;gap:22px;flex-wrap:wrap;}
-nav a{position:relative;color:#fff;font-size:.93rem;text-shadow:0 2px 4px #000;}
-nav a:not(.support-link)::after{content:"";position:absolute;left:50%;right:50%;bottom:-7px;height:2px;background:var(--red);transition:.22s ease;}
-nav a:not(.support-link):hover::after{left:0;right:0;}
-nav a.active::after{left:0;right:0;}
-.support-link{padding:11px 18px;background:var(--red);border:1px solid #bb4c44;box-shadow:0 4px 11px rgba(0,0,0,.35);font-weight:bold;white-space:nowrap;transition:.2s ease;}
-.support-link:hover{background:var(--red-hover);transform:translateY(-2px);}
-
-.button{display:inline-block;padding:13px 24px;font-weight:bold;border:1px solid rgba(255,255,255,.34);transition:transform .2s ease,background .2s ease,color .2s ease;}
-.button-red{background:var(--red);color:#fff;}
-.button-red:hover{background:var(--red-hover);transform:translateY(-2px);}
-.button-dark{color:#fff;background:rgba(0,0,0,.62);}
-.button-dark:hover{background:#fff;color:#21150d;transform:translateY(-2px);}
-.button-outline{color:#3a2415;border:1px solid rgba(69,41,21,.55);background:rgba(255,244,215,.12);}
-.button-outline:hover{background:#2f1b12;color:#fff;transform:translateY(-2px);}
-
-.container{position:relative;z-index:5;width:min(1180px,89vw);margin:0 auto;}
-.eyebrow{margin-bottom:9px;font-size:.76rem;font-weight:bold;letter-spacing:.22em;text-transform:uppercase;}
-h1,h2,h3,p{margin-top:0;}
-p{font-size:1.05rem;line-height:1.65;}
-
-.hero{
-    position:relative;
-    min-height:650px;
-    display:flex;
-    align-items:center;
-    overflow:hidden;
-    background:
-        linear-gradient(90deg,rgba(0,0,0,.80) 0%,rgba(0,0,0,.56) 43%,rgba(0,0,0,.22) 75%,rgba(0,0,0,.48) 100%),
-        linear-gradient(to bottom,rgba(0,0,0,.08),rgba(0,0,0,.68)),
-        url("high-seas.jpg") center 42% / cover no-repeat;
-}
-.hero::after{content:"";position:absolute;inset:auto 0 0;height:165px;background:linear-gradient(to top,rgba(8,5,3,.92),transparent);}
-.hero-content{position:relative;z-index:4;width:min(1180px,89vw);margin:0 auto;}
-.hero-copy{max-width:780px;}
-.hero .eyebrow{color:#d8ae68;}
-.hero h1{margin:0 0 16px;font-size:clamp(4rem,7vw,7rem);line-height:.90;text-shadow:0 7px 22px rgba(0,0,0,.78);}
-.hero h1 span{display:block;color:#e9c37d;font-size:.55em;line-height:1.05;margin-top:12px;}
-.hero p{max-width:720px;margin:0 0 20px;font-size:1.24rem;line-height:1.55;color:#f3dfbc;text-shadow:0 3px 8px rgba(0,0,0,.76);}
-.hero-date{display:inline-block;margin:0 0 24px;padding:9px 14px;border:1px solid rgba(216,174,104,.58);background:rgba(20,12,7,.64);color:#f3d8a7;font-size:1.1rem;font-weight:bold;letter-spacing:.05em;}
-.hero-actions{display:flex;gap:12px;flex-wrap:wrap;}
-
-.rope-divider{position:relative;z-index:60;width:100%;height:82px;margin:-18px 0 -10px;pointer-events:none;overflow:visible;}
-.rope-divider img{position:absolute;left:50%;top:50%;width:calc(100% + 46px);max-width:none;transform:translate(-50%,-50%);filter:drop-shadow(0 6px 5px rgba(0,0,0,.62));}
-
-.parchment-section{position:relative;padding:48px 0 64px;color:var(--ink);background:linear-gradient(rgba(10,7,5,.08),rgba(10,7,5,.08)),url("wood.png") center / cover;}
-.parchment-panel{position:relative;width:min(1400px,96vw);margin:0 auto;padding:64px 76px 70px;background:url("parchment.png") center / 100% 100% no-repeat;filter:drop-shadow(0 17px 26px rgba(0,0,0,.45));}
-.intro-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;}
-.intro-copy .eyebrow{color:#6a4625;}
-.intro-copy h2{margin:0 0 16px;font-size:clamp(2.8rem,5vw,4.8rem);line-height:.96;}
-.intro-copy p{color:#543622;}
-.intro-photo{padding:9px;background:#f2e2c0;box-shadow:0 12px 25px rgba(0,0,0,.28);transform:rotate(.8deg);}
-.intro-photo img{width:100%;height:420px;object-fit:cover;object-position:center 38%;}
-
-.schedule-section{position:relative;padding:72px 0;background:linear-gradient(rgba(9,6,4,.58),rgba(9,6,4,.74)),url("wood.png") center / cover;}
-.schedule-heading{text-align:center;max-width:830px;margin:0 auto 36px;}
-.schedule-heading .eyebrow{color:#d8ae68;}
-.schedule-heading h2{margin:0 0 12px;font-size:clamp(2.8rem,4.8vw,4.6rem);line-height:.98;}
-.schedule-heading p{color:#ead7b6;}
-.schedule-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-.day-card{position:relative;padding:30px 26px;background:rgba(20,12,8,.80);border:1px solid rgba(197,154,88,.38);box-shadow:0 12px 26px rgba(0,0,0,.36);}
-.day-card::before{content:"";position:absolute;left:18px;right:18px;top:10px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
-.day-card .day{color:#d8ae68;font-size:.76rem;font-weight:bold;letter-spacing:.2em;text-transform:uppercase;}
-.day-card h3{margin:8px 0 14px;font-size:2rem;}
-.day-card p{margin-bottom:10px;color:#ead7b6;font-size:.98rem;}
-.day-card strong{color:#fff2ce;}
-
-.white-sands-section{position:relative;padding:72px 0 80px;color:var(--ink);background:linear-gradient(rgba(232,202,149,.08),rgba(90,50,22,.08)),url("map.png") center / cover no-repeat;box-shadow:inset 0 14px 28px rgba(0,0,0,.15),inset 0 -14px 28px rgba(0,0,0,.15);}
-.white-sands-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:52px;align-items:center;}
-.white-sands-photo{padding:9px;background:#f2e2c0;box-shadow:0 12px 25px rgba(0,0,0,.30);transform:rotate(-.8deg);}
-.white-sands-photo img{width:100%;height:440px;object-fit:cover;object-position:center 32%;}
-.white-sands-copy .eyebrow{color:#6a4625;}
-.white-sands-copy h2{margin:0 0 16px;font-size:clamp(2.8rem,4.8vw,4.6rem);line-height:.98;}
-.white-sands-copy p{color:#4e321f;}
-.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px;}
-
-footer{padding:28px 20px;text-align:center;color:#aa9a88;background:linear-gradient(rgba(6,4,3,.83),rgba(6,4,3,.83)),url("wood.png") center / cover;border-top:1px solid #46311e;}
-
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
-.reveal.visible{opacity:1;transform:none;}
-
-@media(max-width:980px){
-    .site-header{position:relative;justify-content:center;text-align:center;}
-    .logo img{max-width:85vw;}
-    nav{width:100%;justify-content:center;}
-    .intro-grid,.white-sands-grid{grid-template-columns:1fr;}
-    .schedule-grid{grid-template-columns:1fr;}
-}
-
-@media(max-width:650px){
-    .site-header{position:sticky;top:0;min-height:78px;padding:8px 12px;gap:12px;flex-wrap:nowrap;}
-    .logo{display:flex;align-items:center;min-width:0;}
-    .logo img{width:250px;max-width:72vw;height:auto;object-fit:contain;}
-    .mobile-menu-toggle{display:flex;flex:0 0 48px;margin-left:auto;}
-    nav{position:absolute;top:100%;left:0;right:0;z-index:999;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:0;padding:0 14px;max-height:0;overflow:hidden;opacity:0;pointer-events:none;background:linear-gradient(rgba(8,5,3,.97),rgba(8,5,3,.99)),url("wood.png") center / cover;border-bottom:1px solid rgba(197,154,88,.45);box-shadow:0 12px 24px rgba(0,0,0,.55);transition:max-height .28s ease,opacity .2s ease,padding .28s ease;}
-    nav.mobile-open{max-height:430px;padding:10px 14px 16px;opacity:1;pointer-events:auto;}
-    nav a{width:100%;padding:13px 10px;font-size:1rem;text-align:center;border-bottom:1px solid rgba(255,255,255,.09);}
-    nav a:not(.support-link)::after{display:none;}
-    nav a:last-child{border-bottom:none;}
-    .support-link{margin-top:8px;padding:13px 12px;}
-    .hero{min-height:560px;background-position:center 35%;}
-    .hero h1{font-size:3.45rem;}
-    .hero p{font-size:1.05rem;}
-    .parchment-panel{width:98vw;padding:54px 28px 60px;}
-    .intro-photo img,.white-sands-photo img{height:320px;}
-    .rope-divider{height:58px;margin:-8px 0 -2px;}
-    .rope-divider img{width:calc(100% + 22px);}
-}
-
-@media(prefers-reduced-motion:reduce){
-    *{animation:none!important;transition:none!important;scroll-behavior:auto!important;}
-    .reveal{opacity:1;transform:none;}
-}
+:root{--red:#92251f;--red-hover:#ad332c;--cream:#fff1d0;--ink:#2f1b12;--gold:#c59a58;--wood:#110b08;}
+*{box-sizing:border-box;}html{scroll-behavior:smooth;}body{margin:0;overflow-x:hidden;font-family:Georgia,"Times New Roman",serif;color:var(--cream);background:#110b08 url("wood.png") center top/1500px auto repeat;}img{display:block;max-width:100%;}a{color:inherit;text-decoration:none;}
+.site-header{position:sticky;top:0;z-index:1000;min-height:92px;display:flex;align-items:center;justify-content:space-between;gap:28px;padding:8px 34px;background:linear-gradient(rgba(8,5,3,.72),rgba(8,5,3,.86)),url("wood.png") center/cover;border-bottom:1px solid rgba(197,154,88,.45);box-shadow:0 6px 22px rgba(0,0,0,.55)}
+.logo img{width:305px;max-width:42vw}.mobile-menu-toggle{display:none;width:48px;height:48px;padding:0;border:1px solid rgba(197,154,88,.48);background:rgba(18,11,7,.78);color:#fff;cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:5px}.mobile-menu-toggle span{display:block;width:24px;height:2px;background:#fff1d0;transition:.22s ease}.mobile-menu-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}.mobile-menu-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}.mobile-menu-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+nav{display:flex;align-items:center;justify-content:flex-end;gap:22px;flex-wrap:wrap}nav a{position:relative;color:#fff;font-size:.93rem;text-shadow:0 2px 4px #000}nav a:not(.support-link)::after{content:"";position:absolute;left:50%;right:50%;bottom:-7px;height:2px;background:var(--red);transition:.22s ease}nav a:not(.support-link):hover::after,nav a.active::after{left:0;right:0}.support-link{padding:11px 18px;background:var(--red);border:1px solid #bb4c44;box-shadow:0 4px 11px rgba(0,0,0,.35);font-weight:bold;white-space:nowrap}.support-link:hover{background:var(--red-hover)}
+.button{display:inline-block;padding:13px 24px;font-weight:bold;border:1px solid rgba(255,255,255,.34);transition:.2s ease}.button-red{background:var(--red);color:#fff}.button-red:hover{background:var(--red-hover);transform:translateY(-2px)}.button-dark{color:#fff;background:rgba(0,0,0,.62)}.button-dark:hover{background:#fff;color:#21150d;transform:translateY(-2px)}.button-outline{color:#3a2415;border:1px solid rgba(69,41,21,.55);background:rgba(255,244,215,.12)}.button-outline:hover{background:#2f1b12;color:#fff;transform:translateY(-2px)}
+.container{position:relative;z-index:5;width:min(1180px,89vw);margin:0 auto}.eyebrow{margin-bottom:9px;font-size:.76rem;font-weight:bold;letter-spacing:.22em;text-transform:uppercase}h1,h2,h3,p{margin-top:0}p{font-size:1.05rem;line-height:1.65}
+.hero{position:relative;min-height:650px;display:flex;align-items:center;overflow:hidden;background:linear-gradient(90deg,rgba(0,0,0,.80) 0%,rgba(0,0,0,.56) 43%,rgba(0,0,0,.22) 75%,rgba(0,0,0,.48) 100%),linear-gradient(to bottom,rgba(0,0,0,.08),rgba(0,0,0,.68)),url("high-seas.jpg") center 42%/cover no-repeat}.hero::after{content:"";position:absolute;inset:auto 0 0;height:165px;background:linear-gradient(to top,rgba(8,5,3,.92),transparent)}.hero-content{position:relative;z-index:4;width:min(1180px,89vw);margin:0 auto}.hero-copy{max-width:780px}.hero .eyebrow{color:#d8ae68}.hero h1{margin:0 0 16px;font-size:clamp(4rem,7vw,7rem);line-height:.90;text-shadow:0 7px 22px rgba(0,0,0,.78)}.hero h1 span{display:block;color:#e9c37d;font-size:.55em;line-height:1.05;margin-top:12px}.hero p{max-width:720px;margin:0 0 20px;font-size:1.24rem;line-height:1.55;color:#f3dfbc;text-shadow:0 3px 8px rgba(0,0,0,.76)}.hero-date{display:inline-block;margin:0 0 24px;padding:9px 14px;border:1px solid rgba(216,174,104,.58);background:rgba(20,12,7,.64);color:#f3d8a7;font-size:1.1rem;font-weight:bold;letter-spacing:.05em}.hero-actions,.cta-row{display:flex;gap:12px;flex-wrap:wrap}
+.rope-divider{position:relative;z-index:60;width:100%;height:82px;margin:-18px 0 -10px;pointer-events:none;overflow:visible}.rope-divider img{position:absolute;left:50%;top:50%;width:calc(100% + 46px);max-width:none;transform:translate(-50%,-50%);filter:drop-shadow(0 6px 5px rgba(0,0,0,.62))}
+.parchment-section{position:relative;padding:48px 0 64px;color:var(--ink);background:linear-gradient(rgba(10,7,5,.08),rgba(10,7,5,.08)),url("wood.png") center/cover}.parchment-panel{position:relative;width:min(1400px,96vw);margin:0 auto;padding:64px 76px 70px;background:url("parchment.png") center/100% 100% no-repeat;filter:drop-shadow(0 17px 26px rgba(0,0,0,.45))}.intro-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}.intro-copy .eyebrow{color:#6a4625}.intro-copy h2,.white-sands-copy h2,.contrib-heading h2{margin:0 0 16px;font-size:clamp(2.8rem,5vw,4.8rem);line-height:.96}.intro-copy p,.white-sands-copy p{color:#543622}.intro-photo,.white-sands-photo{padding:9px;background:#f2e2c0;box-shadow:0 12px 25px rgba(0,0,0,.28)}.intro-photo{transform:rotate(.8deg)}.white-sands-photo{transform:rotate(-.8deg)}.intro-photo img{width:100%;height:420px;object-fit:cover;object-position:center 38%}
+.contrib-section{position:relative;padding:72px 0 76px;background:linear-gradient(rgba(9,6,4,.62),rgba(9,6,4,.78)),url("wood.png") center/cover}.contrib-heading{text-align:center;max-width:860px;margin:0 auto 38px}.contrib-heading .eyebrow{color:#d8ae68}.contrib-heading p{color:#ead7b6}.contrib-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}.contrib-card{overflow:hidden;background:rgba(18,11,7,.86);border:1px solid rgba(197,154,88,.38);box-shadow:0 12px 26px rgba(0,0,0,.38)}.contrib-card img{width:100%;height:285px;object-fit:cover}.contrib-card.encampment img{object-position:center 22%}.contrib-copy{padding:24px 24px 28px}.contrib-copy h3{margin:0 0 10px;font-size:1.85rem;color:#f4dfb7}.contrib-copy p{margin:0;color:#e2cfad;font-size:.98rem}.contrib-note{max-width:860px;margin:30px auto 0;text-align:center;color:#ead7b6;font-style:italic}
+.schedule-section{position:relative;padding:72px 0;background:linear-gradient(rgba(9,6,4,.58),rgba(9,6,4,.74)),url("wood.png") center/cover}.schedule-heading{text-align:center;max-width:830px;margin:0 auto 36px}.schedule-heading .eyebrow{color:#d8ae68}.schedule-heading h2{margin:0 0 12px;font-size:clamp(2.8rem,4.8vw,4.6rem);line-height:.98}.schedule-heading p{color:#ead7b6}.schedule-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.day-card{position:relative;padding:30px 26px;background:rgba(20,12,8,.80);border:1px solid rgba(197,154,88,.38);box-shadow:0 12px 26px rgba(0,0,0,.36)}.day-card::before{content:"";position:absolute;left:18px;right:18px;top:10px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}.day-card .day{color:#d8ae68;font-size:.76rem;font-weight:bold;letter-spacing:.2em;text-transform:uppercase}.day-card h3{margin:8px 0 14px;font-size:2rem}.day-card p{margin-bottom:10px;color:#ead7b6;font-size:.98rem}.day-card strong{color:#fff2ce}
+.white-sands-section{position:relative;padding:72px 0 80px;color:var(--ink);background:linear-gradient(rgba(232,202,149,.08),rgba(90,50,22,.08)),url("map.png") center/cover no-repeat;box-shadow:inset 0 14px 28px rgba(0,0,0,.15),inset 0 -14px 28px rgba(0,0,0,.15)}.white-sands-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:52px;align-items:center}.white-sands-photo img{width:100%;height:440px;object-fit:cover;object-position:center 32%}.white-sands-copy .eyebrow{color:#6a4625}.cta-row{margin-top:22px}
+footer{padding:28px 20px;text-align:center;color:#aa9a88;background:linear-gradient(rgba(6,4,3,.83),rgba(6,4,3,.83)),url("wood.png") center/cover;border-top:1px solid #46311e}.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}
+@media(max-width:980px){.site-header{position:relative;justify-content:center;text-align:center}.logo img{max-width:85vw}nav{width:100%;justify-content:center}.intro-grid,.white-sands-grid{grid-template-columns:1fr}.schedule-grid{grid-template-columns:1fr}.contrib-grid{grid-template-columns:1fr}}
+@media(max-width:650px){.site-header{position:sticky;top:0;min-height:78px;padding:8px 12px;gap:12px;flex-wrap:nowrap}.logo{display:flex;align-items:center;min-width:0}.logo img{width:250px;max-width:72vw;height:auto;object-fit:contain}.mobile-menu-toggle{display:flex;flex:0 0 48px;margin-left:auto}nav{position:absolute;top:100%;left:0;right:0;z-index:999;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:0;padding:0 14px;max-height:0;overflow:hidden;opacity:0;pointer-events:none;background:linear-gradient(rgba(8,5,3,.97),rgba(8,5,3,.99)),url("wood.png") center/cover;border-bottom:1px solid rgba(197,154,88,.45);box-shadow:0 12px 24px rgba(0,0,0,.55);transition:max-height .28s ease,opacity .2s ease,padding .28s ease}nav.mobile-open{max-height:430px;padding:10px 14px 16px;opacity:1;pointer-events:auto}nav a{width:100%;padding:13px 10px;font-size:1rem;text-align:center;border-bottom:1px solid rgba(255,255,255,.09)}nav a:not(.support-link)::after{display:none}nav a:last-child{border-bottom:none}.support-link{margin-top:8px;padding:13px 12px}.hero{min-height:560px;background-position:center 35%}.hero h1{font-size:3.45rem}.hero p{font-size:1.05rem}.parchment-panel{width:98vw;padding:54px 28px 60px}.intro-photo img,.white-sands-photo img,.contrib-card img{height:320px}.rope-divider{height:58px;margin:-8px 0 -2px}.rope-divider img{width:calc(100% + 22px)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
 </style>
 </head>
 <body>
-
-<header class="site-header">
-    <a class="logo" href="index.html"><img src="logo.png" alt="Pirates of the White Sands"></a>
-    <button class="mobile-menu-toggle" type="button" aria-label="Open navigation menu" aria-controls="site-nav" aria-expanded="false"><span></span><span></span><span></span></button>
-    <nav id="site-nav">
-        <a href="index.html">Home</a>
-        <a href="get-involved.html">Get Involved</a>
-        <a href="meet-the-krewe.html">Meet the Crew</a>
-        <a href="calendar.html">Calendar</a>
-        <a class="active" href="high-seas.html">Pirates of the High Seas</a>
-        <a class="support-link" href="https://account.venmo.com/pay?recipients=potws5972" target="_blank" rel="noopener">☠ Support the Mayhem</a>
-    </nav>
-</header>
-
+<header class="site-header"><a class="logo" href="index.html"><img src="logo.png" alt="Pirates of the White Sands"></a><button class="mobile-menu-toggle" type="button" aria-label="Open navigation menu" aria-controls="site-nav" aria-expanded="false"><span></span><span></span><span></span></button><nav id="site-nav"><a href="index.html">Home</a><a href="get-involved.html">Get Involved</a><a href="meet-the-krewe.html">Meet the Crew</a><a href="calendar.html">Calendar</a><a class="active" href="high-seas.html">Pirates of the High Seas</a><a class="support-link" href="https://account.venmo.com/pay?recipients=potws5972" target="_blank" rel="noopener">☠ Support the Mayhem</a></nav></header>
 <main>
-<section class="hero">
-    <div class="hero-content">
-        <div class="hero-copy reveal">
-            <div class="eyebrow">Panama City Beach • Free Family Festival</div>
-            <h1>Pirates of the High Seas <span>& Renaissance Fest</span></h1>
-            <div class="hero-date" id="festival-dates">October 9–11, 2026</div>
-            <p>Calling all mateys, fair maidens, and swashbucklers of every age. Three days of pirate mayhem return to Panama City Beach with parades, fireworks, mermaids, fire performances, treasure, and Renaissance revelry.</p>
-            <div class="hero-actions">
-                <a class="button button-red" href="https://www.visitpanamacitybeach.com/pirates-of-the-high-seas-fest/" target="_blank" rel="noopener">Official Festival Schedule →</a>
-                <a class="button button-dark" href="calendar.html">View Our Calendar</a>
-            </div>
-        </div>
-    </div>
-</section>
-
+<section class="hero"><div class="hero-content"><div class="hero-copy reveal"><div class="eyebrow">Panama City Beach • Free Family Festival</div><h1>Pirates of the High Seas <span>& Renaissance Fest</span></h1><div class="hero-date" id="festival-dates">October 9–11, 2026</div><p>Calling all mateys, fair maidens, and swashbucklers of every age. Three days of pirate mayhem return to Panama City Beach with parades, fireworks, mermaids, fire performances, treasure, and Renaissance revelry.</p><div class="hero-actions"><a class="button button-red" href="https://www.visitpanamacitybeach.com/pirates-of-the-high-seas-fest/" target="_blank" rel="noopener">Official Festival Schedule →</a><a class="button button-dark" href="calendar.html">View Our Calendar</a></div></div></div></section>
 <div class="rope-divider"><img src="long%20rope%20divider%20tied.png" alt=""></div>
-
-<section class="parchment-section">
-    <div class="parchment-panel">
-        <div class="intro-grid">
-            <div class="intro-copy reveal">
-                <div class="eyebrow">Three Days of Pirate Mayhem</div>
-                <h2>Where the Gulf Goes Pirate.</h2>
-                <p>Pirates of the High Seas & Renaissance Fest is one of Panama City Beach’s signature fall events, filling the Pier Park and Aaron Bessant Park area with live entertainment, pirate crews, family activities, demonstrations, and a full Renaissance marketplace.</p>
-                <p>This year’s free celebration includes fireworks, live mermaid shows, a fire circus, parades, a treasure drop, sword and whip demonstrations, a Pirates Pub, and plenty of chances to cross paths with the Pirates of the White Sands.</p>
-                <p><strong>Festival dates:</strong> <span id="festival-dates-inline">October 9–11, 2026</span></p>
-            </div>
-            <div class="intro-photo reveal"><img src="high-seas.jpg" alt="Pirates of the High Seas festival"></div>
-        </div>
-    </div>
-</section>
-
-<section class="schedule-section">
-    <div class="container">
-        <div class="schedule-heading reveal">
-            <div class="eyebrow">Weekend at a Glance</div>
-            <h2>From Breakfast to Fireworks.</h2>
-            <p>The official festival schedule has the exact times and stage lineup. Here is the big-picture rhythm of the weekend.</p>
-        </div>
-        <div class="schedule-grid">
-            <article class="day-card reveal">
-                <div class="day" id="festival-friday">Friday • October 9</div>
-                <h3>Raise the Colors</h3>
-                <p><strong>Breakfast with Pirates</strong> kicks off the day before the festival village opens for the evening.</p>
-                <p>Expect the Kid’s Parade, opening festivities, entertainment, and an evening Pirate Crawl.</p>
-            </article>
-            <article class="day-card reveal">
-                <div class="day" id="festival-saturday">Saturday • October 10</div>
-                <h3>Full Pirate Invasion</h3>
-                <p>Saturday brings a full day of performances, demonstrations, family activities, and pirate encounters.</p>
-                <p>The <strong>Krewe of Dominique Youx Main Parade</strong> rolls through before fireworks light up Panama City Beach.</p>
-            </article>
-            <article class="day-card reveal">
-                <div class="day" id="festival-sunday">Sunday • October 11</div>
-                <h3>One More Day of Mayhem</h3>
-                <p>Start with another <strong>Breakfast with Pirates</strong>, then head back into the festival for the final day.</p>
-                <p>It is the last chance to catch the crews, marketplace, entertainment, and Renaissance festivities before the fleet sails out.</p>
-            </article>
-        </div>
-    </div>
-</section>
-
-<section class="white-sands-section">
-    <div class="container white-sands-grid">
-        <div class="white-sands-photo reveal"><img src="crew.jpg" alt="Pirates of the White Sands crew"></div>
-        <div class="white-sands-copy reveal">
-            <div class="eyebrow">Find Our Krewe</div>
-            <h2>Pirates of the White Sands Will Be There.</h2>
-            <p>Panama City Beach’s own Pirates of the White Sands return each year to help bring the festival to life through pirate interactions, photo opportunities, games, music, and good old-fashioned organized mayhem.</p>
-            <p>If you have been wanting to meet the crew in person, this is one of the best weekends of the year to do it.</p>
-            <div class="cta-row">
-                <a class="button button-red" href="meet-the-krewe.html">Meet the Crew →</a>
-                <a class="button button-outline" href="get-involved.html">Get Involved</a>
-                <a class="button button-outline" href="https://www.visitpanamacitybeach.com/pirates-of-the-high-seas-fest/" target="_blank" rel="noopener">Full Official Schedule</a>
-            </div>
-        </div>
-    </div>
-</section>
+<section class="parchment-section"><div class="parchment-panel"><div class="intro-grid"><div class="intro-copy reveal"><div class="eyebrow">Three Days of Pirate Mayhem</div><h2>Where the Gulf Goes Pirate.</h2><p>Pirates of the High Seas & Renaissance Fest is one of Panama City Beach’s signature fall events, filling the Pier Park and Aaron Bessant Park area with live entertainment, pirate crews, family activities, demonstrations, and a full Renaissance marketplace.</p><p>This free celebration includes fireworks, live mermaid shows, a fire circus, parades, a treasure drop, sword and whip demonstrations, a Pirates Pub, and plenty of chances to cross paths with the Pirates of the White Sands.</p><p><strong>Festival dates:</strong> <span id="festival-dates-inline">October 9–11, 2026</span></p></div><div class="intro-photo reveal"><img src="high-seas.jpg" alt="Pirates of the High Seas festival"></div></div></div></section>
+<section class="contrib-section"><div class="container"><div class="contrib-heading reveal"><div class="eyebrow">What the Pirates of the White Sands Bring</div><h2>Living History, Steel, Stories, and a Whole Lot of Mayhem.</h2><p>High Seas is more than a place where our crew shows up in costume. We build an experience around the history, skills, camp life, and spectacle of the pirate age.</p></div><div class="contrib-grid">
+<article class="contrib-card encampment reveal"><img src="encampment.jpg" alt="Pirates of the White Sands historical encampment"><div class="contrib-copy"><h3>Historical Encampment</h3><p>Step into our period-inspired pirate camp with equipment, displays, tools, weapons, camp life, and hands-on details that turn history into something visitors can actually walk through and explore.</p></div></article>
+<article class="contrib-card reveal"><img src="sword-fighting.jpg" alt="Pirates of the White Sands sword fighting demonstration"><div class="contrib-copy"><h3>Sword Fighting</h3><p>Our crew brings live steel, choreographed fighting, demonstrations, and historical interpretation together so guests can see the skill, danger, and spectacle behind close-quarters combat.</p></div></article>
+<article class="contrib-card reveal"><img src="crew.jpg" alt="Pirates of the White Sands living history demonstrations"><div class="contrib-copy"><h3>Living History & Education</h3><p>We talk with guests about pirate life, weapons, equipment, history, and the realities behind the legends. The goal is to entertain people without losing the history underneath the fun.</p></div></article>
+<article class="contrib-card reveal"><img src="float.jpg" alt="Pirates of the White Sands ship float"><div class="contrib-copy"><h3>Ship Float & Pirate Entertainment</h3><p>Our ship float, characters, music, crowd interaction, photo opportunities, and organized chaos help carry the White Sands presence beyond the encampment and into the wider festival.</p></div></article>
+</div><p class="contrib-note reveal">This is the part of High Seas that is ours: the encampment, the demonstrations, the history, the steel, the ship, and the crew bringing it all to life.</p></div></section>
+<section class="schedule-section"><div class="container"><div class="schedule-heading reveal"><div class="eyebrow">Weekend at a Glance</div><h2>From Breakfast to Fireworks.</h2><p>The official festival schedule has the exact times and stage lineup. Here is the big-picture rhythm of the weekend.</p></div><div class="schedule-grid"><article class="day-card reveal"><div class="day" id="festival-friday">Friday • October 9</div><h3>Raise the Colors</h3><p><strong>Breakfast with Pirates</strong> kicks off the day before the festival village opens for the evening.</p><p>Expect the Kid’s Parade, opening festivities, entertainment, and an evening Pirate Crawl.</p></article><article class="day-card reveal"><div class="day" id="festival-saturday">Saturday • October 10</div><h3>Full Pirate Invasion</h3><p>Saturday brings a full day of performances, demonstrations, family activities, and pirate encounters.</p><p>The <strong>Krewe of Dominique Youx Main Parade</strong> rolls through before fireworks light up Panama City Beach.</p></article><article class="day-card reveal"><div class="day" id="festival-sunday">Sunday • October 11</div><h3>One More Day of Mayhem</h3><p>Start with another <strong>Breakfast with Pirates</strong>, then head back into the festival for the final day.</p><p>It is the last chance to catch the crews, marketplace, entertainment, and Renaissance festivities before the fleet sails out.</p></article></div></div></section>
+<section class="white-sands-section"><div class="container white-sands-grid"><div class="white-sands-photo reveal"><img src="crew.jpg" alt="Pirates of the White Sands crew"></div><div class="white-sands-copy reveal"><div class="eyebrow">Find Our Krewe</div><h2>Pirates of the White Sands Will Be There.</h2><p>Panama City Beach’s own Pirates of the White Sands return each year to help bring the festival to life through pirate interactions, photo opportunities, games, music, demonstrations, and good old-fashioned organized mayhem.</p><p>If you have been wanting to meet the crew in person, this is one of the best weekends of the year to do it.</p><div class="cta-row"><a class="button button-red" href="meet-the-krewe.html">Meet the Crew →</a><a class="button button-outline" href="get-involved.html">Get Involved</a><a class="button button-outline" href="https://www.visitpanamacitybeach.com/pirates-of-the-high-seas-fest/" target="_blank" rel="noopener">Full Official Schedule</a></div></div></div></section>
 </main>
-
 <footer>Copyright © <span id="copyright-year">2026</span> Pirates of the White Sands — All Rights Reserved.</footer>
-
 <script>
-const revealItems=document.querySelectorAll('.reveal');
-const revealObserver=new IntersectionObserver((entries)=>{entries.forEach((entry)=>{if(entry.isIntersecting){entry.target.classList.add('visible');revealObserver.unobserve(entry.target);}});},{threshold:.14});
-revealItems.forEach((item)=>revealObserver.observe(item));
-
-const mobileMenuToggle=document.querySelector('.mobile-menu-toggle');
-const siteNav=document.getElementById('site-nav');
-if(mobileMenuToggle&&siteNav){
-    mobileMenuToggle.addEventListener('click',()=>{
-        const isOpen=siteNav.classList.toggle('mobile-open');
-        mobileMenuToggle.setAttribute('aria-expanded',String(isOpen));
-        mobileMenuToggle.setAttribute('aria-label',isOpen?'Close navigation menu':'Open navigation menu');
-    });
-    siteNav.querySelectorAll('a').forEach((link)=>link.addEventListener('click',()=>{
-        siteNav.classList.remove('mobile-open');
-        mobileMenuToggle.setAttribute('aria-expanded','false');
-        mobileMenuToggle.setAttribute('aria-label','Open navigation menu');
-    }));
-    document.addEventListener('keydown',(event)=>{
-        if(event.key==='Escape'){
-            siteNav.classList.remove('mobile-open');
-            mobileMenuToggle.setAttribute('aria-expanded','false');
-            mobileMenuToggle.setAttribute('aria-label','Open navigation menu');
-        }
-    });
-}
-
-function getFestivalWeekend(year){
-    const octoberFirst = new Date(year, 9, 1);
-    const firstMondayOffset = (8 - octoberFirst.getDay()) % 7;
-    const columbusDay = new Date(year, 9, 1 + firstMondayOffset + 7);
-
-    const friday = new Date(columbusDay);
-    friday.setDate(columbusDay.getDate() - 3);
-
-    const saturday = new Date(columbusDay);
-    saturday.setDate(columbusDay.getDate() - 2);
-
-    const sunday = new Date(columbusDay);
-    sunday.setDate(columbusDay.getDate() - 1);
-
-    return { friday, saturday, sunday };
-}
-
-function getFestivalDisplayYear(now = new Date()){
-    const currentYear = now.getFullYear();
-    const currentFestival = getFestivalWeekend(currentYear);
-
-    const rollover = new Date(currentFestival.sunday);
-    rollover.setDate(rollover.getDate() + 30);
-    rollover.setHours(23, 59, 59, 999);
-
-    return now > rollover ? currentYear + 1 : currentYear;
-}
-
-function formatFestivalDates(year){
-    const { friday, sunday } = getFestivalWeekend(year);
-    const monthName = friday.toLocaleString('en-US', { month:'long' });
-    return `${monthName} ${friday.getDate()}–${sunday.getDate()}, ${year}`;
-}
-
-function formatFestivalDay(date){
-    const weekday = date.toLocaleString('en-US', { weekday:'long' });
-    const month = date.toLocaleString('en-US', { month:'long' });
-    return `${weekday} • ${month} ${date.getDate()}`;
-}
-
-const festivalYear = getFestivalDisplayYear();
-const festivalWeekend = getFestivalWeekend(festivalYear);
-const festivalDateText = formatFestivalDates(festivalYear);
-
-const festivalDates = document.getElementById('festival-dates');
-const festivalDatesInline = document.getElementById('festival-dates-inline');
-const festivalFriday = document.getElementById('festival-friday');
-const festivalSaturday = document.getElementById('festival-saturday');
-const festivalSunday = document.getElementById('festival-sunday');
-const copyrightYear = document.getElementById('copyright-year');
-
-if(festivalDates) festivalDates.textContent = festivalDateText;
-if(festivalDatesInline) festivalDatesInline.textContent = festivalDateText;
-if(festivalFriday) festivalFriday.textContent = formatFestivalDay(festivalWeekend.friday);
-if(festivalSaturday) festivalSaturday.textContent = formatFestivalDay(festivalWeekend.saturday);
-if(festivalSunday) festivalSunday.textContent = formatFestivalDay(festivalWeekend.sunday);
-if(copyrightYear) copyrightYear.textContent = new Date().getFullYear();
+const revealItems=document.querySelectorAll('.reveal');const revealObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');revealObserver.unobserve(entry.target)}})},{threshold:.14});revealItems.forEach(item=>revealObserver.observe(item));
+const mobileMenuToggle=document.querySelector('.mobile-menu-toggle');const siteNav=document.getElementById('site-nav');if(mobileMenuToggle&&siteNav){mobileMenuToggle.addEventListener('click',()=>{const isOpen=siteNav.classList.toggle('mobile-open');mobileMenuToggle.setAttribute('aria-expanded',String(isOpen));mobileMenuToggle.setAttribute('aria-label',isOpen?'Close navigation menu':'Open navigation menu')});siteNav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{siteNav.classList.remove('mobile-open');mobileMenuToggle.setAttribute('aria-expanded','false');mobileMenuToggle.setAttribute('aria-label','Open navigation menu')}));document.addEventListener('keydown',event=>{if(event.key==='Escape'){siteNav.classList.remove('mobile-open');mobileMenuToggle.setAttribute('aria-expanded','false');mobileMenuToggle.setAttribute('aria-label','Open navigation menu')}})}
+function getFestivalWeekend(year){const octoberFirst=new Date(year,9,1);const firstMondayOffset=(8-octoberFirst.getDay())%7;const columbusDay=new Date(year,9,1+firstMondayOffset+7);const friday=new Date(columbusDay);friday.setDate(columbusDay.getDate()-3);const saturday=new Date(columbusDay);saturday.setDate(columbusDay.getDate()-2);const sunday=new Date(columbusDay);sunday.setDate(columbusDay.getDate()-1);return{friday,saturday,sunday}}
+function getFestivalDisplayYear(now=new Date()){const currentYear=now.getFullYear();const currentFestival=getFestivalWeekend(currentYear);const rollover=new Date(currentFestival.sunday);rollover.setDate(rollover.getDate()+30);rollover.setHours(23,59,59,999);return now>rollover?currentYear+1:currentYear}
+function formatFestivalDates(year){const{friday,sunday}=getFestivalWeekend(year);const monthName=friday.toLocaleString('en-US',{month:'long'});return`${monthName} ${friday.getDate()}–${sunday.getDate()}, ${year}`}
+function formatDay(date,label){return`${label} • ${date.toLocaleString('en-US',{month:'long'})} ${date.getDate()}`}
+const festivalYear=getFestivalDisplayYear();const weekend=getFestivalWeekend(festivalYear);document.getElementById('festival-dates').textContent=formatFestivalDates(festivalYear);document.getElementById('festival-dates-inline').textContent=formatFestivalDates(festivalYear);document.getElementById('festival-friday').textContent=formatDay(weekend.friday,'Friday');document.getElementById('festival-saturday').textContent=formatDay(weekend.saturday,'Saturday');document.getElementById('festival-sunday').textContent=formatDay(weekend.sunday,'Sunday');document.getElementById('copyright-year').textContent=new Date().getFullYear();
 </script>
 </body>
 </html>
