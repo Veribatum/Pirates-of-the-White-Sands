@@ -1,0 +1,28 @@
+@media (max-width:760px){
+  .calendar-hero{padding:26px 0 28px;min-height:0;background:linear-gradient(rgba(8,5,3,.22),rgba(8,5,3,.48)),url("wood.png") center/cover;}
+  .calendar-title-board{width:92vw;min-height:300px;margin:0 auto;padding:58px 36px 64px;color:#2f1b12;background-color:#e4c183;background-image:url("parchment%202.png");background-position:center;background-size:100% 100%;background-repeat:no-repeat;filter:drop-shadow(0 12px 18px rgba(0,0,0,.45));display:flex;flex-direction:column;justify-content:center;align-items:center;}
+  .calendar-title-board .eyebrow{max-width:90%;font-size:.72rem;line-height:1.35;letter-spacing:.16em;}
+  .calendar-title-board h1{font-size:clamp(2.8rem,13vw,4.25rem);line-height:.92;margin:10px 0 12px;}
+  .calendar-title-board p{max-width:88%;font-size:1rem;line-height:1.45;}
+  .board-wrap{padding:26px 0 64px;}
+  .notice-board{width:94vw;padding:28px 12px 34px;border-width:8px;overflow:visible;}
+  .board-heading{padding:0 10px;margin-bottom:24px;}
+  .board-heading h2{font-size:clamp(2.25rem,10vw,3.25rem);line-height:1;}
+  .board-heading p{font-size:1rem;line-height:1.45;}
+  .event-grid{grid-template-columns:1fr;gap:28px;}
+  .event-card{width:100%;min-height:0;padding:54px 32px 44px;background-size:100% 100%;transform:none!important;overflow:visible;}
+  .event-card:hover{transform:none!important;}
+  .event-card::after{display:block;right:-6px;top:-22px;width:180px;height:92px;transform:rotate(-8deg);background-size:contain;background-position:center;z-index:5;}
+  .date-badge{width:86px;margin:0 auto 24px;padding:8px 4px;position:relative;z-index:2;}
+  .event-card h3,.event-meta,.event-description,.event-link{position:relative;z-index:2;}
+  .event-card h3{font-size:1.62rem;line-height:1.08;margin-left:4px;margin-right:4px;}
+  .event-meta{font-size:.92rem;margin-left:4px;margin-right:4px;}
+  .event-description{font-size:.92rem;line-height:1.48;margin-left:4px;margin-right:4px;-webkit-line-clamp:7;}
+}
+
+@media (max-width:420px){
+  .calendar-title-board{width:94vw;min-height:285px;padding:54px 28px 58px;}
+  .notice-board{width:96vw;padding-left:10px;padding-right:10px;}
+  .event-card{padding-left:30px;padding-right:30px;}
+  .event-card::after{width:168px;height:86px;right:-4px;top:-20px;}
+}
