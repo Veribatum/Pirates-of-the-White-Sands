@@ -64,599 +64,91 @@ a{color:inherit;text-decoration:none;}
     gap:5px;
     box-shadow:0 4px 10px rgba(0,0,0,.30);
 }
-
-.mobile-menu-toggle span{
-    display:block;
-    width:24px;
-    height:2px;
-    background:#fff1d0;
-    transition:transform .22s ease,opacity .22s ease;
-}
-
-.mobile-menu-toggle[aria-expanded="true"] span:nth-child(1){
-    transform:translateY(7px) rotate(45deg);
-}
-
-.mobile-menu-toggle[aria-expanded="true"] span:nth-child(2){
-    opacity:0;
-}
-
-.mobile-menu-toggle[aria-expanded="true"] span:nth-child(3){
-    transform:translateY(-7px) rotate(-45deg);
-}
-
-nav{
-    display:flex;
-    align-items:center;
-    justify-content:flex-end;
-    gap:22px;
-    flex-wrap:wrap;
-}
-nav a{
-    position:relative;
-    color:#fff;
-    font-size:.93rem;
-    text-shadow:0 2px 4px #000;
-}
-nav a:not(.support-link)::after{
-    content:"";
-    position:absolute;
-    left:50%;
-    right:50%;
-    bottom:-7px;
-    height:2px;
-    background:var(--red);
-    transition:.22s ease;
-}
+.mobile-menu-toggle span{display:block;width:24px;height:2px;background:#fff1d0;transition:transform .22s ease,opacity .22s ease;}
+.mobile-menu-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.mobile-menu-toggle[aria-expanded="true"] span:nth-child(2){opacity:0;}
+.mobile-menu-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+nav{display:flex;align-items:center;justify-content:flex-end;gap:22px;flex-wrap:wrap;}
+nav a{position:relative;color:#fff;font-size:.93rem;text-shadow:0 2px 4px #000;}
+nav a:not(.support-link)::after{content:"";position:absolute;left:50%;right:50%;bottom:-7px;height:2px;background:var(--red);transition:.22s ease;}
 nav a:not(.support-link):hover::after{left:0;right:0;}
 nav a.active::after{left:0;right:0;}
-.support-link{
-    padding:11px 18px;
-    background:var(--red);
-    border:1px solid #bb4c44;
-    box-shadow:0 4px 11px rgba(0,0,0,.35);
-    font-weight:bold;
-    white-space:nowrap;
-    transition:.2s ease;
-}
+.support-link{padding:11px 18px;background:var(--red);border:1px solid #bb4c44;box-shadow:0 4px 11px rgba(0,0,0,.35);font-weight:bold;white-space:nowrap;transition:.2s ease;}
 .support-link:hover{background:var(--red-hover);transform:translateY(-2px);}
-
-.button{
-    display:inline-block;
-    padding:13px 24px;
-    font-weight:bold;
-    border:1px solid rgba(255,255,255,.34);
-    transition:transform .2s ease,background .2s ease,color .2s ease;
-}
+.button{display:inline-block;padding:13px 24px;font-weight:bold;border:1px solid rgba(255,255,255,.34);transition:transform .2s ease,background .2s ease,color .2s ease;}
 .button-red{background:var(--red);color:#fff;}
 .button-red:hover{background:var(--red-hover);transform:translateY(-2px);}
 .button-dark{color:#fff;background:rgba(0,0,0,.58);}
 .button-dark:hover{background:#fff;color:#21150d;transform:translateY(-2px);}
-.button-outline{
-    color:#3a2415;
-    border:1px solid rgba(69,41,21,.55);
-    background:rgba(255,244,215,.12);
-}
+.button-outline{color:#3a2415;border:1px solid rgba(69,41,21,.55);background:rgba(255,244,215,.12);}
 .button-outline:hover{background:#2f1b12;color:#fff;transform:translateY(-2px);}
-
-.container{
-    position:relative;
-    z-index:5;
-    width:min(1180px,89vw);
-    margin:0 auto;
-}
-.eyebrow{
-    margin-bottom:9px;
-    font-size:.76rem;
-    font-weight:bold;
-    letter-spacing:.22em;
-    text-transform:uppercase;
-}
+.container{position:relative;z-index:5;width:min(1180px,89vw);margin:0 auto;}
+.eyebrow{margin-bottom:9px;font-size:.76rem;font-weight:bold;letter-spacing:.22em;text-transform:uppercase;}
 h1,h2,h3,p{margin-top:0;}
 p{font-size:1.05rem;line-height:1.65;}
-
-.gi-hero{
-    position:relative;
-    min-height:620px;
-    display:flex;
-    align-items:center;
-    overflow:hidden;
-    background:
-        linear-gradient(90deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.48) 42%,rgba(0,0,0,.20) 70%,rgba(0,0,0,.38) 100%),
-        linear-gradient(to bottom,rgba(0,0,0,.05),rgba(0,0,0,.65)),
-        url("Join%20the%20Krew.jpg") center 36% / cover no-repeat;
-}
-.gi-hero::after{
-    content:"";
-    position:absolute;
-    inset:auto 0 0;
-    height:155px;
-    background:linear-gradient(to top,rgba(8,5,3,.85),transparent);
-}
-.gi-hero-content{
-    position:relative;
-    z-index:4;
-    width:min(1180px,89vw);
-    margin:0 auto;
-}
+.gi-hero{position:relative;min-height:620px;display:flex;align-items:center;overflow:hidden;background:linear-gradient(90deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.48) 42%,rgba(0,0,0,.20) 70%,rgba(0,0,0,.38) 100%),linear-gradient(to bottom,rgba(0,0,0,.05),rgba(0,0,0,.65)),url("Join%20the%20Krew.jpg") center 36% / cover no-repeat;}
+.gi-hero::after{content:"";position:absolute;inset:auto 0 0;height:155px;background:linear-gradient(to top,rgba(8,5,3,.85),transparent);}
+.gi-hero-content{position:relative;z-index:4;width:min(1180px,89vw);margin:0 auto;}
 .gi-hero-copy{max-width:760px;}
 .gi-hero .eyebrow{color:#d8ae68;}
-.gi-hero h1{
-    margin:0 0 16px;
-    font-size:clamp(4rem,7vw,7rem);
-    line-height:.92;
-    text-shadow:0 7px 22px rgba(0,0,0,.75);
-}
-.gi-hero p{
-    max-width:680px;
-    margin:0 0 24px;
-    font-size:1.24rem;
-    line-height:1.55;
-    color:#f3dfbc;
-    text-shadow:0 3px 8px rgba(0,0,0,.76);
-}
-
-.rope-divider{
-    position:relative;
-    z-index:60;
-    width:100%;
-    height:82px;
-    margin:-18px 0 -10px;
-    pointer-events:none;
-    overflow:visible;
-}
-.rope-divider img{
-    position:absolute;
-    left:50%;
-    top:50%;
-    width:calc(100% + 46px);
-    max-width:none;
-    transform:translate(-50%,-50%);
-    filter:drop-shadow(0 6px 5px rgba(0,0,0,.62));
-}
-
-.choice-section{
-    position:relative;
-    padding:52px 0 60px;
-    color:var(--ink);
-    background:
-        linear-gradient(rgba(10,7,5,.08),rgba(10,7,5,.08)),
-        url("wood.png") center / cover;
-}
-.choice-panel{
-    position:relative;
-    width:min(1400px,96vw);
-    margin:0 auto;
-    padding:62px 70px 68px;
-    background:url("parchment.png") center / 100% 100% no-repeat;
-    filter:drop-shadow(0 17px 26px rgba(0,0,0,.45));
-}
-.choice-heading{
-    max-width:850px;
-    margin:0 auto 34px;
-    text-align:center;
-}
+.gi-hero h1{margin:0 0 16px;font-size:clamp(4rem,7vw,7rem);line-height:.92;text-shadow:0 7px 22px rgba(0,0,0,.75);}
+.gi-hero p{max-width:680px;margin:0 0 24px;font-size:1.24rem;line-height:1.55;color:#f3dfbc;text-shadow:0 3px 8px rgba(0,0,0,.76);}
+.rope-divider{position:relative;z-index:60;width:100%;height:82px;margin:-18px 0 -10px;pointer-events:none;overflow:visible;}
+.rope-divider img{position:absolute;left:50%;top:50%;width:calc(100% + 46px);max-width:none;transform:translate(-50%,-50%);filter:drop-shadow(0 6px 5px rgba(0,0,0,.62));}
+.choice-section{position:relative;padding:52px 0 60px;color:var(--ink);background:linear-gradient(rgba(10,7,5,.08),rgba(10,7,5,.08)),url("wood.png") center / cover;}
+.choice-panel{position:relative;width:min(1400px,96vw);margin:0 auto;padding:62px 70px 68px;background:url("parchment.png") center / 100% 100% no-repeat;filter:drop-shadow(0 17px 26px rgba(0,0,0,.45));}
+.choice-heading{max-width:850px;margin:0 auto 34px;text-align:center;}
 .choice-heading .eyebrow{color:#6a4625;}
-.choice-heading h2{
-    margin:0 0 12px;
-    font-size:clamp(2.8rem,5vw,4.7rem);
-    line-height:.98;
-}
+.choice-heading h2{margin:0 0 12px;font-size:clamp(2.8rem,5vw,4.7rem);line-height:.98;}
 .choice-heading p{color:#5a3a26;margin:0;}
-.choice-grid{
-    display:grid;
-    grid-template-columns:repeat(6,1fr);
-    gap:18px;
-}
-.choice-item{
-    position:relative;
-    grid-column:span 2;
-    padding:28px 22px 26px;
-    text-align:center;
-    background:
-        linear-gradient(rgba(255,246,220,.22),rgba(112,67,32,.05));
-    border:1px solid rgba(92,57,31,.22);
-    box-shadow:
-        0 7px 15px rgba(79,45,20,.10),
-        inset 0 0 0 1px rgba(255,255,255,.16);
-    transition:transform .22s ease,box-shadow .22s ease;
-}
-.choice-item:nth-child(4),
-.choice-item:nth-child(5){
-    grid-column:span 3;
-}
-.choice-item:hover{
-    transform:translateY(-4px);
-    box-shadow:
-        0 12px 22px rgba(79,45,20,.17),
-        inset 0 0 0 1px rgba(255,255,255,.18);
-}
-.choice-icon{
-    width:56px;
-    height:56px;
-    margin:0 auto 13px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:50%;
-    color:#f1d9a9;
-    background:#452919;
-    border:2px solid rgba(197,154,88,.58);
-    box-shadow:0 5px 9px rgba(0,0,0,.16);
-    font-size:1.8rem;
-    line-height:1;
-}
-.choice-item h3{
-    margin:0 0 8px;
-    font-size:1.42rem;
-}
-.choice-item p{
-    min-height:78px;
-    margin:0 0 18px;
-    color:#543622;
-    font-size:.94rem;
-    line-height:1.5;
-}
-
-.story-section{
-    position:relative;
-    padding:72px 0;
-    overflow:hidden;
-    background:
-        linear-gradient(rgba(9,6,4,.58),rgba(9,6,4,.72)),
-        url("wood.png") center / cover;
-}
-.story-grid{
-    display:grid;
-    grid-template-columns:1.08fr .92fr;
-    gap:58px;
-    align-items:center;
-}
-.story-grid.reverse{
-    grid-template-columns:.92fr 1.08fr;
-}
-.story-grid.reverse .story-photo{order:2;}
-.story-grid.reverse .story-copy{order:1;}
-.story-photo{
-    position:relative;
-}
-.story-photo img{
-    width:100%;
-    height:460px;
-    object-fit:cover;
-    object-position:center 30%;
-    border:8px solid #2a190f;
-    box-shadow:
-        0 18px 34px rgba(0,0,0,.46),
-        inset 0 0 0 1px rgba(199,154,88,.25);
-}
-.story-photo::after{
-    content:"";
-    position:absolute;
-    inset:16px -16px -16px 16px;
-    z-index:-1;
-    border:1px solid rgba(196,154,88,.24);
-}
+.choice-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:18px;}
+.choice-item{position:relative;grid-column:span 2;padding:28px 22px 26px;text-align:center;background:linear-gradient(rgba(255,246,220,.22),rgba(112,67,32,.05));border:1px solid rgba(92,57,31,.22);box-shadow:0 7px 15px rgba(79,45,20,.10),inset 0 0 0 1px rgba(255,255,255,.16);transition:transform .22s ease,box-shadow .22s ease;}
+.choice-item:nth-child(4),.choice-item:nth-child(5){grid-column:span 3;}
+.choice-item:hover{transform:translateY(-4px);box-shadow:0 12px 22px rgba(79,45,20,.17),inset 0 0 0 1px rgba(255,255,255,.18);}
+.choice-icon{width:56px;height:56px;margin:0 auto 13px;display:flex;align-items:center;justify-content:center;border-radius:50%;color:#f1d9a9;background:#452919;border:2px solid rgba(197,154,88,.58);box-shadow:0 5px 9px rgba(0,0,0,.16);font-size:1.8rem;line-height:1;}
+.choice-item h3{margin:0 0 8px;font-size:1.42rem;}
+.choice-item p{min-height:78px;margin:0 0 18px;color:#543622;font-size:.94rem;line-height:1.5;}
+.story-section{position:relative;padding:72px 0;overflow:hidden;background:linear-gradient(rgba(9,6,4,.58),rgba(9,6,4,.72)),url("wood.png") center / cover;}
+.story-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:58px;align-items:center;}
+.story-grid.reverse{grid-template-columns:.92fr 1.08fr;}
+.story-grid.reverse .story-photo{order:2;}.story-grid.reverse .story-copy{order:1;}
+.story-photo{position:relative;}
+.story-photo img{width:100%;height:460px;object-fit:cover;object-position:center 30%;border:8px solid #2a190f;box-shadow:0 18px 34px rgba(0,0,0,.46),inset 0 0 0 1px rgba(199,154,88,.25);}
+.story-photo::after{content:"";position:absolute;inset:16px -16px -16px 16px;z-index:-1;border:1px solid rgba(196,154,88,.24);}
 .story-copy .eyebrow{color:#d8ae68;}
-.story-copy h2{
-    margin:0 0 18px;
-    font-size:clamp(2.8rem,4.6vw,4.5rem);
-    line-height:.98;
-}
+.story-copy h2{margin:0 0 18px;font-size:clamp(2.8rem,4.6vw,4.5rem);line-height:.98;}
 .story-copy p{color:#ead7b6;}
-.story-actions{
-    display:flex;
-    gap:12px;
-    flex-wrap:wrap;
-    margin-top:22px;
-}
-
-.story-divider{
-    position:relative;
-    z-index:30;
-    height:82px;
-    overflow:visible;
-    pointer-events:none;
-    background:
-        linear-gradient(rgba(9,6,4,.68),rgba(9,6,4,.68)),
-        url("wood.png") center / cover;
-}
-.story-divider img{
-    position:absolute;
-    left:50%;
-    top:50%;
-    width:100%;
-    max-width:none;
-    height:auto;
-    transform:translate(-50%,-50%);
-    filter:drop-shadow(0 5px 6px rgba(0,0,0,.55));
-}
-
-.bracket-divider{
-    position:relative;
-    z-index:32;
-    width:100%;
-    height:104px;
-    margin:-4px 0;
-    overflow:hidden;
-    pointer-events:none;
-    background:
-        linear-gradient(rgba(11,7,4,.78),rgba(11,7,4,.78)),
-        url("wood.png") center / cover;
-}
-.bracket-divider img{
-    position:absolute;
-    left:50%;
-    top:50%;
-    width:calc(100% + 10px);
-    max-width:none;
-    height:auto;
-    transform:translate(-50%,-50%);
-    filter:drop-shadow(0 6px 7px rgba(0,0,0,.58));
-}
-
-.donate-strip{
-    position:relative;
-    padding:50px 0 56px;
-    color:var(--ink);
-    background:
-        linear-gradient(rgba(232,202,149,.08),rgba(90,50,22,.08)),
-        url("map.png") center / cover no-repeat;
-    box-shadow:
-        inset 0 14px 28px rgba(0,0,0,.15),
-        inset 0 -14px 28px rgba(0,0,0,.15);
-}
-.donate-grid{
-    display:grid;
-    grid-template-columns:.9fr 1.1fr;
-    gap:48px;
-    align-items:center;
-}
-.donate-photo{
-    padding:9px;
-    background:#f2e2c0;
-    box-shadow:0 12px 25px rgba(0,0,0,.30);
-    transform:rotate(-.6deg);
-}
-.donate-photo img{
-    width:100%;
-    aspect-ratio:4/3;
-    object-fit:cover;
-    object-position:center top;
-}
+.story-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px;}
+.story-divider{position:relative;z-index:30;height:82px;overflow:visible;pointer-events:none;background:linear-gradient(rgba(9,6,4,.68),rgba(9,6,4,.68)),url("wood.png") center / cover;}
+.story-divider img{position:absolute;left:50%;top:50%;width:100%;max-width:none;height:auto;transform:translate(-50%,-50%);filter:drop-shadow(0 5px 6px rgba(0,0,0,.55));}
+.bracket-divider{position:relative;z-index:32;width:100%;height:104px;margin:-4px 0;overflow:hidden;pointer-events:none;background:linear-gradient(rgba(11,7,4,.78),rgba(11,7,4,.78)),url("wood.png") center / cover;}
+.bracket-divider img{position:absolute;left:50%;top:50%;width:calc(100% + 10px);max-width:none;height:auto;transform:translate(-50%,-50%);filter:drop-shadow(0 6px 7px rgba(0,0,0,.58));}
+.donate-strip{position:relative;padding:50px 0 56px;color:var(--ink);background:linear-gradient(rgba(232,202,149,.08),rgba(90,50,22,.08)),url("map.png") center / cover no-repeat;box-shadow:inset 0 14px 28px rgba(0,0,0,.15),inset 0 -14px 28px rgba(0,0,0,.15);}
+.donate-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:center;}
+.donate-photo{padding:9px;background:#f2e2c0;box-shadow:0 12px 25px rgba(0,0,0,.30);transform:rotate(-.6deg);}
+.donate-photo img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center top;}
 .donate-copy .eyebrow{color:#6a4625;}
-.donate-copy h2{
-    margin:0 0 15px;
-    font-size:clamp(2.8rem,4.5vw,4.4rem);
-    line-height:.98;
-}
-.donate-copy p{color:#4e321f;}
-.donate-copy strong{color:#2d190f;}
-
-.contact-section{
-    position:relative;
-    padding:70px 0;
-    background:
-        linear-gradient(rgba(10,7,5,.56),rgba(10,7,5,.74)),
-        url("wood.png") center / cover;
-}
-.contact-panel{
-    position:relative;
-    width:min(1120px,91vw);
-    margin:0 auto;
-    padding:58px 64px;
-    text-align:center;
-    color:var(--ink);
-    background:url("parchment%202.png") center / 100% 100% no-repeat;
-    filter:drop-shadow(0 16px 24px rgba(0,0,0,.42));
-}
-.contact-panel .eyebrow{color:#6a4625;}
-.contact-panel h2{
-    margin:0 0 12px;
-    font-size:clamp(2.8rem,4.8vw,4.6rem);
-}
-.contact-panel p{
-    max-width:720px;
-    margin:0 auto 22px;
-    color:#543622;
-}
-.contact-actions{
-    display:flex;
-    justify-content:center;
-    gap:12px;
-    flex-wrap:wrap;
-}
-
-.proverb{
-    position:relative;
-    min-height:180px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    overflow:hidden;
-    background:
-        linear-gradient(rgba(5,3,2,.42),rgba(5,3,2,.58)),
-        url("scean.png") center / cover no-repeat;
-    border-top:1px solid rgba(197,154,88,.40);
-    border-bottom:1px solid rgba(197,154,88,.40);
-}
-.proverb blockquote{
-    position:relative;
-    z-index:2;
-    margin:0;
-    padding:0 24px;
-    font-style:italic;
-    font-size:clamp(2rem,4vw,3.4rem);
-    color:#f7e4bd;
-    text-shadow:0 5px 13px rgba(0,0,0,.78);
-}
-.proverb span{
-    display:block;
-    margin-top:10px;
-    font-size:.78rem;
-    font-style:normal;
-    letter-spacing:.22em;
-    text-transform:uppercase;
-    color:#d7ad67;
-}
-
-footer{
-    padding:28px 20px;
-    text-align:center;
-    color:#aa9a88;
-    background:
-        linear-gradient(rgba(6,4,3,.83),rgba(6,4,3,.83)),
-        url("wood.png") center / cover;
-    border-top:1px solid #46311e;
-}
-
-.reveal{
-    opacity:0;
-    transform:translateY(24px);
-    transition:opacity .7s ease,transform .7s ease;
-}
-.reveal.visible{opacity:1;transform:none;}
-
-@media (max-width:980px){
-    .site-header{
-        position:relative;
-        justify-content:center;
-        text-align:center;
-    }
-    .logo img{max-width:85vw;}
-    nav{width:100%;justify-content:center;}
-    .choice-grid{grid-template-columns:1fr 1fr;}
-    .choice-item,
-    .choice-item:nth-child(4),
-    .choice-item:nth-child(5){grid-column:auto;}
-    .choice-item:last-child{
-        grid-column:1 / -1;
-        width:min(520px,100%);
-        justify-self:center;
-    }
-    .story-grid,
-    .story-grid.reverse,
-    .donate-grid{grid-template-columns:1fr;}
-    .story-grid.reverse .story-photo,
-    .story-grid.reverse .story-copy{order:initial;}
-    .story-photo img{height:400px;}
-}
-
-@media (max-width:650px){
-    .site-header{
-        position:sticky;
-        top:0;
-        min-height:78px;
-        padding:8px 12px;
-        gap:12px;
-        flex-wrap:nowrap;
-    }
-    .logo{
-        display:flex;
-        align-items:center;
-        min-width:0;
-    }
-    .logo img{
-        width:250px;
-        max-width:72vw;
-        height:auto;
-        object-fit:contain;
-    }
-    .mobile-menu-toggle{
-        display:flex;
-        flex:0 0 48px;
-        margin-left:auto;
-    }
-    nav{
-        position:absolute;
-        top:100%;
-        left:0;
-        right:0;
-        z-index:999;
-        display:flex;
-        flex-direction:column;
-        align-items:stretch;
-        justify-content:flex-start;
-        gap:0;
-        padding:0 14px;
-        max-height:0;
-        overflow:hidden;
-        opacity:0;
-        pointer-events:none;
-        background:
-            linear-gradient(rgba(8,5,3,.97),rgba(8,5,3,.99)),
-            url("wood.png") center / cover;
-        border-bottom:1px solid rgba(197,154,88,.45);
-        box-shadow:0 12px 24px rgba(0,0,0,.55);
-        transition:max-height .28s ease,opacity .2s ease,padding .28s ease;
-    }
-    nav.mobile-open{
-        max-height:430px;
-        padding:10px 14px 16px;
-        opacity:1;
-        pointer-events:auto;
-    }
-    nav a{
-        width:100%;
-        padding:13px 10px;
-        font-size:1rem;
-        text-align:center;
-        border-bottom:1px solid rgba(255,255,255,.09);
-    }
-    nav a:not(.support-link)::after{display:none;}
-    nav a:last-child{border-bottom:none;}
-    .support-link{
-        margin-top:8px;
-        padding:13px 12px;
-    }
-    .gi-hero{min-height:520px;background-position:center 28%;}
-    .gi-hero h1{font-size:3.6rem;}
-    .choice-panel{width:98vw;padding:52px 28px 58px;}
-    .choice-grid{grid-template-columns:1fr;}
-    .choice-item,
-    .choice-item:nth-child(4),
-    .choice-item:nth-child(5),
-    .choice-item:last-child{
-        grid-column:auto;
-        width:100%;
-    }
-    .choice-item p{min-height:0;}
-    .story-divider{height:58px;}
-    .bracket-divider{height:74px;}
-    .story-section{padding:52px 0;}
-    .story-photo img{height:320px;}
-    .contact-panel{padding:48px 28px 54px;}
-    .rope-divider{height:58px;margin:-8px 0 -2px;}
-    .rope-divider img{width:calc(100% + 22px);}
-}
-
-@media (prefers-reduced-motion:reduce){
-    *{animation:none!important;transition:none!important;scroll-behavior:auto!important;}
-    .reveal{opacity:1;transform:none;}
-}
+.donate-copy h2{margin:0 0 15px;font-size:clamp(2.8rem,4.5vw,4.4rem);line-height:.98;}
+.donate-copy p{color:#4e321f;}.donate-copy strong{color:#2d190f;}
+.contact-section{position:relative;padding:70px 0;background:linear-gradient(rgba(10,7,5,.56),rgba(10,7,5,.74)),url("wood.png") center / cover;}
+.contact-panel{position:relative;width:min(1120px,91vw);margin:0 auto;padding:58px 64px;text-align:center;color:var(--ink);background:url("parchment%202.png") center / 100% 100% no-repeat;filter:drop-shadow(0 16px 24px rgba(0,0,0,.42));}
+.contact-panel .eyebrow{color:#6a4625;}.contact-panel h2{margin:0 0 12px;font-size:clamp(2.8rem,4.8vw,4.6rem);}
+.contact-panel p{max-width:720px;margin:0 auto 22px;color:#543622;}
+.contact-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
+.proverb{position:relative;min-height:180px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:linear-gradient(rgba(5,3,2,.42),rgba(5,3,2,.58)),url("scean.png") center / cover no-repeat;border-top:1px solid rgba(197,154,88,.40);border-bottom:1px solid rgba(197,154,88,.40);}
+.proverb blockquote{position:relative;z-index:2;margin:0;padding:0 24px;font-style:italic;font-size:clamp(2rem,4vw,3.4rem);color:#f7e4bd;text-shadow:0 5px 13px rgba(0,0,0,.78);}
+.proverb span{display:block;margin-top:10px;font-size:.78rem;font-style:normal;letter-spacing:.22em;text-transform:uppercase;color:#d7ad67;}
+footer{padding:28px 20px;text-align:center;color:#aa9a88;background:linear-gradient(rgba(6,4,3,.83),rgba(6,4,3,.83)),url("wood.png") center / cover;border-top:1px solid #46311e;}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}.reveal.visible{opacity:1;transform:none;}
+@media (max-width:980px){.site-header{position:relative;justify-content:center;text-align:center;}.logo img{max-width:85vw;}nav{width:100%;justify-content:center;}.choice-grid{grid-template-columns:1fr 1fr;}.choice-item,.choice-item:nth-child(4),.choice-item:nth-child(5){grid-column:auto;}.choice-item:last-child{grid-column:1 / -1;width:min(520px,100%);justify-self:center;}.story-grid,.story-grid.reverse,.donate-grid{grid-template-columns:1fr;}.story-grid.reverse .story-photo,.story-grid.reverse .story-copy{order:initial;}.story-photo img{height:400px;}}
+@media (max-width:650px){.site-header{position:sticky;top:0;min-height:78px;padding:8px 12px;gap:12px;flex-wrap:nowrap;}.logo{display:flex;align-items:center;min-width:0;}.logo img{width:250px;max-width:72vw;height:auto;object-fit:contain;}.mobile-menu-toggle{display:flex;flex:0 0 48px;margin-left:auto;}nav{position:absolute;top:100%;left:0;right:0;z-index:999;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:0;padding:0 14px;max-height:0;overflow:hidden;opacity:0;pointer-events:none;background:linear-gradient(rgba(8,5,3,.97),rgba(8,5,3,.99)),url("wood.png") center / cover;border-bottom:1px solid rgba(197,154,88,.45);box-shadow:0 12px 24px rgba(0,0,0,.55);transition:max-height .28s ease,opacity .2s ease,padding .28s ease;}nav.mobile-open{max-height:430px;padding:10px 14px 16px;opacity:1;pointer-events:auto;}nav a{width:100%;padding:13px 10px;font-size:1rem;text-align:center;border-bottom:1px solid rgba(255,255,255,.09);}nav a:not(.support-link)::after{display:none;}nav a:last-child{border-bottom:none;}.support-link{margin-top:8px;padding:13px 12px;}.gi-hero{min-height:520px;background-position:center 28%;}.gi-hero h1{font-size:3.6rem;}.choice-panel{width:98vw;padding:52px 28px 58px;}.choice-grid{grid-template-columns:1fr;}.choice-item,.choice-item:nth-child(4),.choice-item:nth-child(5),.choice-item:last-child{grid-column:auto;width:100%;}.choice-item p{min-height:0;}.story-divider{height:58px;}.bracket-divider{height:74px;}.story-section{padding:52px 0;}.story-photo img{height:320px;}.contact-panel{padding:48px 28px 54px;}.rope-divider{height:58px;margin:-8px 0 -2px;}.rope-divider img{width:calc(100% + 22px);}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important;}.reveal{opacity:1;transform:none;}}
 </style>
 </head>
-
 <body>
-
 <header class="site-header">
-    <a class="logo" href="index.html">
-        <img src="logo.png" alt="Pirates of the White Sands">
-    </a>
-
-    <button
-        class="mobile-menu-toggle"
-        type="button"
-        aria-label="Open navigation menu"
-        aria-controls="site-nav"
-        aria-expanded="false"
-    >
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
-
+    <a class="logo" href="index.html"><img src="logo.png" alt="Pirates of the White Sands"></a>
+    <button class="mobile-menu-toggle" type="button" aria-label="Open navigation menu" aria-controls="site-nav" aria-expanded="false"><span></span><span></span><span></span></button>
     <nav id="site-nav">
         <a href="index.html">Home</a>
         <a class="active" href="get-involved.html">Get Involved</a>
@@ -666,250 +158,34 @@ footer{
         <a class="support-link" href="https://account.venmo.com/pay?recipients=potws5972" target="_blank" rel="noopener">☠ Support the Mayhem</a>
     </nav>
 </header>
-
 <main>
-
-<section class="gi-hero">
-    <div class="gi-hero-content">
-        <div class="gi-hero-copy reveal">
-            <div class="eyebrow">People • Community • Mayhem for a Good Cause</div>
-            <h1>Get Involved</h1>
-            <p>
-                However you want to take part — lend a hand, support the mission, invite the pirates to your event, or just learn more — there’s a place for you in the Pirates of the White Sands.
-            </p>
-            <a class="button button-red" href="#ways">Find Your Place in the Crew →</a>
-        </div>
-    </div>
-</section>
-
-<div class="rope-divider">
-    <img src="long%20rope%20divider%20tied.png" alt="">
-</div>
-
-<section class="choice-section" id="ways">
-    <div class="choice-panel">
-        <div class="choice-heading reveal">
-            <div class="eyebrow">Different Skills. Same Crew.</div>
-            <h2>Choose Your Adventure</h2>
-            <p>There’s more than one way to help the crew do some good and have a little fun doing it.</p>
-        </div>
-
-        <div class="choice-grid">
-            <article class="choice-item reveal">
-                <div class="choice-icon">☸</div>
-                <h3>Join the Crew</h3>
-                <p>Meet the crew, learn what we do, and find out what it takes to become part of the mayhem.</p>
-                <a class="button button-outline" href="#join">Learn More →</a>
-            </article>
-
-            <article class="choice-item reveal">
-                <div class="choice-icon">⚓</div>
-                <h3>See Where We’ll Be</h3>
-                <p>Find the crew at public appearances, community events, fundraisers, festivals, and other pirate gatherings.</p>
-                <a class="button button-outline" href="#meet-in-person">Find the Crew →</a>
-            </article>
-
-            <article class="choice-item reveal">
-                <div class="choice-icon">☠</div>
-                <h3>Support the Mayhem</h3>
-                <p>Can’t volunteer? Throw a little treasure in the chest and help fund community work and charitable activities.</p>
-                <a class="button button-red" href="https://account.venmo.com/pay?recipients=potws5972" target="_blank" rel="noopener">Donate via Venmo</a>
-            </article>
-
-            <article class="choice-item reveal">
-                <div class="choice-icon">⚑</div>
-                <h3>Request an Appearance</h3>
-                <p>Planning a school event, fundraiser, festival, nonprofit event, or special occasion? Bring in the pirates.</p>
-                <a class="button button-outline" href="#appearance">Request the Crew →</a>
-            </article>
-
-            <article class="choice-item reveal">
-                <div class="choice-icon">♥</div>
-                <h3>Suggest a Cause</h3>
-                <p>Know a local nonprofit, family program, or community effort that could use a few pirates in its corner?</p>
-                <a class="button button-outline" href="mailto:piratesotws@gmail.com?subject=Attn%20Captain!%20I%20Found%20Folks%20Who%20Could%20Use%20Our%20Aid&body=Attn%20Captain!%0A%0AI%20spotted%20some%20folks%20who%20may%20need%20the%20crew%E2%80%99s%20aid.%0A%0AName%20of%20charity%2C%20organization%2C%20family%2C%20or%20cause%3A%0A%0AWhat%20help%20is%20needed%3A%0A%0AContact%20person%3A%0A%0APhone%20%2F%20email%20%2F%20website%3A%0A%0AImportant%20dates%20or%20deadlines%3A%0A%0AAnything%20else%20the%20crew%20should%20know%3A%0A%0AFair%20winds%2C">Tell the Captain →</a>
-            </article>
-        </div>
-    </div>
-</section>
-
-<div class="bracket-divider">
-    <img src="rope%20bracket.png" alt="">
-</div>
-
-<section class="story-section" id="join">
-    <div class="container story-grid">
-        <div class="story-photo reveal">
-            <img src="krew2.jpg" alt="Pirates of the White Sands crew">
-        </div>
-
-        <div class="story-copy reveal">
-            <div class="eyebrow">Good People. Rowdy Times.</div>
-            <h2>Join the Crew. Lend a Hand.</h2>
-            <p>
-                Pirates of the White Sands is built around friendship, community, charity, and a shared love of pirate culture. You do not need a perfect costume, a pirate résumé, or years of reenactment experience to get involved.
-            </p>
-            <p>
-                What matters is showing up, pitching in, learning from the crew, and being willing to help when there is work to do — whether that means supporting a charity event, helping with setup and teardown, greeting families, or carrying half the damn ship.
-            </p>
-            <div class="story-actions">
-                <a class="button button-red" href="mailto:piratesotws@gmail.com?subject=Ahoy%20Captain!%20I%20Want%20to%20Join%20the%20Crew&body=Ahoy%20Captain!%0A%0AMy%20name%20is%3A%0A%0AI%E2%80%99d%20like%20to%20join%20the%20Pirates%20of%20the%20White%20Sands%20crew%20because%3A%0A%0AA%20little%20about%20me%2C%20including%20any%20skills%2C%20interests%2C%20or%20experience%20I%E2%80%99d%20like%20to%20bring%20aboard%3A%0A%0ABest%20way%20to%20contact%20me%3A%0A%0AFair%20winds%2C">Join the Mayhem →</a>
-                <a class="button button-dark" href="https://account.venmo.com/pay?recipients=potws5972" target="_blank" rel="noopener">Donate via Venmo</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<div class="story-divider">
-    <img src="rope%20with%20skull.png" alt="">
-</div>
-
-<section class="story-section" id="appearance">
-    <div class="container story-grid reverse">
-        <div class="story-photo reveal">
-            <img src="float.jpg" alt="Pirates of the White Sands at a community event">
-        </div>
-
-        <div class="story-copy reveal">
-            <div class="eyebrow">Bring the Pirates to You</div>
-            <h2>Request an Appearance</h2>
-            <p>
-                We love bringing the pirates to schools, charities, festivals, fundraisers, educational programs, and community events throughout the area.
-            </p>
-            <p>
-                Depending on the event, members of the crew may appear in full pirate attire, interact with guests, take part in demonstrations, support fundraising activities, or simply bring a little pirate personality to the occasion.
-            </p>
-            <div class="story-actions">
-                <a class="button button-red" href="mailto:piratesotws@gmail.com?subject=Captain%2C%20I%20Need%20Yer%20Aid!%20Appearance%20Request&body=Ahoy%20Captain!%0A%0AI%E2%80%99d%20like%20to%20request%20the%20Pirates%20of%20the%20White%20Sands%20for%20an%20appearance.%0A%0AEvent%20name%3A%0A%0AOrganization%20%2F%20host%3A%0A%0AEvent%20date%3A%0A%0AStart%20time%3A%0A%0AEnd%20time%3A%0A%0AEvent%20location%20%2F%20address%3A%0A%0AType%20of%20event%3A%0A%0AExpected%20attendance%3A%0A%0AWhat%20would%20you%20like%20the%20pirates%20to%20do%20at%20the%20event%3F%0A%0APoint%20of%20contact%3A%0A%0APhone%3A%0A%0AEmail%3A%0A%0AAnything%20else%20the%20crew%20should%20know%3A%0A%0AFair%20winds%2C">Request the Crew →</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<div class="bracket-divider">
-    <img src="rope%20bracket.png" alt="">
-</div>
-
-<section class="story-section" id="meet-in-person">
-    <div class="container story-grid">
-        <div class="story-photo reveal">
-            <img src="crew.jpg" alt="Pirates of the White Sands crew at a community event">
-        </div>
-
-        <div class="story-copy reveal">
-            <div class="eyebrow">Rather Ask a Pirate Face to Face?</div>
-            <h2>Meet the Crew in Person.</h2>
-            <p>
-                Come find us at a public appearance, community event, fundraiser, or festival. It is the easiest way to meet the crew, ask questions, and see what Pirates of the White Sands is all about before you jump aboard.
-            </p>
-            <div class="story-actions">
-                <a class="button button-red" href="calendar.html">See Where We’ll Be →</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<div class="story-divider">
-    <img src="rope%20with%20skull.png" alt="">
-</div>
-
-<section class="donate-strip" id="donate">
-    <div class="container donate-grid">
-        <div class="donate-photo reveal">
-            <img src="giving-back.jpg" alt="Pirates of the White Sands supporting the community">
-        </div>
-
-        <div class="donate-copy reveal">
-            <div class="eyebrow">Can’t Volunteer? Send Treasure.</div>
-            <h2>Support the Mayhem</h2>
-            <p>
-                Pirates of the White Sands is a <strong>501(c)(3) nonprofit organization</strong>. Donations help support our community work, charitable activities, appearances, equipment, and events.
-            </p>
-            <p>Every bit of treasure helps keep the crew sailing.</p>
-            <a class="button button-red" href="https://account.venmo.com/pay?recipients=potws5972" target="_blank" rel="noopener">Donate via Venmo →</a>
-        </div>
-    </div>
-</section>
-
-<section class="contact-section" id="contact">
-    <div class="contact-panel reveal">
-        <div class="eyebrow">Questions? Ideas? Something Weird?</div>
-        <h2>Send a Message to the Captain.</h2>
-        <p>
-            Not sure which heading fits? Send the captain a general message and we’ll get your note to the right pirate.
-        </p>
-        <div class="contact-actions">
-            <a class="button button-red" href="mailto:piratesotws@gmail.com?subject=Ahoy%20Captain!%20Question%20for%20the%20Crew&body=Ahoy%20Captain!%0A%0AMy%20name%20is%3A%0A%0AMy%20question%20for%20the%20crew%20is%3A%0A%0ABest%20way%20to%20contact%20me%3A%0A%0AFair%20winds%2C">Email the Captain →</a>
-            <a class="button button-outline" href="#ways">Choose Your Adventure ↑</a>
-        </div>
-    </div>
-</section>
-
-<section class="proverb">
-    <blockquote>
-        “Many hands make the crew.”
-        <span>— Pirate Proverb —</span>
-    </blockquote>
-</section>
-
+<section class="gi-hero"><div class="gi-hero-content"><div class="gi-hero-copy reveal"><div class="eyebrow">People • Community • Mayhem for a Good Cause</div><h1>Get Involved</h1><p>However you want to take part — lend a hand, support the mission, invite the pirates to your event, or just learn more — there’s a place for you in the Pirates of the White Sands.</p><a class="button button-red" href="#ways">Find Your Place in the Crew →</a></div></div></section>
+<div class="rope-divider"><img src="long%20rope%20divider%20tied.png" alt=""></div>
+<section class="choice-section" id="ways"><div class="choice-panel"><div class="choice-heading reveal"><div class="eyebrow">Different Skills. Same Crew.</div><h2>Choose Your Adventure</h2><p>There’s more than one way to help the crew do some good and have a little fun doing it.</p></div><div class="choice-grid">
+<article class="choice-item reveal"><div class="choice-icon">☸</div><h3>Join the Crew</h3><p>Meet the crew, learn what we do, and find out what it takes to become part of the mayhem.</p><a class="button button-outline" href="#join">Learn More →</a></article>
+<article class="choice-item reveal"><div class="choice-icon">⚓</div><h3>See Where We’ll Be</h3><p>Find the crew at public appearances, community events, fundraisers, festivals, and other pirate gatherings.</p><a class="button button-outline" href="#meet-in-person">Find the Crew →</a></article>
+<article class="choice-item reveal"><div class="choice-icon">☠</div><h3>Support the Mayhem</h3><p>Can’t volunteer? Throw a little treasure in the chest and help fund community work and charitable activities.</p><a class="button button-red" href="https://account.venmo.com/pay?recipients=potws5972" target="_blank" rel="noopener">Donate via Venmo</a></article>
+<article class="choice-item reveal"><div class="choice-icon">⚑</div><h3>Request an Appearance</h3><p>Planning a school event, fundraiser, festival, nonprofit event, or special occasion? Bring in the pirates.</p><a class="button button-outline" href="#appearance">Request the Crew →</a></article>
+<article class="choice-item reveal"><div class="choice-icon">♥</div><h3>Suggest a Cause</h3><p>Know a local nonprofit, family program, or community effort that could use a few pirates in its corner?</p><a class="button button-outline" href="mailto:piratesotws@gmail.com?subject=Attn%20Captain!%20I%20Found%20Folks%20Who%20Could%20Use%20Our%20Aid&body=Attn%20Captain!%0A%0AI%20spotted%20some%20folks%20who%20may%20need%20the%20crew%E2%80%99s%20aid.%0A%0AName%20of%20charity%2C%20organization%2C%20family%2C%20or%20cause%3A%0A%0AWhat%20help%20is%20needed%3A%0A%0AContact%20person%3A%0A%0APhone%20%2F%20email%20%2F%20website%3A%0A%0AImportant%20dates%20or%20deadlines%3A%0A%0AAnything%20else%20the%20crew%20should%20know%3A%0A%0AFair%20winds%2C">Tell the Captain →</a></article>
+</div></div></section>
+<div class="bracket-divider"><img src="rope%20bracket.png" alt=""></div>
+<section class="story-section" id="join"><div class="container story-grid"><div class="story-photo reveal"><img src="ami-and-kilian.webp" alt="Ami and Kilian of the Pirates of the White Sands"></div><div class="story-copy reveal"><div class="eyebrow">Good People. Rowdy Times.</div><h2>Join the Crew. Lend a Hand.</h2><p>Pirates of the White Sands is built around friendship, community, charity, and a shared love of pirate culture. You do not need a perfect costume, a pirate résumé, or years of reenactment experience to get involved.</p><p>What matters is showing up, pitching in, learning from the crew, and being willing to help when there is work to do — whether that means supporting a charity event, helping with setup and teardown, greeting families, or carrying half the damn ship.</p><div class="story-actions"><a class="button button-red" href="mailto:piratesotws@gmail.com?subject=Ahoy%20Captain!%20I%20Want%20to%20Join%20the%20Crew&body=Ahoy%20Captain!%0A%0AMy%20name%20is%3A%0A%0AI%E2%80%99d%20like%20to%20join%20the%20Pirates%20of%20the%20White%20Sands%20crew%20because%3A%0A%0AA%20little%20about%20me%2C%20including%20any%20skills%2C%20interests%2C%20or%20experience%20I%E2%80%99d%20like%20to%20bring%20aboard%3A%0A%0ABest%20way%20to%20contact%20me%3A%0A%0AFair%20winds%2C">Join the Mayhem →</a><a class="button button-dark" href="https://account.venmo.com/pay?recipients=potws5972" target="_blank" rel="noopener">Donate via Venmo</a></div></div></div></section>
+<div class="story-divider"><img src="rope%20with%20skull.png" alt=""></div>
+<section class="story-section" id="appearance"><div class="container story-grid reverse"><div class="story-photo reveal"><img src="float.jpg" alt="Pirates of the White Sands at a community event"></div><div class="story-copy reveal"><div class="eyebrow">Bring the Pirates to You</div><h2>Request an Appearance</h2><p>We love bringing the pirates to schools, charities, festivals, fundraisers, educational programs, and community events throughout the area.</p><p>Depending on the event, members of the crew may appear in full pirate attire, interact with guests, take part in demonstrations, support fundraising activities, or simply bring a little pirate personality to the occasion.</p><div class="story-actions"><a class="button button-red" href="mailto:piratesotws@gmail.com?subject=Captain%2C%20I%20Need%20Yer%20Aid!%20Appearance%20Request&body=Ahoy%20Captain!%0A%0AI%E2%80%99d%20like%20to%20request%20the%20Pirates%20of%20the%20White%20Sands%20for%20an%20appearance.%0A%0AEvent%20name%3A%0A%0AOrganization%20%2F%20host%3A%0A%0AEvent%20date%3A%0A%0AStart%20time%3A%0A%0AEnd%20time%3A%0A%0AEvent%20location%20%2F%20address%3A%0A%0AType%20of%20event%3A%0A%0AExpected%20attendance%3A%0A%0AWhat%20would%20you%20like%20the%20pirates%20to%20do%20at%20the%20event%3F%0A%0APoint%20of%20contact%3A%0A%0APhone%3A%0A%0AEmail%3A%0A%0AAnything%20else%20the%20crew%20should%20know%3A%0A%0AFair%20winds%2C">Request the Crew →</a></div></div></div></section>
+<div class="bracket-divider"><img src="rope%20bracket.png" alt=""></div>
+<section class="story-section" id="meet-in-person"><div class="container story-grid"><div class="story-photo reveal"><img src="mardi-gras-krewe.webp" alt="Pirates of the White Sands crew at Mardi Gras"></div><div class="story-copy reveal"><div class="eyebrow">Rather Ask a Pirate Face to Face?</div><h2>Meet the Crew in Person.</h2><p>Come find us at a public appearance, community event, fundraiser, or festival. It is the easiest way to meet the crew, ask questions, and see what Pirates of the White Sands is all about before you jump aboard.</p><div class="story-actions"><a class="button button-red" href="calendar.html">See Where We’ll Be →</a></div></div></div></section>
+<div class="story-divider"><img src="rope%20with%20skull.png" alt=""></div>
+<section class="donate-strip" id="donate"><div class="container donate-grid"><div class="donate-photo reveal"><img src="giving-back.jpg" alt="Pirates of the White Sands supporting the community"></div><div class="donate-copy reveal"><div class="eyebrow">Can’t Volunteer? Send Treasure.</div><h2>Support the Mayhem</h2><p>Pirates of the White Sands is a <strong>501(c)(3) nonprofit organization</strong>. Donations help support our community work, charitable activities, appearances, equipment, and events.</p><p>Every bit of treasure helps keep the crew sailing.</p><a class="button button-red" href="https://account.venmo.com/pay?recipients=potws5972" target="_blank" rel="noopener">Donate via Venmo →</a></div></div></section>
+<section class="contact-section" id="contact"><div class="contact-panel reveal"><div class="eyebrow">Questions? Ideas? Something Weird?</div><h2>Send a Message to the Captain.</h2><p>Not sure which heading fits? Send the captain a general message and we’ll get your note to the right pirate.</p><div class="contact-actions"><a class="button button-red" href="mailto:piratesotws@gmail.com?subject=Ahoy%20Captain!%20Question%20for%20the%20Crew&body=Ahoy%20Captain!%0A%0AMy%20name%20is%3A%0A%0AMy%20question%20for%20the%20crew%20is%3A%0A%0ABest%20way%20to%20contact%20me%3A%0A%0AFair%20winds%2C">Email the Captain →</a><a class="button button-outline" href="#ways">Choose Your Adventure ↑</a></div></div></section>
+<section class="proverb"><blockquote>“Many hands make the crew.”<span>— Pirate Proverb —</span></blockquote></section>
 </main>
-
-<footer>
-    Copyright © 2026 Pirates of the White Sands — All Rights Reserved.
-</footer>
-
+<footer>Copyright © 2026 Pirates of the White Sands — All Rights Reserved.</footer>
 <script>
-const revealItems = document.querySelectorAll(".reveal");
-
-const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            revealObserver.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.14 });
-
-revealItems.forEach((item) => revealObserver.observe(item));
-
-const mobileMenuToggle = document.querySelector(".mobile-menu-toggle");
-const siteNav = document.getElementById("site-nav");
-
-if (mobileMenuToggle && siteNav) {
-    mobileMenuToggle.addEventListener("click", () => {
-        const isOpen = siteNav.classList.toggle("mobile-open");
-        mobileMenuToggle.setAttribute("aria-expanded", String(isOpen));
-        mobileMenuToggle.setAttribute(
-            "aria-label",
-            isOpen ? "Close navigation menu" : "Open navigation menu"
-        );
-    });
-
-    siteNav.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", () => {
-            siteNav.classList.remove("mobile-open");
-            mobileMenuToggle.setAttribute("aria-expanded", "false");
-            mobileMenuToggle.setAttribute("aria-label", "Open navigation menu");
-        });
-    });
-
-    document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") {
-            siteNav.classList.remove("mobile-open");
-            mobileMenuToggle.setAttribute("aria-expanded", "false");
-            mobileMenuToggle.setAttribute("aria-label", "Open navigation menu");
-        }
-    });
-
-    window.addEventListener("resize", () => {
-        if (window.innerWidth > 650) {
-            siteNav.classList.remove("mobile-open");
-            mobileMenuToggle.setAttribute("aria-expanded", "false");
-            mobileMenuToggle.setAttribute("aria-label", "Open navigation menu");
-        }
-    });
-}
+const revealItems=document.querySelectorAll(".reveal");
+const revealObserver=new IntersectionObserver((entries)=>{entries.forEach((entry)=>{if(entry.isIntersecting){entry.target.classList.add("visible");revealObserver.unobserve(entry.target);}});},{threshold:0.14});
+revealItems.forEach((item)=>revealObserver.observe(item));
+const mobileMenuToggle=document.querySelector(".mobile-menu-toggle");const siteNav=document.getElementById("site-nav");
+if(mobileMenuToggle&&siteNav){mobileMenuToggle.addEventListener("click",()=>{const isOpen=siteNav.classList.toggle("mobile-open");mobileMenuToggle.setAttribute("aria-expanded",String(isOpen));mobileMenuToggle.setAttribute("aria-label",isOpen?"Close navigation menu":"Open navigation menu");});siteNav.querySelectorAll("a").forEach((link)=>{link.addEventListener("click",()=>{siteNav.classList.remove("mobile-open");mobileMenuToggle.setAttribute("aria-expanded","false");mobileMenuToggle.setAttribute("aria-label","Open navigation menu");});});document.addEventListener("keydown",(event)=>{if(event.key==="Escape"){siteNav.classList.remove("mobile-open");mobileMenuToggle.setAttribute("aria-expanded","false");mobileMenuToggle.setAttribute("aria-label","Open navigation menu");}});window.addEventListener("resize",()=>{if(window.innerWidth>650){siteNav.classList.remove("mobile-open");mobileMenuToggle.setAttribute("aria-expanded","false");mobileMenuToggle.setAttribute("aria-label","Open navigation menu");}});}
 </script>
-
 </body>
 </html>
