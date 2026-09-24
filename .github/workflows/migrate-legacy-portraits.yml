@@ -1,0 +1,63 @@
+name: Migrate legacy crew portraits
+
+on:
+  push:
+    paths:
+      - '.github/workflows/migrate-legacy-portraits.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Download legacy portraits
+        run: |
+          python -m pip install --quiet gdown pillow
+          mkdir -p crew-portraits
+          gdown 'https://drive.google.com/uc?id=1UDBqK78_2Cw6ErQJkb_q-nd6S1qMUEbK' -O /tmp/killian.png
+          gdown 'https://drive.google.com/uc?id=1eRWq3QwHZsku7HPthvPxDxi9o18i0HND' -O /tmp/tal.jpg
+          python - <<'PY'
+          from PIL import Image
+
+          k = Image.open('/tmp/killian.png')
+          target_h = 1000
+          target_w = round(k.width * target_h / k.height)
+          k = k.resize((target_w, target_h), Image.Resampling.LANCZOS)
+          k.save('crew-portraits/potws-007-kilian.webp', 'WEBP', quality=82, method=6)
+
+          t = Image.open('/tmp/tal.jpg')
+          target_h = min(900, t.height)
+          target_w = round(t.width * target_h / t.height)
+          t = t.resize((target_w, target_h), Image.Resampling.LANCZOS)
+          t.save('crew-portraits/potws-008-tal.webp', 'WEBP', quality=82, method=6)
+          PY
+
+      - name: Hardcode the two legacy portrait paths
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('crew-data.js')
+          text = p.read_text()
+          marker = "  'osprey': 'crew-portraits/Osprey.jpg'"
+          replacement = "  'osprey': 'crew-portraits/Osprey.jpg',\n  'killian': 'crew-portraits/potws-007-kilian.webp',\n  'tal': 'crew-portraits/potws-008-tal.webp'"
+          if "'killian': 'crew-portraits/potws-007-kilian.webp'" not in text:
+              text = text.replace(marker, replacement)
+          text = text.replace('?v=20260923g', '?v=20260924a')
+          p.write_text(text)
+          PY
+
+      - name: Commit migrated portraits
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add crew-portraits/potws-007-kilian.webp crew-portraits/potws-008-tal.webp crew-data.js
+          git commit -m 'Migrate Killian and Tal portraits to repo' || exit 0
+          git push origin main
