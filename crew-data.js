@@ -16,17 +16,39 @@ function potwsCell(row, index) {
   return cell.v == null ? '' : String(cell.v);
 }
 
+function potwsDriveFileId(value) {
+  if (!value) return '';
+  const match = String(value).match(/[?&]id=([^&]+)/) || String(value).match(/\/d\/([^/]+)/);
+  return match ? match[1] : '';
+}
+
 function potwsPortraitUrl(value) {
   if (!value) return '';
-  const match = value.match(/[?&]id=([^&]+)/) || value.match(/\/d\/([^/]+)/);
-  if (match) return `https://drive.google.com/thumbnail?id=${encodeURIComponent(match[1])}&sz=w1200`;
+  const id = potwsDriveFileId(value);
+  if (id) return `https://drive.google.com/thumbnail?id=${encodeURIComponent(id)}&sz=w1200`;
   return value;
+}
+
+function potwsPortraitFallback(img) {
+  const id = img && img.dataset ? img.dataset.driveId : '';
+  if (!id) return;
+  const attempt = Number(img.dataset.fallbackAttempt || '0');
+  const fallbacks = [
+    `https://lh3.googleusercontent.com/d/${encodeURIComponent(id)}=w1200`,
+    `https://drive.usercontent.google.com/download?id=${encodeURIComponent(id)}&export=view&authuser=0`
+  ];
+  if (attempt >= fallbacks.length) {
+    img.onerror = null;
+    return;
+  }
+  img.dataset.fallbackAttempt = String(attempt + 1);
+  img.src = fallbacks[attempt];
 }
 
 async function potwsLoadPortraitOverride(pirate) {
   const key = pirate.slug || '';
   if (POTWS_PORTRAIT_DIRECT[key]) {
-    pirate.portrait = `${POTWS_PORTRAIT_DIRECT[key]}?v=20260923g`;
+    pirate.portrait = `${POTWS_PORTRAIT_DIRECT[key]}?v=20260924a`;
   }
   return pirate;
 }
@@ -63,5 +85,9 @@ function potwsProfileHref(pirate) {
 
 function potwsPhotoMarkup(pirate, altText) {
   if (!pirate.portrait) return `<div class="photo-slot">${altText}<br>Portrait Coming Soon</div>`;
-  return `<div class="photo-slot" style="padding:0"><img src="${pirate.portrait}" alt="${altText}" loading="lazy" referrerpolicy="no-referrer"></div>`;
+  const driveId = potwsDriveFileId(pirate.portrait);
+  const fallbackAttrs = driveId
+    ? ` data-drive-id="${driveId}" data-fallback-attempt="0" onerror="potwsPortraitFallback(this)"`
+    : '';
+  return `<div class="photo-slot" style="padding:0"><img src="${pirate.portrait}" alt="${altText}" loading="lazy" referrerpolicy="no-referrer"${fallbackAttrs}></div>`;
 }
