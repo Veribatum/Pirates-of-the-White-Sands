@@ -1,0 +1,47 @@
+name: Wire favicon into site pages
+
+on:
+  push:
+    paths:
+      - '.github/workflows/add-favicon.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  add-favicon:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add favicon links to HTML pages
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          links = '<link rel="icon" type="image/png" href="favicon.png">\n<link rel="shortcut icon" href="favicon.ico">\n'
+          changed = []
+          for path in Path('.').glob('*.html'):
+              text = path.read_text(encoding='utf-8')
+              if 'rel="icon"' in text or "rel='icon'" in text:
+                  continue
+              marker = '<head>'
+              if marker not in text:
+                  continue
+              text = text.replace(marker, marker + '\n' + links, 1)
+              path.write_text(text, encoding='utf-8')
+              changed.append(path.name)
+          print('Updated:', ', '.join(changed) if changed else 'none')
+          PY
+      - name: Commit favicon links
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "No favicon changes needed."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add '*.html'
+          git commit -m "Wire favicon into site pages"
+          git push
