@@ -1,0 +1,34 @@
+name: Fix home small photo
+
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-home-small-photo.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix-photo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Replace only the small Pirates of the High Seas photo
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text()
+          old = 'class="high-seas-frame-photo" src="float.jpg"'
+          new = 'class="high-seas-frame-photo" src="crew.jpg"'
+          if old not in s:
+              raise SystemExit('Target small photo reference not found; refusing to change anything else.')
+          p.write_text(s.replace(old, new, 1))
+          PY
+      - name: Commit the one requested change
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Replace home High Seas small photo with crew.jpg"
+          git push
