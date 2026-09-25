@@ -11,7 +11,7 @@ const POTWS_PORTRAIT_DIRECT = {
   'killian': 'crew-portraits/potws-007-kilian.webp',
   'tal': 'crew-portraits/potws-008-tal.webp',
   'argussea': 'crew-portraits/potws-009-argussea.webp',
-  'black-janiels': 'crew-portraits/black-janiels.webp'
+  'black-janiels': 'crew-portraits/Black J Gun.jpg'
 };
 
 function potwsCell(row, index) {
@@ -52,7 +52,7 @@ function potwsPortraitFallback(img) {
 async function potwsLoadPortraitOverride(pirate) {
   const key = pirate.slug || '';
   if (POTWS_PORTRAIT_DIRECT[key]) {
-    pirate.portrait = `${POTWS_PORTRAIT_DIRECT[key]}?v=20260924e`;
+    pirate.portrait = `${POTWS_PORTRAIT_DIRECT[key]}?v=20260925-blackj`;
   }
   return pirate;
 }
