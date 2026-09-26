@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "id": "WEB-chef",
+    "name": "Chef",
+    "active": "Y",
+    "order": 9999,
+    "role": "",
+    "portrait": "crew-portraits/web-chef.png",
+    "fullBio": "LOLZ",
+    "shortBio": "LOLZ",
+    "slug": "chef",
+    "notes": "Submitted through private crew enlistment page."
+  }
+]
