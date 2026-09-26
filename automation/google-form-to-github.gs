@@ -1,20 +1,12 @@
 /*
  * Pirates of the White Sands
- * Google Form -> Crew Roster -> GitHub portrait automation
+ * Crew intake automation
  *
- * Bind this script to the POTWS Crew Roster spreadsheet.
- * Store a fine-grained GitHub token in Script Properties as GITHUB_TOKEN,
- * then install an On form submit trigger for onCrewFormSubmit.
+ * Supports BOTH:
+ *   1) the existing Google Form -> Sheet workflow
+ *   2) the hidden crew-enlist.html page -> Apps Script Web App -> GitHub workflow
  *
- * After that every form submission will:
- *   1) find/create the pirate's Crew Roster row
- *   2) force Active = Y
- *   3) ensure a stable POTWS-### ID exists
- *   4) upload the submitted portrait to GitHub under crew-portraits/
- *   5) replace the roster Drive portrait link with the GitHub Pages path
- *   6) permanently delete the original Drive upload after the roster is safely updated
- *
- * IMPORTANT: full and short bios are preserved exactly as submitted.
+ * The website workflow bypasses Google Forms and Google Drive entirely.
  */
 
 const POTWS_CONFIG = {
@@ -24,6 +16,7 @@ const POTWS_CONFIG = {
   repoName: 'Pirates-of-the-White-Sands',
   branch: 'main',
   portraitFolder: 'crew-portraits',
+  localRosterFile: 'crew-submissions.json',
   deleteDriveAfterUpload: true,
   tokenProperty: 'GITHUB_TOKEN'
 };
@@ -56,17 +49,155 @@ function installFormSubmitTrigger() {
   SpreadsheetApp.getUi().alert('POTWS form-submit automation installed.');
 }
 
-/*
- * Run this ONCE manually after pasting/updating the script.
- * Its only purpose is to make Apps Script request the full Google Drive scope
- * required for permanent file deletion. setTrashed(false) is a harmless no-op
- * on the active spreadsheet file.
- */
 function authorizeDriveCleanup() {
   const ss = SpreadsheetApp.getActive();
   DriveApp.getFileById(ss.getId()).setTrashed(false);
   SpreadsheetApp.getUi().alert('Drive cleanup permission authorized.');
 }
+
+/* ============================================================
+ * HIDDEN WEBSITE INTAKE
+ * crew-enlist.html sends JSON with:
+ * pirateName, pirateBio, fileName, mimeType, imageBase64, website
+ * ============================================================ */
+
+function doPost(e) {
+  try {
+    if (!e || !e.postData || !e.postData.contents) {
+      return jsonResponse_({ ok: false, error: 'Empty request.' });
+    }
+
+    const data = JSON.parse(e.postData.contents);
+
+    // Honeypot. Bots that fill the hidden field are silently ignored.
+    if (String(data.website || '').trim()) {
+      return jsonResponse_({ ok: true });
+    }
+
+    const pirateName = String(data.pirateName || '').trim();
+    const pirateBio = String(data.pirateBio || '').trim();
+    const mimeType = String(data.mimeType || '').toLowerCase();
+    const fileName = String(data.fileName || 'portrait.jpg');
+    const imageBase64 = String(data.imageBase64 || '').replace(/^data:[^;]+;base64,/, '');
+
+    if (!pirateName) throw new Error('Pirate name is required.');
+    if (!pirateBio) throw new Error('Pirate bio is required.');
+    if (!imageBase64) throw new Error('Portrait photo is required.');
+    if (!['image/jpeg', 'image/jpg', 'image/png', 'image/webp'].includes(mimeType)) {
+      throw new Error('Portrait must be JPG, PNG, or WebP.');
+    }
+
+    const imageBytes = Utilities.base64Decode(imageBase64);
+    if (imageBytes.length > 10 * 1024 * 1024) {
+      throw new Error('Portrait must be under 10 MB.');
+    }
+
+    const slug = slugify_(pirateName);
+    const ext = extensionForMime_(mimeType, fileName);
+    const portraitPath = `${POTWS_CONFIG.portraitFolder}/web-${slug}.${ext}`;
+    const blob = Utilities.newBlob(imageBytes, mimeType, fileName);
+
+    uploadBlobToGithub_(portraitPath, blob, `Add crew portrait for ${pirateName}`);
+    upsertLocalCrewSubmission_({
+      id: `WEB-${slug}`,
+      name: pirateName,
+      active: 'Y',
+      order: 9999,
+      role: '',
+      portrait: portraitPath,
+      fullBio: pirateBio,
+      shortBio: pirateBio,
+      slug,
+      notes: 'Submitted through private crew enlistment page.'
+    });
+
+    return jsonResponse_({ ok: true, slug, portrait: portraitPath });
+  } catch (err) {
+    console.error(err);
+    return jsonResponse_({ ok: false, error: err.message || String(err) });
+  }
+}
+
+function doGet() {
+  return jsonResponse_({ ok: true, service: 'POTWS crew intake' });
+}
+
+function upsertLocalCrewSubmission_(pirate) {
+  const current = readGithubJsonFile_(POTWS_CONFIG.localRosterFile, []);
+  const list = Array.isArray(current.data) ? current.data : [];
+  const key = pirate.slug;
+  const index = list.findIndex(item => item && (item.slug || item.id) === key);
+
+  if (index >= 0) {
+    list[index] = { ...list[index], ...pirate };
+  } else {
+    list.push(pirate);
+  }
+
+  writeGithubTextFile_(
+    POTWS_CONFIG.localRosterFile,
+    JSON.stringify(list, null, 2) + '\n',
+    `Update crew roster for ${pirate.name}`,
+    current.sha
+  );
+}
+
+function readGithubJsonFile_(path, fallback) {
+  const token = getGithubToken_();
+  const apiUrl = githubContentsUrl_(path);
+  const response = UrlFetchApp.fetch(`${apiUrl}?ref=${encodeURIComponent(POTWS_CONFIG.branch)}`, {
+    method: 'get',
+    headers: githubHeaders_(token),
+    muteHttpExceptions: true
+  });
+
+  if (response.getResponseCode() === 404) {
+    return { data: fallback, sha: '' };
+  }
+  if (response.getResponseCode() !== 200) {
+    throw new Error(`GitHub read failed (${response.getResponseCode()}): ${response.getContentText()}`);
+  }
+
+  const payload = JSON.parse(response.getContentText());
+  const decoded = Utilities.newBlob(Utilities.base64Decode(String(payload.content || '').replace(/\s/g, ''))).getDataAsString('UTF-8');
+  return {
+    data: decoded.trim() ? JSON.parse(decoded) : fallback,
+    sha: payload.sha || ''
+  };
+}
+
+function writeGithubTextFile_(path, text, commitMessage, sha) {
+  const token = getGithubToken_();
+  const payload = {
+    message: commitMessage,
+    content: Utilities.base64Encode(text, Utilities.Charset.UTF_8),
+    branch: POTWS_CONFIG.branch
+  };
+  if (sha) payload.sha = sha;
+
+  const response = UrlFetchApp.fetch(githubContentsUrl_(path), {
+    method: 'put',
+    headers: githubHeaders_(token),
+    contentType: 'application/json',
+    payload: JSON.stringify(payload),
+    muteHttpExceptions: true
+  });
+
+  const code = response.getResponseCode();
+  if (code !== 200 && code !== 201) {
+    throw new Error(`GitHub write failed (${code}): ${response.getContentText()}`);
+  }
+}
+
+function jsonResponse_(value) {
+  return ContentService
+    .createTextOutput(JSON.stringify(value))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+/* ============================================================
+ * EXISTING GOOGLE FORM WORKFLOW
+ * ============================================================ */
 
 function onCrewFormSubmit(e) {
   if (!e || !e.range) throw new Error('This function must run from the spreadsheet form-submit trigger.');
@@ -89,14 +220,10 @@ function onCrewFormSubmit(e) {
   const rosterRow = findOrCreateRosterRow_(roster, pirateName);
   const pirateId = ensurePirateId_(roster, rosterRow);
 
-  // Admin defaults. Do not touch Captain-assigned role/title.
   roster.getRange(rosterRow, 3).setValue('Y');
-
-  // Preserve submitted text exactly as supplied by the form.
   roster.getRange(rosterRow, 7).setValue(fullBio);
   roster.getRange(rosterRow, 8).setValue(shortBio);
 
-  // Ensure the profile slug exists, but do not overwrite an existing slug.
   if (!String(roster.getRange(rosterRow, 9).getValue() || '').trim()) {
     roster.getRange(rosterRow, 9).setValue(slugify_(pirateName));
   }
@@ -106,16 +233,11 @@ function onCrewFormSubmit(e) {
 
   if (drivePortrait) {
     const uploaded = copyDrivePortraitToGithub_(drivePortrait, pirateId, pirateName);
-
-    // Write the GitHub path FIRST so a cleanup problem can never leave the site
-    // pointing at a Drive file that was already copied successfully.
     roster.getRange(rosterRow, 6).setValue(uploaded.githubPath);
     cleanupFileId = uploaded.driveFileId;
     SpreadsheetApp.flush();
   }
 
-  // Drive cleanup is intentionally non-fatal. If Google refuses deletion, the
-  // website still uses the successful GitHub copy and the roster records the issue.
   if (cleanupFileId && POTWS_CONFIG.deleteDriveAfterUpload) {
     try {
       permanentlyDeleteDriveFile_(cleanupFileId);
@@ -132,7 +254,6 @@ function onCrewFormSubmit(e) {
 function findOrCreateRosterRow_(roster, pirateName) {
   const normalized = pirateName.trim().toLowerCase();
 
-  // Give sheet formulas a moment to react to the new form response.
   for (let attempt = 0; attempt < 5; attempt++) {
     const lastRow = Math.max(roster.getLastRow(), 2);
     const names = roster.getRange(2, 2, lastRow - 1, 1).getDisplayValues();
@@ -152,7 +273,6 @@ function ensurePirateId_(roster, row) {
   let id = String(roster.getRange(row, 1).getDisplayValue() || '').trim();
   if (/^POTWS-\d{3,}$/.test(id)) return id;
 
-  // Stable code-only ID based on the roster row. Row 2 = POTWS-001.
   id = `POTWS-${String(row - 1).padStart(3, '0')}`;
   roster.getRange(row, 1).setValue(id);
   return id;
@@ -187,22 +307,37 @@ function permanentlyDeleteDriveFile_(fileId) {
     muteHttpExceptions: true
   });
 
-  // Google Drive returns HTTP 204 when deletion succeeds.
   if (response.getResponseCode() !== 204) {
     throw new Error(`Drive cleanup failed (${response.getResponseCode()}): ${response.getContentText()}`);
   }
 }
 
-function uploadBlobToGithub_(path, blob, commitMessage) {
+/* ============================================================
+ * GITHUB HELPERS
+ * ============================================================ */
+
+function getGithubToken_() {
   const token = PropertiesService.getScriptProperties().getProperty(POTWS_CONFIG.tokenProperty);
   if (!token) throw new Error('GitHub token is missing. Add GITHUB_TOKEN under Project Settings -> Script Properties.');
+  return token;
+}
 
-  const apiUrl = `https://api.github.com/repos/${POTWS_CONFIG.repoOwner}/${POTWS_CONFIG.repoName}/contents/${encodePath_(path)}`;
-  const headers = {
+function githubHeaders_(token) {
+  return {
     Authorization: `Bearer ${token}`,
     Accept: 'application/vnd.github+json',
     'X-GitHub-Api-Version': '2022-11-28'
   };
+}
+
+function githubContentsUrl_(path) {
+  return `https://api.github.com/repos/${POTWS_CONFIG.repoOwner}/${POTWS_CONFIG.repoName}/contents/${encodePath_(path)}`;
+}
+
+function uploadBlobToGithub_(path, blob, commitMessage) {
+  const token = getGithubToken_();
+  const apiUrl = githubContentsUrl_(path);
+  const headers = githubHeaders_(token);
 
   let existingSha = '';
   const getResponse = UrlFetchApp.fetch(`${apiUrl}?ref=${encodeURIComponent(POTWS_CONFIG.branch)}`, {
