@@ -107,7 +107,9 @@ function doPost(e) {
 
     roster.getRange(rosterRow, 2).setValue(pirateName);
     roster.getRange(rosterRow, 3).setValue('Y');
-    if (!roster.getRange(rosterRow, 4).getValue()) roster.getRange(rosterRow, 4).setValue(9999);
+    if (!roster.getRange(rosterRow, 4).getValue()) {
+      roster.getRange(rosterRow, 4).setValue(nextDisplayOrder_(roster, rosterRow));
+    }
     roster.getRange(rosterRow, 6).setValue(portraitPath);
     roster.getRange(rosterRow, 7).setValue(pirateBio);
     roster.getRange(rosterRow, 8).setValue(pirateBio);
@@ -225,6 +227,9 @@ function onCrewFormSubmit(e) {
   const pirateId = ensurePirateId_(roster, rosterRow);
 
   roster.getRange(rosterRow, 3).setValue('Y');
+  if (!roster.getRange(rosterRow, 4).getValue()) {
+    roster.getRange(rosterRow, 4).setValue(nextDisplayOrder_(roster, rosterRow));
+  }
   roster.getRange(rosterRow, 7).setValue(fullBio);
   roster.getRange(rosterRow, 8).setValue(shortBio);
 
@@ -257,20 +262,45 @@ function onCrewFormSubmit(e) {
 
 function findOrCreateRosterRow_(roster, pirateName) {
   const normalized = pirateName.trim().toLowerCase();
+  const maxRows = roster.getMaxRows();
+  const names = roster.getRange(2, 2, maxRows - 1, 1).getDisplayValues();
 
-  for (let attempt = 0; attempt < 5; attempt++) {
-    const lastRow = Math.max(roster.getLastRow(), 2);
-    const names = roster.getRange(2, 2, lastRow - 1, 1).getDisplayValues();
-    for (let i = 0; i < names.length; i++) {
-      if (String(names[i][0] || '').trim().toLowerCase() === normalized) return i + 2;
+  for (let i = 0; i < names.length; i++) {
+    if (String(names[i][0] || '').trim().toLowerCase() === normalized) {
+      return i + 2;
     }
-    Utilities.sleep(500);
-    SpreadsheetApp.flush();
   }
 
-  const row = Math.max(roster.getLastRow() + 1, 2);
+  for (let i = 0; i < names.length; i++) {
+    if (!String(names[i][0] || '').trim()) {
+      const row = i + 2;
+      roster.getRange(row, 2).setValue(pirateName);
+      return row;
+    }
+  }
+
+  roster.insertRowAfter(maxRows);
+  const row = maxRows + 1;
   roster.getRange(row, 2).setValue(pirateName);
   return row;
+}
+
+function nextDisplayOrder_(roster, excludeRow) {
+  const maxRows = roster.getMaxRows();
+  const values = roster.getRange(2, 3, maxRows - 1, 2).getDisplayValues();
+  let maxOrder = 0;
+
+  for (let i = 0; i < values.length; i++) {
+    const row = i + 2;
+    if (row === excludeRow) continue;
+    const active = String(values[i][0] || '').trim().toUpperCase();
+    const order = Number(values[i][1]);
+    if (active === 'Y' && Number.isFinite(order) && order > maxOrder && order < 9999) {
+      maxOrder = order;
+    }
+  }
+
+  return maxOrder + 1;
 }
 
 function ensurePirateId_(roster, row) {
