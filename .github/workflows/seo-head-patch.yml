@@ -1,0 +1,29 @@
+name: SEO Head Patch
+
+on:
+  push:
+    paths:
+      - '.github/workflows/seo-head-patch.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch-seo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Patch SEO metadata only
+        run: python automation/seo-head-patch.py
+      - name: Commit SEO metadata
+        run: |
+          if git diff --quiet -- index.html calendar.html high-seas.html; then
+            echo "No SEO changes needed."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html calendar.html high-seas.html
+          git commit -m "Improve SEO metadata without changing page appearance"
+          git push
