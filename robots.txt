@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /crew-enlist.html
+
+Sitemap: https://piratesofthewhitesands.com/sitemap.xml
