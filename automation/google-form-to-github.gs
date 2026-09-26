@@ -10,6 +10,7 @@
  */
 
 const POTWS_CONFIG = {
+  spreadsheetId: '1GgBJOLEAeMQ9txZJXrDebAFC6TjXcqZPfJ1ylJ2cALA',
   rosterSheet: 'Crew Roster',
   responseSheet: 'Form Responses 1',
   repoOwner: 'Veribatum',
@@ -69,7 +70,6 @@ function doPost(e) {
 
     const data = JSON.parse(e.postData.contents);
 
-    // Honeypot. Bots that fill the hidden field are silently ignored.
     if (String(data.website || '').trim()) {
       return jsonResponse_({ ok: true });
     }
@@ -92,26 +92,30 @@ function doPost(e) {
       throw new Error('Portrait must be under 10 MB.');
     }
 
+    const ss = SpreadsheetApp.openById(POTWS_CONFIG.spreadsheetId);
+    const roster = ss.getSheetByName(POTWS_CONFIG.rosterSheet);
+    if (!roster) throw new Error(`Missing sheet: ${POTWS_CONFIG.rosterSheet}`);
+
+    const rosterRow = findOrCreateRosterRow_(roster, pirateName);
+    const pirateId = ensurePirateId_(roster, rosterRow);
     const slug = slugify_(pirateName);
     const ext = extensionForMime_(mimeType, fileName);
-    const portraitPath = `${POTWS_CONFIG.portraitFolder}/web-${slug}.${ext}`;
+    const portraitPath = `${POTWS_CONFIG.portraitFolder}/${pirateId.toLowerCase()}-${slug}.${ext}`;
     const blob = Utilities.newBlob(imageBytes, mimeType, fileName);
 
     uploadBlobToGithub_(portraitPath, blob, `Add crew portrait for ${pirateName}`);
-    upsertLocalCrewSubmission_({
-      id: `WEB-${slug}`,
-      name: pirateName,
-      active: 'Y',
-      order: 9999,
-      role: '',
-      portrait: portraitPath,
-      fullBio: pirateBio,
-      shortBio: pirateBio,
-      slug,
-      notes: 'Submitted through private crew enlistment page.'
-    });
 
-    return jsonResponse_({ ok: true, slug, portrait: portraitPath });
+    roster.getRange(rosterRow, 2).setValue(pirateName);
+    roster.getRange(rosterRow, 3).setValue('Y');
+    if (!roster.getRange(rosterRow, 4).getValue()) roster.getRange(rosterRow, 4).setValue(9999);
+    roster.getRange(rosterRow, 6).setValue(portraitPath);
+    roster.getRange(rosterRow, 7).setValue(pirateBio);
+    roster.getRange(rosterRow, 8).setValue(pirateBio);
+    roster.getRange(rosterRow, 9).setValue(slug);
+    roster.getRange(rosterRow, 10).setValue('Submitted through private crew enlistment page.');
+    SpreadsheetApp.flush();
+
+    return jsonResponse_({ ok: true, id: pirateId, slug, portrait: portraitPath });
   } catch (err) {
     console.error(err);
     return jsonResponse_({ ok: false, error: err.message || String(err) });
