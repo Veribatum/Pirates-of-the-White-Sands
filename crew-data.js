@@ -1,6 +1,7 @@
 const POTWS_SHEET_ID = '1GgBJOLEAeMQ9txZJXrDebAFC6TjXcqZPfJ1ylJ2cALA';
 const POTWS_SHEET_NAME = 'Crew Roster';
 const POTWS_GVIZ_URL = `https://docs.google.com/spreadsheets/d/${POTWS_SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(POTWS_SHEET_NAME)}`;
+const POTWS_LOCAL_ROSTER_URL = 'crew-submissions.json';
 
 const POTWS_PORTRAIT_DIRECT = {
   'captain-ransom': 'crew-portraits/captain-ransom-final.jpg',
@@ -57,7 +58,7 @@ async function potwsLoadPortraitOverride(pirate) {
   return pirate;
 }
 
-async function loadPotwsCrew() {
+async function potwsLoadSheetCrew() {
   const response = await fetch(POTWS_GVIZ_URL, { cache: 'no-store' });
   if (!response.ok) throw new Error(`Roster request failed (${response.status})`);
   const text = await response.text();
@@ -66,7 +67,7 @@ async function loadPotwsCrew() {
   if (start === -1 || end === -1) throw new Error('Roster data was not readable.');
   const data = JSON.parse(text.slice(start, end + 1));
   const rows = data.table && data.table.rows ? data.table.rows : [];
-  const crew = rows.map(row => ({
+  return rows.map(row => ({
     id: potwsCell(row, 0).trim(),
     name: potwsCell(row, 1).trim(),
     active: potwsCell(row, 2).trim().toUpperCase(),
@@ -77,7 +78,40 @@ async function loadPotwsCrew() {
     shortBio: potwsCell(row, 7),
     slug: potwsCell(row, 8).trim(),
     notes: potwsCell(row, 9)
-  })).filter(p => p.name && p.active === 'Y').sort((a, b) => a.order - b.order || a.name.localeCompare(b.name));
+  })).filter(p => p.name && p.active === 'Y');
+}
+
+async function potwsLoadLocalCrew() {
+  try {
+    const response = await fetch(`${POTWS_LOCAL_ROSTER_URL}?v=${Date.now()}`, { cache: 'no-store' });
+    if (!response.ok) return [];
+    const crew = await response.json();
+    if (!Array.isArray(crew)) return [];
+    return crew.filter(p => p && p.name && String(p.active || 'Y').toUpperCase() === 'Y');
+  } catch (_) {
+    return [];
+  }
+}
+
+async function loadPotwsCrew() {
+  const [sheetCrew, localCrew] = await Promise.all([
+    potwsLoadSheetCrew(),
+    potwsLoadLocalCrew()
+  ]);
+
+  const merged = new Map();
+  for (const pirate of sheetCrew) {
+    const key = pirate.slug || pirate.id || pirate.name.toLowerCase();
+    merged.set(key, pirate);
+  }
+  for (const pirate of localCrew) {
+    const key = pirate.slug || pirate.id || pirate.name.toLowerCase();
+    merged.set(key, { ...(merged.get(key) || {}), ...pirate });
+  }
+
+  const crew = Array.from(merged.values())
+    .filter(p => p.name && String(p.active || 'Y').toUpperCase() === 'Y')
+    .sort((a, b) => (Number(a.order) || 9999) - (Number(b.order) || 9999) || a.name.localeCompare(b.name));
 
   await Promise.all(crew.map(potwsLoadPortraitOverride));
   return crew;
