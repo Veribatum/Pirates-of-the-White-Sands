@@ -1,0 +1,32 @@
+name: SEO Metadata Maintenance
+
+on:
+  push:
+    paths:
+      - 'automation/seo-head-patch.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch-seo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Patch SEO metadata only
+        run: python automation/seo-head-patch.py
+      - name: Commit SEO metadata
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- index.html calendar.html high-seas.html meet-the-krewe.html get-involved.html; then
+            echo "No SEO metadata changes needed."
+            exit 0
+          fi
+          git add index.html calendar.html high-seas.html meet-the-krewe.html get-involved.html
+          git commit -m "Refine SEO metadata and structured data"
+          git push
