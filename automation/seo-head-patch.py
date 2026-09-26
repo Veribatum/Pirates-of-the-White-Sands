@@ -39,6 +39,15 @@ configs={
    'og_description':'Join, volunteer, support the mission or request a pirate appearance in the Panama City and Panama City Beach area.',
    'og_image':SITE+'/Join%20the%20Krew.jpg',
    'jsonld':'{"@context":"https://schema.org","@type":"Organization","name":"Pirates of the White Sands","url":"https://piratesofthewhitesands.com/","logo":"https://piratesofthewhitesands.com/logo.png","areaServed":[{"@type":"City","name":"Panama City"},{"@type":"City","name":"Panama City Beach"},{"@type":"AdministrativeArea","name":"Florida Panhandle"}]}'
+ },
+ 'things-to-do-panama-city-beach.html':{
+   'title':'Pirate Events & Things to Do | Panama City Beach, FL',
+   'description':'Discover pirate events, family activities, living history and Ren Fest fun in Panama City Beach and Panama City with Pirates of the White Sands.',
+   'canonical':SITE+'/things-to-do-panama-city-beach.html',
+   'og_title':'Pirate Events & Things to Do in Panama City Beach',
+   'og_description':'Find pirate events, Renaissance festival fun, living history and family activities around Panama City Beach and Panama City, Florida.',
+   'og_image':SITE+'/logo.png',
+   'jsonld':'{"@context":"https://schema.org","@type":"Organization","name":"Pirates of the White Sands","url":"https://piratesofthewhitesands.com/","logo":"https://piratesofthewhitesands.com/logo.png","areaServed":[{"@type":"City","name":"Panama City"},{"@type":"City","name":"Panama City Beach"},{"@type":"AdministrativeArea","name":"Florida Panhandle"}]}'
  }
 }
 
@@ -48,7 +57,6 @@ def patch(path,cfg):
     original=text
     text=re.sub(r'<title>.*?</title>',f'<title>{cfg["title"]}</title>',text,count=1,flags=re.S)
     text=re.sub(r'<meta name="description" content=".*?">',f'<meta name="description" content="{cfg["description"]}">',text,count=1,flags=re.S)
-    # Remove only metadata managed by this script so reruns are idempotent.
     text=re.sub(r'\n<!-- POTWS SEO START -->.*?<!-- POTWS SEO END -->\n','\n',text,count=1,flags=re.S)
     block='\n<!-- POTWS SEO START -->\n'
     block+=f'<link rel="canonical" href="{cfg["canonical"]}">\n'
