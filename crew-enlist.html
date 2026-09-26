@@ -11,74 +11,19 @@
 :root{--red:#92251f;--red-hover:#ad332c;--cream:#fff1d0;--ink:#2f1b12;--gold:#c59a58;--wood:#110b08;}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;font-family:Georgia,"Times New Roman",serif;color:var(--cream);background:#110b08 url("wood.png") center top/1500px auto repeat}img{display:block;max-width:100%}a{color:inherit;text-decoration:none}
 .site-header{min-height:92px;display:flex;align-items:center;justify-content:center;padding:8px 22px;background:linear-gradient(rgba(8,5,3,.74),rgba(8,5,3,.9)),url("wood.png") center/cover;border-bottom:1px solid rgba(197,154,88,.45);box-shadow:0 6px 22px rgba(0,0,0,.55)}
-.logo img{width:330px;max-width:82vw}
-.page-shell{width:min(980px,94vw);margin:42px auto 70px;position:relative}
-.parchment{position:relative;padding:72px 78px 76px;color:var(--ink);background:url("parchment.png") center/100% 100% no-repeat;filter:drop-shadow(0 18px 30px rgba(0,0,0,.52))}
-.kicker{text-align:center;text-transform:uppercase;letter-spacing:.2em;font-weight:bold;font-size:.78rem;color:#76502d;margin-bottom:12px}
-h1{text-align:center;margin:0 0 12px;font-size:clamp(2.7rem,6vw,5.2rem);line-height:.95}
-.intro{max-width:700px;margin:0 auto 34px;text-align:center;font-size:1.08rem;line-height:1.55;color:#5d3b24}
-.form-card{max-width:720px;margin:0 auto;padding:30px;background:rgba(255,247,224,.42);border:1px solid rgba(98,60,31,.28);box-shadow:inset 0 0 0 4px rgba(255,255,255,.12)}
-label{display:block;margin:0 0 8px;font-weight:bold;font-size:1.02rem}.field{margin-bottom:24px}
-input[type="text"],textarea,input[type="file"]{width:100%;font:inherit;color:#2f1b12;background:rgba(255,252,240,.72);border:1px solid rgba(74,45,25,.35);border-radius:2px;padding:13px 14px;outline:none}
-input[type="text"]:focus,textarea:focus,input[type="file"]:focus{border-color:#92251f;box-shadow:0 0 0 2px rgba(146,37,31,.12)}
-textarea{min-height:210px;resize:vertical;line-height:1.5}.help{margin-top:7px;font-size:.9rem;color:#735238}.photo-preview-wrap{display:none;margin-top:14px}.photo-preview{width:190px;height:230px;object-fit:cover;border:8px solid #f2e2c0;box-shadow:0 8px 18px rgba(0,0,0,.25)}
-.honeypot{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}.submit-row{display:flex;justify-content:center;margin-top:10px}.submit-btn{appearance:none;border:1px solid #b74b43;background:var(--red);color:#fff;font:700 1.08rem Georgia,"Times New Roman",serif;padding:14px 30px;cursor:pointer;box-shadow:0 4px 10px rgba(0,0,0,.28)}.submit-btn:hover{background:var(--red-hover)}.submit-btn:disabled{opacity:.55;cursor:not-allowed}
-.status{display:none;margin-top:22px;padding:14px 16px;text-align:center;border:1px solid rgba(90,58,30,.3);background:rgba(255,255,255,.34);font-weight:bold}.status.error{display:block;color:#8b1f1a}.status.success{display:block;color:#265d2b}
-.private-note{margin:24px auto 0;max-width:720px;text-align:center;color:#d7c09d;font-size:.88rem;line-height:1.5}.private-note strong{color:#f3dfbc}
-@media(max-width:700px){.site-header{min-height:78px}.logo img{width:260px}.page-shell{margin-top:20px;width:98vw}.parchment{padding:56px 26px 64px}.form-card{padding:20px 16px}h1{font-size:3rem}.intro{font-size:1rem}.photo-preview{width:150px;height:190px;margin:0 auto}}
+.logo img{width:330px;max-width:82vw}.page-shell{width:min(980px,94vw);margin:42px auto 70px;position:relative}.parchment{position:relative;padding:72px 78px 76px;color:var(--ink);background:url("parchment.png") center/100% 100% no-repeat;filter:drop-shadow(0 18px 30px rgba(0,0,0,.52))}.kicker{text-align:center;text-transform:uppercase;letter-spacing:.2em;font-weight:bold;font-size:.78rem;color:#76502d;margin-bottom:12px}h1{text-align:center;margin:0 0 12px;font-size:clamp(2.7rem,6vw,5.2rem);line-height:.95}.intro{max-width:700px;margin:0 auto 34px;text-align:center;font-size:1.08rem;line-height:1.55;color:#5d3b24}.form-card{max-width:720px;margin:0 auto;padding:30px;background:rgba(255,247,224,.42);border:1px solid rgba(98,60,31,.28);box-shadow:inset 0 0 0 4px rgba(255,255,255,.12)}label{display:block;margin:0 0 8px;font-weight:bold;font-size:1.02rem}.field{margin-bottom:24px}input[type="text"],textarea,input[type="file"]{width:100%;font:inherit;color:#2f1b12;background:rgba(255,252,240,.72);border:1px solid rgba(74,45,25,.35);border-radius:2px;padding:13px 14px;outline:none}input[type="text"]:focus,textarea:focus,input[type="file"]:focus{border-color:#92251f;box-shadow:0 0 0 2px rgba(146,37,31,.12)}textarea{min-height:210px;resize:vertical;line-height:1.5}.help{margin-top:7px;font-size:.9rem;color:#735238}.photo-preview-wrap{display:none;margin-top:14px}.photo-preview{width:190px;height:230px;object-fit:cover;border:8px solid #f2e2c0;box-shadow:0 8px 18px rgba(0,0,0,.25)}.honeypot{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}.submit-row{display:flex;justify-content:center;margin-top:10px}.submit-btn{appearance:none;border:1px solid #b74b43;background:var(--red);color:#fff;font:700 1.08rem Georgia,"Times New Roman",serif;padding:14px 30px;cursor:pointer;box-shadow:0 4px 10px rgba(0,0,0,.28)}.submit-btn:hover{background:var(--red-hover)}.submit-btn:disabled{opacity:.55;cursor:not-allowed}.status{display:none;margin-top:22px;padding:14px 16px;text-align:center;border:1px solid rgba(90,58,30,.3);background:rgba(255,255,255,.34);font-weight:bold}.status.error{display:block;color:#8b1f1a}.status.success{display:block;color:#265d2b}.private-note{margin:24px auto 0;max-width:720px;text-align:center;color:#d7c09d;font-size:.88rem;line-height:1.5}.private-note strong{color:#f3dfbc}@media(max-width:700px){.site-header{min-height:78px}.logo img{width:260px}.page-shell{margin-top:20px;width:98vw}.parchment{padding:56px 26px 64px}.form-card{padding:20px 16px}h1{font-size:3rem}.intro{font-size:1rem}.photo-preview{width:150px;height:190px;margin:0 auto}}
 </style>
 </head>
 <body>
 <header class="site-header"><a class="logo" href="index.html" aria-label="Pirates of the White Sands home"><img src="logo.png" alt="Pirates of the White Sands"></a></header>
-<main class="page-shell">
-<section class="parchment">
-<div class="kicker">Private Crew Registration</div>
-<h1>Join the Crew Ledger</h1>
-<p class="intro">Enter the information you want displayed on the Pirates of the White Sands Meet the Crew page. Keep it simple: your pirate name, your bio, and one portrait.</p>
-<form id="crew-enlist-form" class="form-card" novalidate>
-<div class="field"><label for="pirate-name">Pirate Name</label><input id="pirate-name" name="pirateName" type="text" maxlength="80" autocomplete="name" required><div class="help">Use the exact pirate name you want shown on the website.</div></div>
-<div class="field"><label for="pirate-bio">Pirate Bio</label><textarea id="pirate-bio" name="pirateBio" maxlength="4000" required></textarea><div class="help">Tell visitors who you are, what you do with the crew, or anything else you want included in your profile.</div></div>
-<div class="field"><label for="pirate-photo">Portrait Photo</label><input id="pirate-photo" name="piratePhoto" type="file" accept="image/jpeg,image/png,image/webp" required><div class="help">JPG, PNG, or WebP. A clear portrait or full-body pirate photo works best.</div><div class="photo-preview-wrap" id="photo-preview-wrap"><img id="photo-preview" class="photo-preview" alt="Portrait preview"></div></div>
-<div class="honeypot" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
-<div class="submit-row"><button class="submit-btn" id="submit-btn" type="submit">Submit to the Crew</button></div>
-<div id="form-status" class="status" role="status" aria-live="polite"></div>
-</form>
-</section>
-<p class="private-note"><strong>Private crew page.</strong> This page is not linked from the public navigation and is marked not to be indexed by search engines.</p>
-</main>
+<main class="page-shell"><section class="parchment"><div class="kicker">Private Crew Registration</div><h1>Join the Crew Ledger</h1><p class="intro">Enter the information you want displayed on the Pirates of the White Sands Meet the Crew page. Keep it simple: your pirate name, your bio, and one portrait.</p><form id="crew-enlist-form" class="form-card" novalidate><div class="field"><label for="pirate-name">Pirate Name</label><input id="pirate-name" name="pirateName" type="text" maxlength="80" autocomplete="name" required><div class="help">Use the exact pirate name you want shown on the website.</div></div><div class="field"><label for="pirate-bio">Pirate Bio</label><textarea id="pirate-bio" name="pirateBio" maxlength="4000" required></textarea><div class="help">Tell visitors who you are, what you do with the crew, or anything else you want included in your profile.</div></div><div class="field"><label for="pirate-photo">Portrait Photo</label><input id="pirate-photo" name="piratePhoto" type="file" accept="image/jpeg,image/png,image/webp" required><div class="help">JPG, PNG, or WebP. A clear portrait or full-body pirate photo works best.</div><div class="photo-preview-wrap" id="photo-preview-wrap"><img id="photo-preview" class="photo-preview" alt="Portrait preview"></div></div><div class="honeypot" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div><div class="submit-row"><button class="submit-btn" id="submit-btn" type="submit">Submit to the Crew</button></div><div id="form-status" class="status" role="status" aria-live="polite"></div></form></section><p class="private-note"><strong>Private crew page.</strong> This page is not linked from the public navigation and is marked not to be indexed by search engines.</p></main>
 <script>
-const ENDPOINT = '';
-const form = document.getElementById('crew-enlist-form');
-const photoInput = document.getElementById('pirate-photo');
-const previewWrap = document.getElementById('photo-preview-wrap');
-const preview = document.getElementById('photo-preview');
-const submitBtn = document.getElementById('submit-btn');
-const statusBox = document.getElementById('form-status');
-
+const ENDPOINT = window.POTWS_CREW_API_URL || '';
+const form=document.getElementById('crew-enlist-form');const photoInput=document.getElementById('pirate-photo');const previewWrap=document.getElementById('photo-preview-wrap');const preview=document.getElementById('photo-preview');const submitBtn=document.getElementById('submit-btn');const statusBox=document.getElementById('form-status');
 function showStatus(message,type){statusBox.textContent=message;statusBox.className='status '+type;}
-
-photoInput.addEventListener('change',()=>{
-  const file=photoInput.files&&photoInput.files[0];
-  if(!file){previewWrap.style.display='none';preview.removeAttribute('src');return;}
-  if(!['image/jpeg','image/png','image/webp'].includes(file.type)){showStatus('Please choose a JPG, PNG, or WebP image.','error');photoInput.value='';previewWrap.style.display='none';return;}
-  if(file.size>10*1024*1024){showStatus('That photo is too large. Please use an image under 10 MB.','error');photoInput.value='';previewWrap.style.display='none';return;}
-  preview.src=URL.createObjectURL(file);previewWrap.style.display='block';statusBox.className='status';
-});
-
-form.addEventListener('submit',async(event)=>{
-  event.preventDefault();
-  if(document.getElementById('website').value) return;
-  if(!form.reportValidity()) return;
-  if(!ENDPOINT){showStatus('The crew page is built and ready. The secure submission endpoint still needs to be connected before live submissions are enabled.','error');return;}
-  submitBtn.disabled=true;submitBtn.textContent='Submitting…';statusBox.className='status';
-  try{
-    const response=await fetch(ENDPOINT,{method:'POST',body:new FormData(form)});
-    if(!response.ok) throw new Error('Submission failed');
-    showStatus('Welcome aboard. Your crew information has been submitted.','success');
-    form.reset();previewWrap.style.display='none';preview.removeAttribute('src');
-  }catch(error){showStatus('Something went wrong while submitting. Please try again or contact the Captain.','error');}
-  finally{submitBtn.disabled=false;submitBtn.textContent='Submit to the Crew';}
-});
+function fileToBase64(file){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(String(reader.result).split(',')[1]||'');reader.onerror=reject;reader.readAsDataURL(file);});}
+photoInput.addEventListener('change',()=>{const file=photoInput.files&&photoInput.files[0];if(!file){previewWrap.style.display='none';preview.removeAttribute('src');return;}if(!['image/jpeg','image/png','image/webp'].includes(file.type)){showStatus('Please choose a JPG, PNG, or WebP image.','error');photoInput.value='';previewWrap.style.display='none';return;}if(file.size>10*1024*1024){showStatus('That photo is too large. Please use an image under 10 MB.','error');photoInput.value='';previewWrap.style.display='none';return;}preview.src=URL.createObjectURL(file);previewWrap.style.display='block';statusBox.className='status';});
+form.addEventListener('submit',async(event)=>{event.preventDefault();if(document.getElementById('website').value)return;if(!form.reportValidity())return;if(!ENDPOINT){showStatus('Crew submission service is being connected. Please try again shortly.','error');return;}const file=photoInput.files&&photoInput.files[0];if(!file)return;submitBtn.disabled=true;submitBtn.textContent='Submitting…';statusBox.className='status';try{const imageBase64=await fileToBase64(file);const payload={pirateName:document.getElementById('pirate-name').value.trim(),pirateBio:document.getElementById('pirate-bio').value.trim(),fileName:file.name,mimeType:file.type,imageBase64,website:document.getElementById('website').value};const response=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const result=await response.json().catch(()=>({}));if(!response.ok||!result.ok)throw new Error(result.error||'Submission failed');showStatus('Welcome aboard. Your crew information has been submitted and will appear on the crew page shortly.','success');form.reset();previewWrap.style.display='none';preview.removeAttribute('src');}catch(error){showStatus('Something went wrong while submitting. Please try again or contact the Captain.','error');}finally{submitBtn.disabled=false;submitBtn.textContent='Submit to the Crew';}});
 </script>
 </body>
 </html>
