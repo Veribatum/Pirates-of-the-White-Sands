@@ -5,11 +5,14 @@ const POTWS_LOCAL_ROSTER_URL = 'crew-submissions.json';
 
 const POTWS_PORTRAIT_DIRECT = {
   'captain-ransom': 'crew-portraits/captain-ransom-final.jpg',
+  'ransom-mayhem': 'crew-portraits/captain-ransom-final.jpg',
   'maelstrom': 'crew-portraits/maelstrom-mayhem-final.jpeg',
+  'maelstrom-mayhem': 'crew-portraits/maelstrom-mayhem-final.jpeg',
   'sir-battle-griffin': 'crew-portraits/sir-battle-griffin-final.jpeg',
   'northstar': 'crew-portraits/Northstar.jpg',
   'osprey': 'crew-portraits/Osprey.jpg',
   'killian': 'crew-portraits/potws-007-kilian.webp',
+  'kilian-cipher': 'crew-portraits/potws-007-kilian.webp',
   'tal': 'crew-portraits/potws-008-tal.webp',
   'argussea': 'crew-portraits/potws-009-argussea.webp',
   'black-janiels': 'crew-portraits/Black J Gun.jpg'
@@ -21,6 +24,19 @@ function potwsCell(row, index) {
   return cell.v == null ? '' : String(cell.v);
 }
 
+function potwsSlug(value) {
+  return String(value || '')
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function potwsValidSlug(value) {
+  const slug = String(value || '').trim();
+  return slug && !slug.includes('#REF!') ? slug : '';
+}
+
 function potwsDriveFileId(value) {
   if (!value) return '';
   const match = String(value).match(/[?&]id=([^&]+)/) || String(value).match(/\/d\/([^/]+)/);
@@ -28,10 +44,12 @@ function potwsDriveFileId(value) {
 }
 
 function potwsPortraitUrl(value) {
-  if (!value) return '';
-  const id = potwsDriveFileId(value);
+  const raw = String(value || '').trim();
+  if (!raw || raw.includes('#REF!')) return '';
+  const id = potwsDriveFileId(raw);
   if (id) return `https://drive.google.com/thumbnail?id=${encodeURIComponent(id)}&sz=w1200`;
-  return value;
+  if (/^https?:\/\//i.test(raw)) return raw;
+  return new URL(raw, window.location.href).href;
 }
 
 function potwsPortraitFallback(img) {
@@ -51,10 +69,13 @@ function potwsPortraitFallback(img) {
 }
 
 async function potwsLoadPortraitOverride(pirate) {
-  const key = pirate.slug || '';
+  const slugKey = potwsValidSlug(pirate.slug);
+  const nameKey = potwsSlug(pirate.name);
+  const key = POTWS_PORTRAIT_DIRECT[slugKey] ? slugKey : nameKey;
   if (POTWS_PORTRAIT_DIRECT[key]) {
-    pirate.portrait = `${POTWS_PORTRAIT_DIRECT[key]}?v=20260925-blackj`;
+    pirate.portrait = new URL(`${POTWS_PORTRAIT_DIRECT[key]}?v=20260926-crewfix`, window.location.href).href;
   }
+  if (!slugKey) pirate.slug = nameKey || pirate.id;
   return pirate;
 }
 
@@ -76,7 +97,7 @@ async function potwsLoadSheetCrew() {
     portrait: potwsPortraitUrl(potwsCell(row, 5).trim()),
     fullBio: potwsCell(row, 6),
     shortBio: potwsCell(row, 7),
-    slug: potwsCell(row, 8).trim(),
+    slug: potwsValidSlug(potwsCell(row, 8)) || potwsSlug(potwsCell(row, 1)),
     notes: potwsCell(row, 9)
   })).filter(p => p.name && p.active === 'Y');
 }
@@ -101,11 +122,11 @@ async function loadPotwsCrew() {
 
   const merged = new Map();
   for (const pirate of sheetCrew) {
-    const key = pirate.slug || pirate.id || pirate.name.toLowerCase();
+    const key = pirate.slug || pirate.id || potwsSlug(pirate.name);
     merged.set(key, pirate);
   }
   for (const pirate of localCrew) {
-    const key = pirate.slug || pirate.id || pirate.name.toLowerCase();
+    const key = potwsValidSlug(pirate.slug) || pirate.id || potwsSlug(pirate.name);
     merged.set(key, { ...(merged.get(key) || {}), ...pirate });
   }
 
@@ -118,7 +139,7 @@ async function loadPotwsCrew() {
 }
 
 function potwsProfileHref(pirate) {
-  return `crew-profile.html?pirate=${encodeURIComponent(pirate.slug || pirate.id)}`;
+  return `crew-profile.html?pirate=${encodeURIComponent(potwsValidSlug(pirate.slug) || potwsSlug(pirate.name) || pirate.id)}`;
 }
 
 function potwsPhotoMarkup(pirate, altText) {
